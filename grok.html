@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶男孩 SECHSKIES | 永恆的六顆水晶</title>
+    <style>
+        :root {
+            --yellow: #FFDD00;
+            --dark: #0A0A0A;
+            --accent: #FFD700;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%);
+            color: #EEE;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080/FFDD00/000000?text=SECHSKIES') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero {
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--yellow);
+            text-shadow: 0 0 30px rgba(255,221,0,0.8);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--yellow);
+            color: #000;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background: #FFEE66;
+        }
+
+        section {
+            padding: 100px 8%;
+        }
+        h2 {
+            font-size: 3rem;
+            color: var(--yellow);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        h2:after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--yellow);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 故事背景 */
+        #story {
+            background: #111;
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(255,221,0,0.2);
+        }
+        .card h3 {
+            color: var(--yellow);
+            margin-bottom: 15px;
+        }
+
+        /* 成員介紹 */
+        #members {
+            background: linear-gradient(#1A1A2E, #0A0A0A);
+        }
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .member {
+            text-align: center;
+        }
+        .member img {
+            width: 100%;
+            border-radius: 20px;
+            border: 4px solid var(--yellow);
+            transition: all 0.4s;
+        }
+        .member:hover img {
+            border-color: #FFEE66;
+            transform: scale(1.05);
+        }
+        .member h3 {
+            margin-top: 15px;
+            color: var(--yellow);
+        }
+
+        /* 歷年作品時間軸 */
+        #discography {
+            background: #111;
+        }
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--yellow);
+            opacity: 0.3;
+        }
+        .timeline-item {
+            margin: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+        .timeline-content {
+            width: 45%;
+            background: rgba(255,221,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--yellow);
+        }
+        .timeline-year {
+            width: 80px;
+            height: 80px;
+            background: var(--yellow);
+            color: #000;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(255,221,0,0.6);
+        }
+
+        /* 現在的故事線 */
+        #now {
+            background: linear-gradient(to bottom, #1A1A2E, #0A0A0A);
+            text-align: center;
+        }
+        .now-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+
+        /* 粒子背景效果 */
+        #particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 英雄區 -->
+    <header>
+        <canvas id="particles"></canvas>
+        <div class="hero">
+            <h1>SECHSKIES<br>水晶男孩</h1>
+            <p>六顆永恆的水晶 • 左右命運的傳奇</p>
+            <a href="#story" class="btn">探索他們的故事</a>
+        </div>
+    </header>
+
+    <!-- 故事背景 -->
+    <section id="story">
+        <h2>故事背景</h2>
+        <div class="story-grid">
+            <div class="card">
+                <h3>出道與巔峰（1997-2000）</h3>
+                <p>1997年4月15日，水晶男孩以《學園別曲》正式出道，是韓國第一代偶像團體，與H.O.T.並稱為90年代後期兩大山脈。團名源自德語「六顆水晶」，象徵六位成員能左右命運。</p>
+                <p>分為「黑水晶」（殷志源、李宰鎮、金在德 — Rap與舞蹈）和「白水晶」（姜成勳、高志溶、張水院 — 主唱）。</p>
+            </div>
+            <div class="card">
+                <h3>解散與重逢（2000-2016）</h3>
+                <p>2000年5月20日正式解散，成員各自發展。2016年4月14日，時隔16年在《無限挑戰》「六六歌」特輯驚喜合體，引起巨大迴響。</p>
+            </div>
+            <div class="card">
+                <h3>YG時期與現在</h3>
+                <p>2016年5月，除高志溶外五人與YG娛樂簽約重啟活動。2019年起調整為四人組合（殷志源、李宰鎮、金在德、張水院），繼續以經典魅力感動粉絲。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成員介紹 -->
+    <section id="members">
+        <h2>六位永恆成員</h2>
+        <div class="members-grid">
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=殷志源" alt="殷志源">
+                <h3>殷志源 (Eun Ji Won)</h3>
+                <p>Leader • Rap • Black Kies</p>
+            </div>
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=李宰鎮" alt="李宰鎮">
+                <h3>李宰鎮 (Lee Jae Jin)</h3>
+                <p>Rap • Dance • Black Kies</p>
+            </div>
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=金在德" alt="金在德">
+                <h3>金在德 (Kim Jae Duc)</h3>
+                <p>Rap • Dance • Black Kies</p>
+            </div>
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=姜成勳" alt="姜成勳">
+                <h3>姜成勳 (Kang Sung Hoon)</h3>
+                <p>Main Vocal • White Kies</p>
+            </div>
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=高志溶" alt="高志溶">
+                <h3>高志溶 (Ko Ji Yong)</h3>
+                <p>Vocal • White Kies</p>
+            </div>
+            <div class="member">
+                <img src="https://via.placeholder.com/300x400/FFDD00/000?text=張水院" alt="張水院">
+                <h3>張水院 (Jang Su Won)</h3>
+                <p>Vocal • White Kies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 歷年作品 -->
+    <section id="discography">
+        <h2>歷年主要作品</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>1997 《學園別曲》</h3>
+                    <p>出道專輯，主打〈學園別曲〉、〈사랑하는 너에게〉</p>
+                </div>
+                <div class="timeline-year">1997</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>1997 《Welcome To The Sechskies Land》</h3>
+                    <p>第二張專輯，拿下多個一位</p>
+                </div>
+                <div class="timeline-year">1997</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>1998 《Road Fighter》</h3>
+                    <p>第三張專輯，經典舞曲代表作</p>
+                </div>
+                <div class="timeline-year">1998</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>1999 《Com' Back》</h3>
+                    <p>第四張專輯，主打〈Com' Back〉</p>
+                </div>
+                <div class="timeline-year">1999</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2016 《2016 Re-ALBUM》 & 《THREE WORDS》</h3>
+                    <p>重啟後首支單曲與重製專輯</p>
+                </div>
+                <div class="timeline-year">2016</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2017 《ANOTHER LIGHT》</h3>
+                    <p>第五張正規專輯</p>
+                </div>
+                <div class="timeline-year">2017</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>2021 《DON'T LOOK BACK》</h3>
+                    <p>近期重要專輯</p>
+                </div>
+                <div class="timeline-year">2021</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 現在的故事線 -->
+    <section id="now">
+        <h2>現在的故事線</h2>
+        <div class="now-content">
+            <p>2019年後，水晶男孩以四人組合（殷志源、李宰鎮、金在德、張水院）繼續活動。雖然回歸頻率不高，但每一次舞台與演唱會依然充滿90年代的經典魅力與深厚情感。</p>
+            <p>官方應援色 <strong style="color:#FFDD00;">黃色</strong> 與粉絲名 <strong>YELLOWKIES</strong> 依然是他們最堅強的後盾。</p>
+            <p>無論時間過去多久，這六顆水晶永遠閃耀在韓流歷史的天空。</p>
+            <br>
+            <p style="font-size:1.4rem; color:var(--yellow);">「謝謝你們一直陪伴，我們還在這裡。」</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 水晶男孩 SECHSKIES 粉絲致敬網頁 | 應援色：黃色 • YELLOWKIES Forever</p>
+    </footer>
+
+    <!-- 簡單粒子效果（黃色水晶粒子） -->
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 4 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = '#FFDD00';
+                ctx.globalAlpha = 0.6;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                p.update();
+                p.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>

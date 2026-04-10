@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECHSKIES - 水晶男孩傳奇介紹</title>
+    <style>
+        /* 基本樣式與應援色設定 */
+        :root {
+            --yellow: #FFD700; /* 應援黃色 */
+            --dark-yellow: #CCAC00;
+            --black: #1a1a1a;
+            --gray: #f4f4f4;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text-color);
+            background-color: var(--gray);
+        }
+
+        /* 導覽列 */
+        nav {
+            background-color: var(--black);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--yellow);
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* 橫幅 Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/4/4b/Sechskies_at_Yellow_Universe_exhibition.jpg') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--yellow);
+            text-align: center;
+            border-bottom: 8px solid var(--yellow);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* 區塊容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            border-left: 5px solid var(--yellow);
+            padding-left: 15px;
+            color: var(--black);
+            margin-bottom: 25px;
+        }
+
+        /* 作品列表表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th {
+            background-color: var(--yellow);
+            color: var(--black);
+            padding: 12px;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        /* 現在的故事線樣式 */
+        .timeline {
+            border-left: 3px solid var(--yellow);
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--black);
+            border: 3px solid var(--yellow);
+            border-radius: 50%;
+            position: absolute;
+            left: -31px;
+            top: 5px;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--black);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .highlight {
+            color: var(--dark-yellow);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#background">故事背景</a>
+        <a href="#albums">歷年作品</a>
+        <a href="#current">現在故事線</a>
+    </nav>
+
+    <header class="hero">
+        <h1>SECHSKIES</h1>
+        <p>水晶男孩 - 一代 K-POP 傳奇的復活</p>
+    </header>
+
+    <div class="container">
+        
+        <section id="background">
+            <h2>故事背景</h2>
+            <p>
+                <span class="highlight">SECHSKIES（水晶男孩）</span> 於 1997 年 4 月 15 日出道，是韓國第一代頂尖男子團體。隊名在德語中意為「六顆水晶」，代表六位成員。
+            </p>
+            <p>
+                他們在 90 年代末與 H.O.T 並稱為 K-POP 的兩大山脈。然而，在事業巔峰期的 2000 年 5 月，團體突然宣佈解散，成為當時韓國演藝界最震撼的消息。解散後的 16 年間，成員各自在不同領域發展，但「小黃（粉絲暱稱）」們從未忘記那片黃色氣球海。
+            </p>
+        </section>
+
+        <section id="albums">
+            <h2>歷年作品 (精選)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>年份</th>
+                        <th>專輯/作品</th>
+                        <th>主打歌</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1997</td>
+                        <td>學園別曲</td>
+                        <td>學園別曲 / 男兒之路 (Pom Saeng Pom Sa)</td>
+                    </tr>
+                    <tr>
+                        <td>1998</td>
+                        <td>Road Fighter</td>
+                        <td>Road Fighter / Couple</td>
+                    </tr>
+                    <tr>
+                        <td>1999</td>
+                        <td>Com'Back</td>
+                        <td>Com'Back</td>
+                    </tr>
+                    <tr>
+                        <td>2016</td>
+                        <td>數位單曲</td>
+                        <td>Three Words (三個詞)</td>
+                    </tr>
+                    <tr>
+                        <td>2017</td>
+                        <td>ANOTHER LIGHT</td>
+                        <td>Something Special / Smile</td>
+                    </tr>
+                    <tr>
+                        <td>2020</td>
+                        <td>ALL FOR YOU</td>
+                        <td>ALL FOR YOU</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="current">
+            <h2>現在的故事線</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>2016年：傳奇回歸</strong>
+                    <p>透過綜藝節目《無限挑戰》的「土土歌2」特輯，成員們跨越 16 年再次重聚。隨後正式與 YG 娛樂簽約，發行《Three Words》橫掃音源榜。</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>2019年：體制調整</strong>
+                    <p>團體重組為四人體制（殷志源、李宰鎮、金在德、張水院），繼續展開活動。</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>至今：個人與團體並行</strong>
+                    <p>隊長殷志源活躍於各類綜藝節目，成員們也積極參與音樂與個人品牌活動。雖然活動節奏放緩，但水晶男孩仍是 K-POP 史上的長壽標竿。</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2024 - 黃色氣球永遠飄揚</p>
+    </footer>
+
+</body>
+</html>
