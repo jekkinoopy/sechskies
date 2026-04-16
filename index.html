@@ -1,36 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SECHSKIES - 水晶男孩傳奇介紹</title>
     <style>
         /* 基本樣式與應援色設定 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
         :root {
-            --yellow: #FFD700; /* 應援黃色 */
-            --dark-yellow: #CCAC00;
+            --yellow: #FFD700;
+            /* 應援黃色 */
+            --dark-yellow: #4e492b;
             --black: #1a1a1a;
             --gray: #f4f4f4;
             --text-color: #333;
+            --dark: #777;
+            --accent: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #0A0A0A;
+            min-height: 100%;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
+            font-family: 'Noto Sans TC', system-ui, sans-serif;
             color: var(--text-color);
-            background-color: var(--gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            aspect-ratio: 1920 / 1080;
+            width: 100%;
+
+            background-image: url(https://img.notionusercontent.com/s3/prod-files-secure%2Fccf08452-292a-43c3-8c9f-4986a4da6a61%2F731a1fb5-9a8a-4e84-ae2f-66cac6fb9368%2FScreenShot-VideoID-m7Zt_p9S-yg-TimeS-320.png/size/w=2000?exp=1776407268&sig=yy-Y4-ADSuaz90ICllLf1KjrpCY3U54_nJKdb6sgQ_4&id=f027533f-efc3-42ed-a1ee-11796ec2efcf&table=block&userId=799a0c31-3a26-4ea6-8a75-05240b21c195);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* position: relative; */
+            overflow: hidden;
+            margin: 0;
+    padding: 0;
+    vertical-align: bottom; /* 消除某些瀏覽器對區塊元素的底邊留白 */
         }
 
         /* 導覽列 */
         nav {
             background-color: var(--black);
-            padding: 1rem;
+            padding: 0.5rem;
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
+            margin: 0;
         }
 
         nav a {
@@ -45,26 +81,50 @@
             color: white;
         }
 
+        #particles {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            display: block;
+            z-index: 1;
+            pointer-events: none;
+        }
+
         /* 橫幅 Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://upload.wikimedia.org/wikipedia/commons/4/4b/Sechskies_at_Yellow_Universe_exhibition.jpg') center/cover;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--yellow);
-            text-align: center;
-            border-bottom: 8px solid var(--yellow);
+            z-index: 2;
+            position: relative;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-size: 2.5rem;
+            line-height: 1.2;
+            color: var(--yellow);
+            text-shadow: 0 0 30px rgba(255,221,0,0.8);
+            margin-bottom: 0.5rem;
         }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--yellow);
+            color: #000;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+            background: #FFEE66;
+        }
+
 
         /* 區塊容器 */
         .container {
@@ -72,13 +132,36 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            /* background: rgba(0, 0, 0, 0.85); */
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 5px 5px rgba(255,221,0,0.2);
+        }
+        .card h3 {
+            color: var(--yellow);
+            margin-bottom: 15px;
+        }
 
         section {
             margin-bottom: 60px;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
         }
 
         h2 {
@@ -105,6 +188,11 @@
             padding: 12px;
             border-bottom: 1px solid #ddd;
             text-align: center;
+        }
+
+        a {
+            color: var(--text-color);
+            text-decoration: none;
         }
 
         /* 現在的故事線樣式 */
@@ -146,29 +234,51 @@
         }
     </style>
 </head>
-<body>
 
+<body>
+    <header>
+        <div class="hero">
+            <h1>SECHSKIES<br>水晶男孩</h1>
+            <p>六顆永恆的水晶 • 左右命運的傳奇</p>
+            <a href="#story" class="btn">探索他們的故事</a>
+        </div>
+    </header>
+    
     <nav>
         <a href="#background">故事背景</a>
         <a href="#albums">歷年作品</a>
         <a href="#current">現在故事線</a>
     </nav>
-
-    <header class="hero">
-        <h1>SECHSKIES</h1>
-        <p>水晶男孩 - 一代 K-POP 傳奇的復活</p>
-    </header>
-
+    
+    <canvas id="particles"></canvas>
+    
     <div class="container">
-        
+
         <section id="background">
             <h2>故事背景</h2>
             <p>
                 <span class="highlight">SECHSKIES（水晶男孩）</span> 於 1997 年 4 月 15 日出道，是韓國第一代頂尖男子團體。隊名在德語中意為「六顆水晶」，代表六位成員。
             </p>
             <p>
-                他們在 90 年代末與 H.O.T 並稱為 K-POP 的兩大山脈。然而，在事業巔峰期的 2000 年 5 月，團體突然宣佈解散，成為當時韓國演藝界最震撼的消息。解散後的 16 年間，成員各自在不同領域發展，但「小黃（粉絲暱稱）」們從未忘記那片黃色氣球海。
+                他們在 90 年代末與 H.O.T 並稱為 K-POP 的兩大山脈。然而，在事業巔峰期的 2000 年 5 月，團體突然宣佈解散，成為當時韓國演藝界最震撼的消息。解散後的 16
+                年間，成員各自在不同領域發展，但「小黃（粉絲暱稱）」們從未忘記那片黃色氣球海。
             </p>
+
+            <div class="story-grid">
+                <div class="card">
+                    <h3>出道與巔峰（1997-2000）</h3>
+                    <p>1997年4月15日，水晶男孩以《學園別曲》正式出道，是韓國第一代偶像團體，與H.O.T.並稱為90年代後期兩大山脈。團名源自德語「六顆水晶」，象徵六位成員能左右命運。</p>
+                    <p>分為「黑水晶」（殷志源、李宰鎮、金在德 — Rap與舞蹈）和「白水晶」（姜成勳、高志溶、張水院 — 主唱）。</p>
+                </div>
+                <div class="card">
+                    <h3>解散與重逢（2000-2016）</h3>
+                    <p>2000年5月20日正式解散，成員各自發展。2016年4月14日，時隔16年在《無限挑戰》「六六歌」特輯驚喜合體，引起巨大迴響。</p>
+                </div>
+                <div class="card">
+                    <h3>YG時期與現在</h3>
+                    <p>2016年5月，除高志溶外五人與YG娛樂簽約重啟活動。2019年起調整為四人組合（殷志源、李宰鎮、金在德、張水院），繼續以經典魅力感動粉絲。</p>
+                </div>
+        </div>
         </section>
 
         <section id="albums">
@@ -199,10 +309,12 @@
                     </tr>
                     <tr>
                         <td>2016</td>
-                        <a href="lyrics.html">
-                            <td>數位單曲</td>
-                        </a>
-                        <td>Three Words (三個詞)</td>
+                        <td>
+                            <a href="lyrics.html">數位單曲</a>
+                        </td>
+                        <td>
+                            <a href="lyrics.html">Three Words (三個詞)</a>
+                        </td>
                     </tr>
                     <tr>
                         <td>2017</td>
@@ -239,8 +351,87 @@
     </div>
 
     <footer>
-        <p>SECHSKIES Fanpage &copy; 2024 - 黃色氣球永遠飄揚</p>
+        <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
     </footer>
+    <!-- 粒子效果 -->
+    <script>
+        // 根據圖片比例 (1920:1080) 調整 header 高度
+        const header = document.querySelector('header');
+        
+        function setHeaderHeight() {
+            const width = window.innerWidth;
+            const height = width * (1080 / 1920);
+            header.style.height = height + 'px';
+        }
+        
+        // 確保在 DOM 完全載入後執行
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setHeaderHeight);
+        } else {
+            setHeaderHeight();
+        }
+        
+        window.addEventListener('resize', setHeaderHeight);
+        window.addEventListener('load', setHeaderHeight);
 
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        const container = canvas.nextElementSibling;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = container.offsetHeight;
+        }
+        
+        resizeCanvas();
+
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 4 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = '#FFDD00';
+                ctx.globalAlpha = 0.6;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                p.update();
+                p.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            init();
+        });
+
+        init();
+        animate();
+    </script>
 </body>
+
 </html>

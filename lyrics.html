@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             /* 定義一個基礎大小，這就是你的「倍率開關」 */
@@ -24,13 +25,19 @@
             margin: 10%;
             background-color: #333333;
             color: #ffffff;
-
         }
 
         h1 {
             color: #FAEAB1;
             font-size: 2.5rem;
             /* 想要這區特別大一點就設 2.5 */
+        }
+
+        .main-left {
+            width: 50%;
+            vertical-align: top;
+            gap: 1rem;
+            /* padding-right: 40px; */
         }
 
         .songInfo {
@@ -55,79 +62,125 @@
             /* 原本的 8px 大約是 0.5rem */
             font-size: 1.5rem;
             /* 想要這區特別大一點就設 1.2 */
+            margin: auto;
+        }
+
+        table {
+            border-spacing: 40px;
+            /* 左右間距 20px，上下 0 */
+            border-collapse: separate;
+            /* 必須是 separate，spacing 才會生效 */
+        }
+
+        table,
+        td {
+            /* width: 100%; */
+            /* border:#fff solid 1px; */
+        }
+        a{
+            color: #FFF;
+            text-decoration: none;
+        }
+        .contact i {
+            font-size: 0.6em;
+            margin-right: 0.3rem;
         }
     </style>
 </head>
 
 <body class="nanum-pen-script-regular">
     <h1>세 단어 (THREE WORDS)</h1>
-    <iframe width="705" height="397" src="https://www.youtube.com/embed/m7Zt_p9S-yg"
-        title="SECHSKIES - ‘세 단어 (THREE WORDS)’ M/V" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="932" height="533" src="https://www.youtube.com/embed/6YsNTCPwhbg" title="SECHSKIES 水晶男孩 - THREE WORDS/三個詞 (세 단어) [中字]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="932" height="533" src="https://www.youtube.com/embed/Xn92QTW7ywE" title="【繁中】SECHSKIES - 세 단어 (THREE WORDS)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <dl class="songInfo">
-        <dt>Artist</dt>
-        <dd>SECHSKIES</dd>
-        <dt>Album</dt>
-        <dd>2016 Re-ALBUM</dd>
-        <dt>Release Date</dt>
-        <dd>2016년</dd>
-        <dt>Genre</dt>
-        <dd>K-Pop</dd>
-    </dl>
-    <p>다신 볼 수 없을 것만 같던<br>
-        그대가 내 앞에 서 있네요<br>
-        지킬 수 있을지 모르며 약속했던<br>
-        그 언젠가가 지금인 거군요<br>
-        단 하루도 널, 널 잊었던 적<br>
-        없다는 말은 거짓말이겠지만<br>
-        그대가 곁에 있지 않을 때 외로웠죠 (외로웠죠)<br>
-        한 순간도 널, 널 잊었던 적<br>
-        없다는 말이 무슨 의미겠어요<br>
-        지금 여기 우리 세 단어면 돼요<br>
-        I just wanna be with you<br>
-        내가 사는 이유<br>
-        다시는 멀리 가지 않을게요<br>
-        I'll always be here for you<br>
-        세월이 지난 후<br>
-        세상이 다시 우릴 갈라놔도<br>
-        떠나야만 해도<br>
-        멀리 있진 않을게요 uh<br>
-        참 멀리 멀리 멀리도 돌아왔네요<br>
-        지독한 세월과 세상에게 수없이 꺾이고 (꺾이고)<br>
-        발밑엔 낙엽이 뒤덮이고 이 야윈 모습이지만<br>
-        여기 여전히 그대 곁에 서있죠<br>
-        I missed you 한 순간도 편히 잠든 적 없어 (없어)<br>
-        잘 지낸 것 같겠지만 I missed you<br>
-        한 순간도 진짜 웃은 적 없어 (없어)<br>
-        한 순간도 널, 널 잊었던 적<br>
-        없다는 말이 무슨 의미겠어요<br>
-        지금 여기 우리 세 단어면 돼요<br>
-        I just wanna be with you<br>
-        내가 사는 이유<br>
-        다시는 멀리 가지 않을게요<br>
-        I'll always be here for you<br>
-        세월이 지난 후<br>
-        세상이 다시 우릴 갈라놔도<br>
-        떠나야만 해도<br>
-        멀리 있진 않을게요<br>
-        시간은 참 무섭게도 가네요<br>
-        붙잡으려 해도 잡히지 않을 거예요<br>
-        언젠가 다시 헤어지게 되어도<br>
-        여기 가까이 서있을게<br>
-        지금 여기 우리<br>
-        I just wanna be with you<br>
-        내가 사는 이유 (miss you baby)<br>
-        다시는 멀리 가지 않을게요 (가지 않을게요)<br>
-        I'll always be here for you<br>
-        세월이 지난 후<br>
-        세상이 다시 우릴 갈라놔도 (우릴 갈라놔도)<br>
-        떠나야만 해도 (떠나야만 해도)<br>
-        멀리 (멀리) 있진 않을게요<br>
-        멀리 있진 않을게<br>
-    </p>
+    <table>
+        <tr>
+            <td <div class="main-left">
+                <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/m7Zt_p9S-yg"
+                    title="SECHSKIES - ‘세 단어 (THREE WORDS)’ M/V" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <dl class="songInfo">
+                    <dt>Artist</dt>
+                    <dd>SECHSKIES</dd>
+                    <dt>Album</dt>
+                    <dd>2016 Re-ALBUM</dd>
+                    <dt>Release Date</dt>
+                    <dd>2016년</dd>
+                    <dt>Genre</dt>
+                    <dd>K-Pop</dd>
+                </dl>
+                </div>
+            </td>
+            <td>
+                <p>다신 볼 수 없을 것만 같던<br>
+                    그대가 내 앞에 서 있네요<br>
+                    지킬 수 있을지 모르며 약속했던<br>
+                    그 언젠가가 지금인 거군요<br>
+                    단 하루도 널, 널 잊었던 적<br>
+                    없다는 말은 거짓말이겠지만<br>
+                    그대가 곁에 있지 않을 때 외로웠죠 (외로웠죠)<br>
+                    한 순간도 널, 널 잊었던 적<br>
+                    없다는 말이 무슨 의미겠어요<br>
+                    지금 여기 우리 세 단어면 돼요<br>
+                    I just wanna be with you<br>
+                    내가 사는 이유<br>
+                    다시는 멀리 가지 않을게요<br>
+                    I'll always be here for you<br>
+                    세월이 지난 후<br>
+                    세상이 다시 우릴 갈라놔도<br>
+                    떠나야만 해도<br>
+                    멀리 있진 않을게요 uh<br>
+                    참 멀리 멀리 멀리도 돌아왔네요<br>
+                    지독한 세월과 세상에게 수없이 꺾이고 (꺾이고)<br>
+                    발밑엔 낙엽이 뒤덮이고 이 야윈 모습이지만<br>
+                    여기 여전히 그대 곁에 서있죠<br>
+                    I missed you 한 순간도 편히 잠든 적 없어 (없어)<br>
+                    잘 지낸 것 같겠지만 I missed you<br>
+                    한 순간도 진짜 웃은 적 없어 (없어)<br>
+                    한 순간도 널, 널 잊었던 적<br>
+                    없다는 말이 무슨 의미겠어요<br>
+                    지금 여기 우리 세 단어면 돼요<br>
+                    I just wanna be with you<br>
+                    내가 사는 이유<br>
+                    다시는 멀리 가지 않을게요<br>
+                    I'll always be here for you<br>
+                    세월이 지난 후<br>
+                    세상이 다시 우릴 갈라놔도<br>
+                    떠나야만 해도<br>
+                    멀리 있진 않을게요<br>
+                    시간은 참 무섭게도 가네요<br>
+                    붙잡으려 해도 잡히지 않을 거예요<br>
+                    언젠가 다시 헤어지게 되어도<br>
+                    여기 가까이 서있을게<br>
+                    지금 여기 우리<br>
+                    I just wanna be with you<br>
+                    내가 사는 이유 (miss you baby)<br>
+                    다시는 멀리 가지 않을게요 (가지 않을게요)<br>
+                    I'll always be here for you<br>
+                    세월이 지난 후<br>
+                    세상이 다시 우릴 갈라놔도 (우릴 갈라놔도)<br>
+                    떠나야만 해도 (떠나야만 해도)<br>
+                    멀리 (멀리) 있진 않을게요<br>
+                    멀리 있진 않을게<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.2574996244366!2d126.9052587762962!3d37.54899662513289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c992bb3f6a887%3A0x6058954f87325221!2sYG%20Entertainment!5e0!3m2!1szh-TW!2stw!4v1776239000614!5m2!1szh-TW!2stw"
+                    width="100%" style="aspect-ratio: 16 / 9; border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe></td>
+            <td>
+                <div class="contact">
+                    <img src="https://ygfamily.com/home/assets/images/f_logo.svg" alt="">
+                    <h3>YG Entertainment</h3>
+                    <i class="fa-solid fa-map-location-dot"></i> Huiujeong-ro 1-gil, Mapo-gu, Seoul, South Korea <br>
+                    <i class="fas fa-globe"></i> <a href="https://www.ygfamily.com/" target="_blank">https://www.ygfamily.com/</a><br>
+                    <i class="fas fa-phone"></i> +82231421104
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
 
 </body>
 
