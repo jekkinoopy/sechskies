@@ -355,15 +355,7 @@
     </footer>
     <!-- 粒子效果 -->
     <script>
-        // 根據圖片比例 (1920:1080) 調整 header 高度
-        const header = document.querySelector('header');
-        
-        function setHeaderHeight() {
-            const width = window.innerWidth;
-            const height = width * (1080 / 1920);
-            header.style.height = height + 'px';
-        }
-        
+      
         // 確保在 DOM 完全載入後執行
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', setHeaderHeight);
