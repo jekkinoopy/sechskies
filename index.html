@@ -38,10 +38,10 @@
         }
 
         header {
-            aspect-ratio: 1920 / 1080;
-            width: 100%;
-
-            background-image: url(https://img.notionusercontent.com/s3/prod-files-secure%2Fccf08452-292a-43c3-8c9f-4986a4da6a61%2F731a1fb5-9a8a-4e84-ae2f-66cac6fb9368%2FScreenShot-VideoID-m7Zt_p9S-yg-TimeS-320.png/size/w=2000?exp=1776407268&sig=yy-Y4-ADSuaz90ICllLf1KjrpCY3U54_nJKdb6sgQ_4&id=f027533f-efc3-42ed-a1ee-11796ec2efcf&table=block&userId=799a0c31-3a26-4ea6-8a75-05240b21c195);
+            /* aspect-ratio: 1920 / 1080; */
+            /* width: 100%; */
+            height: 100vh; /* 預設為全屏高度，實際高度由 JS 調整 */
+            background-image: url(img/header.png);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -95,13 +95,13 @@
             z-index: 2;
             position: relative;
             width: 100%;
+            text-shadow: 0 0 10px rgba(28, 28, 26, 0.3);
         }
 
         .hero h1 {
             font-size: 2.5rem;
             line-height: 1.2;
             color: var(--yellow);
-            text-shadow: 0 0 30px rgba(255,221,0,0.8);
             margin-bottom: 0.5rem;
         }
         .hero p {
