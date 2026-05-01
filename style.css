@@ -1,50 +1,93 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
         :root {
-            --yellow: #FFDD00;
-            --dark: #777;
+            /* 1. 核心主角：水晶黃 */
+            --primary: #FFDD00;
+            /* 主色：應援黃 */
             --accent: #FFD700;
+            /* 強調：較深一點的金色，用於 Hover 效果 */
+            --secondary: #ea9a87;
+            /* 次要：規範中的粉橘，用於柔和的提醒 */
+            --text: #190604;
+            /* 標題：採用規範中最深的 Core-900，壓住亮度 */
+            --text-muted: #666666;
+            /* 次要文字：規範中的 Gray-700 */
+            --text-white: #ffffff;
+            /* 純白：用於深色底部的文字 */
+
+            /* 背景顏色 */
+            --bg: #292929;
+            /* 大背景：規範中的輕灰 */
+            --bg-alt: #ffffff;
+            /* 區塊背景：純白 */
+
+            /* 4. 交互細節 */
+            --interactive-hover: #862617;
+            /* 懸停：規範中的深紅，點綴黃色的對比 */
+            --shadow: rgba(0, 0, 0, 0.1);
+
+            /* 灰色系 (Gray Scale) */
+            --gray-900: #333333;
+            --gray-700: #777;
+            --gray-500: #999999;
+            --gray-300: #cccccc;
+            --gray-100: #eeeeee;
+
+            --font-size: 16px;
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Noto Sans TC', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%);
-            color: #EEE;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
+
         header {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080/FFDD00/000000?text=SECHSKIES') center/cover no-repeat;
+            /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://via.placeholder.com/1920x1080/FFDD00/000000?text=SECHSKIES') center/cover no-repeat; */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
         }
+
         .hero {
             z-index: 2;
         }
+
         .hero h1 {
             font-size: 2.5rem;
             line-height: 1.2;
-            color: var(--yellow);
-            text-shadow: 0 0 30px rgba(255,221,0,0.8);
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(255, 221, 0, 0.8);
             margin-bottom: 0.5rem;
         }
+
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
+
         .btn {
             display: inline-block;
             padding: 10px 30px;
-            background: var(--yellow);
-            color: #000;
+            background: var(--primary);
+            color: var(--text-white);
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s;
         }
+
         .btn:hover {
             transform: scale(1.1);
             background: #FFEE66;
@@ -53,18 +96,20 @@
         section {
             padding: 100px 8%;
         }
+
         h2 {
             font-size: 3rem;
-            color: var(--yellow);
+            color: var(--text-muted);
             text-align: center;
             margin-bottom: 60px;
             position: relative;
         }
+
         h2:after {
             content: '';
             width: 80px;
             height: 4px;
-            background: var(--yellow);
+            background: var(--primary);
             position: absolute;
             bottom: -15px;
             left: 50%;
@@ -75,6 +120,7 @@
         #story {
             background: #111;
         }
+
         .story-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -82,18 +128,21 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 30px;
             transition: transform 0.4s, box-shadow 0.4s;
         }
+
         .card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(255,221,0,0.2);
+            box-shadow: 0 20px 40px rgba(255, 221, 0, 0.2);
         }
+
         .card h3 {
-            color: var(--yellow);
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
@@ -101,6 +150,7 @@
         #members {
             background: linear-gradient(#1A1A2E, #0A0A0A);
         }
+
         .members-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -108,33 +158,39 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .member {
             text-align: center;
         }
+
         .member img {
             width: 100%;
             border-radius: 20px;
-            border: 4px solid var(--yellow);
+            border: 4px solid var(--primary);
             transition: all 0.4s;
         }
+
         .member:hover img {
             border-color: #FFEE66;
             transform: scale(1.05);
         }
+
         .member h3 {
             margin-top: 15px;
-            color: var(--yellow);
+            color: var(--primary);
         }
 
         /* 歷年作品時間軸 */
         #discography {
             background: #111;
         }
+
         .timeline {
             max-width: 1000px;
             margin: 0 auto;
             position: relative;
         }
+
         .timeline:before {
             content: '';
             position: absolute;
@@ -142,9 +198,10 @@
             top: 0;
             bottom: 0;
             width: 6px;
-            background: var(--yellow);
+            /* background: var(--primary); */
             opacity: 0.3;
         }
+
         .timeline-item {
             margin: 60px 0;
             display: flex;
@@ -152,18 +209,23 @@
             align-items: center;
             position: relative;
         }
-        .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+
+        .timeline-item:nth-child(odd) {
+            /* flex-direction: row-reverse; */
+        }
+
         .timeline-content {
             width: 45%;
-            background: rgba(255,221,0,0.1);
+            background: rgba(255, 221, 0, 0.1);
             padding: 25px;
             border-radius: 15px;
-            border: 2px solid var(--yellow);
+            border: 2px solid var(--primary);
         }
+
         .timeline-year {
             width: 80px;
             height: 80px;
-            background: var(--yellow);
+            background: var(--primary);
             color: #000;
             font-weight: bold;
             font-size: 1.5rem;
@@ -172,7 +234,7 @@
             justify-content: center;
             border-radius: 50%;
             flex-shrink: 0;
-            box-shadow: 0 0 20px rgba(255,221,0,0.6);
+            box-shadow: 0 0 20px rgba(255, 221, 0, 0.6);
         }
 
         /* 現在的故事線 */
@@ -180,24 +242,67 @@
             background: linear-gradient(to bottom, #1A1A2E, #0A0A0A);
             text-align: center;
         }
+
         .now-content {
             max-width: 800px;
             margin: 0 auto;
             font-size: 1.2rem;
         }
 
+        /* 頁尾 */
         footer {
-            background: #000;
+            background: var(--gray-900);
             text-align: center;
             padding: 60px 20px;
-            color: #888;
+            color: var(--text-muted);
+            border-top: 1px solid var(--primary);
+        }
+
+        footer p {
+            color: var(--text-white);
+            font-size: 1rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* 廣告連結容器 */
+        .studio-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            border: 1px solid transparent;
+            border-radius: 20px;
+        }
+
+        /* 廣告連結內的工作室名稱 */
+        .studio-link strong {
+            transition: 0.3s;
+        }
+
+        /* 懸停效果：讓你的廣告連結更亮眼 */
+        .studio-link:hover {
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        .studio-link:hover strong {
+            text-shadow: 0 0 1px var(--primary);
+            /* 懸停時名字發光 */
         }
 
         /* 粒子背景效果 */
         #particles {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
             pointer-events: none;
         }

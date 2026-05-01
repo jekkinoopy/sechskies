@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SECHSKIES - 水晶男孩傳奇介紹</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         /* 基本樣式與應援色設定 */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
         :root {
             --yellow: #FFD700;
             /* 應援黃色 */
@@ -40,7 +42,8 @@
         header {
             /* aspect-ratio: 1920 / 1080; */
             /* width: 100%; */
-            height: 100vh; /* 預設為全屏高度，實際高度由 JS 調整 */
+            height: 100vh;
+            /* 預設為全屏高度，實際高度由 JS 調整 */
             background-image: url(img/header.png);
             background-size: cover;
             background-position: center;
@@ -53,8 +56,9 @@
             /* position: relative; */
             overflow: hidden;
             margin: 0;
-    padding: 0;
-    vertical-align: bottom; /* 消除某些瀏覽器對區塊元素的底邊留白 */
+            padding: 0;
+            vertical-align: bottom;
+            /* 消除某些瀏覽器對區塊元素的底邊留白 */
         }
 
         /* 導覽列 */
@@ -104,26 +108,15 @@
             color: var(--yellow);
             margin-bottom: 0.5rem;
         }
+
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             color: var(--gray);
 
         }
-        .btn {
-            display: inline-block;
-            padding: 10px 30px;
-            background: var(--yellow);
-            color: #000;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .btn:hover {
-            transform: scale(1.1);
-            background: #FFEE66;
-        }
+
+
 
 
         /* 區塊容器 */
@@ -132,6 +125,7 @@
             margin: 0 auto;
             padding: 40px 20px;
         }
+
         .story-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -139,16 +133,19 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .card {
             /* background: rgba(0, 0, 0, 0.85); */
             border-radius: 20px;
             padding: 30px;
             transition: transform 0.4s, box-shadow 0.4s;
         }
+
         .card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 5px 5px rgba(255,221,0,0.2);
+            box-shadow: 0 5px 5px rgba(255, 221, 0, 0.2);
         }
+
         .card h3 {
             color: var(--yellow);
             margin-bottom: 15px;
@@ -164,12 +161,7 @@
             z-index: 10;
         }
 
-        h2 {
-            border-left: 5px solid var(--yellow);
-            padding-left: 15px;
-            color: var(--black);
-            margin-bottom: 25px;
-        }
+
 
         /* 作品列表表格 */
         table {
@@ -219,14 +211,6 @@
             top: 5px;
         }
 
-        /* 頁尾 */
-        footer {
-            background-color: var(--black);
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-        }
 
         .highlight {
             color: var(--dark-yellow);
@@ -243,15 +227,15 @@
             <a href="#story" class="btn">探索他們的故事</a>
         </div>
     </header>
-    
+
     <nav>
         <a href="#background">故事背景</a>
         <a href="#albums">歷年作品</a>
         <a href="#current">現在故事線</a>
     </nav>
-    
+
     <canvas id="particles"></canvas>
-    
+
     <div class="container">
 
         <section id="background">
@@ -278,7 +262,7 @@
                     <h3>YG時期與現在</h3>
                     <p>2016年5月，除高志溶外五人與YG娛樂簽約重啟活動。2019年起調整為四人組合（殷志源、李宰鎮、金在德、張水院），繼續以經典魅力感動粉絲。</p>
                 </div>
-        </div>
+            </div>
         </section>
 
         <section id="albums">
@@ -349,32 +333,34 @@
         </section>
 
     </div>
-
     <footer>
         <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
+
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank">
+            Design by <strong>Jekkinoopy Studio</strong>
+        </a>
     </footer>
     <!-- 粒子效果 -->
     <script>
-      
         // 確保在 DOM 完全載入後執行
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', setHeaderHeight);
         } else {
             setHeaderHeight();
         }
-        
+
         window.addEventListener('resize', setHeaderHeight);
         window.addEventListener('load', setHeaderHeight);
 
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         const container = canvas.nextElementSibling;
-        
+
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = container.offsetHeight;
         }
-        
+
         resizeCanvas();
 
         let particles = [];
