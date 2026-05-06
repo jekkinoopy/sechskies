@@ -1,0 +1,73 @@
+:root {
+    /* 定義一個基礎大小，這就是你的「倍率開關」 */
+    font-size: 26px;
+}
+
+.nanum-pen-script-regular {
+    font-family: "Nanum Pen Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 10%;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+h1 {
+    color: #FAEAB1;
+    font-size: 2.5rem;
+    /* 想要這區特別大一點就設 2.5 */
+}
+
+.main-left {
+    width: 50%;
+    vertical-align: top;
+    gap: 1rem;
+    /* padding-right: 40px; */
+}
+
+.songInfo {
+    color: #FAEAB1;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: -10px;
+    align-items: center;
+    gap: 0.5rem;
+    /* 原本的 8px 大約是 0.5rem */
+    font-size: 1.2rem;
+    /* 想要這區特別大一點就設 1.2 */
+}
+
+/* .songInfo dd{
+    margin: 5px 0;
+} */
+p {
+    color: #fff;
+    line-height: 1.5;
+    gap: 0.5rem;
+    /* 原本的 8px 大約是 0.5rem */
+    font-size: 1.5rem;
+    /* 想要這區特別大一點就設 1.2 */
+    margin: auto;
+}
+
+table {
+    border-spacing: 40px;
+    /* 左右間距 20px，上下 0 */
+    border-collapse: separate;
+    /* 必須是 separate，spacing 才會生效 */
+}
+
+/* width: 100%; */
+/* border:#fff solid 1px; */
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.contact i {
+    font-size: 0.6em;
+    margin-right: 0.3rem;
+}
