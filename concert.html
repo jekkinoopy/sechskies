@@ -2,224 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SECHSKIES Concert Archive</title>
-    <style>
-        body {
-            background-color: #fcfaf2;
-            /* 溫潤米白背景 */
-            margin: 0;
-            padding: 50px 0;
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-        }
-
-        /* CSS 效果 */
-
-        /* 1. 搜尋區塊容器：負責置中 */
-        .search-section {
-            width: 100%;
-            /* 撐滿寬度 */
-            display: flex;
-            /* 使用 Flexbox 佈局 */
-            justify-content: center;
-            /* 水平置中 */
-            margin: 40px 0;
-            /* 上下留白，讓視覺不擁擠 */
-        }
-
-        /* 2. 搜尋輸入框本體 */
-        .search-input {
-            width: 80%;
-            /* 行動裝置下佔 80% */
-            max-width: 400px;
-            /* 電腦版最大寬度 */
-            padding: 12px 25px;
-            /* 內縮，讓文字不貼邊 */
-            border: 2px solid #ddd;
-            /* 預設淺灰邊框 */
-            border-radius: 30px;
-            /* 膠囊造型圓角 */
-            font-size: 1rem;
-            outline: none;
-            /* 重要！移除瀏覽器預設的藍色外框 */
-            transition: all 0.3s ease;
-            /* 讓接下來的 focus 變化變平滑 */
-            background-color: #fff;
-            color: #333;
-        }
-
-        /* 3. 練習重點：:focus (當滑鼠點擊準備打字時) */
-        .search-input:focus {
-            border-color: #ffcc00;
-            /* 變成代表色：水晶黃 */
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.25);
-            /* 增加黃色柔和發光 */
-            width: 85%;
-            /* 點擊時微幅變長，增加回饋感 */
-            transform: translateY(-2px);
-            /* 輕微往上浮動 */
-        }
-
-        /* 4. 練習重點：:hover (滑鼠只是滑過去，還沒點擊) */
-        .search-input:hover {
-            border-color: #bbb;
-            /* 邊框顏色稍微加深 */
-        }
-
-        .search-input {
-            width: 200px;
-            margin: 0 auto;
-            padding: 8px 15px;
-            border: 2px solid #eee;
-            border-radius: 20px;
-            transition: all 0.4s ease;
-            /* 平滑過渡 */
-            outline: none;
-        }
-
-        /* 當滑鼠點擊輸入框時 */
-        .search-input:focus {
-            width: 300px;
-            /* 輸入框變長 */
-            border-color: #ffcc00;
-            /* 變成水晶黃 */
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
-            /* 淡淡的發光感 */
-            background-color: #fff;
-        }
-
-        .concert-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* 第一層：演唱會卡片外殼 */
-        .level-1,
-        .level-2,
-        .level-3 {
-            background-color: #fff;
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-            position: relative;
-            /* 關鍵：拿掉 overflow: hidden，改用子元素控制裁切 */
-            overflow: visible;
-        }
-
-        /* 右上角緞帶：改用獨立 div 或確保不被裁切 */
-        [data-tour]::after {
-            content: attr(data-tour);
-            position: absolute;
-            top: 15px;
-            right: -10px;
-            background: #eee;
-            color: #999;
-            font-size: 10px;
-            padding: 2px 20px;
-            transform: rotate(45deg);
-            z-index: 1;
-            /* 如果擔心緞帶超出卡片太醜，可將此設為透明或微調位置 */
-        }
-
-        .title {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        /* 第二層：地點區塊 (通用選擇器) */
-        /* 只要是 level-X-X 的格式都套用 */
-        [class*="level-"][class*="-"] {
-            padding-left: 20px;
-            margin: 15px 0 15px 10px;
-            border-left: 4px solid #eee;
-            /* 預設灰線 */
-            position: relative;
-            background: linear-gradient(to right, #fffdf5, #fff);
-            border-radius: 4px;
-            counter-reset: track-counter;
-        }
-
-        /* 參加過的場次：變黃線 */
-        .attended {
-            border-left: 4px solid #ffcc00 !important;
-        }
-
-        /* 第三層：曲目 */
-        [class*="level-"]>div>div {
-            padding-left: 35px;
-            font-size: 0.9rem;
-            color: #777;
-            margin: 5px 0;
-        }
-
-        [class*="level-"]>div>div::before {
-            content: "🎵 ";
-        }
-
-        [class*="level-"]>div>div::after {
-            counter-increment: track-counter;
-            content: " #" counter(track-counter);
-            font-size: 0.7rem;
-            color: #ccc;
-            margin-left: 5px;
-            vertical-align: super;
-        }
-
-        /* 📍 地點圖示 */
-        .location::before {
-            content: "📍";
-            margin-right: 8px;
-        }
-
-        /* --- 日期蓋章：全自動定位 --- */
-        /* 使用屬性選擇器，確保 level-1-1, 1-3, 2-1 都能顯示 */
-        .attended::before,
-        .attended::after {
-            position: absolute;
-            left: -20px;
-            /* 壓在黃線上 */
-            width: 45px;
-            text-align: center;
-            background-color: #ffcc00;
-            color: #333;
-            font-size: 9px;
-            font-weight: bold;
-            padding: 2px 4px;
-            border-radius: 4px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 100;
-            border: 2px solid #fff;
-            /* 增加白邊避免被背景吃掉 */
-        }
-
-        /* 第一個日期 */
-        .attended::before {
-            content: attr(data-date1);
-            top: 5px;
-            transform: rotate(-12deg);
-        }
-
-        /* 第二個日期 (如果有) */
-        .attended::after {
-            content: attr(data-date2);
-            top: 28px;
-            transform: rotate(8deg);
-            background-color: #fceea7;
-        }
-
-        /* 如果沒有第二個日期，就隱藏框框 */
-        .attended:not([data-date2])::after {
-            display: none;
-        }
-
-        /* 針對單日參加 (只有 data-date 沒有序號) 的特殊處理 */
-        .attended[data-date]::before {
-            content: attr(data-date);
-        }
-    </style>
+    <link rel="stylesheet" href="concert.css">
 </head>
 
 <body>
@@ -229,57 +12,249 @@
     </div>
     <div class="concert-container">
 
-        <!-- 演唱會 level-$ -->
-        <div class="level-1" data-tour="YELLOW NOTE">
+        <!-- 演唱會 con-$ -->
+        <div class="con-1" data-tour="YELLOW NOTE">
             <span class="title">2016 SECHSKIES [YELLOW NOTE]</span>
 
-            <!-- 地點 level-$-$ -->
-            <div class="level-1-1 attended" data-date1="09.10">
+            <!-- 地點 con-$-$ -->
+            <div class="con-1-1 attended" data-date1="09.10">
                 <span class="location"> 首爾 | 首爾奧林匹克體操競技場</span>
-                <!-- 曲目 level-$-$-$ -->
-                <div class="track-item"><span class="track">COM' BACK</span></div>
-                <div class="track-item"><span class="track">THREE WORDS</span></div>
+                <input type="checkbox" id="expand-con-1-1" class="expand-trigger">
+                <!-- 曲目 con-$-$-$ -->
+                <div class="track-list">
+                    <div class="track-item"><span class="track">COM' BACK</div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</div>
+                    <div class="track-item"><span class="track">폼생폼사 / 品生品死</div>
+                    <div class="track-item"><span class="track">COME TO ME BABY</div>
+                    <div class="track-item"><span class="track">배신감（BAD GIRL）/ 背叛感</div>
+                    <div class="track-item"><span class="track">사랑하는 너에게（DEAR LOVE）/ 給親愛的你</div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</div>
+                    <div class="track-item"><span class="track">너를 보내며（LET U GO）/ 送你離開</div>
+                    <div class="track-item"><span class="track">8t. TRUCK － 殷志源</div>
+                    <div class="track-item"><span class="track">DOUBLE J － 李宰鎮</div>
+                    <div class="track-item"><span class="track">A+ － 金在德</div>
+                    <div class="track-item"><span class="track">그대로 멈춰 / 就那樣停止－ BLACKKIES（殷志源、李宰鎮、金在德）</div>
+                    <div class="track-item"><span class="track">SAY － WHITEKIES（姜成勳、張水院）</div>
+                    <div class="track-item"><span class="track">SUDDENLY － 張水院</div>
+                    <div class="track-item"><span class="track">MY GIRL － 姜成勳</div>
+                    <div class="track-item"><span class="track">무모한 사랑（RECKLESS LOVE）/ 不可能的愛</div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</div>
+                    <div class="track-item"><span class="track">ENCORE：학원별곡（RISE UP）/ 學園別曲</div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道</div>
+                    <div class="track-item"><span class="track">그날까지（TOGETHER FOREVER）/ 直到那一天</div>
+                    <div class="track-item"><span class="track">DOUBLE ENCORE：（2016年9月11日）</div>
+                    <div class="track-item"><span class="track">사랑하는 너에게（DEAR LOVE）/ 給親愛的你</div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</div>
+                </div>
+                <label for="expand-con-1-1" class="expand-btn"></label>
             </div>
-
-            <div class="level-1-2">
+            <div class="con-1-2">
                 <span class="location">大邱 | 大邱會展中心</span>
-                <div><span class="track">Something Special</span></div>
+                <input type="checkbox" id="expand-con-1-2" class="expand-trigger">
+                <div class="track-list">
+                    <div class="track-item"><span class="track">COM' BACK</span></div>
+                    <div class="track-item"><span class="track">학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">COME TO ME BABY</span></div>
+                    <div class="track-item"><span class="track">배신감（BAD GIRL）/ 背叛感</span></div>
+                    <div class="track-item"><span class="track">사랑하는 너에게（DEAR LOVE）/ 給親愛的你</span></div>
+                    <div class="track-item"><span class="track">너를 보내며（LET U GO）/ 送你離開</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">어기야 디야（한배를 타고）+ 8t. TRUCK － 殷志源</span></div>
+                    <div class="track-item"><span class="track">RIGOLETTO － 李宰鎮</span></div>
+                    <div class="track-item"><span class="track">A+ － 金在德</span></div>
+                    <div class="track-item"><span class="track">그대로 멈춰 / 就那樣停止－ BLACKKIES（殷志源、李宰鎮、</span></div>
+                    <div class="track-item"><span class="track">金在德）</span></div>
+                    <div class="track-item"><span class="track">프라프치노（FRAPPUCCINO）－ 張水院</span></div>
+                    <div class="track-item"><span class="track">어떻게 사랑이 그래요 / 愛情怎麼可以這樣 + 샤방샤방 / 閃亮閃亮 － 姜成勳</span></div>
+                    <div class="track-item"><span class="track">하얀 밤에（CLOSE YOUR EYES）/ 白色夜裏</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</span></div>
+                    <div class="track-item"><span class="track">폼생폼사 / 品生品死</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道</span></div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</span></div>
+                    <div class="track-item"><span class="track">그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                </div>
+                <label for="expand-con-1-2" class="expand-btn"></label>
             </div>
-
-            <div class="level-1-3 attended" data-date1="12.23" data-date2="12.24">
+            <div class="con-1-3 attended" data-date1="12.23" data-date2="12.24">
                 <span class="location">釜山 | 釜山會展中心</span>
-                <div class="track-item"><span class="track">Three Words</span></div>
+                <input type="checkbox" id="expand-con-1-3" class="expand-trigger">
+                <div class="track-list">
+                    <div class="track-item"><span class="track">COM' BACK</span></div>
+                    <div class="track-item"><span class="track">학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">COME TO ME BABY</span></div>
+                    <div class="track-item"><span class="track">배신감（BAD GIRL）/ 背叛感</span></div>
+                    <div class="track-item"><span class="track">사랑하는 너에게（DEAR LOVE）/ 給親愛的你</span></div>
+                    <div class="track-item"><span class="track">너를 보내며（LET U GO）/ 送你離開</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">어기야 디야（한배를 타고）+ 8t. TRUCK － 殷志源</span></div>
+                    <div class="track-item"><span class="track">RIGOLETTO － 李宰鎮</span></div>
+                    <div class="track-item"><span class="track">A+ － 金在德</span></div>
+                    <div class="track-item"><span class="track">그대로 멈춰 / 就那樣停止－ BLACKKIES（殷志源、李宰鎮、</span></div>
+                    <div class="track-item"><span class="track"> 金在德）</span></div>
+                    <div class="track-item"><span class="track">프라프치노（FRAPPUCCINO）－ 張水院</span></div>
+                    <div class="track-item"><span class="track">어떻게 사랑이 그래요 / 愛情怎麼可以這樣 + 샤방샤방 / 閃亮閃亮 － 姜成勳</span></div>
+                    <div class="track-item"><span class="track">하얀 밤에（CLOSE YOUR EYES）/ 白色夜裏</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</span></div>
+                    <div class="track-item"><span class="track">폼생폼사 / 品生品死</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道</span></div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</span></div>
+                    <div class="track-item"><span class="track">그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                </div>
+                <label for="expand-con-1-3" class="expand-btn"></label>
             </div>
-            <div class="level-1-4">
+            <div class="con-1-4">
                 <span class="location">首爾 | 蠶室室內體育館</span>
-                <div><span class="track">Something Special</span></div>
-                <div><span class="track">Three Words</span></div>
+                <input type="checkbox" id="expand-con-1-4" class="expand-trigger">
+
+                <div class="track-list">
+                    <div class="track-item"><span class="track">학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">COM' BACK</span></div>
+                    <div class="track-item"><span class="track">배신감（BAD GIRL）/ 背叛感</span></div>
+                    <div class="track-item"><span class="track">COME TO ME BABY</span></div>
+                    <div class="track-item"><span class="track">사랑하는 너에게（DEAR LOVE）/ 給親愛的你</span></div>
+                    <div class="track-item"><span class="track">너를 보내며（LET U GO）/ 送你離開</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">문득（MEMORY）+ 트라우마（TRAUMA）－ 殷志源</span></div>
+                    <div class="track-item"><span class="track">RIGOLETTO － 李宰鎮</span></div>
+                    <div class="track-item"><span class="track">SAY + MY LOVE － 姜成勳</span></div>
+                    <div class="track-item"><span class="track">프라프치노（FRAPPUCCINO）+ 여우비（UNFORGETTABLE）－
+                            J-Walk</span></div>
+                    <div class="track-item"><span class="track">하얀 밤에（CLOSE YOUR EYES）/ 白色夜裏</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">ENCORE：그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                    <div class="track-item"><span class="track">DOUBLE ENCORE：</span></div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                </div>
+                <label for="expand-con-1-4" class="expand-btn"></label>
             </div>
         </div>
-
         <!-- 演唱會 02 -->
-        <div class="level-2" data-tour="20TH ANNIV.">
+        <div class="con-2" data-tour="20TH ANNIV.">
             <span class="title">20TH ANNIVERSARY CONCERT</span>
-            <div class="level-2-1">
+            <div class="con-2-1">
                 <span class="location">首爾：高尺天空巨蛋</span>
-                <div><span class="track">Something Special</span></div>
+                <input type="checkbox" id="expand-con-2-1" class="expand-trigger">
+
+                <div class="track-list">
+                    <div class="track-item"><span class="track">약속된 운명（아마게돈） / 約定的命運</span></div>
+                    <div class="track-item"><span class="track">학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">폼생폼사 / 品生品死</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</span></div>
+                    <div class="track-item"><span class="track">탈출 / 逃離</span></div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道</span></div>
+                    <div class="track-item"><span class="track">ROAD FIGHTER</span></div>
+                    <div class="track-item"><span class="track">SAY</span></div>
+                    <div class="track-item"><span class="track">너를 보내며（LET U GO）/ 送你離開</span></div>
+                    <div class="track-item"><span class="track">COME TO ME BABY</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">공허해 / 空虛 + REALLY REALLY － WINNER</span></div>
+                    <div class="track-item"><span class="track">COM' BACK</span></div>
+                    <div class="track-item"><span class="track">뫼비우스의 띠 / 麥比烏斯帶</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">특별해（SOMETHING SPECIAL）</span></div>
+                    <div class="track-item"><span class="track">느낌이 와（FEELING）</span></div>
+                    <div class="track-item"><span class="track">현기증（VERTIGO）</span></div>
+                    <div class="track-item"><span class="track">웃어줘（SMILE）</span></div>
+                    <div class="track-item"><span class="track">오랜만이에요（IT'S BEEN A WHILE）</span></div>
+                    <div class="track-item"><span class="track">아프지마요（BE WELL）</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                    <div class="track-item"><span class="track">슬픈 노래（SAD SONG）/ 悲歌</span></div>
+                    <div class="track-item"><span class="track">ENCORE：</span></div>
+                    <div class="track-item"><span class="track">特別해（SOMETHING SPECIAL）</span></div>
+                    <div class="track-item"><span class="track">백허그（BACK HUG）</span></div>
+                    <div class="track-item"><span class="track">술끊자（DRINKING PROBLEM）</span></div>
+                </div>
+                <label for="expand-con-2-1" class="expand-btn"></label>
             </div>
-            <div class="level-2-2">
+            <div class="con-2-2">
                 <span class="location">光州 | 光州女大世大運體育</span>
-                <div class="level-2-2-1"><span class="track">Something Special</span></div>
-                <div class="level-2-2-2"><span class="track">Three Words</span></div>
+                <input type="checkbox" id="expand-con-2-2" class="expand-trigger">
+                <div class="track-list">
+                    <div class="track-item"><span class="track">오랜만이에요（IT'S BEEN A WHILE）</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">웃어줘（SMILE）</span></div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</span></div>
+                    <div class="track-item"><span class="track">SAY</span></div>
+                    <div class="track-item"><span class="track">네가 필요해（NEED U）</span></div>
+                    <div class="track-item"><span class="track">백허그（BACK HUG）</span></div>
+                    <div class="track-item"><span class="track">술끊자（DRINKING PROBLEM）</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">고백（Go Back）－ 李宰鎮</span></div>
+                    <div class="track-item"><span class="track">특별해（SOMETHING SPECIAL）</span></div>
+                    <div class="track-item"><span class="track">느낌이 와（FEELING）</span></div>
+                    <div class="track-item"><span class="track">현기증（VERTIGO）</span></div>
+                    <div class="track-item"><span class="track">DANCE MEDLEY：</span></div>
+                    <div class="track-item"><span class="track">COM' BACK + 폼생폼사 / 品生品死 + ROAD FIGHTER +</span></div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道 + 학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">아프지마요（BE WELL）</span></div>
+                    <div class="track-item"><span class="track">슬픈 노래（SAD SONG）/ 悲歌</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">ENCORE：그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                    <div class="track-item"><span class="track">특별해（SOMETHING SPECIAL）</span></div>
+                </div>
+                <label for="expand-con-2-2" class="expand-btn"></label>
+            </div>
+            <div class="con-2-3">
+                <span class="location">光州 | 光州女大世大運體育</span>
+                <input type="checkbox" id="expand-con-2-2" class="expand-trigger">
+                <div class="track-list">
+                    <div class="track-item"><span class="track">오랜만이에요（IT'S BEEN A WHILE）</span></div>
+                    <div class="track-item"><span class="track">세 단어（THREE WORDS）/ 三個詞</span></div>
+                    <div class="track-item"><span class="track">연정（HEARTBREAK）/ 戀情</span></div>
+                    <div class="track-item"><span class="track">웃어줘（SMILE）</span></div>
+                    <div class="track-item"><span class="track">기억해줄래 / 請記得好嗎</span></div>
+                    <div class="track-item"><span class="track">SAY</span></div>
+                    <div class="track-item"><span class="track">네가 필요해（NEED U）</span></div>
+                    <div class="track-item"><span class="track">백허그（BACK HUG）</span></div>
+                    <div class="track-item"><span class="track">술끊자（DRINKING PROBLEM）</span></div>
+                    <div class="track-item"><span class="track">예감（GOT A FEELING）/ 預感</span></div>
+                    <div class="track-item"><span class="track">고백（Go Back）－ 李宰鎮</span></div>
+                    <div class="track-item"><span class="track">특별해（SOMETHING SPECIAL）</span></div>
+                    <div class="track-item"><span class="track">느낌이 와（FEELING）</span></div>
+                    <div class="track-item"><span class="track">현기증（VERTIGO）</span></div>
+                    <div class="track-item"><span class="track">DANCE MEDLEY：</span></div>
+                    <div class="track-item"><span class="track">COM' BACK + 폼생폼사 / 品生品死 + ROAD FIGHTER +</span></div>
+                    <div class="track-item"><span class="track">기사도 / 騎士道 + 학원별곡（RISE UP）/ 學園別曲</span></div>
+                    <div class="track-item"><span class="track">아프지마요（BE WELL）</span></div>
+                    <div class="track-item"><span class="track">슬픈 노래（SAD SONG）/ 悲歌</span></div>
+                    <div class="track-item"><span class="track">커플（COUPLE）/ 戀人</span></div>
+                    <div class="track-item"><span class="track">ENCORE：그날까지（TOGETHER FOREVER）/ 直到那一天</span></div>
+                    <div class="track-item"><span class="track">특별해（SOMETHING SPECIAL）</span></div>
+                </div>
+                <label for="expand-con-2-2" class="expand-btn"></label>
             </div>
         </div>
         <!-- 演唱會 03 -->
-        <div class="level-3" data-tour="NOW・HERE・AGAIN.">
+        <div class="con-3" data-tour="NOW・HERE・AGAIN.">
             <span class="title">2018 CONCERT [NOW・HERE・AGAIN]</span>
-            <div class="level-3-1 attended" data-date1="10.13" data-date2="10.14">
+            <div class="con-3-1 attended" data-date1="10.13" data-date2="10.14">
                 <span class="location">首爾：首爾奧林匹克體操競技場</span>
-                <div class="level-3-1-1"><span class="track">Something Special</span></div>
-            </div>
+                <input type="checkbox" id="expand-con-3-1" class="expand-trigger">
+                <div class="track-list">
 
+                </div>
+                <label for="expand-con-3-1" class="expand-btn"></label>
+            </div>
         </div>
+
     </div>
+    </div>
+
 </body>
 
 </html>

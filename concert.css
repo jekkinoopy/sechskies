@@ -1,0 +1,299 @@
+body {
+    background-color: #fcfaf2;
+    /* 溫潤米白背景 */
+    margin: 0;
+    padding: 50px 0;
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+/* CSS 效果 */
+
+/* 1. 搜尋區塊容器：負責置中 */
+.search-section {
+    width: 100%;
+    /* 撐滿寬度 */
+    display: flex;
+    /* 使用 Flexbox 佈局 */
+    justify-content: center;
+    /* 水平置中 */
+    margin: 40px 0;
+    /* 上下留白，讓視覺不擁擠 */
+}
+
+/* 2. 搜尋輸入框本體 */
+.search-input {
+    width: 80%;
+    /* 行動裝置下佔 80% */
+    max-width: 400px;
+    /* 電腦版最大寬度 */
+    padding: 12px 25px;
+    /* 內縮，讓文字不貼邊 */
+    border: 2px solid #ddd;
+    /* 預設淺灰邊框 */
+    border-radius: 30px;
+    /* 膠囊造型圓角 */
+    font-size: 1rem;
+    outline: none;
+    /* 重要！移除瀏覽器預設的藍色外框 */
+    transition: all 0.3s ease;
+    /* 讓接下來的 focus 變化變平滑 */
+    background-color: #fff;
+    color: #333;
+}
+
+/* 3. 練習重點：:focus (當滑鼠點擊準備打字時) */
+.search-input:focus {
+    border-color: #ffcc00;
+    /* 變成代表色：水晶黃 */
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.25);
+    /* 增加黃色柔和發光 */
+    width: 85%;
+    /* 點擊時微幅變長，增加回饋感 */
+    transform: translateY(-2px);
+    /* 輕微往上浮動 */
+}
+
+/* 4. 練習重點：:hover (滑鼠只是滑過去，還沒點擊) */
+.search-input:hover {
+    border-color: #bbb;
+    /* 邊框顏色稍微加深 */
+}
+
+.search-input {
+    width: 200px;
+    margin: 0 auto;
+    padding: 8px 15px;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    /* 平滑過渡 */
+    outline: none;
+}
+
+/* 當滑鼠點擊輸入框時 */
+.search-input:focus {
+    width: 300px;
+    /* 輸入框變長 */
+    border-color: #ffcc00;
+    /* 變成水晶黃 */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+    /* 淡淡的發光感 */
+    background-color: #fff;
+}
+
+.concert-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 第一層：演唱會卡片外殼 */
+.con-1,
+.con-2,
+.con-3 {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 50px 100px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    position: relative;
+    /* 關鍵：拿掉 overflow: hidden，改用子元素控制裁切 */
+    overflow: hidden;
+}
+
+/* 右上角緞帶：改用獨立 div 或確保不被裁切 */
+[data-tour]::after {
+    content: attr(data-tour);
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    top: 30px;
+    right: -40px;
+    background: #eee;
+    color: #999;
+    font-size: 0.8rem;
+    padding: 10px 0;
+    transform: rotate(45deg);
+    z-index: 1;
+    /* 如果擔心緞帶超出卡片太醜，可將此設為透明或微調位置 */
+}
+
+.title {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 50px;
+    text-align: center;
+    color: #333;
+}
+
+/* 第二層：地點區塊 (通用選擇器) */
+/* 只要是 con-X-X 的格式都套用 */
+[class*="con-"][class*="-"] {
+    padding: 10px 0 30px 20px;
+    margin: 15px 0 15px 10px;
+    border-left: 4px solid #eee;
+    /* 預設灰線 */
+    position: relative;
+    background: linear-gradient(to right, #fffdf5, #fff);
+    border-radius: 4px;
+    counter-reset: track-counter;
+}
+
+/* 參加過的場次：變黃線 */
+.attended {
+    border-left: 4px solid #ffcc00 !important;
+}
+
+/* 第三層：曲目 */
+[class*="con-"]>div div {
+    padding-left: 35px;
+    font-size: 0.9rem;
+    color: #777;
+    margin: 5px 0;
+    /* 關鍵：拿掉因為 class 包含 "con-" 而被誤加的左邊線 */
+    border-left: none !important;
+    position: relative;
+}
+
+[class*="con-"]>div div::before {
+    content: "🎵 ";
+    margin-left: 30px;
+}
+
+/* 修改：確保計數器能抓到這些 div */
+[class*="con-"]>div div::after {
+    counter-increment: track-counter;
+    content: " #" counter(track-counter);
+    font-size: 0.7rem;
+    color: #ccc;
+    margin-left: 5px;
+    vertical-align: super;
+}
+
+[class*="con-"]>div div::before {
+    content: "🎵 ";
+}
+
+/* 1. 針對 track-list 容器本身：關閉符號與計數 */
+.track-list::before,
+.track-list::after {
+    display: none !important;
+    content: none !important;
+    counter-increment: none !important;
+}
+
+/* 2. 針對 track-list 容器本身：拿掉縮排與邊框 */
+.track-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* 3. 確保真正的曲目 (track-item) 正常顯示 */
+.track-item {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    /* 這裡留給 🎵 圖標 */
+}
+
+/* 📍 地點圖示 */
+.location::before {
+    content: "📍";
+    margin-left: 30px;
+}
+
+/* --- 日期蓋章：全自動定位 --- */
+/* 使用屬性選擇器，確保 con-1-1, 1-3, 2-1 都能顯示 */
+.attended::before,
+.attended::after {
+    position: absolute;
+    left: -20px;
+    /* 壓在黃線上 */
+    width: 45px;
+    text-align: center;
+    background-color: #ffcc00;
+    color: #333;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border: 2px solid #fff;
+    /* 增加白邊避免被背景吃掉 */
+}
+
+/* 第一個日期 */
+.attended::before {
+    content: attr(data-date1);
+    top: 5px;
+    transform: rotate(-12deg);
+}
+
+/* 第二個日期 (如果有) */
+.attended::after {
+    content: attr(data-date2);
+    top: 28px;
+    transform: rotate(8deg);
+    background-color: #fceea7;
+}
+
+/* 如果沒有第二個日期，就隱藏框框 */
+.attended:not([data-date2])::after {
+    display: none;
+}
+
+/* 針對單日參加 (只有 data-date 沒有序號) 的特殊處理 */
+.attended[data-date]::before {
+    content: attr(data-date);
+}
+
+/* 1. 隱藏 checkbox 本身 */
+.expand-trigger {
+    display: none;
+}
+
+/* 2. 預設隱藏第 5 個之後的 track-item */
+.track-list .track-item:nth-child(n+6) {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+}
+
+/* 3. 當 Checkbox 被選中時，顯示所有曲目 */
+.expand-trigger:checked+.track-list .track-item:nth-child(n+6) {
+    display: block;
+    opacity: 1;
+}
+
+/* 4. 設計「展開/收合」按鈕樣式 */
+.expand-btn {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 35px;
+    padding: 5px 15px;
+    background-color: #f5f5f5;
+    color: #999;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 5. 利用偽元素設定按鈕文字內容 */
+.expand-btn::before {
+    content: "↓ 展開完整曲目";
+}
+
+.expand-trigger:checked~.expand-btn::before {
+    content: "↑ 收合曲目";
+}
+
+/* 懸停效果 */
+.expand-btn:hover {
+    background-color: #ffcc00;
+    color: #333;
+}
