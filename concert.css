@@ -1,3 +1,43 @@
+.concert-archive-header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: #fcfaf2;
+    /* 延用你的米白背景 */
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #333;
+    margin: 0;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+.subtitle-wrap {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitle-wrap::before,
+.subtitle-wrap::after {
+    content: "";
+    flex: 1;
+    height: 3px;
+    background-color: #ffcc00;
+    /* 水晶黃 */
+    max-width: 60px;
+}
+
+.sub-title {
+    font-size: 1.2rem;
+    color: #888;
+    letter-spacing: 6px;
+    margin: 0 25px;
+}
+
 body {
     background-color: #fcfaf2;
     /* 溫潤米白背景 */
