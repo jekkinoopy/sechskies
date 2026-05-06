@@ -156,8 +156,29 @@ body {
     position: relative;
 }
 
+/* 針對曲目前方的圖示進行替換 */
 [class*="con-"]>div div::before {
-    content: "🎵 ";
+    /* 1. 使用 Font Awesome 的音樂符號 Unicode (f001 是音樂符號) */
+    content: "\f001";
+
+    /* 2. 指定字體系列與粗細 (這是顯示圖示的關鍵) */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+
+    /* 3. 顏色與大小微調 */
+    color: #ffcc00;
+    /* 使用你的水晶黃 */
+    font-size: 0.8rem;
+
+    /* 4. 位置修正：取代原本的 margin-left */
+    display: inline-block;
+    width: 25px;
+    /* 固定寬度讓文字對齊 */
+    margin-right: 5px;
+    /* 圖示與歌名間距 */
+    text-align: center;
+
+    /* 如果你堅持要保留原本的 30px 偏移，可以加在這裡 */
     margin-left: 30px;
 }
 
@@ -171,9 +192,6 @@ body {
     vertical-align: super;
 }
 
-[class*="con-"]>div div::before {
-    content: "🎵 ";
-}
 
 /* 1. 針對 track-list 容器本身：關閉符號與計數 */
 .track-list::before,
@@ -193,14 +211,48 @@ body {
 /* 3. 確保真正的曲目 (track-item) 正常顯示 */
 .track-item {
     display: block;
+    white-space: nowrap;
+    /* 強制不換行 */
+    overflow: hidden;
+    /* 隱藏超出部分 */
+    text-overflow: ellipsis;
+    /* 超出部分顯示 ... */
+    max-width: 85%;
+    /* 留空間給右邊的序號 */
     position: relative;
     padding-left: 35px;
     /* 這裡留給 🎵 圖標 */
 }
 
-/* 📍 地點圖示 */
+/* 進階：滑鼠移上去顯示完整文字 */
+.track-item:hover {
+    overflow: visible;
+    white-space: normal;
+    background: #fff;
+    z-index: 10;
+    position: relative;
+}
+
+/* 地點圖示 */
 .location::before {
-    content: "📍";
+    /* 1. 使用 Unicode 編碼代替貼圖 */
+    content: "\f3c5";
+
+    /* 2. 指定字體系列 (重要！沒寫會變亂碼) */
+    font-family: "Font Awesome 6 Free";
+
+    /* 3. 指定字體粗細 (Solid 圖標通常需要 900) */
+    font-weight: 900;
+
+    /* 4. 原有的樣式調整 */
+    margin-right: 8px;
+    /* 這裡改用 margin-right 讓圖示在文字左邊 */
+    margin-left: 0;
+    /* 清除原本可能有的 margin-left */
+    color: #ffcc00;
+    /* 讓圖示顏色跟你的水晶黃對齊 */
+    font-size: 1.1rem;
+    display: inline-block;
     margin-left: 30px;
 }
 
@@ -255,8 +307,8 @@ body {
     display: none;
 }
 
-/* 2. 預設隱藏第 5 個之後的 track-item */
-.track-list .track-item:nth-child(n+6) {
+/* 2. 預設隱藏第 2 個之後的 track-item */
+.track-list .track-item:nth-child(n+3) {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
