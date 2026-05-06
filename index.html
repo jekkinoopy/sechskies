@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SECHSKIES - 水晶男孩傳奇介紹</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -22,6 +24,7 @@
         <a href="#background">故事背景</a>
         <a href="#albums">歷年作品</a>
         <a href="#current">現在故事線</a>
+        <a href="concert.html">演唱會紀錄</a>
     </nav>
 
     <canvas id="particles"></canvas>
@@ -29,14 +32,11 @@
     <div class="container">
 
         <section id="background">
-            <h2>故事背景</h2>
-            <p>
-                <span class="highlight">SECHSKIES（水晶男孩）</span> 於 1997 年 4 月 15 日出道，是韓國第一代頂尖男子團體。隊名在德語中意為「六顆水晶」，代表六位成員。
-            </p>
-            <p>
-                他們在 90 年代末與 H.O.T 並稱為 K-POP 的兩大山脈。然而，在事業巔峰期的 2000 年 5 月，團體突然宣佈解散，成為當時韓國演藝界最震撼的消息。解散後的 16
-                年間，成員各自在不同領域發展，但「小黃（粉絲暱稱）」們從未忘記那片黃色氣球海。
-            </p>
+            <h2 class="section-title">故事背景</h2>
+            <div class="intro-text">
+                <p>1997 年 4 月 15 日，<span class="highlight">SECHSKIES（水晶男孩）</span>正式出道，作為韓國第一代男子團體的巔峰，他們的團名在德語中意為「六顆水晶」。
+                </p>
+            </div>
 
             <div class="story-grid">
                 <div class="card">
@@ -54,9 +54,9 @@
                 </div>
             </div>
         </section>
-
+        <!-- 歷年作品表格區塊 -->
         <section id="albums">
-            <h2>歷年作品 (精選)</h2>
+            <h2 class="section-title">歷年作品 (精選)</h2>
             <table>
                 <thead>
                     <tr>
@@ -105,7 +105,7 @@
         </section>
 
         <section id="current">
-            <h2>現在的故事線</h2>
+            <h2 class="section-title">現在的故事線</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <strong>2016年：傳奇回歸</strong>
@@ -121,7 +121,43 @@
                 </div>
             </div>
         </section>
+        <section class="story-timeline">
+            <!-- 1997 出道 -->
+            <div class="timeline-box left">
+                <div class="date-tag">1997 - 2000</div>
+                <div class="content">
+                    <h3>傳奇的誕生：出道與巔峰</h3>
+                    <p>1997年4月15日以《學園別曲》出道，分為黑、白水晶兩隊，與H.O.T並稱為90年代後期兩大山脈。</p>
+                </div>
+            </div>
 
+            <!-- 2000 解散 -->
+            <div class="timeline-box right">
+                <div class="date-tag">2000 - 2016</div>
+                <div class="content">
+                    <h3>遺憾的句點：宣告解散</h3>
+                    <p>2000年5月20日正式解散，成員各自發展，水晶暫時進入休眠期。</p>
+                </div>
+            </div>
+
+            <!-- 2016 回歸 -->
+            <div class="timeline-box left">
+                <div class="date-tag">2016年 4月</div>
+                <div class="content">
+                    <h3>重逢的感動：六六歌合體</h3>
+                    <p>透過《無限挑戰》「六六歌2」跨越16年再次重聚，引起全韓黃色氣球海再現。</p>
+                </div>
+            </div>
+
+            <!-- 2019 至今 -->
+            <div class="timeline-box right">
+                <div class="date-tag">2019 - TODAY</div>
+                <div class="content">
+                    <h3>體制調整與穩定</h3>
+                    <p>調整為四人組合（殷志源、李宰鎮、金在德、張水院），繼續以經典魅力活躍於樂壇與綜藝。</p>
+                </div>
+            </div>
+        </section>
     </div>
     <footer>
         <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>

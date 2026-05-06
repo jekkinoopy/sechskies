@@ -1,0 +1,85 @@
+.story-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px 0;
+}
+
+/* 中央貫穿軸線 */
+.story-timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--primary);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.timeline-box {
+    content: '';
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+
+/* 圓形節點 */
+.timeline-box::after {
+    content: '\f3a5';
+    /* 可換成圖示或圖片中的圓圈 */
+    font-family: "Font Awesome 6 Free" !important;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    right: -20px;
+    top: 15px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFD700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+/* 左右交錯控制 */
+.left {
+    left: 0;
+    text-align: right;
+}
+
+.right {
+    left: 50%;
+    text-align: left;
+}
+
+
+/* 日期標籤（膠囊型） */
+.date-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--accent);
+    /* #FFD700 */
+    color: var(--text);
+    border-radius: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content h3 {
+    color: var(--primary);
+    /* #FFDD00 */
+    margin: 10px 0;
+}
+
+.content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
