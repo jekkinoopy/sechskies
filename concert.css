@@ -133,7 +133,10 @@ body {
 /* 第一層：演唱會卡片外殼 */
 .con-1,
 .con-2,
-.con-3 {
+.con-3,
+.con-4 {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     border-radius: 16px;
     padding: 50px 100px;
@@ -143,6 +146,12 @@ body {
     position: relative;
     /* 關鍵：拿掉 overflow: hidden，改用子元素控制裁切 */
     overflow: hidden;
+}
+
+img {
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
 }
 
 /* 右上角緞帶：改用獨立 div 或確保不被裁切 */
