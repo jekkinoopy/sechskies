@@ -21,10 +21,12 @@
     </header>
 
     <nav>
-        <a href="#background">故事背景</a>
-        <a href="#albums">歷年作品</a>
-        <a href="#current">現在故事線</a>
-        <a href="concert.html">演唱會紀錄</a>
+        <ul>
+            <li><a href="#background">故事背景</a></li>
+            <li><a href="#albums">歷年作品</a></li>
+            <li><a href="#current">現在故事線</a></li>
+            <li><a href="concert.html">演唱會紀錄</a></li>
+        </ul>
     </nav>
 
     <canvas id="particles"></canvas>
@@ -104,58 +106,37 @@
             </table>
         </section>
 
-        <section id="current">
-            <h2 class="section-title">現在的故事線</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <strong>2016年：傳奇回歸</strong>
-                    <p>透過綜藝節目《無限挑戰》的「土土歌2」特輯，成員們跨越 16 年再次重聚。隨後正式與 YG 娛樂簽約，發行《Three Words》橫掃音源榜。</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>2019年：體制調整</strong>
-                    <p>團體重組為四人體制（殷志源、李宰鎮、金在德、張水院），繼續展開活動。</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>至今：個人與團體並行</strong>
-                    <p>隊長殷志源活躍於各類綜藝節目，成員們也積極參與音樂與個人品牌活動。雖然活動節奏放緩，但水晶男孩仍是 K-POP 史上的長壽標竿。</p>
-                </div>
+        <section id="current" class="story-archive">
+            <h2 class="section-title">故事線</h2>
+            <div class="subtitle-wrap">
+                <span class="sub-title">SECHSKIES STORY ARCHIVE</span>
             </div>
-        </section>
-        <section class="story-timeline">
-            <!-- 1997 出道 -->
-            <div class="timeline-box left">
-                <div class="date-tag">1997 - 2000</div>
-                <div class="content">
+
+            <div class="merged-storyline">
+                <article class="story-node" data-era="1997">
                     <h3>傳奇的誕生：出道與巔峰</h3>
                     <p>1997年4月15日以《學園別曲》出道，分為黑、白水晶兩隊，與H.O.T並稱為90年代後期兩大山脈。</p>
-                </div>
-            </div>
+                </article>
 
-            <!-- 2000 解散 -->
-            <div class="timeline-box right">
-                <div class="date-tag">2000 - 2016</div>
-                <div class="content">
+                <article class="story-node" data-era="2000">
                     <h3>遺憾的句點：宣告解散</h3>
                     <p>2000年5月20日正式解散，成員各自發展，水晶暫時進入休眠期。</p>
-                </div>
-            </div>
+                </article>
 
-            <!-- 2016 回歸 -->
-            <div class="timeline-box left">
-                <div class="date-tag">2016年 4月</div>
-                <div class="content">
-                    <h3>重逢的感動：六六歌合體</h3>
+                <article class="story-node" data-era="2016">
+                    <h3>傳奇回歸：重逢的感動合體</h3>
                     <p>透過《無限挑戰》「六六歌2」跨越16年再次重聚，引起全韓黃色氣球海再現。</p>
-                </div>
-            </div>
+                </article>
 
-            <!-- 2019 至今 -->
-            <div class="timeline-box right">
-                <div class="date-tag">2019 - TODAY</div>
-                <div class="content">
+                <article class="story-node" data-era="2019">
                     <h3>體制調整與穩定</h3>
                     <p>調整為四人組合（殷志源、李宰鎮、金在德、張水院），繼續以經典魅力活躍於樂壇與綜藝。</p>
-                </div>
+                </article>
+
+                <article class="story-node" data-era="NOW">
+                    <h3>至今：個人與團體並行</h3>
+                    <p>隊長殷志源活躍於各類綜藝節目，成員們也積極參與音樂與個人品牌活動。雖然活動節奏放緩，但水晶男孩仍是 K-POP 史上的長壽標竿。</p>
+                </article>
             </div>
         </section>
     </div>
@@ -167,32 +148,12 @@
         </a>
     </footer> <!-- 粒子效果 -->
     <script>
-        // 根據圖片比例 (1920:1080) 調整 header 高度
-        const header = document.querySelector('header');
-
-        function setHeaderHeight() {
-            const width = window.innerWidth;
-            const height = width * (1080 / 1920);
-            header.style.height = height + 'px';
-        }
-
-        // 確保在 DOM 完全載入後執行
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setHeaderHeight);
-        } else {
-            setHeaderHeight();
-        }
-
-        window.addEventListener('resize', setHeaderHeight);
-        window.addEventListener('load', setHeaderHeight);
-
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-        const container = canvas.nextElementSibling;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = container.offsetHeight;
+            canvas.height = window.innerHeight;
         }
 
         resizeCanvas();

@@ -19,7 +19,6 @@
 }
 
 .timeline-box {
-    content: '';
     padding: 10px 40px;
     position: relative;
     width: 50%;
@@ -30,7 +29,6 @@
 /* 圓形節點 */
 .timeline-box::after {
     content: '\f3a5';
-    /* 可換成圖示或圖片中的圓圈 */
     font-family: "Font Awesome 6 Free" !important;
     position: absolute;
     width: 10px;
@@ -43,8 +41,6 @@
     align-items: center;
     color: #FFD700;
     text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-    display: inline-block;
-    vertical-align: middle;
 }
 
 
@@ -66,7 +62,6 @@
     display: inline-block;
     padding: 8px 20px;
     background: var(--accent);
-    /* #FFD700 */
     color: var(--text);
     border-radius: 50px;
     font-weight: bold;
@@ -75,7 +70,6 @@
 
 .content h3 {
     color: var(--primary);
-    /* #FFDD00 */
     margin: 10px 0;
 }
 

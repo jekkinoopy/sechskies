@@ -2,25 +2,21 @@
 
 :root {
     --primary: #ffcc00;
-    /* 應援黃色 */
+    --yellow: #ffcc00;
     --light-yellow: #fceea7;
-    /* --dark-yellow: #4e492b; */
+    --dark-yellow: #4e492b;
     --black: #1a1a1a;
     --deep-black: #0a0a0a;
-    /* 更純粹的底黑 */
-    /* --gray: #f4f4f4; */
-    /* --text-color: #333; */
-    /* --dark: #777; */
-    /* --accent: #FFD700; */
+    --gray: #f4f4f4;
+    --text-color: #333;
+    --accent: #FFD700;
+    --text: #1a1a1a;
     --card-bg: #1a1a1a;
-    /* 卡片專用深灰 */
     --bg-alt: #fcfaf2;
-    /* 今天的米白背景 */
     --text-main: #333;
-    /* 主要文字 */
     --text-muted: #888;
-    /* 輔助文字 */
-
+    --surface: #fffdf7;
+    --surface-soft: #fff9e8;
 }
 
 /* 1. 先處理 body 和全域，確保沒人亂給外距 */
@@ -35,62 +31,51 @@ html,
 body {
     background-color: var(--deep-black);
     color: #eeeeee;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
-
-/* html {
-    min-height: 100%;
-} */
 
 body {
     font-family: 'Noto Sans TC', system-ui, sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
-    width: 80%;
 }
 
 header {
-    /* aspect-ratio: 1920 / 1080; */
     width: 100%;
-    /* 改用 vh (螢幕高度) 通常比 aspect-ratio 更能解決首屏留白問題 */
-    min-height: 100vh;
-    background-image: url(img/header.jpg);
-    background-size: cover;
-    background-position: center;
+    height: 100vh;
+    min-height: 100dvh;
+    background-image: url('img/header.jpg');
+    background-position: center center;
     background-repeat: no-repeat;
-
+    background-size: 108%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
     overflow: hidden;
     position: relative;
-    margin: 0;
-    padding: 0;
-    vertical-align: bottom;
-    /* 消除某些瀏覽器對區塊元素的底邊留白 */
 }
 
 /* 導覽列 */
 nav {
     background-color: var(--black);
     padding: 0.8rem;
-    /* position: sticky;
-    top: 0;
-    z-index: 1000;
-    margin: 0; */
+}
+
+nav ul {
+    list-style: none;
     display: flex;
     justify-content: center;
+    gap: 24px;
 }
 
 nav a {
     color: var(--yellow);
     text-decoration: none;
-    /* margin: 0 20px;
-    font-weight: bold;
-    transition: 0.3s; */
     font-size: 0.95rem;
     letter-spacing: 1px;
 }
@@ -101,19 +86,38 @@ nav a:hover {
 }
 
 #particles {
-    position: absolute;
-    left: 0;
-    width: 100%;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
     display: block;
-    z-index: 1;
+    z-index: 0;
     pointer-events: none;
+}
+
+header,
+nav,
+.container,
+footer {
+    position: relative;
+    z-index: 1;
 }
 
 /* 橫幅 Hero Section */
 .hero {
-    z-index: 2;
     position: relative;
-    width: 100%;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1,
+.hero p {
+    margin: 0;
+    padding: 0.5rem;
 }
 
 .hero h1 {
@@ -125,9 +129,7 @@ nav a:hover {
 
 .hero p {
     font-size: 1.2rem;
-    /* margin-bottom: 2rem; */
     color: var(--gray);
-
 }
 
 .btn {
@@ -154,20 +156,13 @@ nav a:hover {
     padding: 40px 20px;
 }
 
-section {
-    background-color: var(--bg-white);
-}
-
 .section-title {
     color: var(--yellow);
     text-align: center;
-    font-size: 2rem;
-    letter-spacing: 6px;
-    margin-bottom: 50px;
+    font-size: 1.35rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    /* 
-    padding-left: 15px;
-    color: var(--black); */
 }
 
 .section-title::after {
@@ -177,6 +172,30 @@ section {
     height: 3px;
     background: var(--yellow);
     margin: 15px auto 0;
+}
+
+.subtitle-wrap {
+    margin: 4px auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtitle-wrap::before,
+.subtitle-wrap::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: var(--yellow);
+    max-width: 56px;
+    opacity: 0.7;
+}
+
+.sub-title {
+    font-size: 0.72rem;
+    color: #7e7e7e;
+    letter-spacing: 2.4px;
+    margin: 0 18px;
 }
 
 
@@ -190,50 +209,51 @@ section {
 }
 
 .card {
-    background: var(--card-bg);
-    border: 1px solid #333;
-    /* 極細的邊框取代厚重的陰影 */
-    border-radius: 8px;
+    background: linear-gradient(135deg, var(--surface-soft) 0%, #ffffff 100%);
+    border: 1px solid rgba(255, 204, 0, 0.18);
+    border-radius: 14px;
     padding: 30px;
     transition: 0.4s;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
 .card:hover {
-    transform: translateY(-15px);
+    transform: translateY(-8px);
     border-color: var(--yellow);
-    /* 移上去才亮黃色 */
-    box-shadow: 0 5px 5px rgba(255, 221, 0, 0.2);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
 }
 
 .card h3 {
-    color: var(--yellow);
+    color: #2e2e2e;
     margin-bottom: 15px;
 }
 
+.card p {
+    color: #585858;
+}
+
+/* 統一 section 版型 */
 section {
+    margin-top: 0 !important;
     margin-bottom: 60px;
-    background: transparent;
-    /* 移除白底或黑底 */
-    box-shadow: none;
-    /* 移除陰影 */
-    padding: 60px 0;
-    /* 增加上下留白，讓呼吸感出來 */
-    border-radius: 0;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    background: var(--surface);
+    padding: 44px 36px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 204, 0, 0.15);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 10;
 }
-
 
 /* 作品列表表格 */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    /* 確保邊框圓角生效 */
-
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 table th {
@@ -244,8 +264,9 @@ table th {
 
 table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ececec;
     text-align: center;
+    color: #4a4a4a;
 }
 
 a {
@@ -253,28 +274,153 @@ a {
     text-decoration: none;
 }
 
-/* 現在的故事線樣式 */
-.timeline {
-    border-left: 3px solid var(--yellow);
-    padding-left: 20px;
-    margin-left: 10px;
+.story-archive {
+    overflow: hidden;
 }
 
-.timeline-item {
-    margin-bottom: 20px;
+/* 備註：移除主軸上方獨立鑽石後，將主軸上下邊界微調 4px，保留你要的留白節奏 */
+.merged-storyline {
     position: relative;
+    padding-top: 18px;
+    padding-bottom: 4px;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
-.timeline-item::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: var(--black);
-    border: 3px solid var(--yellow);
-    border-radius: 50%;
+/* 備註：主軸往上/下各延伸 4px，避免線段在視覺上被截斷 */
+.merged-storyline::before {
+    content: "";
     position: absolute;
-    left: -31px;
-    top: 5px;
+    top: -4px;
+    bottom: -4px;
+    left: 50%;
+    width: 4px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #ffde5f 0%, #ffcc00 45%, #f3b700 100%);
+    border-radius: 8px;
+}
+
+.story-node {
+    position: relative;
+    width: calc(50% - 34px);
+    margin-bottom: 28px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, var(--surface-soft) 0%, #fff 100%);
+    border: 1px solid rgba(255, 204, 0, 0.18);
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* 備註：改回 Font Awesome 鑽石圖示，並加上 border-box 讓圓圈節點中心準確對齊主軸 */
+.story-node::before {
+    content: "\f3a5";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 6px;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    line-height: 1;
+    border-radius: 50%;
+    background: #fffdf5;
+    color: #e0b400;
+    /* border: 2px solid var(--yellow);
+    box-shadow: 0 0 0 4px var(--surface), 0 4px 10px rgba(0, 0, 0, 0.14); */
+    z-index: 2;
+}
+
+/* 備註：時間標籤改成 concert 的日期章語言，並把字級放大到原本兩倍以上 */
+.story-node::after {
+    content: attr(data-era);
+    position: absolute;
+    top: -14px;
+    background-color: var(--yellow);
+    color: #303030;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 7px;
+    padding: 3px 9px;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.16);
+    z-index: 3;
+}
+
+/* 備註：改用奇偶自動分邊，新增中間節點時不需要手動加 class */
+.merged-storyline .story-node:nth-of-type(odd) {
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.merged-storyline .story-node:nth-of-type(odd)::before {
+    right: -49px;
+}
+
+.merged-storyline .story-node:nth-of-type(odd)::after {
+    right: -10px;
+    top: -20px;
+    transform: rotate(30deg);
+}
+
+.merged-storyline .story-node:nth-of-type(even) {
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.merged-storyline .story-node:nth-of-type(even)::before {
+    left: -49px;
+}
+
+.merged-storyline .story-node:nth-of-type(even)::after {
+    left: -10px;
+    top: -20px;
+    transform: rotate(-30deg);
+}
+
+.story-node h3 {
+    color: #303030;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.story-node p {
+    color: #575757;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+
+    /* 備註：手機版主軸維持在左側，避免鑽石與內容互相遮擋 */
+    .merged-storyline::before {
+        left: 18px;
+        transform: none;
+    }
+
+    .story-node {
+        width: calc(100% - 44px);
+        margin-left: 44px;
+    }
+
+    .story-node {
+        margin-right: 0;
+        margin-left: 44px;
+    }
+
+    .story-node::before {
+        left: -39px;
+        right: auto;
+    }
+
+    .story-node::after {
+        left: 14px;
+        right: auto;
+        transform: rotate(-8deg);
+    }
 }
 
 /* 頁尾 */
@@ -282,8 +428,7 @@ footer {
     background-color: var(--black);
     color: white;
     text-align: center;
-    padding: 20px 0;
-    margin-top: 50px;
+    padding: 50px 0 20px;
 }
 
 .highlight {
