@@ -245,22 +245,14 @@ img {
     color: #555;
 }
 
-/* 第二層：地點區塊 (通用選擇器) */
-/* 只要是 con-X-X 的格式都套用 */
+/* 第二層：地點區塊 (通用選擇器) — con-X-X，不加左側直線（版面乾淨） */
 [class*="con-"][class*="-"] {
     padding: 10px 0 30px 20px;
     margin: 15px 0 15px 10px;
-    border-left: 4px solid #eee;
-    /* 預設灰線 */
     position: relative;
     background: linear-gradient(to right, #fffdf5, #fff);
     border-radius: 4px;
     counter-reset: track-counter;
-}
-
-/* 參加過的場次：變黃線 */
-.attended {
-    border-left: 4px solid #ffcc00 !important;
 }
 
 /* 第三層：曲目 */
@@ -466,4 +458,114 @@ img {
 .expand-btn:hover {
     background-color: #ffcc00;
     color: #333;
+}
+
+/* --- 2020 ACCESS：與其餘大卡同層級（title → img → con-X-1）；::after＝緞帶，CANCELED 水印用 ::before --- */
+
+.con-4.con-access-denied[data-tour="ACCESS"] {
+    overflow: visible;
+}
+
+.con-4[data-tour="ACCESS"]::after {
+    background: #4a4a4a;
+    color: #fff;
+    z-index: 5;
+}
+
+.con-4.con-access-denied {
+    filter: grayscale(80%);
+    opacity: 0.7;
+    position: relative;
+}
+
+.con-access-denied .location::before {
+    color: #999 !important;
+}
+
+.con-access-denied .canceled::before,
+.con-access-denied .canceled::after {
+    position: absolute;
+    left: -20px;
+    width: 45px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border: 2px solid #fff;
+    background-color: #999 !important;
+    color: #fff !important;
+    text-decoration: line-through;
+    transform: rotate(0deg);
+}
+
+.con-access-denied .canceled::before {
+    content: attr(data-date1);
+    top: 5px;
+}
+
+.con-access-denied .canceled::after {
+    content: attr(data-date2);
+    top: 28px;
+}
+
+.con-access-denied .canceled:not([data-date2])::after {
+    display: none;
+}
+
+.con-access-denied .denied-text {
+    font-family: "Courier New", Courier, monospace;
+    color: #cc0000 !important;
+    font-size: 0.85rem;
+    font-style: italic;
+    padding-left: 35px;
+}
+
+.con-access-denied .track-item.denied-text {
+    white-space: normal;
+    max-width: 100%;
+    overflow: visible;
+}
+
+.con-access-denied .track-item.denied-text::before {
+    content: "\f071" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    color: #cc0000 !important;
+    font-size: 0.8rem !important;
+    font-style: normal !important;
+    display: inline-block;
+    width: 25px;
+    margin-right: 5px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.con-access-denied .track-item.denied-text::after {
+    content: none !important;
+    display: none !important;
+}
+
+.con-access-denied .track-list .track-item {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.con-4.con-access-denied[data-tour="ACCESS"]::before {
+    content: "CANCELED";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: clamp(2rem, 10vw, 4.5rem);
+    font-weight: 900;
+    color: rgba(204, 0, 0, 0.1);
+    border: 8px solid rgba(204, 0, 0, 0.1);
+    padding: 10px 30px;
+    letter-spacing: 10px;
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
 }
