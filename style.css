@@ -384,7 +384,7 @@ section {
 }
 
 /* 首頁：成立的初衷 — 標題與全站一致置中；其下雙欄（文 7 : 圖 3） */
-.mission-section > .section-title {
+.mission-section>.section-title {
     margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
 }
 
@@ -395,7 +395,7 @@ section {
     align-items: start;
 }
 
-.mission-content > p,
+.mission-content>p,
 .mission-content .logo-concept p {
     color: #4a4a4a;
     font-size: 1rem;
@@ -422,7 +422,7 @@ section {
 }
 
 /* 金句：獨立於雙欄之下，全區塊寬度內致中 */
-.mission-section > .quote-box {
+.mission-section>.quote-box {
     width: 100%;
     max-width: 44rem;
     margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
@@ -1317,4 +1317,68 @@ footer {
     .mode-btn {
         width: 100%;
     }
+}
+
+/* 首頁 · 傳奇的轉折 — 電子書按鈕 */
+.story-ebook-cta {
+    text-align: center;
+    margin: 0 0 1.75rem;
+}
+
+.story-ebook-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+}
+
+/* 六六歌2 電子書頁 */
+body.ebook-ssg2-page .ebook-intro-lead {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto 1.5rem;
+    color: #4a4a4a;
+    line-height: 1.7;
+}
+
+body.ebook-ssg2-page .ebook-main,
+body.ebook-ssg2-page footer {
+    position: relative;
+    z-index: 1;
+}
+
+body.ebook-ssg2-page .ebook-intro.section {
+    margin-bottom: 1.25rem;
+}
+
+body.ebook-ssg2-page .flip-ebook-shell {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 204, 0, 0.22);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+}
+
+body.ebook-ssg2-page .flip-ebook-aspect {
+    position: relative;
+    padding-top: max(60%, 324px);
+    width: 100%;
+    height: 0;
+}
+
+body.ebook-ssg2-page .flip-ebook-aspect iframe {
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+body.ebook-ssg2-page .ebook-back-link {
+    text-align: center;
+    margin: 0 0 2.5rem;
 }
