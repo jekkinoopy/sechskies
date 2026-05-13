@@ -180,36 +180,34 @@
         max-width: 100%;
     }
 
-    /* 歌詞頁 body class（tablet.css 需載於該頁 inline style 之後才可蓋過行內 :root） */
-    body.nanum-pen-script-regular {
+    /* 歌詞頁 */
+    body.lyrics-page {
         margin: clamp(24px, 5vw, 56px) !important;
         box-sizing: border-box;
         overflow-x: hidden;
     }
 
-    html:has(body.nanum-pen-script-regular) {
+    html:has(body.lyrics-page) {
         font-size: 118.75% !important;
     }
 
-    body.nanum-pen-script-regular table {
+    body.lyrics-page .lyrics-main-table {
         border-spacing: clamp(12px, 3vw, 24px) !important;
         max-width: 100%;
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
-    body.nanum-pen-script-regular .main-left {
+    body.lyrics-page .main-left {
         width: 100% !important;
         display: block;
         box-sizing: border-box;
     }
 
-    body.nanum-pen-script-regular p {
+    body.lyrics-page .lyrics-main-table p {
         font-size: 1.2rem !important;
+        max-width: none;
     }
 
-    body.nanum-pen-script-regular h1 {
+    body.lyrics-page h1 {
         font-size: clamp(1.6rem, 5vw, 2.1rem) !important;
     }
 }

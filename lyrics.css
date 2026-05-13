@@ -1,73 +1,155 @@
-:root {
-    /* 定義一個基礎大小，這就是你的「倍率開關」 */
-    font-size: 26px;
-}
+/* 歌詞頁：載入於 style.css 之後，並以 .lyrics-page 提高權重，避免被全站 table / body 洗版 */
 
-.nanum-pen-script-regular {
+body.lyrics-page {
+    --lyrics-bg: #2a2a2a;
+    --lyrics-paper: #faf6e8;
+    --lyrics-accent: #f5dfa8;
+    --lyrics-muted: #c9c2a8;
+
     font-family: "Nanum Pen Script", cursive;
     font-weight: 400;
     font-style: normal;
+    background-color: var(--lyrics-bg) !important;
+    color: #fff !important;
+    margin: 0 !important;
+    padding: clamp(1rem, 4vw, 2.5rem) !important;
+    min-height: 100dvh;
+    line-height: 1.55;
+    overflow-x: hidden;
+    font-size: clamp(18px, 2.8vw, 26px);
 }
 
-body {
-    margin: 10%;
-    background-color: #333333;
-    color: #ffffff;
+body.lyrics-page h1 {
+    color: var(--lyrics-accent);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.02em;
 }
 
-h1 {
-    color: #FAEAB1;
-    font-size: 2.5rem;
-    /* 想要這區特別大一點就設 2.5 */
+body.lyrics-page .lyrics-layout {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.main-left {
-    width: 50%;
+body.lyrics-page .lyrics-main-table {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: clamp(0.75rem, 2.5vw, 1.75rem);
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+body.lyrics-page .lyrics-main-table > tbody > tr > td {
+    padding: 0.35rem 0.5rem !important;
+    border: none !important;
+    border-bottom: none !important;
+    text-align: left !important;
+    color: inherit !important;
+    vertical-align: top !important;
+    background: transparent !important;
+}
+
+body.lyrics-page .main-left {
+    width: 48%;
+    max-width: 480px;
     vertical-align: top;
-    gap: 1rem;
-    /* padding-right: 40px; */
 }
 
-.songInfo {
-    color: #FAEAB1;
+body.lyrics-page .main-left iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+body.lyrics-page .songInfo {
+    color: var(--lyrics-accent);
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: -10px;
-    align-items: center;
-    gap: 0.5rem;
-    /* 原本的 8px 大約是 0.5rem */
-    font-size: 1.2rem;
-    /* 想要這區特別大一點就設 1.2 */
+    gap: 0.4rem 0.75rem;
+    align-items: baseline;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
-/* .songInfo dd{
-    margin: 5px 0;
-} */
-p {
+body.lyrics-page .songInfo dt {
+    font-weight: 700;
+    color: var(--lyrics-muted);
+}
+
+body.lyrics-page .songInfo dd {
+    margin: 0;
+}
+
+body.lyrics-page .lyrics-main-table p {
     color: #fff;
-    line-height: 1.5;
-    gap: 0.5rem;
-    /* 原本的 8px 大約是 0.5rem */
-    font-size: 1.5rem;
-    /* 想要這區特別大一點就設 1.2 */
-    margin: auto;
+    line-height: 1.55;
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
+    margin: 0;
+    max-width: 52ch;
 }
 
-table {
-    border-spacing: 40px;
-    /* 左右間距 20px，上下 0 */
-    border-collapse: separate;
-    /* 必須是 separate，spacing 才會生效 */
+body.lyrics-page a {
+    color: #b8e6ff;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
 }
 
-/* width: 100%; */
-/* border:#fff solid 1px; */
-a {
-    color: #FFF;
-    text-decoration: none;
+body.lyrics-page a:hover {
+    color: #fff;
 }
 
-.contact i {
-    font-size: 0.6em;
-    margin-right: 0.3rem;
+body.lyrics-page .contact {
+    color: var(--lyrics-paper);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 42ch;
+}
+
+body.lyrics-page .contact h3 {
+    color: var(--lyrics-accent);
+    font-size: 1.15rem;
+    margin: 0.35rem 0 0.5rem;
+    font-family: "Nanum Pen Script", cursive;
+}
+
+body.lyrics-page .contact img {
+    max-height: 36px;
+    width: auto;
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+body.lyrics-page .contact i {
+    font-size: 0.75em;
+    margin-right: 0.35rem;
+    color: var(--lyrics-accent);
+}
+
+@media (max-width: 820px) {
+    body.lyrics-page .lyrics-main-table,
+    body.lyrics-page .lyrics-main-table tbody,
+    body.lyrics-page .lyrics-main-table tr,
+    body.lyrics-page .lyrics-main-table td {
+        display: block;
+        width: 100% !important;
+    }
+
+    body.lyrics-page .lyrics-main-table {
+        border-spacing: 0;
+    }
+
+    body.lyrics-page .main-left {
+        max-width: none;
+        margin-bottom: 1.5rem;
+    }
+
+    body.lyrics-page .lyrics-main-table > tbody > tr > td + td {
+        margin-top: 0.5rem;
+    }
 }

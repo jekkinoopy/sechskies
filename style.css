@@ -383,6 +383,116 @@ section {
 
 }
 
+/* 首頁：成立的初衷 — 標題與全站一致置中；其下雙欄（文 7 : 圖 3） */
+.mission-section > .section-title {
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.mission-section .mission-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(200px, 3fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+}
+
+.mission-content > p,
+.mission-content .logo-concept p {
+    color: #4a4a4a;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0 0 1rem;
+}
+
+.mission-content .logo-concept {
+    margin-top: 1.75rem;
+    padding-top: 0;
+}
+
+.mission-content .logo-concept h3 {
+    font-size: 1.08rem;
+    letter-spacing: 0.18em;
+    color: var(--primary);
+    margin: 0 0 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.65rem 0;
+    border-top: 2px solid rgba(255, 204, 0, 0.5);
+    border-bottom: 2px solid rgba(255, 204, 0, 0.5);
+}
+
+/* 金句：獨立於雙欄之下，全區塊寬度內致中 */
+.mission-section > .quote-box {
+    width: 100%;
+    max-width: 44rem;
+    margin: clamp(1.75rem, 4vw, 2.5rem) auto 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, var(--surface-soft) 0%, #fff7da 100%);
+    border-left: 4px solid var(--primary);
+    border-radius: 10px;
+    color: #55420a;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.65;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.mission-visual {
+    align-self: start;
+}
+
+.mission-visual .logo-wrapper {
+    position: sticky;
+    top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.mission-visual .logo-wrapper img {
+    width: 100%;
+    max-width: min(320px, 100%);
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.mission-visual .caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #6a6a6a;
+    max-width: 14rem;
+}
+
+.mission-visual .arrow-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--primary);
+    font-style: normal;
+}
+
+@media (max-width: 900px) {
+    .mission-section .mission-layout {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .mission-visual .logo-wrapper {
+        position: static;
+    }
+
+    .mission-visual .logo-wrapper img {
+        max-width: 260px;
+    }
+}
+
 /* 作品列表表格 */
 table {
     width: 100%;
@@ -440,8 +550,9 @@ a {
 
 .story-node {
     position: relative;
-    width: calc(50% - 34px);
-    margin-bottom: 28px;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 0 28px;
     padding: 16px 18px;
     background: linear-gradient(135deg, var(--surface-soft) 0%, #fff 100%);
     border: 1px solid rgba(255, 204, 0, 0.18);
@@ -449,8 +560,21 @@ a {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* 備註：改回 Font Awesome 鑽石圖示，並加上 border-box 讓圓圈節點中心準確對齊主軸 */
-.story-node::before {
+/* 時間軸節點：僅在 merged-storyline 內顯示鑽石與年代章 */
+.story-node::before,
+.story-node::after {
+    content: none;
+    display: none;
+}
+
+.merged-storyline .story-node {
+    width: calc(50% - 34px);
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.merged-storyline .story-node::before {
     content: "\f3a5";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
@@ -465,13 +589,10 @@ a {
     border-radius: 50%;
     background: #fffdf5;
     color: #e0b400;
-    /* border: 2px solid var(--primary);
-    box-shadow: 0 0 0 4px var(--surface), 0 4px 10px rgba(0, 0, 0, 0.14); */
     z-index: 2;
 }
 
-/* 備註：時間標籤改成 concert 的日期章語言，並把字級放大到原本兩倍以上 */
-.story-node::after {
+.merged-storyline .story-node::after {
     content: attr(data-era);
     position: absolute;
     top: -14px;
@@ -485,6 +606,7 @@ a {
     border: 2px solid #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.16);
     z-index: 3;
+    display: block;
 }
 
 /* 備註：改用奇偶自動分邊，新增中間節點時不需要手動加 class */
@@ -539,22 +661,18 @@ a {
         transform: none;
     }
 
-    .story-node {
+    .merged-storyline .story-node {
         width: calc(100% - 44px);
-        margin-left: 44px;
-    }
-
-    .story-node {
         margin-right: 0;
         margin-left: 44px;
     }
 
-    .story-node::before {
+    .merged-storyline .story-node::before {
         left: -39px;
         right: auto;
     }
 
-    .story-node::after {
+    .merged-storyline .story-node::after {
         left: 14px;
         right: auto;
         transform: rotate(-8deg);

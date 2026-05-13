@@ -90,8 +90,40 @@
     padding-bottom: 0;
 }
 
-#archive .archive-block {
-    margin: 1.75rem 0;
+/* archive.html：.archive-block 已改為 <section>，沿用 style.css 的 section 卡片版型 */
+section.archive-block p {
+    color: #4a4a4a;
+    line-height: 1.7;
+    margin: 0 0 0.75rem;
+}
+
+section.archive-block p:last-child {
+    margin-bottom: 0;
+}
+
+/* archive.html：精選作品表（含封面欄） */
+.archive-discography {
+    width: 100%;
+    margin-top: 1.25rem;
+}
+
+.archive-discography .album-cover-cell {
+    width: 96px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px 8px;
+}
+
+.archive-discography .album-cover-cell img {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 204, 0, 0.28);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+    background: #fff;
 }
 
 .landing-intro {
