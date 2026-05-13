@@ -24,3 +24,5 @@ alwaysApply: true
 
 - **頂部橫列導覽（常稱 navbar）**：`portal-nav.js` 注入的 `<nav class="portal-nav" data-portal-nav>`，每一頁頂端黑底那一條。**備份稿／未公開頁**除非使用者**明講要上這條**，否則不要寫進 `PORTAL_NAV_INNER_HTML`。
 - **全站頁面索引**：`site-guide.html`（自行開網址），用來列檔案與錨點；**不影響**頂欄是否出現該連結。使用者說「留在全站導覽」常指保留在 **site-guide** 或站內說明，**不等於**要掛進頂欄。
+
+（變更哪些檔、可否動共用 CSS：見 **`ai-change-boundaries.mdc`**。）

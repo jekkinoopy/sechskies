@@ -536,8 +536,19 @@ section {
     }
 }
 
-/* 全站：金句 — 語彙對齊 .subtitle-wrap（兩側金線）＋ .sub-title（字距、灰色階） */
+/* 金句：基底只放結構：視覺請用 --mission / --awakening，兩句互不覆寫 */
 .slogan-quote {
+    box-sizing: border-box;
+}
+
+.slogan-quote__inner {
+    display: block;
+    text-align: center;
+    text-wrap: balance;
+}
+
+/* 覺醒金句：語彙與 .subtitle-wrap / .sub-title 一致（雙短線＋中置小字），勿與 --mission 混用 */
+.slogan-quote--awakening {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -550,8 +561,8 @@ section {
     box-shadow: none;
 }
 
-.slogan-quote::before,
-.slogan-quote::after {
+.slogan-quote--awakening::before,
+.slogan-quote--awakening::after {
     content: "";
     flex: 1;
     height: 2px;
@@ -560,8 +571,9 @@ section {
     opacity: 0.7;
 }
 
-.slogan-quote__inner {
+.slogan-quote--awakening .slogan-quote__inner {
     display: block;
+    flex: 0 1 auto;
     margin: 0 18px;
     max-width: 40rem;
     text-align: center;
@@ -571,6 +583,40 @@ section {
     line-height: 1.75;
     color: #5c5c5c;
     text-wrap: balance;
+}
+
+/* 首頁「成立的初衷」金句：與覺醒款分檔，勿互換 */
+.slogan-quote--mission {
+    display: block;
+    width: 100%;
+    max-width: min(48rem, 100%);
+    margin: 2rem auto 0;
+    padding: 1.45rem 1.65rem 1.55rem;
+    text-align: center;
+    font-size: 1.08rem;
+    line-height: 1.78;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    color: #2f2610;
+    background:
+        linear-gradient(185deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 42%),
+        linear-gradient(168deg, #fffef8 0%, #fff6d2 52%, #fffce8 100%);
+    border: 1px solid rgba(220, 185, 90, 0.42);
+    border-left: 5px solid var(--primary);
+    border-radius: 14px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.92) inset,
+        0 12px 32px rgba(35, 28, 0, 0.08);
+}
+
+.slogan-quote--mission .slogan-quote__inner {
+    max-width: 44rem;
+    margin: 0 auto;
+    font: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    color: inherit;
 }
 
 .mission-visual {
@@ -1898,7 +1944,7 @@ body.minister-page .variety-block .intro-text {
     margin: 0 0 10px;
 }
 
-body.minister-page .variety-block .slogan-quote + .intro-text {
+body.minister-page .variety-block .slogan-quote--awakening + .intro-text {
     margin-top: 1rem;
 }
 

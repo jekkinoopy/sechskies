@@ -220,6 +220,10 @@ section.archive-block p:last-child {
     color: var(--light-yellow);
 }
 
+.home-page #intro .intro-text .slogan-quote--awakening + .core-description {
+    margin-top: 1rem;
+}
+
 /* 頁尾 CTA 區（首頁 landing-actions 延伸） */
 .home-page .container>.landing-actions {
     text-align: center;
@@ -240,17 +244,57 @@ section.archive-block p:last-child {
     border: 0;
 }
 
+/* 推廣部進化史：副標白票。2016 僅用你提供的三個數值；年分黃票不改（沿用 style.css 的 ::after） */
+.home-page #journey .merged-storyline .story-node:has(.journey-sublabel) {
+    padding-top: 42px;
+}
+
+/* 疊序（僅此區）：軸點鑽石 < 副標白票 < 年分黃標（標題在上） */
+.home-page #journey .merged-storyline .story-node::before {
+    z-index: 2;
+}
+
+.home-page #journey .merged-storyline .story-node::after {
+    z-index: 6;
+}
+
 .home-page #journey .merged-storyline .story-node .journey-sublabel {
-    display: inline-block;
-    margin: 0 0 0.5rem;
-    padding: 0.22rem 0.65rem 0.24rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
+    position: absolute;
+    z-index: 3;
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #4a3d10;
-    background: rgba(255, 204, 0, 0.22);
-    border: 1px solid rgba(255, 204, 0, 0.45);
+    letter-spacing: 0.05em;
+    line-height: 1.25;
+    color: #2a2a2a;
+    text-align: center;
+    background: linear-gradient(180deg, #fffef6 0%, #fff3d6 100%);
+    border: 2px solid #fff;
+    box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.12);
+    max-width: 8rem;
+    box-sizing: border-box;
+}
+
+/* 2016 基準（奇，靠軸角在右上）：你給的 right / top / 角 */
+.home-page #journey .merged-storyline .story-node:nth-of-type(odd):has(.journey-sublabel) .journey-sublabel {
+    right: 45px;
+    top: -8px;
+    transform: rotate(-10deg);
+    transform-origin: center center;
+}
+
+/* 2017 鏡像（偶，靠軸角在左上）：角度 +10°；left 依實機微調 */
+.home-page #journey .merged-storyline .story-node:nth-of-type(even):has(.journey-sublabel) .journey-sublabel {
+    left: 40px;
+    top: 2px;
+    transform: rotate(10deg);
+    transform-origin: center center;
+}
+
+.home-page #journey .merged-storyline .story-node .journey-sublabel + .journey-month {
+    margin-top: 0.5rem;
 }
 
 .home-page #journey .merged-storyline .story-node .journey-month {
@@ -264,10 +308,6 @@ section.archive-block p:last-child {
     color: #6b5210;
     line-height: 1.35;
     background: linear-gradient(270deg, rgba(255, 204, 0, 0.14) 0%, transparent 100%);
-}
-
-.home-page #journey .merged-storyline .story-node .journey-sublabel + .journey-month {
-    margin-top: 0.35rem;
 }
 
 .home-page #journey .merged-storyline .story-node .journey-month + p {
@@ -296,6 +336,24 @@ section.archive-block p:last-child {
     font-size: 1.0625rem;
     line-height: 1.75;
     color: #4a4a4a;
+}
+
+@media (max-width: 900px) {
+
+    /* 主軸在左：僅微調副標橫向；年分仍用全站 merged-storyline 規則 */
+    .home-page #journey .merged-storyline .story-node:nth-of-type(odd):has(.journey-sublabel) .journey-sublabel {
+        left: 48px;
+        right: auto;
+        top: -8px;
+        transform: rotate(-10deg);
+    }
+
+    .home-page #journey .merged-storyline .story-node:nth-of-type(even):has(.journey-sublabel) .journey-sublabel {
+        left: 58px;
+        right: auto;
+        top: 2px;
+        transform: rotate(10deg);
+    }
 }
 
 @media (max-width: 640px) {
