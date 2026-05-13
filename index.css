@@ -126,6 +126,19 @@ section.archive-block p:last-child {
     background: #fff;
 }
 
+.archive-discography tbody tr.archive-row-spotify {
+    cursor: pointer;
+}
+
+.archive-discography tbody tr.archive-row-spotify:hover td {
+    background-color: rgba(255, 204, 0, 0.06);
+}
+
+.archive-discography tbody tr.archive-row-spotify:focus-visible {
+    outline: 2px solid rgba(255, 204, 0, 0.65);
+    outline-offset: -2px;
+}
+
 .landing-intro {
     text-align: center;
     padding: 28px 0 48px;

@@ -46,7 +46,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/1Dijv8G0wnCN8PzFZoC8bN"
+                        aria-label="在 Spotify 開啟：THREE WORDS（2016 數位單曲）">
                         <td class="album-cover-cell">
                             <img src="./img/albums/2016.jpg" width="76" height="76" alt="2016 數位單曲 封面">
                         </td>
@@ -54,7 +56,9 @@
                         <td><a href="lyrics.html">數位單曲</a></td>
                         <td><a href="lyrics.html">Three Words (三個詞)</a></td>
                     </tr>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/5f2LzIFxljQF4FH7w3rXcQ"
+                        aria-label="在 Spotify 開啟：ANOTHER LIGHT">
                         <td class="album-cover-cell">
                             <img src="./img/albums/2017.jpg" width="76" height="76" alt="2017 ANOTHER LIGHT 封面">
                         </td>
@@ -62,7 +66,9 @@
                         <td><a href="concert.html#stage-now">ANOTHER LIGHT</a></td>
                         <td><a href="concert.html#stage-now">Something Special / Smile</a></td>
                     </tr>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/7vqIRL00YfTtuO0sSAK3Uv"
+                        aria-label="在 Spotify 開啟：ALL FOR YOU">
                         <td class="album-cover-cell">
                             <img src="./img/albums/2020.jpg" width="76" height="76" alt="2020 ALL FOR YOU 封面">
                         </td>
@@ -87,17 +93,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/18P1aqSLQA9WdNljjEhv9q"
+                        aria-label="在 Spotify 開啟：School Byeolgok（學園別曲）">
                         <td>1997</td>
                         <td><a href="classic.html#classic-albums">學園別曲</a></td>
                         <td><a href="classic.html#classic-albums">學園別曲 / 男兒之路 (Pom Saeng Pom Sa)</a></td>
                     </tr>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/08TW1bmGzSg172Db8C2Bde"
+                        aria-label="在 Spotify 開啟：Road Fighter">
                         <td>1998</td>
                         <td><a href="classic.html#classic-albums">Road Fighter</a></td>
                         <td><a href="classic.html#classic-albums">Road Fighter / Couple</a></td>
                     </tr>
-                    <tr>
+                    <tr class="archive-row-spotify" tabindex="0"
+                        data-spotify-url="https://open.spotify.com/album/3XWtqLXDZycu7Q0BGofhiq"
+                        aria-label="在 Spotify 開啟：Com' Back">
                         <td>1999</td>
                         <td><a href="classic.html#classic-albums">Com'Back</a></td>
                         <td><a href="classic.html#classic-albums">Com'Back</a></td>
@@ -116,6 +128,23 @@
 
     <script src="particles.js"></script>
     <script src="portal-nav.js"></script>
+    <script>
+        (function () {
+            document.querySelectorAll('tr.archive-row-spotify[data-spotify-url]').forEach(function (row) {
+                var url = row.getAttribute('data-spotify-url');
+                row.addEventListener('click', function (e) {
+                    if (e.target.closest('a')) return;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                });
+                row.addEventListener('keydown', function (e) {
+                    if (e.key !== 'Enter' && e.key !== ' ') return;
+                    if (e.target.closest('a')) return;
+                    e.preventDefault();
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
