@@ -187,7 +187,7 @@ body.njtw5-page .njtw-member-table td > .njtw-td-fill > .njtw-team-panel {
     box-sizing: border-box;
 }
 
-/* 與成員卡同列時撐滿儲存格高度：內層直向 flex，標籤列貼底 */
+/* 與成員卡同列時撐滿儲存格高度：內層直向 flex；剩餘高度由 .parchment-figure 吸收（見下），標籤列不再用 margin-top:auto */
 body.njtw5-page .njtw-member-table .member-card.parchment-card {
     display: flex;
     flex-direction: column;
@@ -200,11 +200,22 @@ body.njtw5-page .njtw-member-table .member-card.parchment-card .parchment-inner 
     min-height: 0;
 }
 
-body.njtw5-page .njtw-member-table .parchment-card .parchment-tags {
-    margin-top: auto;
+/* 表格內：剩餘高度給頭像區，勿用 tags 的 margin-top:auto 吃掉（會變成標籤上方死空白、壓縮圖區） */
+body.njtw5-page .njtw-member-table .member-card.parchment-card .parchment-figure {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-/* 表格內 OB／YB：深色「反色」羊皮紙＋龍珠數值（與角色淺色卡對照） */
+body.njtw5-page .njtw-member-table .parchment-card .parchment-figure .member-image {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: clamp(200px, 34vw, 280px);
+    height: auto;
+}
+
+/* 標籤列：沿用 .parchment-card .parchment-tags 的 margin／虛線，不再 margin-top:auto */
 body.njtw5-page .njtw-member-table .njtw-layout-slot.shinmyohan {
     white-space: normal;
     text-align: left;
@@ -277,7 +288,7 @@ body.njtw5-page .njtw-member-table .njtw-team-title-band {
         inset 0 -10px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* 原「OB／YB」單字大標的字級，改套在完整隊名上 */
+/* 原「OB／YB」單字大標的字級，改套在完整隊名上；OB／YB 欄另見 td.OB／td.YB 覆寫 */
 body.njtw5-page .njtw-member-table .njtw-team-hero-title {
     margin: 0;
     max-width: 100%;
@@ -291,6 +302,30 @@ body.njtw5-page .njtw-member-table .njtw-team-hero-title {
     background-clip: text;
     color: transparent;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+/* OB／YB 隊名區：與 OB 同一套加亮暖底＋偏白字（YB 套用同規格） */
+body.njtw5-page .njtw-member-table td.OB .njtw-team-title-band,
+body.njtw5-page .njtw-member-table td.YB .njtw-team-title-band {
+    border-color: rgba(255, 210, 175, 0.42);
+    background:
+        radial-gradient(ellipse 125% 95% at 50% 0%, rgba(255, 232, 200, 0.5) 0%, transparent 52%),
+        linear-gradient(165deg, #ffd8a8 0%, #e09050 42%, #c06038 78%, #8a4028 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -8px 22px rgba(60, 28, 16, 0.18);
+}
+
+body.njtw5-page .njtw-member-table td.OB .njtw-team-hero-title,
+body.njtw5-page .njtw-member-table td.YB .njtw-team-hero-title {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: rgba(255, 250, 244, 0.97);
+    text-shadow:
+        0 1px 2px rgba(40, 18, 8, 0.55),
+        0 0 20px rgba(255, 200, 150, 0.2);
+    filter: none;
 }
 
 body.njtw5-page .njtw-member-table .njtw-slot-faces {

@@ -1,7 +1,7 @@
 (() => {
     /**
      * ── 導覽「尚未開放」連結 ─────────────────────────────────────────
-     * ① 頂欄 `buildPortalNavInnerHTML`：僅列站主同意掛在頂欄的分類（**不含**未同意的頁，例如 `member`「六顆水晶」）。
+     * ① 頂欄 `buildPortalNavInnerHTML`：僅列站主同意掛在頂欄的分類（**不含**未同意的頁）。
      * ② `COMING_SOON_PAGES`／`INDEX_NAV_OPEN_HASHES`：在 Set／白名單外＝籌備中（`href` 改 `#`）。
      * ③ **唯一例外**：`extra/site-guide.html` 的 `<nav data-portal-nav data-portal-nav-all-open>` **不套用**籌備中（索引頁預覽用，頂欄連結全可點）；**其他任何頁**不得加 `data-portal-nav-all-open`。
      * ④ 文案 NAV_SOON_PHRASES：滑過／聚焦時隨機一句；無障礙固定「尚無開放」。
@@ -19,6 +19,9 @@
         "夢想航行中", // 未來規劃中，期待水晶男孩的下一個十年
     ];
 
+    /** 主選單欄 `mouseleave` 後延遲關閉（ms），方便移入子選單或右側飛出層，避免略偏就關閉 */
+    const SUBMENU_CLOSE_DELAY_MS = 480;
+
     function pickSoonPhrase() {
         return NAV_SOON_PHRASES[Math.floor(Math.random() * NAV_SOON_PHRASES.length)];
     }
@@ -31,17 +34,17 @@
     }
 
     const COMING_SOON_PAGES = new Set([
-        "variety.html",
-        "njtw5.html",
-        "concert.html",
         "albums.html",
         "map.html",
         "minister.html",
         "minister_ge.html",
     ]);
 
-    /** 首頁僅下列錨點可點；其餘（如 #story）維持籌備中，須站主同意後才可加入 */
-    const INDEX_NAV_OPEN_HASHES = new Set(["#origin", "#start", "#mission", "#timeline"]);
+    /**
+     * 首頁僅下列錨點可點；其餘（如 #story）維持籌備中，須站主同意後才可加入。
+     * 空字串：連到 index.html 且無 # 片段時視為可點（淪陷瞬間 · 初心與軌跡）。
+     */
+    const INDEX_NAV_OPEN_HASHES = new Set(["", "#origin", "#start", "#mission", "#timeline"]);
 
     function normalizePageKey(href) {
         if (!href || href === "#") return "";
@@ -83,6 +86,7 @@
         }
 
         link.setAttribute("href", "#");
+        link.dataset.portalNavSoonRoll = "1";
     }
 
     function linkShouldBeComingSoon(href, pageKey, pageKeysSoon) {
@@ -153,30 +157,35 @@
         }
     }
 
-    /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面 */
+    /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面
+     * 五主項：淪陷瞬間（全員發瘋巢狀）、完整的六顆（member）、現場的震撼、黃色留聲機、Yellow Note（minister、map）；variety 僅經淪陷子選單進入。 */
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
 <ul>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html#origin"><span class="portal-nav__label">淪陷瞬間</span><span class="portal-nav__sub">六顆永恆的水晶 · 左右命運的傳奇</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">淪陷瞬間</span><span class="portal-nav__sub">六顆永恆的水晶 · 左右命運的傳奇</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html#start"><span class="portal-nav__label">好奇的開端</span><span class="portal-nav__sub">從好奇觀看到淪陷的起點</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html#mission"><span class="portal-nav__label">成立的初衷</span><span class="portal-nav__sub">推廣部與黃色奇蹟</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html#timeline"><span class="portal-nav__label">跨時空軌跡</span><span class="portal-nav__sub">年表與作品節點</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html#story"><span class="portal-nav__label">傳奇的轉折</span><span class="portal-nav__sub">重逢與敘事主線</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">初心與軌跡</span><span class="portal-nav__sub">我們現在：從好奇觀看到淪陷的起點</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2.html"><span class="portal-nav__label">傳奇的轉折</span><span class="portal-nav__sub">六六歌2 紀實與重逢敘事主線</span></a></li>
+            <li class="portal-nav__subgroup">
+                <span class="portal-nav__subgroup-head"><span class="portal-nav__label">全員發瘋</span><span class="portal-nav__sub">原來我是個正常人啊！團綜與失控現場</span></span>
+                <ul class="portal-submenu-nested" aria-label="全員發瘋">
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html#stage"><span class="portal-nav__label">隊長帶弟弟</span><span class="portal-nav__sub">控場與隊內互動</span></a></li>
+                    <li class="portal-nav__subgroup portal-nav__subgroup--nested">
+                        <span class="portal-nav__subgroup-head portal-nav__subgroup-head--nested"><span class="portal-nav__label">各自暴走</span><span class="portal-nav__sub">獨立內頁籌備中</span></span>
+                        <ul class="portal-submenu-nested portal-submenu-nested--tier3" aria-label="各自暴走">
+                            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/NJTW/NJTW5.html"><span class="portal-nav__label">新西遊記</span><span class="portal-nav__sub">成員介紹 · MEMBER GUIDE</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html"><span class="portal-nav__label">瘋子與天才</span><span class="portal-nav__sub">EUN JI-WON × VARIETY GRAVITY</span></a>
-        <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html#variety"><span class="portal-nav__label">瘋狂出演中</span><span class="portal-nav__sub">綜藝鏡頭與名場面</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html#stage"><span class="portal-nav__label">隊長的氣場</span><span class="portal-nav__sub">控場與隊內互動</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/NJTW/NJTW5.html"><span class="portal-nav__label">新西遊記</span><span class="portal-nav__sub">成員介紹 · MEMBER GUIDE</span></a></li>
-        </ul>
-    </li>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/member.html"><span class="portal-nav__label">完整的六顆</span><span class="portal-nav__sub">六顆水晶 · 黑白分流</span></a></li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span><span class="portal-nav__sub">SECHSKIES CONCERT ARCHIVE</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html#stage-now"><span class="portal-nav__label">永恆的重逢</span><span class="portal-nav__sub">近年與重聚舞台</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html#stage-past"><span class="portal-nav__label">燦爛的最初</span><span class="portal-nav__sub">全盛期經典場次</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">集結水晶</span><span class="portal-nav__sub">團體演唱會</span></a></li>
+            <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="隊長的氣場，尚無開放"><span class="portal-nav__label">隊長的氣場</span><span class="portal-nav__sub">個人見面會與演唱會</span></a></li>
         </ul>
     </li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html"><span class="portal-nav__label">黃色留聲機</span><span class="portal-nav__sub">YELLOW PHONOGRAPH</span></a>
@@ -185,10 +194,10 @@
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#classic"><span class="portal-nav__label">輝煌全盛期</span><span class="portal-nav__sub">1997–1999 年表</span></a></li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}map/map.html"><span class="portal-nav__label">聖地巡禮</span><span class="portal-nav__sub">SECHSKIES TAIWAN ARCHIVE</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}map/map.html"><span class="portal-nav__label">Yellow Note</span><span class="portal-nav__sub">視覺進化論 · 聖地巡禮</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}map/map.html#taipei"><span class="portal-nav__label">台北聖地</span><span class="portal-nav__sub">行程與地點整理</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}map/map.html#global"><span class="portal-nav__label">海外遠征</span><span class="portal-nav__sub">跨國足跡</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/minister.html"><span class="portal-nav__label">視覺進化論</span><span class="portal-nav__sub">FROM CURIOSITY TO FULL-STACK</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}map/map.html"><span class="portal-nav__label">聖地巡禮</span><span class="portal-nav__sub">SECHSKIES TAIWAN ARCHIVE</span></a></li>
         </ul>
     </li>
 </ul>
@@ -209,7 +218,8 @@
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
     navs.forEach((nav) => {
-        const items = Array.from(nav.querySelectorAll("li"));
+        /* 僅頂層主欄；子選單內巢狀 li 不綁 open，否則會關閉整欄下拉 */
+        const items = Array.from(nav.querySelectorAll(":scope > ul > li"));
         const soonLinks = Array.from(nav.querySelectorAll('a[data-coming-soon="true"]'));
 
         const blockNavigation = (event) => {
@@ -219,6 +229,13 @@
         soonLinks.forEach((link) => {
             link.addEventListener("click", blockNavigation);
             link.addEventListener("auxclick", blockNavigation);
+            if (!link.dataset.portalNavSoonRoll) {
+                link.dataset.portalNavSoonRoll = "1";
+                const onSoonInteract = () => rollSoonLabel(link);
+                link.addEventListener("pointerenter", onSoonInteract);
+                link.addEventListener("focus", onSoonInteract);
+                link.addEventListener("touchstart", onSoonInteract, { passive: true });
+            }
         });
 
         items.forEach((item) => {
@@ -237,7 +254,7 @@
             };
 
             const scheduleClose = () => {
-                closeTimer = window.setTimeout(() => item.classList.remove("open"), 180);
+                closeTimer = window.setTimeout(() => item.classList.remove("open"), SUBMENU_CLOSE_DELAY_MS);
             };
 
             item.addEventListener("mouseenter", openItem);
@@ -267,8 +284,8 @@
             }
         });
 
-        const topLevelLinks = Array.from(nav.querySelectorAll(":scope > ul > li > a[href]"));
-        topLevelLinks.forEach((link) => {
+        const navLinks = Array.from(nav.querySelectorAll("a[href]")).filter((link) => !link.classList.contains("logo"));
+        navLinks.forEach((link) => {
             const fallback = link.getAttribute("href");
             const source = link.dataset.originalHref || fallback;
             if (!source || source === "#") return;

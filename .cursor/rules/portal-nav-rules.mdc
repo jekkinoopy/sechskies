@@ -14,7 +14,7 @@ alwaysApply: true
 - **未經站主明確同意**，不得自行：從 `COMING_SOON_PAGES` 移除檔名、擴充 `INDEX_NAV_OPEN_HASHES`、在 `buildPortalNavInnerHTML` **新增**導覽項目、**刪除站主已同意列入頂欄**的項目、或把籌備中連結改成可點（**例外見下**）。
 - 「檔案已在 repo 裡」**不代表**可以開放導覽或當成已上線。
 - **`extra/site-guide.html`（全站導覽索引頁）**：頂欄 `<nav>` 使用 **`data-portal-nav-all-open`** 時，腳本**不套用**籌備中，頂欄內連結**全部可點**（僅此頁；站內其他頁**禁止**加此屬性）。
-- 頂欄模板**不含**未同意掛列的頁（例如 `member.html`「六顆水晶」）；該頁仍可由 `site-guide` 卡片或網址直開。
+- 頂欄模板**不含**未同意掛列的頁；該頁仍可由 `site-guide` 卡片或網址直開。
 
 ---
 

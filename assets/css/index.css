@@ -186,6 +186,31 @@ section.archive-block p:last-child {
     margin-bottom: 0;
 }
 
+/* 入坑歷程：手繪感雙線波浪黃底線（SVG 拼貼，略不規則） */
+.home-page #start .fan-journey-wave {
+    display: inline;
+    padding: 0 0.04em 0.42em;
+    background-image: url("../images/fan-journey-wave-underline.svg");
+    background-repeat: repeat-x;
+    background-position: left 0 bottom 3px;
+    background-size: 280px 0.62em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.home-page #start .fan-journey-wave i {
+    margin: 0 0.18em;
+    color: rgba(180, 140, 0, 0.72);
+    font-size: 0.78em;
+    vertical-align: 0.08em;
+}
+
+@media (max-width: 520px) {
+    .home-page #start .fan-journey-wave {
+        background-size: min(220px, 100%) 0.58em;
+    }
+}
+
 /* 與首頁同欄寬：區塊內列表（minister_ge 等） */
 .home-page .container>section .intro-text ul {
     margin: 0.5rem 0 0;
