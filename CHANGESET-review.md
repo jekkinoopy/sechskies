@@ -4,17 +4,17 @@
 
 本文依 **`git diff`** 對照 **`HEAD`** 整理，方便逐項核對；不含未在本 diff 出現之檔案或臆測內容。
 
-**涉及檔案（5）**：`albums.html`、`index.css`、`index.html`、`portal-nav.js`、`style.css`  
+**涉及檔案（5）**：`albums/albums.html`、`index.css`、`index.html`、`portal-nav.js`、`style.css`  
 **統計**：以 `git diff --stat` 為準（以下內容對應該批變更初版筆記）。
 
 ---
 
-## 1. `albums.html`
+## 1. `albums/albums.html`
 
 ### 目的
 
 - 年表區塊（「啟動新篇章」「輝煌全盛期」）每一資料列：**點列上非連結區域**時，於新分頁開對應 **Spotify 專輯**。
-- 列內既有 `<a>`（本站 `lyrics.html`、`concert.html`、`albums.html#classic`）維持原行為。
+- 列內既有 `<a>`（本站 `extra/lyrics.html`、`concert/concert.html`、`albums/albums.html#classic`）維持原行為。
 
 ### 標記與無障礙
 
@@ -68,14 +68,14 @@
 
 1. `<article class="story-node">` 追加 modifier：`story-node--ebook-ssg2`。
 2. 在該篇 `<p>…</p>` 之後新增：
-   - `<a href="totoga2.html#ebook" class="timeline-ebook-cta">`
+   - `<a href="extra/totoga2.html#ebook" class="timeline-ebook-cta">`
    - Font Awesome：`fa-solid fa-hand-pointer`（`aria-hidden="true"`）
    - 文案：「點這裡翻開《六六歌2》紀實電子書」
 
 ### 相依性（請檢查）
 
 - 頁面須已載入 Font Awesome（與現有 `<link>` 一致），否則圖示不顯示。
-- `totoga2.html` 須存在；`totoga2.js` 會辨識網址列 `#ebook` 並切換至電子書模式。
+- `extra/totoga2.html` 須存在；`extra/totoga2.js` 會辨識網址列 `#ebook` 並切換至電子書模式。
 
 ---
 
@@ -122,8 +122,8 @@
 
 ## 建議檢查步驟（逐項勾選）
 
-1. **`albums.html`**：每列空白處／封面／年份點擊 → 新分頁 Spotify 正確專輯；點列內本站連結 → 仍進本站、不開 Spotify。
-2. **`albums.html`**：鍵盤 Tab 聚焦列後 Enter／空白 → 開 Spotify；聚焦在 `<a>` 上時 Enter → 遵循連結。
+1. **`albums/albums.html`**：每列空白處／封面／年份點擊 → 新分頁 Spotify 正確專輯；點列內本站連結 → 仍進本站、不開 Spotify。
+2. **`albums/albums.html`**：鍵盤 Tab 聚焦列後 Enter／空白 → 開 Spotify；聚焦在 `<a>` 上時 Enter → 遵循連結。
 3. **`index.html` + `style.css`**：2016 卡片外觀與 CTA 按鈕、`hover`、`focus-visible`、縮減動態偏好設定下手勢動畫關閉。
 4. **`portal-nav.js`**：全站注入後選單無「消失的真相」；改 `true` 後該項回來。
 5. **跨頁**：任意頁載入 `portal-nav.js` 後行為一致。

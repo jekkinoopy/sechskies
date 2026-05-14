@@ -119,47 +119,78 @@
         });
     }
 
-    /** 全站導覽 HTML — 僅修改此字串即可同步所有頁面 */
-    const PORTAL_NAV_INNER_HTML = `
-<a class="logo" href="index.html"><img src="./img/logov.svg" alt="SECHSKIES Logo"></a>
+    /**
+     * 站根與 `portal-nav.js` 同層；依腳本路徑與當前頁路徑計算回到站根的相對前綴（如 `../`）。
+     * 子資料夾內頁面之導覽連結必須帶此前綴，否則 `./img`、`index.html` 會錯層。
+     */
+    function portalNavRootPrefix() {
+        const el =
+            document.currentScript ||
+            Array.from(document.querySelectorAll("script[src*='portal-nav.js']")).find((s) => s.src);
+        if (!el?.src) return "./";
+        try {
+            const scriptPathname = new URL(el.src, window.location.href).pathname;
+            const scriptDirSegs = scriptPathname.split("/").filter(Boolean);
+            scriptDirSegs.pop();
+            const pageDirSegs = window.location.pathname.split("/").filter(Boolean);
+            pageDirSegs.pop();
+            let i = 0;
+            const a = scriptDirSegs;
+            const b = pageDirSegs;
+            while (i < a.length && i < b.length && a[i] === b[i]) {
+                i += 1;
+            }
+            const ups = b.length - i;
+            return ups > 0 ? "../".repeat(ups) : "./";
+        } catch {
+            return "./";
+        }
+    }
+
+    /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面 */
+    function buildPortalNavInnerHTML(rp) {
+        return `
+<a class="logo" href="${rp}index.html"><img src="${rp}img/logov.svg" alt="SECHSKIES Logo"></a>
 <ul>
-    <li><a href="index.html#origin">淪陷瞬間</a>
+    <li><a href="${rp}index.html#origin">淪陷瞬間</a>
         <ul class="portal-submenu">
-            <li><a href="index.html#start">好奇的開端</a></li>
-            <li><a href="index.html#mission">成立的初衷</a></li>
-            <li><a href="index.html#timeline">跨時空軌跡</a></li>
-            <li><a href="index.html#story">傳奇的轉折</a></li>
+            <li><a href="${rp}index.html#start">好奇的開端</a></li>
+            <li><a href="${rp}index.html#mission">成立的初衷</a></li>
+            <li><a href="${rp}index.html#timeline">跨時空軌跡</a></li>
+            <li><a href="${rp}index.html#story">傳奇的轉折</a></li>
         </ul>
     </li>
-    <li><a href="jiwon.html">瘋子與天才</a>
+    <li><a href="${rp}jiwon/jiwon.html">瘋子與天才</a>
         <ul class="portal-submenu">
-            <li><a href="jiwon.html#variety">瘋狂出演中</a></li>
-            <li><a href="jiwon.html#stage">隊長的氣場</a></li>
+            <li><a href="${rp}jiwon/jiwon.html#variety">瘋狂出演中</a></li>
+            <li><a href="${rp}jiwon/jiwon.html#stage">隊長的氣場</a></li>
         </ul>
     </li>
-    <li><a href="concert.html">現場的震撼</a>
+    <li><a href="${rp}concert/concert.html">現場的震撼</a>
         <ul class="portal-submenu">
-            <li><a href="concert.html#stage-now">永恆的重逢</a></li>
-            <li><a href="concert.html#stage-past">燦爛的最初</a></li>
+            <li><a href="${rp}concert/concert.html#stage-now">永恆的重逢</a></li>
+            <li><a href="${rp}concert/concert.html#stage-past">燦爛的最初</a></li>
         </ul>
     </li>
-    <li><a href="albums.html">黃色留聲機</a>
+    <li><a href="${rp}albums/albums.html">黃色留聲機</a>
         <ul class="portal-submenu">
-            <li><a href="albums.html#new">啟動新篇章</a></li>
-            <li><a href="albums.html#classic">輝煌全盛期</a></li>
+            <li><a href="${rp}albums/albums.html#new">啟動新篇章</a></li>
+            <li><a href="${rp}albums/albums.html#classic">輝煌全盛期</a></li>
         </ul>
     </li>
-    <li><a href="map.html">聖地巡禮</a>
+    <li><a href="${rp}map/map.html">聖地巡禮</a>
         <ul class="portal-submenu">
-            <li><a href="map.html#taipei">台北聖地</a></li>
-            <li><a href="map.html#global">海外遠征</a></li>
+            <li><a href="${rp}map/map.html#taipei">台北聖地</a></li>
+            <li><a href="${rp}map/map.html#global">海外遠征</a></li>
         </ul>
     </li>
 </ul>
 `.trim();
+    }
 
+    const rootPrefix = portalNavRootPrefix();
     document.querySelectorAll("nav.portal-nav[data-portal-nav]").forEach((nav) => {
-        nav.innerHTML = PORTAL_NAV_INNER_HTML;
+        nav.innerHTML = buildPortalNavInnerHTML(rootPrefix);
         applyComingSoonToNav(nav);
     });
 
