@@ -155,7 +155,47 @@ section.archive-block p:last-child {
 
 /* ---------- 首頁 home-page：閱讀寬度與字級（弱化對 vw 的依賴） ---------- */
 
-/* 用 px 鎖上限，避免 72rem 隨根字級／無障礙字級變大（例如實測出 ~1390px） */
+/* Hero 大標：維持全站水晶黃字色，用深色描邊＋暈光與淺黃底圖區隔 */
+.home-page header .hero h1 {
+    color: var(--primary);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-shadow:
+        0 0 0.04em rgba(42, 32, 0, 0.55),
+        0 0.03em 0 rgba(26, 20, 0, 0.42),
+        0 0.08em 0.12em rgba(0, 0, 0, 0.28),
+        0 -0.02em 0.06em rgba(255, 255, 255, 0.35),
+        0 0 0.35em rgba(255, 204, 0, 0.85),
+        0 0 0.85em rgba(255, 180, 0, 0.4);
+}
+
+/* 副標：結構與 concert 相同（subtitle-wrap + 兩側黃線）；字級大於演唱會頁以利閱讀 */
+.home-page header .hero .subtitle-wrap {
+    margin: 0.65rem auto 1.05rem;
+    padding: 0 0.75rem;
+    max-width: min(40rem, 94vw);
+}
+
+.home-page header .hero .subtitle-wrap::before,
+.home-page header .hero .subtitle-wrap::after {
+    height: 3px;
+    max-width: min(72px, 14vw);
+    background-color: #ffcc00;
+    opacity: 1;
+}
+
+.home-page header .hero .subtitle-wrap .sub-title {
+    margin: 0 min(1.6rem, 4vw);
+    font-size: clamp(1.12rem, 2.4vw + 0.72rem, 1.52rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    line-height: 1.5;
+    color: #e6e6e6;
+    text-shadow:
+        0 0 0.35em rgba(0, 0, 0, 0.45),
+        0 0.06em 0.18em rgba(0, 0, 0, 0.35);
+}
+
 .home-page .container {
     max-width: min(1200px, calc(100% - 2rem));
     width: 100%;

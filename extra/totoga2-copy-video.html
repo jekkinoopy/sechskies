@@ -24,27 +24,28 @@
 
     <canvas id="particles"></canvas>
 
-    <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 複本分頁">
-        <a href="totoga2-copy-video.html" class="btn" aria-current="page">節目影片</a>
-        <a href="totoga2-copy-ebook.html" class="btn">紀實電子書</a>
-        <a href="totoga2-copy-timeline.html" class="btn">時間軸＋長文</a>
-        <a href="totoga2%20copy.html" class="btn">複本總覽</a>
-    </nav>
+    <div id="bilivideo-tabs" class="bilivideo-hub">
+        <nav class="ebook-back-link content-container totoga2-split-crossnav bilivideo-episode-nav" role="tablist" aria-label="節目影片集數">
+            <button type="button" class="btn bilivideo-episode-nav__tab bilivideo-episode-nav__tab--active" role="tab" id="bilivideo-tab-1"
+                aria-controls="bilivideo-panel-1" aria-selected="true">上集</button>
+            <button type="button" class="btn bilivideo-episode-nav__tab" role="tab" id="bilivideo-tab-2"
+                aria-controls="bilivideo-panel-2" aria-selected="false" tabindex="-1">中集</button>
+            <button type="button" class="btn bilivideo-episode-nav__tab" role="tab" id="bilivideo-tab-3"
+                aria-controls="bilivideo-panel-3" aria-selected="false" tabindex="-1">下集</button>
+        </nav>
+        <p class="totoga2-copy-sibling-links content-container" aria-label="六六歌2 其他複本入口">
+            <a href="totoga2-copy-ebook.html">紀實電子書</a>
+            <span class="totoga2-copy-sibling-links__sep" aria-hidden="true">·</span>
+            <a href="totoga2-copy-timeline.html">時間軸＋長文</a>
+            <span class="totoga2-copy-sibling-links__sep" aria-hidden="true">·</span>
+            <a href="totoga2%20copy.html">複本總覽</a>
+        </p>
 
-    <div class="content-container ebook-main">
-        <section class="ebook-intro section" aria-labelledby="ebook-bilivideo-heading">
-            <h2 class="section-title" id="ebook-bilivideo-heading">節目影片</h2>
+        <div class="content-container ebook-main">
+            <section class="ebook-intro section" aria-labelledby="ebook-bilivideo-heading">
+                <h2 class="section-title" id="ebook-bilivideo-heading">節目影片</h2>
 
-            <div class="bilivideo-tabs" id="bilivideo-tabs">
                 <div class="bilivideo-tabs__shell">
-                    <div class="bilivideo-tabs__list" role="tablist" aria-label="節目影片集數">
-                        <button type="button" class="bilivideo-tabs__tab bilivideo-tabs__tab--active" role="tab" id="bilivideo-tab-1"
-                            aria-controls="bilivideo-panel-1" aria-selected="true">上集</button>
-                        <button type="button" class="bilivideo-tabs__tab" role="tab" id="bilivideo-tab-2"
-                            aria-controls="bilivideo-panel-2" aria-selected="false" tabindex="-1">中集</button>
-                        <button type="button" class="bilivideo-tabs__tab" role="tab" id="bilivideo-tab-3"
-                            aria-controls="bilivideo-panel-3" aria-selected="false" tabindex="-1">下集</button>
-                    </div>
                     <div class="bilivideo-tabs__panels">
                         <div class="bilivideo-tabs__panel" role="tabpanel" id="bilivideo-panel-1" aria-labelledby="bilivideo-tab-1">
                             <div class="bilivideo-frame">
@@ -67,14 +68,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
     <p class="ebook-back-link content-container">
         <a href="../index.html#story" class="btn">回到首頁 · 傳奇的轉折</a>
-        <a href="totoga2-copy-ebook.html" class="btn">紀實電子書（另頁）</a>
-        <a href="totoga2-copy-timeline.html" class="btn">時間軸＋八章（另頁）</a>
     </p>
 
     <footer>
@@ -98,8 +97,8 @@
                     var on = i === index;
                     tab.setAttribute("aria-selected", on ? "true" : "false");
                     tab.tabIndex = on ? 0 : -1;
-                    if (on) tab.classList.add("bilivideo-tabs__tab--active");
-                    else tab.classList.remove("bilivideo-tabs__tab--active");
+                    if (on) tab.classList.add("bilivideo-episode-nav__tab--active");
+                    else tab.classList.remove("bilivideo-episode-nav__tab--active");
                     panels[i].hidden = !on;
                     if (on) {
                         var iframe = panels[i].querySelector("iframe[data-src]");

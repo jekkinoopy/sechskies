@@ -6,3 +6,4 @@
 - 中集、下集 iframe 使用 `data-src`，第一次切到該分頁時由頁內 script 寫入 `src`；改連結時請改 `data-src`（或已寫入後的 `src`）。
 - 目前中／下集預設與上集同一 BV，僅作占位；正式替換時改各分頁 iframe 的 `data-src` 即可。
 - 此頁 `body.totoga2-video-copy-page` 會覆寫 `.map-archive-header` 的整屏高度（`100vh`／`100dvh`），避免與導覽、影片疊加後出現整頁直向捲軸；其他全屏 banner 頁不受影響。
+- 資訊架構：頂部黃色列僅 **上集／中集／下集**（`role="tab"`）；**紀實電子書、時間軸＋長文、複本總覽** 為其下文字連結，仍各為獨立 HTML；`totoga2-copy-ebook.html` 等頁仍保留原四鈕列。

@@ -2170,7 +2170,7 @@ body.totoga2-page.totoga2-video-copy-page .ebook-intro.section {
     margin-bottom: 1.5rem;
 }
 
-body.totoga2-page.totoga2-video-copy-page .ebook-intro.section .bilivideo-tabs {
+body.totoga2-page.totoga2-video-copy-page .ebook-intro.section .bilivideo-tabs__shell {
     margin-top: 0.5rem;
 }
 
@@ -2178,10 +2178,43 @@ body.totoga2-page.totoga2-video-copy-page {
     overflow-x: hidden;
 }
 
-/* 節目影片複本：三集＝同一殼內分頁；非使用中 panel 不占版面（避免被 flex display 蓋掉 hidden） */
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs {
+/* 節目影片複本：頂列為上／中／下集（獨立 .btn）；播放器外殼內僅 iframe */
+body.totoga2-page.totoga2-video-copy-page .bilivideo-hub .bilivideo-tabs__shell {
     max-width: 960px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.totoga2-page.totoga2-video-copy-page .totoga2-copy-sibling-links {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0.35rem auto 0.85rem;
+    color: #555;
+}
+
+body.totoga2-page.totoga2-video-copy-page .totoga2-copy-sibling-links a {
+    color: #4a3d12;
+    font-weight: 650;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+body.totoga2-page.totoga2-video-copy-page .totoga2-copy-sibling-links a:hover {
+    color: #221a06;
+}
+
+body.totoga2-page.totoga2-video-copy-page .totoga2-copy-sibling-links__sep {
+    margin: 0 0.4rem;
+    opacity: 0.55;
+}
+
+body.totoga2-page.totoga2-video-copy-page .bilivideo-episode-nav .btn {
+    opacity: 0.9;
+}
+
+body.totoga2-page.totoga2-video-copy-page .bilivideo-episode-nav .bilivideo-episode-nav__tab--active {
+    opacity: 1;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.28);
 }
 
 body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__shell {
@@ -2190,51 +2223,6 @@ body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__shell {
     border: 1px solid rgba(255, 204, 0, 0.38);
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
     background: #070707;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    margin: 0;
-    padding: 0;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__tab {
-    margin: 0;
-    padding: 0.75rem 0.5rem;
-    border: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 700;
-    font-size: clamp(0.88rem, 2.1vw, 1rem);
-    text-align: center;
-    color: #e8e4dc;
-    background: #151515;
-    letter-spacing: 0.12em;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__tab:last-child {
-    border-right: none;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__tab:hover {
-    background: #1f1f1f;
-    color: #fff;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__tab:focus-visible {
-    outline: 2px solid #ffcc00;
-    outline-offset: -2px;
-    position: relative;
-    z-index: 1;
-}
-
-body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__tab--active {
-    background: linear-gradient(180deg, #ffe566 0%, #ffcc00 100%);
-    color: #1a1406;
 }
 
 body.totoga2-page.totoga2-video-copy-page .bilivideo-tabs__panels {
