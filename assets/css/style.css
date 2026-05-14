@@ -1157,8 +1157,11 @@ a {
 }
 
 .merged-storyline .timeline-ebook-cta {
-    display: inline-flex;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     margin-top: 0.95rem;
     padding: 0.6rem 1.1rem 0.6rem 0.9rem;
@@ -1174,10 +1177,9 @@ a {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     cursor: default;
-    box-sizing: border-box;
 }
 
-/* 同頂欄 .portal-submenu a[data-coming-soon]::after 氣泡（文案固定為「傳奇書寫中」） */
+/* 同頂欄籌備中氣泡系；預設在右側（若 CTA 非全寬仍可用） */
 .merged-storyline .timeline-ebook-cta::after {
     content: "傳奇書寫中";
     position: absolute;
@@ -1200,6 +1202,16 @@ a {
     bottom: auto;
     margin-left: 10px;
     transform: translateY(-50%);
+}
+
+/* 六六歌節點內 CTA 全寬時：氣泡改在按鈕上方置中 */
+.merged-storyline .story-node--ebook-ssg2 .timeline-ebook-cta::after {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 8px);
+    margin-left: 0;
+    transform: translateX(-50%);
 }
 
 @media (hover: hover) {
