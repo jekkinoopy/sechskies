@@ -40,13 +40,9 @@ body.njtw5-page header.main-header {
     align-items: center;
     justify-content: center;
     /* 圖檔與此 CSS 同資料夾（variety/NJTW/） */
-    background-color: var(--surface-soft, #fff9e8);
-    background-image:
-        linear-gradient(180deg,
-            rgba(255, 249, 232, 0.6) 0%,
-            rgba(255, 249, 232, 0.8) 100%),
-        url("1538075001_cu.jpg");
-    background-size: cover, cover;
+    background-color: #1a1812;
+    background-image: url("1538075001_cu.jpg");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border: none;
@@ -58,20 +54,47 @@ body.njtw5-page .main-header h1 {
     margin: 0 0 0.65rem;
     font-size: clamp(1.35rem, 4vw, 1.85rem);
     font-weight: 800;
-    color: var(--dark-yellow, #4e492b);
+    color: rgba(255, 255, 255, 0.96);
     line-height: 1.25;
     letter-spacing: 0.02em;
-    text-shadow: 0 0 12px rgba(255, 253, 247, 0.95), 0 1px 0 rgba(255, 253, 247, 0.8);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 0, 0, 0.35);
 }
 
 body.njtw5-page .main-header .intro {
     margin: 0;
-    font-size: clamp(0.9rem, 2.3vw, 1.05rem);
-    color: #333;
-    line-height: 1.65;
-    max-width: 42em;
     margin-inline: auto;
-    text-shadow: 0 0 10px rgba(255, 253, 247, 0.92), 0 1px 0 rgba(255, 253, 247, 0.75);
+    max-width: min(42em, 100%);
+    width: fit-content;
+    box-sizing: border-box;
+    padding: clamp(14px, 2.4vw, 20px) clamp(18px, 3.2vw, 30px);
+    font-size: clamp(0.95rem, 2.5vw, 1.12rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.98);
+    line-height: 1.65;
+    letter-spacing: 0.02em;
+    text-align: center;
+    border-radius: 14px;
+    /* 透明黑底：上淺下深＋內光，與標題圖區分層次 */
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06) 0%,
+            rgba(255, 255, 255, 0) 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.38) 0%,
+            rgba(0, 0, 0, 0.58) 100%
+        );
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-top-color: rgba(255, 220, 120, 0.22);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 10px 36px rgba(0, 0, 0, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px) saturate(1.15);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 body.njtw5-page .container {
@@ -138,8 +161,8 @@ body.njtw5-page .m4 .member-image {
 }
 
 body.njtw5-page .m5 .member-image {
-    background-size: 600% auto;
-    background-position: 0% 17%;
+    background-size: 500% auto;
+    background-position: 0% 16%;
 }
 
 body.njtw5-page .m6 .member-image {
