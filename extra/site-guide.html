@@ -20,77 +20,50 @@
         </div>
     </header>
 
-    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav data-portal-nav-all-open></nav>
 
     <canvas id="particles"></canvas>
 
     <main class="content-container site-guide-main">
         <p class="site-guide-lead">
-            以下為本專案目前所有 HTML 頁面：每張卡片含<span class="mark_b">連結</span>、瀏覽器分頁上的<span
-                class="mark_b">標題</span>（<code>&lt;title&gt;</code>）、以及主要<span
-                class="mark_b">區塊／錨點</span>，方便你開發或簡報時一鍵跳轉。
-            <span class="mark_b">此頁未放入全站導覽列</span>，僅供你自行書籤或輸入網址（例如 <code>extra/site-guide.html</code>）開啟。
+            以下索引<strong>依頂欄全站導覽</strong>的分類與順序排列（與 <code>assets/js/portal-nav.js</code> 一致），並盡量對齊<strong>資料夾</strong>（站根 <code>index.html</code>、<code>variety/</code>、<code>concert/</code>、<code>albums/</code>、<code>map/</code>）。
+            每張卡片含<span class="mark_b">連結</span>、<span class="mark_b">標題</span>（<code>&lt;title&gt;</code>）、<span class="mark_b">錨點</span>。
+            <span class="mark_b">本頁頂欄</span>已設 <code>data-portal-nav-all-open</code>，連結全可點；一般內容頁頂欄仍依站主籌備中設定。
+            此頁<strong>未</strong>掛在頂欄選單內，請自行書籤或開啟 <code>extra/site-guide.html</code>。
         </p>
 
-        <section class="site-guide-group" aria-labelledby="sg-home">
-            <h2 class="section-title" id="sg-home">首頁與入口</h2>
+        <!-- 順序與 portal-nav 主選單一致：淪陷瞬間 → 瘋子與天才 → 現場的震撼 → 黃色留聲機 → 聖地巡禮；其餘為 extra/ 未列頂欄 -->
+
+        <section class="site-guide-group" aria-labelledby="sg-nav-origin">
+            <h2 class="section-title" id="sg-nav-origin">淪陷瞬間 <span class="site-guide-nav-sub">六顆永恆的水晶 · 左右命運的傳奇</span></h2>
+            <p class="site-guide-folder-hint">站根 · 對應 <code>index.html#origin</code> 與子選單錨點</p>
             <div class="site-guide-grid">
                 <article class="site-guide-card">
-                    <h3><a href="../index.html">index.html</a></h3>
+                    <h3><a href="../index.html">index.html</a> <span class="site-guide-path">（站根）</span></h3>
                     <p class="site-guide-meta">標題列：<cite>SECHSKIES - 水晶男孩傳奇介紹</cite></p>
-                    <p class="site-guide-note">主視覺與導覽列；內文以區塊錨點分段。</p>
-                    <h4>區塊錨點</h4>
+                    <p class="site-guide-note">主選單「淪陷瞬間」主連結；子項與導覽子選單用語一致。</p>
+                    <h4>子選單錨點（與頂欄一致）</h4>
                     <ul>
-                        <li><a href="../index.html#origin">#origin</a> — 淪陷瞬間（Hero，與導覽一致）</li>
-                        <li><a href="../index.html#start">#start</a> — 好奇的開端</li>
-                        <li><a href="../index.html#mission">#mission</a> — 成立的初衷</li>
-                        <li><a href="../index.html#timeline">#timeline</a> — 跨時空軌跡</li>
-                        <li><a href="../index.html#story">#story</a> — 傳奇的轉折</li>
+                        <li><a href="../index.html#origin">#origin</a> — 淪陷瞬間 · 主選單主連結（Hero）</li>
+                        <li><a href="../index.html#start">#start</a> — 好奇的開端 · 從好奇觀看到淪陷的起點</li>
+                        <li><a href="../index.html#mission">#mission</a> — 成立的初衷 · 推廣部與黃色奇蹟</li>
+                        <li><a href="../index.html#timeline">#timeline</a> — 跨時空軌跡 · 年表與作品節點</li>
+                        <li><a href="../index.html#story">#story</a> — 傳奇的轉折 · 重逢與敘事主線</li>
                     </ul>
                 </article>
 
-                <article class="site-guide-card">
-                    <h3><a href="grok.html">grok.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>水晶男孩 SECHSKIES | 永恆的六顆水晶</cite></p>
-                    <p class="site-guide-note">單頁多區塊版型（實驗／簡報用）。</p>
-                    <h4>區塊錨點</h4>
-                    <ul>
-                        <li><a href="grok.html#story">#story</a></li>
-                        <li><a href="grok.html#members">#members</a></li>
-                        <li><a href="grok.html#discography">#discography</a></li>
-                        <li><a href="grok.html#now">#now</a></li>
-                    </ul>
-                </article>
-
-                <article class="site-guide-card">
-                    <h3><a href="member.html">member.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>水晶男孩｜六顆水晶 · 黑白分流</cite></p>
-                    <p class="site-guide-note">2×4 交錯格：左上三張黑水晶海報、右上黑水晶介紹；左下白水晶介紹、右下三張白水晶海報。</p>
-                    <h4>區塊錨點</h4>
-                    <ul>
-                        <li><a href="member.html#crystal-board">#crystal-board</a></li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <section class="site-guide-group site-guide-group--ssg2" aria-labelledby="sg-ssg2">
-            <h2 class="section-title" id="sg-ssg2">無限挑戰 · 六六歌 2</h2>
-            <div class="site-guide-grid">
                 <article class="site-guide-card site-guide-card--totoga2">
-                    <h3><a href="totoga2.html">totoga2.html</a></h3>
+                    <h3><a href="totoga2.html">extra/totoga2.html</a> <span class="site-guide-path">（敘事延伸）</span></h3>
                     <p class="site-guide-meta">標題列：<cite>水晶男孩｜無限挑戰六六歌2 — 紀實電子書</cite></p>
-                    <p class="site-guide-note">單一入口：影片三集、FlipHTML5 電子書、傳奇的轉折時間軸、紀實長文八章（可切網漫／分頁）。</p>
-
+                    <p class="site-guide-note">呼應首頁「傳奇的轉折」軸線；檔案在 <code>extra/</code>，頂欄未單獨列項。</p>
                     <div class="site-guide-totoga2-panel">
                         <p class="site-guide-kicker">怎麼開</p>
                         <ul class="site-guide-modes site-guide-modes--totoga2">
-                            <li><a href="totoga2.html">影片模式</a> — 預設開啟（三集 Bilibili）。</li>
-                            <li><a href="totoga2.html#ebook">電子書模式</a> — 進頁即切到 FlipHTML5 全螢幕。</li>
-                            <li><a href="totoga2.html#challenge">紀實長文</a> — 自「無限挑戰」章進入；亦可從下方任一章捷徑直達。</li>
+                            <li><a href="totoga2.html">影片模式</a> — 預設（三集 Bilibili）</li>
+                            <li><a href="totoga2.html#ebook">電子書模式</a> — FlipHTML5 全螢幕</li>
+                            <li><a href="totoga2.html#challenge">紀實長文</a> — 自「無限挑戰」章起</li>
                         </ul>
                     </div>
-
                     <div class="site-guide-totoga2-panel">
                         <p class="site-guide-kicker">長文章節捷徑</p>
                         <nav class="site-guide-chapter-nav" aria-label="totoga2 紀實長文章節">
@@ -104,119 +77,158 @@
                             <a href="totoga2.html#final-stage">登場</a>
                         </nav>
                     </div>
-
-                    <p class="site-guide-fine-print">舊檔 <code>ssg2-ebook.html</code>、<code>chronicle.html</code> 已併入 <a
-                            href="totoga2.html">totoga2 整合頁</a>。</p>
+                    <p class="site-guide-fine-print">舊檔 <code>ssg2-ebook.html</code>、<code>chronicle.html</code> 已併入本頁。</p>
                 </article>
             </div>
         </section>
 
-        <section class="site-guide-group" aria-labelledby="sg-members">
-            <h2 class="section-title" id="sg-members">成員與紀實</h2>
+        <section class="site-guide-group" aria-labelledby="sg-nav-variety">
+            <h2 class="section-title" id="sg-nav-variety">瘋子與天才 <span class="site-guide-nav-sub">EUN JI-WON × VARIETY GRAVITY</span></h2>
+            <p class="site-guide-folder-hint">資料夾 <code>variety/</code> · 對應頂欄第二主項</p>
             <div class="site-guide-grid">
                 <article class="site-guide-card">
                     <h3><a href="../variety/variety.html">variety/variety.html</a></h3>
                     <p class="site-guide-meta">標題列：<cite>水晶男孩｜瘋子與天才</cite></p>
-                    <h4>區塊錨點</h4>
+                    <h4>子選單錨點（與頂欄一致）</h4>
                     <ul>
-                        <li><a href="../variety/variety.html#variety">#variety</a> — 瘋狂出演中</li>
-                        <li><a href="../variety/variety.html#stage">#stage</a> — 隊長的氣場</li>
+                        <li><a href="../variety/variety.html#variety">#variety</a> — 瘋狂出演中 · 綜藝鏡頭與名場面</li>
+                        <li><a href="../variety/variety.html#stage">#stage</a> — 隊長的氣場 · 控場與隊內互動</li>
                     </ul>
                 </article>
-
                 <article class="site-guide-card">
                     <h3><a href="../variety/NJTW/NJTW5.html">variety/NJTW/NJTW5.html</a></h3>
                     <p class="site-guide-meta">標題列：<cite>新西遊記：成員介紹</cite></p>
-                    <p class="site-guide-note">綜藝子頁；全站導覽「瘋子與天才」子選單第三項可進入。</p>
+                    <p class="site-guide-note">頂欄「瘋子與天才」子選單第三項：新西遊記 · MEMBER GUIDE</p>
                 </article>
+            </div>
+        </section>
 
+        <section class="site-guide-group" aria-labelledby="sg-nav-concert">
+            <h2 class="section-title" id="sg-nav-concert">現場的震撼 <span class="site-guide-nav-sub">SECHSKIES CONCERT ARCHIVE</span></h2>
+            <p class="site-guide-folder-hint">資料夾 <code>concert/</code> · 對應頂欄第三主項</p>
+            <div class="site-guide-grid">
+                <article class="site-guide-card">
+                    <h3><a href="../concert/concert.html">concert/concert.html</a></h3>
+                    <p class="site-guide-meta">標題列：<cite>SECHSKIES Concert Archive</cite></p>
+                    <h4>子選單錨點（與頂欄一致）</h4>
+                    <ul>
+                        <li><a href="../concert/concert.html#stage-now">#stage-now</a> — 永恆的重逢 · 近年與重聚舞台</li>
+                        <li><a href="../concert/concert.html#stage-past">#stage-past</a> — 燦爛的最初 · 全盛期經典場次</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="site-guide-group" aria-labelledby="sg-nav-albums">
+            <h2 class="section-title" id="sg-nav-albums">黃色留聲機 <span class="site-guide-nav-sub">YELLOW PHONOGRAPH</span></h2>
+            <p class="site-guide-folder-hint">資料夾 <code>albums/</code> · 對應頂欄第四主項；歌詞單頁檔在 <code>extra/</code>，主題歸典藏</p>
+            <div class="site-guide-grid">
+                <article class="site-guide-card">
+                    <h3><a href="../albums/albums.html">albums/albums.html</a></h3>
+                    <p class="site-guide-meta">標題列：<cite>水晶男孩｜黃色留聲機</cite></p>
+                    <h4>子選單錨點（與頂欄一致）</h4>
+                    <ul>
+                        <li><a href="../albums/albums.html#new">#new</a> — 啟動新篇章 · 重啟後作品與單曲</li>
+                        <li><a href="../albums/albums.html#classic">#classic</a> — 輝煌全盛期 · 1997–1999 年表</li>
+                    </ul>
+                </article>
+                <article class="site-guide-card">
+                    <h3><a href="lyrics.html">extra/lyrics.html</a> <span class="site-guide-path">（同區索引）</span></h3>
+                    <p class="site-guide-meta">標題列：<cite>세 단어 (THREE WORDS) — SECHSKIES</cite></p>
+                    <p class="site-guide-note"><code>&lt;html lang="ko"&gt;</code>；歌詞＋ YouTube 嵌入；頂欄未單獨列項。</p>
+                    <h4>結構</h4>
+                    <ul>
+                        <li><code>.lyrics-layout</code> — 主標＋表格雙欄</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="site-guide-group" aria-labelledby="sg-nav-map">
+            <h2 class="section-title" id="sg-nav-map">聖地巡禮 <span class="site-guide-nav-sub">SECHSKIES TAIWAN ARCHIVE</span></h2>
+            <p class="site-guide-folder-hint">資料夾 <code>map/</code> · 對應頂欄第五主項</p>
+            <div class="site-guide-grid">
+                <article class="site-guide-card">
+                    <h3><a href="../map/map.html">map/map.html</a></h3>
+                    <p class="site-guide-meta">標題列：<cite>SECHSKIES 台灣行程地圖</cite></p>
+                    <h4>子選單錨點（與頂欄一致）</h4>
+                    <ul>
+                        <li><a href="../map/map.html#taipei">#taipei</a> — 台北聖地 · 行程與地點整理</li>
+                        <li><a href="../map/map.html#global">#global</a> — 海外遠征 · 跨國足跡</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="site-guide-group site-guide-group--extra" aria-labelledby="sg-nav-extra">
+            <h2 class="section-title" id="sg-nav-extra">其他 HTML（<code>extra/</code> · 頂欄未列）</h2>
+            <p class="site-guide-folder-hint">仍在本站 repo，但未出現在 <code>buildPortalNavInnerHTML</code>；請由此索引或書籤開啟。</p>
+            <div class="site-guide-grid">
+                <article class="site-guide-card">
+                    <h3><a href="grok.html">grok.html</a></h3>
+                    <p class="site-guide-meta">標題列：<cite>水晶男孩 SECHSKIES | 永恆的六顆水晶</cite></p>
+                    <p class="site-guide-note">單頁多區塊（實驗／簡報）。</p>
+                    <h4>錨點</h4>
+                    <ul>
+                        <li><a href="grok.html#story">#story</a></li>
+                        <li><a href="grok.html#members">#members</a></li>
+                        <li><a href="grok.html#discography">#discography</a></li>
+                        <li><a href="grok.html#now">#now</a></li>
+                    </ul>
+                </article>
+                <article class="site-guide-card">
+                    <h3><a href="totoga2%20copy.html">totoga2 copy.html</a> <span class="site-guide-path">（檔名含空白）</span></h3>
+                    <p class="site-guide-meta">標題列：<cite>水晶男孩｜無限挑戰六六歌2 — 紀實電子書</cite>（與 <a href="totoga2.html">totoga2.html</a> 相同）</p>
+                    <p class="site-guide-note">六六歌 2 頁之<strong>複本／備份</strong>；版型與主檔相近。正式連結與索引敘事請以 <code>totoga2.html</code> 為準；若不再需要可刪除此檔。</p>
+                </article>
+                <article class="site-guide-card">
+                    <h3><a href="Untitled-1.html">Untitled-1.html</a> <span class="site-guide-path">（未命名草稿）</span></h3>
+                    <p class="site-guide-meta">標題列：<cite>Document</cite></p>
+                    <p class="site-guide-note">編輯器暫存草稿；<code>&lt;head&gt;</code> 內 <code>meta viewport</code> 與標記<strong>毀損</strong>，預覽可能異常。曾含跨頁 JPG 容器示意，尚未整理成正式頁。</p>
+                </article>
+                <article class="site-guide-card">
+                    <h3><a href="member.html">member.html</a></h3>
+                    <p class="site-guide-meta">標題列：<cite>水晶男孩｜六顆水晶 · 黑白分流</cite></p>
+                    <h4>錨點</h4>
+                    <ul>
+                        <li><a href="member.html#crystal-board">#crystal-board</a></li>
+                    </ul>
+                </article>
                 <article class="site-guide-card">
                     <h3><a href="sunghoon.html">sunghoon.html</a></h3>
                     <p class="site-guide-meta">標題列：<cite>水晶男孩｜消失的真相</cite></p>
-                    <h4>區塊錨點</h4>
+                    <h4>錨點</h4>
                     <ul>
                         <li><a href="sunghoon.html#truth">#truth</a></li>
                         <li><a href="sunghoon.html#voice">#voice</a></li>
                     </ul>
                 </article>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-minister">
-            <h2 class="section-title" id="sg-minister">推廣部 · 視覺進化論</h2>
-            <div class="site-guide-grid">
                 <article class="site-guide-card">
                     <h3><a href="minister.html">minister.html</a></h3>
                     <p class="site-guide-meta">標題列：<cite>水晶男孩推廣部｜視覺進化論</cite></p>
-                    <p class="site-guide-note">頂欄未開放；僅由此全站導覽索引或書籤開啟。圖檔請放 <code>assets/images/minister/</code>（與頁面內檔名一致）。</p>
-                    <h4>區塊錨點</h4>
+                    <p class="site-guide-note">圖檔 <code>assets/images/minister/</code></p>
+                    <h4>錨點</h4>
                     <ul>
-                        <li><a href="minister.html#intro">#intro</a> — 跨越時空的開端</li>
-                        <li><a href="minister.html#slant">#slant</a> — 斜槓精神</li>
-                        <li><a href="minister.html#journey">#journey</a> — 成長時間軸</li>
-                        <li><a href="minister.html#journey-2016">#journey-2016</a> — 2016</li>
-                        <li><a href="minister.html#journey-2017">#journey-2017</a> — 2017</li>
-                        <li><a href="minister.html#journey-now">#journey-now</a> — 2018 至今</li>
+                        <li><a href="minister.html#intro">#intro</a></li>
+                        <li><a href="minister.html#slant">#slant</a></li>
+                        <li><a href="minister.html#journey">#journey</a></li>
+                        <li><a href="minister.html#journey-2016">#journey-2016</a></li>
+                        <li><a href="minister.html#journey-2017">#journey-2017</a></li>
+                        <li><a href="minister.html#journey-now">#journey-now</a></li>
                     </ul>
                 </article>
-
                 <article class="site-guide-card">
                     <h3><a href="minister_ge.html">minister_ge.html</a></h3>
                     <p class="site-guide-meta">標題列：<cite>水晶男孩推廣部｜視覺進化論：認真魔人的進化之路</cite></p>
-                    <p class="site-guide-note">供 Gemini 等工具改稿用的<span class="mark_b">備份頁</span>；頂欄未開放，請由此索引或書籤開啟。</p>
-                    <h4>區塊錨點</h4>
+                    <p class="site-guide-note">備份／改稿用長版。</p>
+                    <h4>錨點</h4>
                     <ul>
-                        <li><a href="minister_ge.html#intro">#intro</a> — 品牌起源</li>
-                        <li><a href="minister_ge.html#identity">#identity</a> — 斜槓精神</li>
-                        <li><a href="minister_ge.html#evolution">#evolution</a> — 進化里程</li>
-                        <li><a href="minister_ge.html#journey">#journey</a> — 推廣部進化史</li>
-                        <li><a href="minister_ge.html#training">#training</a> — 訓練營</li>
-                        <li><a href="minister_ge.html#tech-stack">#tech-stack</a> — 技術實力</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-media">
-            <h2 class="section-title" id="sg-media">現場 · 典藏 · 地圖 · 歌詞</h2>
-            <div class="site-guide-grid">
-                <article class="site-guide-card">
-                    <h3><a href="../concert/concert.html">concert/concert.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>SECHSKIES Concert Archive</cite></p>
-                    <h4>區塊錨點</h4>
-                    <ul>
-                        <li><a href="../concert/concert.html#stage-now">#stage-now</a> — 永恆的重逢</li>
-                        <li><a href="../concert/concert.html#stage-past">#stage-past</a> — 燦爛的最初</li>
-                    </ul>
-                </article>
-
-                <article class="site-guide-card">
-                    <h3><a href="../albums/albums.html">albums/albums.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>水晶男孩｜黃色留聲機</cite></p>
-                    <h4>區塊錨點</h4>
-                    <ul>
-                        <li><a href="../albums/albums.html#new">#new</a> — 啟動新篇章</li>
-                        <li><a href="../albums/albums.html#classic">#classic</a> — 輝煌全盛期</li>
-                    </ul>
-                </article>
-
-                <article class="site-guide-card">
-                    <h3><a href="../map/map.html">map/map.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>SECHSKIES 台灣行程地圖</cite></p>
-                    <h4>區塊錨點</h4>
-                    <ul>
-                        <li><a href="../map/map.html#taipei">#taipei</a> — 台北聖地（主版面）</li>
-                        <li><a href="../map/map.html#global">#global</a> — 海外遠征</li>
-                    </ul>
-                </article>
-
-                <article class="site-guide-card">
-                    <h3><a href="lyrics.html">lyrics.html</a></h3>
-                    <p class="site-guide-meta">標題列：<cite>세 단어 (THREE WORDS) — SECHSKIES</cite></p>
-                    <p class="site-guide-note"><code>&lt;html lang="ko"&gt;</code>；歌詞＋YouTube 嵌入單頁。</p>
-                    <h4>結構</h4>
-                    <ul>
-                        <li><code>.lyrics-layout</code> — 主標＋表格雙欄</li>
+                        <li><a href="minister_ge.html#intro">#intro</a></li>
+                        <li><a href="minister_ge.html#identity">#identity</a></li>
+                        <li><a href="minister_ge.html#evolution">#evolution</a></li>
+                        <li><a href="minister_ge.html#journey">#journey</a></li>
+                        <li><a href="minister_ge.html#training">#training</a></li>
+                        <li><a href="minister_ge.html#tech-stack">#tech-stack</a></li>
                     </ul>
                 </article>
             </div>

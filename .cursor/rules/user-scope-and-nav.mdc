@@ -8,6 +8,10 @@ alwaysApply: true
 ## 只做被交代的事
 
 - **不得**在未被使用者**明確要求**的情況下：把導覽連結從「籌備中／尚無開放」改成可點、更換 `href` 成真實頁面、從 `COMING_SOON_PAGES` 移除、或把錨點加入 `INDEX_NAV_OPEN_HASHES`。
+- **不得**在未被使用者**明確要求**的情況下：從 `buildPortalNavInnerHTML` **刪除**站主**已同意**列入頂欄的項目。
+- 使用者**明確要求**移除某列（例如不同意掛頂欄的「六顆水晶」）時，依指示從模板刪除即可。
+- **不得**在未被使用者**明確要求**的情況下：在 `buildPortalNavInnerHTML` **新增**任何頂欄導覽項目或子選單連結（即使目標頁面已存在於 repo）。
+- **不得**在 **`site-guide.html` 以外**的頁面加上 **`data-portal-nav-all-open`**（該屬性僅用於索引頁頂欄「全連結可點」；其他頁頂欄須套用籌備中規則）。
 - **不得**因為「內容已搬到某頁」就自行推論「導覽也應該開放」——導覽是否開放**只聽使用者口述**。
 - 若使用者只要求搬內容、刪檔、改站內某段文案，**預設不改** `assets/js/portal-nav.js` 的開放狀態與連結目標。
 
@@ -22,7 +26,9 @@ alwaysApply: true
 
 ## 名詞對齊（避免做錯檔）
 
-- **頂部橫列導覽（常稱 navbar）**：`assets/js/portal-nav.js` 注入的 `<nav class="portal-nav" data-portal-nav>`，每一頁頂端黑底那一條。**備份稿／未公開頁**除非使用者**明講要上這條**，否則不要寫進 `buildPortalNavInnerHTML` 模板。
+- **頂部橫列導覽（常稱 navbar）**：`assets/js/portal-nav.js` 注入的 `<nav class="portal-nav" data-portal-nav>`。已同意列入者不得擅自刪除；**新增**備份稿／未公開頁至上列須站主明講。**`extra/site-guide.html`** 可加 **`data-portal-nav-all-open`** 略過籌備中（僅該頁）。
 - **全站頁面索引**：`site-guide.html`（自行開網址），用來列檔案與錨點；**不影響**頂欄是否出現該連結。使用者說「留在全站導覽」常指保留在 **site-guide** 或站內說明，**不等於**要掛進頂欄。
 
 （變更哪些檔、可否動共用 CSS：見 **`ai-change-boundaries.mdc`**。）
+
+全站導覽的**技術細節與檢查清單**：**`portal-nav-rules.mdc`**（與本檔同目錄）。

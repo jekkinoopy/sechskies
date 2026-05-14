@@ -796,6 +796,7 @@ a {
     transform: translateX(-50%);
     background: linear-gradient(180deg, #ffde5f 0%, #ffcc00 45%, #f3b700 100%);
     border-radius: 8px;
+    pointer-events: none;
 }
 
 .story-node {
@@ -1842,6 +1843,16 @@ body.totoga2-page .bilivideo-frame iframe {
 
 body.totoga2-page .totoga2-reader-hub {
     padding-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* 紀實長文 hub：上方 plot 為 section（全站 section 設 z-index:10），與下方控制列重疊時會蓋住點擊 */
+body.totoga2-page .totoga2-reader-hub > .chronicle-controls,
+body.totoga2-page .totoga2-reader-hub > #totoga2-reader,
+body.totoga2-page .totoga2-reader-hub > #totoga2-pager {
+    position: relative;
+    z-index: 12;
 }
 
 body.totoga2-page .totoga2-plot {
@@ -2153,6 +2164,37 @@ body.site-guide-page .site-guide-group {
     margin-bottom: 2.75rem;
 }
 
+body.site-guide-page .site-guide-nav-sub {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #7a6a30;
+    line-height: 1.4;
+    text-transform: none;
+}
+
+body.site-guide-page .site-guide-folder-hint {
+    text-align: center;
+    margin: -0.35rem auto 1.35rem;
+    max-width: 44rem;
+    font-size: 0.84rem;
+    color: #6e6e6e;
+    line-height: 1.55;
+}
+
+body.site-guide-page .site-guide-path {
+    font-size: 0.82em;
+    font-weight: 600;
+    color: #888;
+}
+
+body.site-guide-page .site-guide-group--extra {
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(255, 204, 0, 0.42);
+}
+
 body.site-guide-page .site-guide-grid {
     display: grid;
     gap: 1.25rem;
@@ -2228,8 +2270,8 @@ body.site-guide-page .site-guide-card code {
     border-radius: 4px;
 }
 
-/* site-guide：六六歌2 區（單卡寬版、頁面連結為主） */
-body.site-guide-page .site-guide-group--ssg2 .site-guide-grid {
+/* site-guide：含 totoga2 大卡時，該區網格改為單欄置中 */
+body.site-guide-page .site-guide-group:has(.site-guide-card--totoga2) .site-guide-grid {
     grid-template-columns: minmax(0, min(100%, 40rem));
     justify-content: center;
 }

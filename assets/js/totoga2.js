@@ -10,6 +10,13 @@
         });
     }
 
+    hubButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const name = button.dataset.totogaHub;
+            if (name) setHubPanel(name);
+        });
+    });
+
     const reader = document.getElementById("totoga2-reader");
     const chapters = reader ? Array.from(reader.querySelectorAll(".chronicle-chapter")) : [];
     const modeButtons = Array.from(document.querySelectorAll("[data-totoga-reader-mode]"));
