@@ -98,7 +98,7 @@ body.njtw5-page .container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(12px, 2.5vw, 20px);
     width: 100%;
-    max-width: min(1000px, 100%);
+    max-width: min(1200px, 100%);
     box-sizing: border-box;
 }
 
@@ -208,10 +208,173 @@ body.njtw5-page .role {
     box-sizing: border-box;
 }
 
+/* 羊皮紙角色卡：卡片上加 class="parchment-card" 即可；長條裁切仍用 .m1 / .m2… 的 .member-image 規則 */
+body.njtw5-page .member-card.parchment-card {
+    background:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(255, 255, 255, 0.35) 0%, transparent 55%),
+        linear-gradient(165deg, #f7ebd4 0%, #ecd9b8 35%, #e0cfa8 70%, #d4c39a 100%);
+    border: 3px solid #9e2222;
+    border-radius: 10px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 250, 235, 0.55),
+        inset 0 -18px 36px rgba(120, 50, 30, 0.06),
+        0 4px 0 #7a1818,
+        0 10px 24px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    padding: 0;
+}
+
+body.njtw5-page .member-card.parchment-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 250, 235, 0.55),
+        inset 0 -18px 36px rgba(120, 50, 30, 0.06),
+        0 5px 0 #7a1818,
+        0 14px 28px rgba(0, 0, 0, 0.14);
+}
+
+body.njtw5-page .parchment-card .parchment-inner {
+    padding: clamp(12px, 2.4vw, 18px) clamp(10px, 2vw, 14px) clamp(14px, 2.8vw, 20px);
+    box-sizing: border-box;
+}
+
+body.njtw5-page .parchment-card .parchment-logo {
+    font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    margin: 0 0 0.35rem;
+    background: linear-gradient(180deg, #e85a28 0%, #c73d18 45%, #9e2a12 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.65));
+}
+
+body.njtw5-page .parchment-card .parchment-logo-num {
+    display: inline-block;
+    margin-left: 0.08em;
+    font-size: 1.15em;
+    vertical-align: super;
+    letter-spacing: 0;
+}
+
+body.njtw5-page .parchment-card .parchment-headline {
+    margin-bottom: clamp(10px, 2vw, 14px);
+}
+
+body.njtw5-page .parchment-card .parchment-name {
+    margin: 0 0 0.2rem;
+    font-size: clamp(1.25rem, 3.6vw, 1.65rem);
+    font-weight: 900;
+    color: #7a1b1b;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+body.njtw5-page .parchment-card .parchment-role {
+    margin: 0 0 0.35rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7a1b1b;
+    line-height: 1.35;
+}
+
+body.njtw5-page .parchment-card .parchment-byline {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6b1818;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+body.njtw5-page .parchment-card .parchment-figure {
+    margin: 0 0 clamp(12px, 2.2vw, 16px);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(122, 27, 27, 0.45);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 3px 10px rgba(60, 20, 10, 0.18);
+    background: #1a1812;
+}
+
+body.njtw5-page .parchment-card .member-image {
+    width: 100%;
+    height: clamp(200px, 34vw, 280px);
+    border-radius: 0;
+    border: none;
+    border-bottom: none;
+}
+
+body.njtw5-page .parchment-card .parchment-stats {
+    text-align: left;
+    margin: 0;
+    padding: 0 clamp(4px, 1vw, 8px);
+}
+
+body.njtw5-page .parchment-card .parchment-stat-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 10px;
+    margin-bottom: clamp(8px, 1.6vw, 12px);
+}
+
+body.njtw5-page .parchment-card .parchment-stat-row:last-of-type {
+    margin-bottom: 0;
+}
+
+body.njtw5-page .parchment-card .parchment-stat-label {
+    font-size: clamp(0.88rem, 2.1vw, 1rem);
+    font-weight: 800;
+    color: #7a1b1b;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+body.njtw5-page .parchment-card .parchment-stat-balls {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+}
+
+body.njtw5-page .parchment-card .parchment-stat-balls img {
+    display: block;
+    width: clamp(20px, 4.2vw, 26px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+body.njtw5-page .parchment-card .parchment-tags {
+    margin: clamp(12px, 2vw, 16px) 0 0;
+    padding-top: clamp(10px, 1.8vw, 14px);
+    border-top: 1px dashed rgba(122, 27, 27, 0.35);
+    font-size: max(13px, 0.88rem);
+    font-weight: 700;
+    color: #5c2414;
+    line-height: 1.45;
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
 /* 影片區：與成員卡同語彙（米底、金邊、沈底放映框） */
 body.njtw5-page .video-container {
     width: 100%;
-    max-width: min(1000px, 100%);
+    max-width: min(1200px, 100%);
     box-sizing: border-box;
     margin-inline: auto;
     padding: clamp(18px, 3.2vw, 28px);
