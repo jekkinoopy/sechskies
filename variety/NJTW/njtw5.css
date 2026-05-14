@@ -114,6 +114,44 @@ body.njtw5-page .container {
     box-sizing: border-box;
 }
 
+/* 成員 2×4 表格：必須為 table > tbody > tr > td，不可把 tr 直接放在 div 裡 */
+body.njtw5-page .njtw-member-table-wrap {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+body.njtw5-page .njtw-member-table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: clamp(10px, 2vw, 18px);
+    table-layout: auto;
+}
+
+body.njtw5-page .njtw-member-table td {
+    padding: 0;
+    vertical-align: top;
+}
+
+body.njtw5-page .njtw-member-table td:not(.njtw-layout-slot) {
+    min-width: clamp(220px, 24vw, 300px);
+}
+
+body.njtw5-page .njtw-member-table .njtw-layout-slot {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+    letter-spacing: 0.12em;
+    color: var(--njtw-ink);
+    opacity: 0.75;
+}
+
 body.njtw5-page .container .section-title,
 body.njtw5-page .video-container .video-title {
     font-weight: 800;
@@ -348,7 +386,7 @@ body.njtw5-page .parchment-card .parchment-stats {
 
 body.njtw5-page .parchment-card .parchment-stat-row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto minmax(min-content, 1fr);
     align-items: center;
     gap: 8px 10px;
     margin-bottom: clamp(8px, 1.6vw, 12px);
@@ -368,16 +406,14 @@ body.njtw5-page .parchment-card .parchment-stat-label {
 }
 body.njtw5-page .parchment-card .parchment-stat-balls {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
     gap: 4px;
-    min-width: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    min-width: min-content;
+    overflow-x: visible;
+    overflow-y: visible;
     padding-bottom: 2px;
-    scrollbar-width: thin;
 }
 
 body.njtw5-page .parchment-card .parchment-stat-balls img {
