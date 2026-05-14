@@ -8,12 +8,116 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
+    <style>
+        /* 預設列高（無圖示範用）；含圖列改由下方 :has(img) 覆寫為隨圖比例 */
+        .container {
+            width: 100%;
+            height: 25vh;
+            background-color: #ccc;
+            clear: both;
+        }
+
+        /* 電子書跨頁圖：列高不可寫死 vh，內層也不可 height:100%，否則圖片無法依欄寬維持長寬比 */
+        body.totoga2-page .chronicle-reader .container:has(img) {
+            height: auto;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        body.totoga2-page .chronicle-reader .container:has(img)::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        body.totoga2-page .chronicle-reader .container:has(img)>[class^="container"] {
+            height: auto;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        .container11 {
+            width: 100%;
+            height: 100%;
+            background-color: lightpink;
+        }
+
+        .container21 {
+            float: right;
+            width: 50%;
+            height: 100%;
+            background-color: lightblue;
+        }
+
+        .container22 {
+            float: left;
+            width: 50%;
+            height: 100%;
+            background-color: lightyellow;
+        }
+
+        .container31 {
+            float: left;
+            width: 33%;
+            height: 100%;
+            background-color: darkblue;
+        }
+
+        .container32 {
+            float: left;
+            width: 33%;
+            height: 100%;
+            background-color: darkgreen;
+        }
+
+        .container33 {
+            float: right;
+            width: 33%;
+            height: 100%;
+            background-color: darkmagenta;
+        }
+
+        .container41 {
+            float: left;
+            width: 25%;
+            height: 100%;
+            background-color: lightblue;
+        }
+
+        .container42 {
+            float: left;
+            width: 25%;
+            height: 100%;
+            background-color: lightgreen;
+        }
+
+        .container43 {
+            float: right;
+            width: 25%;
+            height: 100%;
+            background-color: lightpink;
+        }
+
+        .container44 {
+            float: right;
+            width: 25%;
+            height: 100%;
+            background-color: lightyellow;
+        }
+
+        /* 圖在欄寬內鋪滿，高度由瀏覽器依 intrinsic ratio 計算（須配合上方 :has(img) 拿掉固定列高） */
+        body.totoga2-page .chronicle-reader img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
 </head>
 
 <body class="ebook-ssg2-page totoga2-page">
     <header class="map-archive-header">
         <div class="header-inner">
-            <!-- 核心特輯名稱 -->
             <h1 class="main-title">無限挑戰 · 六六歌2</h1>
 
             <div class="main-content-title">
@@ -31,164 +135,76 @@
     <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
 
     <canvas id="particles"></canvas>
-
-    <div class="totoga2-hub-controls content-container" role="tablist" aria-label="六六歌2 內容模式">
-        <button type="button" class="mode-btn totoga2-hub-btn active" data-totoga-hub="video">影片模式</button>
-        <button type="button" class="mode-btn totoga2-hub-btn" data-totoga-hub="ebook">電子書模式</button>
-        <button type="button" class="mode-btn totoga2-hub-btn" data-totoga-hub="reader">紀實長文（時間軸＋長卷）</button>
-    </div>
-
-    <!-- 影片：上／中／下三集（Bilibili 嵌入；中／下可替換 bvid） -->
-    <div class="totoga2-hub-panel content-container ebook-main" data-totoga-panel="video">
-        <section class="ebook-intro section" aria-label="影片三集">
-            <h2 class="section-title">節目影片</h2>
-            <p class="ebook-intro-lead">
-                以下為 Bilibili 嵌入播放器（16：9）。若無法播放，請至站內搜尋同一 BV 號；中集、下集請將 iframe 的 <code>bvid</code> 換成你的分集連結。
-            </p>
-        </section>
-
-        <div class="bilivideo-stack">
-            <section class="bilivideo-block" aria-labelledby="bilivideo-top">
-                <h3 id="bilivideo-top">上集</h3>
-                <div class="bilivideo-frame">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1SW411a7cZ&amp;page=1&amp;high_quality=1&amp;danmaku=0"
-                        title="Bilibili 影片：上集（BV1SW411a7cZ）" allowfullscreen></iframe>
+    <main class="content-container chronicle-reader" id="totoga2-reader" data-mode="scroll">
+        <article class="chronicle-chapter active" id="challenge" data-title="無限挑戰">
+            <!-- 序號一：第一列 container21（右欄 float:right）+ container22（左欄 float:left）→ 畫面左 01、右 02 -->
+            <div class="container">
+                <div class="container21">
+                    <img src="../assets/images/totoga2/jpg/2023_電子書_無限挑戰六六歌2_final跨頁_頁面_02.jpg"
+                        alt="六六歌2 電子書跨頁圖（序號一 · 右）">
                 </div>
-            </section>
-            <section class="bilivideo-block" aria-labelledby="bilivideo-mid">
-                <h3 id="bilivideo-mid">中集</h3>
-                <p class="bilivideo-placeholder-note">預設與上集同一支；請替換 <code>bvid</code> 為中集 BV。</p>
-                <div class="bilivideo-frame">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1SW411a7cZ&amp;page=1&amp;high_quality=1&amp;danmaku=0"
-                        title="Bilibili 影片：中集（請替換 BV）" allowfullscreen></iframe>
+                <div class="container22">
+                    <img src="../assets/images/totoga2/jpg/2023_電子書_無限挑戰六六歌2_final跨頁_頁面_01.jpg"
+                        alt="六六歌2 電子書跨頁圖（序號一 · 左）">
                 </div>
-            </section>
-            <section class="bilivideo-block" aria-labelledby="bilivideo-bot">
-                <h3 id="bilivideo-bot">下集</h3>
-                <p class="bilivideo-placeholder-note">預設與上集同一支；請替換 <code>bvid</code> 為下集 BV。</p>
-                <div class="bilivideo-frame">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1SW411a7cZ&amp;page=1&amp;high_quality=1&amp;danmaku=0"
-                        title="Bilibili 影片：下集（請替換 BV）" allowfullscreen></iframe>
+            </div>
+            <!-- 序號二：第二列單一全寬 container11 -->
+            <div class="container">
+                <div class="container11">
+                    <img src="../assets/images/totoga2/jpg/2023_電子書_無限挑戰六六歌2_final跨頁_頁面_03.jpg"
+                        alt="六六歌2 電子書跨頁圖（序號二 · 全寬）">
                 </div>
-            </section>
-        </div>
-    </div>
-
-    <div class="totoga2-hub-panel content-container ebook-main" data-totoga-panel="ebook" hidden>
-        <section class="ebook-intro section" aria-label="電子書說明">
-            <h2 class="section-title">紀實電子書</h2>
-            <p class="ebook-intro-lead">
-                以下為《無限挑戰》六六歌2 相關跨頁電子書（FlipHTML5）。若載入較慢，請稍候或重新整理；全螢幕閱讀請使用閱讀器內建控制項。
-            </p>
-        </section>
-
-        <div class="flip-ebook-shell">
-            <div class="flip-ebook-aspect">
-                <iframe src="https://online.fliphtml5.com/tjyxm/vqff/"
-                    title="2023_電子書_無限挑戰六六歌2_final跨頁" allowfullscreen></iframe>
             </div>
-        </div>
-    </div>
+            <h2>04 無限挑戰</h2>
+            <p>《無限挑戰》是韓國綜藝史上指標性的真人秀節目。「星期六星期六是歌手（六六歌）」企劃，成為水晶男孩 2016 回歸舞台的關鍵起點。</p>
+            <p>第一季掀起 90 年代懷舊熱潮，雖然水晶男孩未能完整出演，卻留下「總有一天要六人完整回到舞台」的遺憾伏筆。</p>
+        </article>
 
-    <div class="totoga2-hub-panel totoga2-reader-hub" data-totoga-panel="reader" hidden>
-        <section class="story-archive totoga2-plot content-container" aria-labelledby="totoga2-plot-title">
-            <h2 class="section-title" id="totoga2-plot-title">傳奇的轉折</h2>
-            <div class="subtitle-wrap">
-                <span class="sub-title">PLOT TWIST</span>
-            </div>
-            <p class="intro-text">
-                與首頁相同的節點提要；點下方連結可跳到本頁「紀實長文」對應章節（八章皆在本頁，無需另開檔案）。
-            </p>
+        <article class="chronicle-chapter" id="ssg2" data-title="六六歌第二季">
+            <h2>06 六六歌第二季</h2>
+            <p>第二季改成「為單一團體打造完整回歸敘事」，保密層級更高，連主持群都縮小到劉在錫與 HAHA，避免消息提前走漏。</p>
+            <p>從開場的復古裝扮、試探式線索到真正揭曉團體身份，節目節奏在搞笑與懸念間拉開這場 16 年重逢序章。</p>
+        </article>
 
-            <div class="merged-storyline">
-                <article id="totoga2-special" class="story-node" data-era="六六歌">
-                    <h3>六六歌實錄</h3>
-                    <p>把懸念、試探與哭點縫在同一條時間軸上；很多人第一次真正把「水晶男孩」打進搜尋框，就是從這種瘋狂的剪輯節奏開始。</p>
-                    <p><a href="#ssg2">對照本頁幕後敘事 · 六六歌第二季</a></p>
-                </article>
-                <article id="totoga2-negotiate-card" class="story-node" data-era="交涉">
-                    <h3>命運的交涉</h3>
-                    <p>KTV、游擊演唱會規則、與其說講道理不如說把真心擺上桌面——交涉的不是合約字面，而是還願不願意再一次肩並肩。</p>
-                    <p><a href="#negotiate">讀本頁 · 正式交涉</a></p>
-                </article>
-                <article id="totoga2-complete" class="story-node" data-era="歸位">
-                    <h3>拼圖的歸位</h3>
-                    <p>變數一個個被排除之後，驚喜接上登場段落；缺一角舞台的視覺，終於對齊觀眾席上堅守的那片黃。</p>
-                    <p><a href="#gather">從本頁「召集」段開始補這條線</a></p>
-                </article>
-                <article id="totoga2-past" class="story-node" data-era="最初">
-                    <h3>巔峰與雨天</h3>
-                    <p>急凍、告別、各自的跑道——並不是要你沉浸遺憾，而是讓你懂：後來每一次亮燈，為什麼會更值得尖叫。</p>
-                    <p><a href="#sechskies-profile">讀本頁脈絡起點 · 水晶男孩</a></p>
-                </article>
-            </div>
-        </section>
+        <article class="chronicle-chapter" id="sechskies-profile" data-title="水晶男孩">
+            <h2>08 水晶男孩</h2>
+            <p>1997 出道後迅速登頂，與同世代頂流並列，短短三年創下極高銷量與舞台紀錄，卻在 2000 無預警解散，留下集體創傷。</p>
+            <p>16 年間六人從未以水晶男孩名義完整合體，這次企劃不只是回憶，而是回應當年未說完的離別。</p>
+        </article>
 
-        <div class="chronicle-controls content-container totoga2-chronicle-controls">
-            <button type="button" class="mode-btn active" data-totoga-reader-mode="scroll">網漫模式（一路滑下去）</button>
-            <button type="button" class="mode-btn" data-totoga-reader-mode="paged">分頁模式（上一頁 / 下一頁）</button>
-        </div>
+        <article class="chronicle-chapter" id="gather" data-title="召集">
+            <h2>10 召集</h2>
+            <p>製作組先與隊長殷志源交涉，再透過隱藏攝影機確認成員意願。大家都希望重組，卻同時知道最困難的拼圖是離開演藝圈多年的高志溶。</p>
+            <p>這個階段的重點不是舞台，而是「願不願意再次站在一起」的心理門檻。</p>
+        </article>
 
-        <main class="content-container chronicle-reader" id="totoga2-reader" data-mode="scroll">
-            <article class="chronicle-chapter active" id="challenge" data-title="無限挑戰">
-                <h2>04 無限挑戰</h2>
-                <p>《無限挑戰》是韓國綜藝史上指標性的真人秀節目。「星期六星期六是歌手（六六歌）」企劃，成為水晶男孩 2016 回歸舞台的關鍵起點。</p>
-                <p>第一季掀起 90 年代懷舊熱潮，雖然水晶男孩未能完整出演，卻留下「總有一天要六人完整回到舞台」的遺憾伏筆。</p>
-            </article>
+        <article class="chronicle-chapter" id="negotiate" data-title="正式交涉">
+            <h2>11 正式交涉</h2>
+            <p>主持人與成員深度對話，回顧解散緣由、舞台記憶、KTV 挑戰與游擊演唱會規則。笑鬧之間，團魂逐漸浮現。</p>
+            <p>同時，節目也把高志溶議題正式擺上檯面：如果不是完整體，這次回歸是否還成立？</p>
+        </article>
 
-            <article class="chronicle-chapter" id="ssg2" data-title="六六歌第二季">
-                <h2>06 六六歌第二季</h2>
-                <p>第二季改成「為單一團體打造完整回歸敘事」，保密層級更高，連主持群都縮小到劉在錫與 HAHA，避免消息提前走漏。</p>
-                <p>從開場的復古裝扮、試探式線索到真正揭曉團體身份，節目節奏在搞笑與懸念間拉開這場 16 年重逢序章。</p>
-            </article>
+        <article class="chronicle-chapter" id="variables" data-title="變數">
+            <h2>16 變數</h2>
+            <p>排練期間接連出現傷病、手術需求與消息外流，原本理想的游擊演唱會計畫屢次被迫改寫，團隊陷入 B 計畫陰影。</p>
+            <p>在體力與心理都被拉到極限的情況下，成員仍選擇撐住，只為把久違舞台交回給等待 16 年的小黃。</p>
+        </article>
 
-            <article class="chronicle-chapter" id="sechskies-profile" data-title="水晶男孩">
-                <h2>08 水晶男孩</h2>
-                <p>1997 出道後迅速登頂，與同世代頂流並列，短短三年創下極高銷量與舞台紀錄，卻在 2000 無預警解散，留下集體創傷。</p>
-                <p>16 年間六人從未以水晶男孩名義完整合體，這次企劃不只是回憶，而是回應當年未說完的離別。</p>
-            </article>
+        <article class="chronicle-chapter" id="surprise" data-title="驚喜">
+            <h2>19 驚喜</h2>
+            <p>當所有人幾乎接受「不完整」時，節目仍悄悄推進最後安排。高志溶與成員的情感張力在此段達到最高點。</p>
+            <p>這份驚喜不是綜藝反轉，而是把六顆水晶的空位真正填回舞台。</p>
+        </article>
 
-            <article class="chronicle-chapter" id="gather" data-title="召集">
-                <h2>10 召集</h2>
-                <p>製作組先與隊長殷志源交涉，再透過隱藏攝影機確認成員意願。大家都希望重組，卻同時知道最困難的拼圖是離開演藝圈多年的高志溶。</p>
-                <p>這個階段的重點不是舞台，而是「願不願意再次站在一起」的心理門檻。</p>
-            </article>
-
-            <article class="chronicle-chapter" id="negotiate" data-title="正式交涉">
-                <h2>11 正式交涉</h2>
-                <p>主持人與成員深度對話，回顧解散緣由、舞台記憶、KTV 挑戰與游擊演唱會規則。笑鬧之間，團魂逐漸浮現。</p>
-                <p>同時，節目也把高志溶議題正式擺上檯面：如果不是完整體，這次回歸是否還成立？</p>
-            </article>
-
-            <article class="chronicle-chapter" id="variables" data-title="變數">
-                <h2>16 變數</h2>
-                <p>排練期間接連出現傷病、手術需求與消息外流，原本理想的游擊演唱會計畫屢次被迫改寫，團隊陷入 B 計畫陰影。</p>
-                <p>在體力與心理都被拉到極限的情況下，成員仍選擇撐住，只為把久違舞台交回給等待 16 年的小黃。</p>
-            </article>
-
-            <article class="chronicle-chapter" id="surprise" data-title="驚喜">
-                <h2>19 驚喜</h2>
-                <p>當所有人幾乎接受「不完整」時，節目仍悄悄推進最後安排。高志溶與成員的情感張力在此段達到最高點。</p>
-                <p>這份驚喜不是綜藝反轉，而是把六顆水晶的空位真正填回舞台。</p>
-            </article>
-
-            <article class="chronicle-chapter" id="final-stage" data-title="登場">
-                <h2>21 登場</h2>
-                <p>眼罩揭開後，滿場黃海與哭聲同時湧現。從《請記得我》到安可，《離別曲》在那一晚變成了「重逢證詞」。</p>
-                <p>2000 的缺憾，在 2016 終於補上。這一頁不是結束，而是團體與粉絲共同完成的回歸章節。</p>
-            </article>
-        </main>
-
-        <div class="chronicle-pager content-container" id="totoga2-pager" hidden>
-            <button type="button" id="totoga2-prev" class="btn">上一頁</button>
-            <span id="totoga2-chapter-indicator">1 / 8</span>
-            <button type="button" id="totoga2-next" class="btn">下一頁</button>
-        </div>
-    </div>
+        <article class="chronicle-chapter" id="final-stage" data-title="登場">
+            <h2>21 登場</h2>
+            <p>眼罩揭開後，滿場黃海與哭聲同時湧現。從《請記得我》到安可，《離別曲》在那一晚變成了「重逢證詞」。</p>
+            <p>2000 的缺憾，在 2016 終於補上。這一頁不是結束，而是團體與粉絲共同完成的回歸章節。</p>
+        </article>
+    </main>
 
     <p class="ebook-back-link content-container">
         <a href="../index.html#story" class="btn">回到首頁 · 傳奇的轉折</a>
-        <a href="#ebook" class="btn">同頁 · 電子書全螢幕</a>
     </p>
 
     <footer>

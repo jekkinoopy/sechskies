@@ -19,7 +19,8 @@ body.njtw5-page {
     /* 視窗 ≤ --njtw-member-zoom-max-px 起套用 zoom；除數略大於該值，寬度剛好等於斷點時 zoom 仍 < 1，避免龍珠壓字 */
     --njtw-member-zoom-max-px: 1556;
     --njtw-member-zoom-divisor-px: 1588;
-
+    /* OB/YB 隊伍列小頭貼（與成員卡 .member-image 不同：那是 div 背景裁切，尺度大很多） */
+    --njtw-slot-face-img-size: clamp(52px, min(13vw, 12vmin), 104px);
     background:
         radial-gradient(ellipse 85% 55% at 50% -8%, rgba(255, 220, 170, 0.35) 0%, transparent 52%),
         radial-gradient(ellipse 70% 45% at 100% 20%, rgba(255, 200, 160, 0.12) 0%, transparent 45%),
@@ -135,6 +136,7 @@ body.njtw5-page .njtw-member-table-wrap {
 }
 
 body.njtw5-page .njtw-member-table {
+    --njtw-member-td-pad: clamp(4px, 0.6vw, 8px);
     table-layout: fixed;
     width: 100%;
     max-width: 100%;
@@ -148,9 +150,16 @@ body.njtw5-page .njtw-member-table {
     overflow: visible;
 }
 
+/* 列高＝該列最高欄；勿對 td 設 display:flex（會破壞 table-cell，整列儲存格會直向堆疊）。
+ * tbody tr height:1px 為表格常用技巧，讓同列 td 可算出一致高度；卡片放在 td 內 .njtw-td-fill 再 flex 撐滿。 */
+body.njtw5-page .njtw-member-table tbody tr {
+    height: 1px;
+}
+
 body.njtw5-page .njtw-member-table td {
     width: 25%;
-    padding: clamp(4px, 0.6vw, 8px);
+    height: inherit;
+    padding: var(--njtw-member-td-pad);
     vertical-align: top;
     box-sizing: border-box;
     border: 0;
@@ -160,22 +169,200 @@ body.njtw5-page .njtw-member-table td {
     color: inherit;
 }
 
-body.njtw5-page .njtw-member-table .member-card.parchment-card {
+body.njtw5-page .njtw-member-table td > .njtw-td-fill {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body.njtw5-page .njtw-member-table td > .njtw-td-fill > .member-card.parchment-card,
+body.njtw5-page .njtw-member-table td > .njtw-td-fill > .njtw-team-panel {
+    flex: 1 1 auto;
+    min-height: 0;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
 }
 
-body.njtw5-page .njtw-member-table .njtw-layout-slot {
-    white-space: nowrap;
-    vertical-align: middle;
-    text-align: center;
-    font-weight: 800;
-    font-size: clamp(1.35rem, 3.5vw, 1.85rem);
-    letter-spacing: 0.12em;
-    color: var(--njtw-ink);
-    opacity: 0.75;
+/* 與成員卡同列時撐滿儲存格高度：內層直向 flex，標籤列貼底 */
+body.njtw5-page .njtw-member-table .member-card.parchment-card {
+    display: flex;
+    flex-direction: column;
 }
+
+body.njtw5-page .njtw-member-table .member-card.parchment-card .parchment-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+body.njtw5-page .njtw-member-table .parchment-card .parchment-tags {
+    margin-top: auto;
+}
+
+/* 表格內 OB／YB：深色「反色」羊皮紙＋龍珠數值（與角色淺色卡對照） */
+body.njtw5-page .njtw-member-table .njtw-layout-slot.shinmyohan {
+    white-space: normal;
+    text-align: left;
+    font-weight: inherit;
+    font-size: inherit;
+    letter-spacing: normal;
+    opacity: 1;
+    color: #f5e8d8;
+}
+
+body.njtw5-page .njtw-member-table .njtw-team-panel {
+    /* 內距與成員 .parchment-inner 對齊；字重與 .parchment-byline 同為 700 */
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(12px, 2.4vw, 18px) clamp(10px, 2vw, 14px);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 200, 140, 0.28);
+    background:
+        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255, 200, 150, 0.12) 0%, transparent 55%),
+        linear-gradient(165deg, #3d2a22 0%, #2a1c18 42%, #1a1410 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 230, 200, 0.1),
+        inset 0 -12px 28px rgba(0, 0, 0, 0.18),
+        0 3px 0 rgba(0, 0, 0, 0.28),
+        0 10px 22px rgba(24, 12, 8, 0.35);
+}
+
+body.njtw5-page .njtw-member-table .njtw-team-panel.ob-panel {
+    border-top: 3px solid rgba(232, 136, 74, 0.65);
+}
+
+body.njtw5-page .njtw-member-table .njtw-team-panel.yb-panel {
+    border-top: 3px solid rgba(130, 190, 220, 0.55);
+}
+
+body.njtw5-page .njtw-member-table .njtw-slot-stack {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: clamp(8px, 1.5vw, 12px);
+}
+
+body.njtw5-page .njtw-member-table .njtw-slot-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(12px, 2.2vw, 18px);
+    padding-bottom: clamp(10px, 1.8vw, 14px);
+    border-bottom: 1px dashed rgba(255, 200, 160, 0.22);
+    flex-shrink: 0;
+}
+
+/* 隊名專用區塊：對應成員卡 .parchment-headline 的呼吸空間，勿與臉圖擠在同一塊 */
+body.njtw5-page .njtw-member-table .njtw-team-title-band {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: clamp(14px, 2.5vw, 22px) clamp(12px, 2.2vw, 20px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 200, 160, 0.26);
+    background:
+        radial-gradient(ellipse 110% 100% at 50% 0%, rgba(255, 210, 170, 0.16) 0%, transparent 55%),
+        linear-gradient(165deg, rgba(55, 38, 30, 0.95) 0%, rgba(34, 24, 20, 0.72) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 230, 200, 0.12),
+        inset 0 -10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* 原「OB／YB」單字大標的字級，改套在完整隊名上 */
+body.njtw5-page .njtw-member-table .njtw-team-hero-title {
+    margin: 0;
+    max-width: 100%;
+    font-size: clamp(1.15rem, 2.6vw, 1.55rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-align: center;
+    background: linear-gradient(180deg, #ffd8a8 0%, #f0a060 45%, #d97840 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+body.njtw5-page .njtw-member-table .njtw-slot-faces {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+body.njtw5-page .njtw-member-table td.OB .njtw-slot-faces {
+    justify-content: flex-end;
+}
+
+body.njtw5-page .njtw-member-table td.YB .njtw-slot-faces {
+    justify-content: flex-start;
+}
+
+/* 勿用欄寬百分比：窄 td 時 28% 會變成極小圖；尺寸見 --njtw-slot-face-img-size（仍遠小於成員卡 .member-image 背景區） */
+body.njtw5-page .njtw-member-table .njtw-slot-faces img {
+    float: none;
+    width: var(--njtw-slot-face-img-size);
+    max-width: var(--njtw-slot-face-img-size);
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .team-info {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: rgba(250, 236, 220, 0.92);
+    text-align: left;
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .team-info .parchment-stats {
+    margin-top: clamp(10px, 1.8vw, 14px);
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .team-info p {
+    margin: 0 0 clamp(10px, 1.8vw, 15px);
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.65;
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .team-info p:last-child {
+    margin-bottom: 0;
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .team-info strong {
+    color: #ffd4a8;
+    font-weight: 800;
+}
+
+body.njtw5-page .njtw-member-table td.shinmyohan .njtw-team-catchphrase {
+    margin: clamp(10px, 1.8vw, 14px) 0 0;
+    padding-top: clamp(10px, 1.8vw, 14px);
+    border-top: 1px dashed rgba(255, 200, 160, 0.22);
+    font-weight: 700;
+    color: rgba(255, 236, 210, 0.95);
+    line-height: 1.55;
+}
+
+/* OB/YB 龍珠列：與成員卡共用 .parchment-stats / .parchment-stat-row 結構，樣式見下方合併規則與深色覆寫 */
 
 body.njtw5-page .container .section-title,
 body.njtw5-page .video-container .video-title {
@@ -410,7 +597,8 @@ body.njtw5-page .parchment-card .member-image {
     border-bottom: none;
 }
 
-body.njtw5-page .parchment-card .parchment-stats {
+body.njtw5-page .parchment-card .parchment-stats,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stats {
     text-align: left;
     margin: 0;
     padding: 0 clamp(4px, 1vw, 8px);
@@ -420,7 +608,8 @@ body.njtw5-page .parchment-card .parchment-stats {
 }
 
 /* 龍珠：單行不換行；球徑只看 .parchment-stats 的 font-size + em，全卡一致 */
-body.njtw5-page .parchment-card .parchment-stat-row {
+body.njtw5-page .parchment-card .parchment-stat-row,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-row {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
@@ -428,11 +617,13 @@ body.njtw5-page .parchment-card .parchment-stat-row {
     margin-bottom: clamp(8px, 1.6vw, 12px);
 }
 
-body.njtw5-page .parchment-card .parchment-stat-row:last-of-type {
+body.njtw5-page .parchment-card .parchment-stat-row:last-of-type,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-row:last-of-type {
     margin-bottom: 0;
 }
 
-body.njtw5-page .parchment-card .parchment-stat-label {
+body.njtw5-page .parchment-card .parchment-stat-label,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-label {
     font-size: clamp(0.88rem, 2.1vw, 1rem);
     font-weight: 800;
     color: #7a4040;
@@ -441,7 +632,8 @@ body.njtw5-page .parchment-card .parchment-stat-label {
     flex-shrink: 0;
 }
 
-body.njtw5-page .parchment-card .parchment-stat-balls {
+body.njtw5-page .parchment-card .parchment-stat-balls,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-balls {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
@@ -453,7 +645,8 @@ body.njtw5-page .parchment-card .parchment-stat-balls {
     padding-bottom: 2px;
 }
 
-body.njtw5-page .parchment-card .parchment-stat-balls img {
+body.njtw5-page .parchment-card .parchment-stat-balls img,
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-balls img {
     display: block;
     box-sizing: border-box;
     width: 2.15em;
@@ -463,6 +656,16 @@ body.njtw5-page .parchment-card .parchment-stat-balls img {
     flex-shrink: 0;
     object-fit: contain;
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+/* 深色隊伍卡：龍珠列標籤改淺色（覆寫上一段 #7a4040） */
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-label {
+    color: rgba(255, 214, 190, 0.96);
+}
+
+body.njtw5-page .njtw-member-table .njtw-team-panel .parchment-stat-balls img {
+    float: none;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
 }
 
 body.njtw5-page .parchment-card .parchment-tags {
@@ -522,7 +725,7 @@ body.njtw5-page .video-container .video-embed {
 }
 
 .shinmyohan img {
-    width: 33%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
