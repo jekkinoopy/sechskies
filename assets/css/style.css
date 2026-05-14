@@ -2676,9 +2676,30 @@ body.site-guide-page .site-guide-mini-table thead th {
     color: #4a3a10;
 }
 
-body.site-guide-page .site-guide-nav-table tbody tr:nth-child(even),
+/* 主選單樹：依層級上色（取代斑馬紋，避免與巢狀結構脫節） */
+body.site-guide-page .site-guide-nav-table tbody tr[data-site-guide-depth="1"] td {
+    background: rgba(255, 220, 150, 0.42);
+}
+
+body.site-guide-page .site-guide-nav-table tbody tr[data-site-guide-depth="2"] td {
+    background: rgba(255, 238, 200, 0.48);
+}
+
+body.site-guide-page .site-guide-nav-table tbody tr[data-site-guide-depth="3"] td {
+    background: rgba(255, 250, 242, 0.96);
+}
+
+body.site-guide-page .site-guide-nav-table tbody tr[data-site-guide-depth="4"] td {
+    background: rgba(245, 248, 255, 0.92);
+}
+
+/* 小表：整區一致淡底，不靠奇偶列 */
+body.site-guide-page .site-guide-mini-table tbody tr {
+    background: rgba(255, 252, 244, 0.72);
+}
+
 body.site-guide-page .site-guide-mini-table tbody tr:nth-child(even) {
-    background: rgba(255, 250, 235, 0.45);
+    background: rgba(255, 252, 244, 0.72);
 }
 
 body.site-guide-page .site-guide-nav-table td.site-guide-nav-desc {

@@ -83,7 +83,7 @@
 
     <main class="content-container site-guide-main">
         <p class="site-guide-lead site-guide-lead--short">
-            棕字可點、灰字無連結。本頁頂欄全開；他頁依 <code>portal-nav.js</code>。
+            棕字可點、灰字無連結。主選單樹列底色依層級（1→4）區分。本頁頂欄全開且為同分頁開啟；他頁頂欄仍依 <code>portal-nav.js</code> 另開新分頁。
         </p>
 
         <section class="site-guide-group site-guide-group--nav-hero" aria-labelledby="sg-nav-tree">
@@ -114,8 +114,28 @@
                             <td class="site-guide-nav-link-cell"><a href="../index.html"><code>index.html</code></a></td>
                         </tr>
                         <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a href="totoga2.html">傳奇的轉折</a></span></td>
-                            <td class="site-guide-nav-desc">六六歌2 紀實長頁：影片、電子書、長文與章節錨點。</td>
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><span class="site-guide-nav-nolink">傳奇的轉折（六六歌2）</span></span></td>
+                            <td class="site-guide-nav-desc">四種入口：影片、電子書、時間軸為獨立單頁；網頁版為 TOTOGA2 整合長頁（章節錨點）。</td>
+                            <td class="site-guide-nav-link-cell"><span class="site-guide-nav-nolink">—</span></td>
+                        </tr>
+                        <tr data-site-guide-depth="3">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a href="totoga2-copy-video.html">影片</a></span></td>
+                            <td class="site-guide-nav-desc">無限挑戰 · 六六歌2 嵌入影片單頁。</td>
+                            <td class="site-guide-nav-link-cell"><a href="totoga2-copy-video.html"><code>extra/totoga2-copy-video.html</code></a></td>
+                        </tr>
+                        <tr data-site-guide-depth="3">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a href="totoga2-copy-ebook.html">電子書</a></span></td>
+                            <td class="site-guide-nav-desc">紀實電子書內容獨立成頁。</td>
+                            <td class="site-guide-nav-link-cell"><a href="totoga2-copy-ebook.html"><code>extra/totoga2-copy-ebook.html</code></a></td>
+                        </tr>
+                        <tr data-site-guide-depth="3">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a href="totoga2-copy-timeline.html">時間軸</a></span></td>
+                            <td class="site-guide-nav-desc">時間軸與紀實八章長文單頁。</td>
+                            <td class="site-guide-nav-link-cell"><a href="totoga2-copy-timeline.html"><code>extra/totoga2-copy-timeline.html</code></a></td>
+                        </tr>
+                        <tr data-site-guide-depth="3">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a href="totoga2.html">網頁版（TOTOGA2）</a></span></td>
+                            <td class="site-guide-nav-desc">單頁整合：影片／電子書／長文模式切換與八章錨點。</td>
                             <td class="site-guide-nav-link-cell"><a href="totoga2.html"><code>extra/totoga2.html</code></a></td>
                         </tr>
                         <tr data-site-guide-depth="2">
@@ -234,19 +254,33 @@
                             <td>區塊錨點（<code>#story</code> 不在頂欄白名單）</td>
                         </tr>
                         <tr>
-                            <td><a href="totoga2.html">totoga2.html</a></td>
-                            <td>六六歌2 整合</td>
+                            <td><a href="totoga2-copy-video.html">影片</a></td>
+                            <td>平行單頁 · <code>totoga2-copy-video.html</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="totoga2-copy-ebook.html">電子書</a></td>
+                            <td>平行單頁 · <code>totoga2-copy-ebook.html</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="totoga2-copy-timeline.html">時間軸</a></td>
+                            <td>平行單頁 · <code>totoga2-copy-timeline.html</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="totoga2.html">網頁版（TOTOGA2）</a></td>
+                            <td>整合長頁 · <code>totoga2.html</code></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="site-guide-grid site-guide-grid--compact">
                 <article class="site-guide-card site-guide-card--totoga2">
-                    <h3><a href="totoga2.html">totoga2 模式</a></h3>
+                    <h3><a href="totoga2.html">六六歌2 · 四入口</a></h3>
+                    <p class="site-guide-note">複本總覽：<a href="totoga2%20copy.html">totoga2 copy.html</a>。章節錨點僅在網頁版（TOTOGA2）內。</p>
                     <ul class="site-guide-inline-links">
-                        <li><a href="totoga2.html">影片</a></li>
-                        <li><a href="totoga2.html#ebook">電子書</a></li>
-                        <li><a href="totoga2.html#challenge">長文</a></li>
+                        <li><a href="totoga2-copy-video.html">影片</a></li>
+                        <li><a href="totoga2-copy-ebook.html">電子書</a></li>
+                        <li><a href="totoga2-copy-timeline.html">時間軸</a></li>
+                        <li><a href="totoga2.html">網頁版（TOTOGA2）</a></li>
                     </ul>
                     <nav class="site-guide-chapter-nav" aria-label="totoga2 章節">
                         <a href="totoga2.html#challenge">無限挑戰</a>
@@ -326,6 +360,10 @@
                             <td><a href="minister.html">minister.html</a></td>
                         </tr>
                         <tr>
+                            <th scope="row">minister 長版</th>
+                            <td><a href="minister_ge.html">minister_ge.html</a>（備份；未列頂欄）</td>
+                        </tr>
+                        <tr>
                             <th scope="row">地圖</th>
                             <td><a href="../map/map.html">map.html</a> · <a href="../map/map.html#taipei">#taipei</a> · <a href="../map/map.html#global">#global</a></td>
                         </tr>
@@ -354,7 +392,7 @@
 
         <section class="site-guide-group site-guide-group--extra" aria-labelledby="sg-nav-extra">
             <h2 class="section-title" id="sg-nav-extra">extra/ 其餘</h2>
-            <p class="site-guide-folder-hint">未列頂欄主模板；<code>member</code>／<code>totoga2</code>／<code>minister</code> 已見上表。</p>
+            <p class="site-guide-folder-hint">未列頂欄主模板；<code>member</code>／<code>totoga2</code>／<code>minister</code> 與六六歌2 四入口已見主選單樹。</p>
             <div class="site-guide-nav-table-wrap">
                 <table class="site-guide-mini-table">
                     <thead>
@@ -365,16 +403,16 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><a href="site-guide.html">site-guide.html</a></td>
+                            <td>全站導覽（本頁）</td>
+                        </tr>
+                        <tr>
                             <td><a href="grok.html">grok.html</a></td>
                             <td>實驗單頁</td>
                         </tr>
                         <tr>
                             <td><a href="totoga2%20copy.html">totoga2 copy.html</a></td>
                             <td>複本總覽</td>
-                        </tr>
-                        <tr>
-                            <td><a href="totoga2-copy-video.html">…-video</a> · <a href="totoga2-copy-ebook.html">…-ebook</a> · <a href="totoga2-copy-timeline.html">…-timeline</a></td>
-                            <td>無空白檔名子頁</td>
                         </tr>
                         <tr>
                             <td><a href="Untitled-1.html">Untitled-1.html</a></td>
@@ -386,7 +424,7 @@
                         </tr>
                         <tr>
                             <td><a href="minister_ge.html">minister_ge.html</a></td>
-                            <td>minister 長版備份</td>
+                            <td>minister 長版備份（Yellow Note 小節亦列）</td>
                         </tr>
                     </tbody>
                 </table>
@@ -403,6 +441,15 @@
 
     <script src="../assets/js/particles.js"></script>
     <script src="../assets/js/portal-nav.js"></script>
+    <script>
+        /* 全站導覽頁：頂欄改為同分頁開啟（他頁仍由 portal-nav 另開） */
+        (function () {
+            document.querySelectorAll("body.site-guide-page nav.portal-nav a[target=\"_blank\"]").forEach(function (a) {
+                a.removeAttribute("target");
+                a.removeAttribute("rel");
+            });
+        })();
+    </script>
 </body>
 
 </html>
