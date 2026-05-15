@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
+    <link rel="stylesheet" href="totoga2-split-nav.css">
 </head>
 
 <body class="ebook-ssg2-page totoga2-page">
@@ -24,19 +25,20 @@
 
     <canvas id="particles"></canvas>
 
-    <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 複本分頁">
-        <a href="totoga2-video.html" class="btn">節目影片</a>
-        <a href="totoga2-copy-ebook.html" class="btn" aria-current="page">紀實電子書</a>
-        <a href="totoga2-copy-timeline.html" class="btn">時間軸＋長文</a>
-        <a href="totoga2%20copy.html" class="btn">複本總覽</a>
+    <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 閱讀入口">
+        <a href="totoga2-video.html" class="btn" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
+        <a href="totoga2-copy-ebook.html" class="btn" aria-current="page" title="紀實電子書內容獨立成頁">電子書</a>
+        <a href="totoga2-copy-timeline.html" class="btn" title="時間軸與紀實八章長文單頁">時間軸</a>
+        <a href="../fallen/totoga2.html" class="btn" title="單頁整合：影片／電子書／長文模式切換與八章錨點">網頁版（TOTOGA2）</a>
     </nav>
 
     <div class="content-container ebook-main">
         <section class="ebook-intro section" aria-label="電子書說明">
             <h2 class="section-title">紀實電子書</h2>
             <p class="ebook-intro-lead">
-                以下為《無限挑戰》六六歌2 紀實跨頁 PDF（以 PDF.js 載入、PageFlip 翻頁）。若載入較慢請稍候；請以本機伺服器開啟頁面（勿用 file://），否則 PDF 可能被瀏覽器擋下。
+                四月那場重逢，不只是一集綜藝，而是塵封十六年的旋律，終於在笑聲與淚水裡再次被聽見。這本紀實電子書留住《無限挑戰》六六歌2 的每一頁：有驚喜、有拉扯，也有那些當時說不出口的想念。慢慢翻過去吧——我們後來才明白，有些情誼早已超越了表演，只是在節目的鏡頭裡，換了一種方式，陪彼此一起變老。
             </p>
+            <p class="ebook-intro-note">翻頁方式：點擊書頁左、右側，或拖曳頁角即可往前／往後翻。若畫面載入較慢，請稍候再試。</p>
         </section>
 
         <!-- <div class="flip-ebook-shell">
@@ -56,8 +58,6 @@
 
     <p class="ebook-back-link content-container">
         <a href="../index.html#story" class="btn">回到首頁 · 傳奇的轉折</a>
-        <a href="totoga2-video.html" class="btn">節目影片（另頁）</a>
-        <a href="totoga2-copy-timeline.html" class="btn">時間軸＋八章（另頁）</a>
     </p>
 
     <footer>
@@ -109,6 +109,17 @@
             }
             var renderScale = (pageW / natural.width) * Math.min(window.devicePixelRatio || 1, 2);
 
+            /* 容器寬度 ≈ 單頁寬，配合 size:'fixed' 才會走 portrait（全幅 A4*2），不會切成左右兩半 */
+            var bookHost = document.getElementById('book-container');
+            if (bookHost) {
+                bookHost.style.width = pageW + 'px';
+                bookHost.style.maxWidth = '100%';
+                bookHost.style.marginLeft = 'auto';
+                bookHost.style.marginRight = 'auto';
+            }
+            container.style.width = pageW + 'px';
+            container.style.maxWidth = '100%';
+
             for (var i = 1; i <= pdf.numPages; i++) {
                 var page = await pdf.getPage(i);
                 var viewport = page.getViewport({ scale: renderScale });
@@ -134,12 +145,12 @@
             var pageFlip = new St.PageFlip(container, {
                 width: pageW,
                 height: pageH,
-                size: 'stretch',
-                // PDF 每個 page 本身已是「A4*2 的攤開幅面」；避免 StPageFlip 在橫向模式下把頁寬視為總寬一半
-                // 導致看起來像把兩頁攤在一起、寬度被切半。
+                /* stretch 在寬容器會固定走 landscape（總寬=2×半頁），跨頁 PDF 會被切成左空白+右半頁 */
+                size: 'fixed',
                 usePortrait: true,
                 showCover: true,
                 startPage: 0,
+                autoSize: true,
                 drawShadow: true,
                 maxShadowOpacity: 0.4
             });

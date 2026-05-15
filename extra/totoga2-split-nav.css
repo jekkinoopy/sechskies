@@ -1,0 +1,14 @@
+/* 僅 extra 六六歌2 四入口單頁載入（見 site-guide 傳奇的轉折）；不寫入 assets/css/style.css */
+body.totoga2-page nav.totoga2-split-crossnav.ebook-back-link {
+    margin: 0.75rem auto 1.25rem;
+    padding: 0.35rem 14px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    background: transparent;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}

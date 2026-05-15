@@ -12,6 +12,7 @@ alwaysApply: true
 3. **`totoga2.html`**、**`variety.html`**：站主沒說「對外開放」→ **留在 `COMING_SOON_PAGES`**；不得自以為可以幫忙開放。
 4. **沒寫在指令裡的開放／連結／從 Set 移除／刪檔或刪導覽列**：**一律先問**，禁止推論；「刪除」未指明範圍（單檔 vs 頂欄整段 vs 資料夾）＝必須先問。
 5. 技術細節與檢查清單：**`portal-nav-rules.mdc`**（與本檔一起讀）。
+6. **頂欄 `portal-nav`（header）**：文案與巢狀結構對齊 `extra/site-guide.html` **主選單樹**（有連結者）；`site-guide-nav-nolink` 與 `COMING_SOON_PAGES` 維持籌備中、**不准擅自開放或改未列開放之頁內容**。勿把此句誤做成 `extra/` 分頁列或全站 `nav` 黑底規則。
 
 ---
 

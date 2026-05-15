@@ -35,6 +35,7 @@ alwaysApply: true
 ## 文件與規則檔
 
 - **不要**主動新增或長篇修改 `README`、`docs/*.md`、規則檔，除非使用者明講要寫入文件或規範。
+- **助手自用筆記**（對話紀要、頁面編輯規格、實作備忘）：只寫在 **`.cursor/`**（例如 `.cursor/*-notes.md`）；**禁止**放在 `docs/`、`README` 或站主日常會開的目錄。回覆裡也不必貼長篇筆記內容。
 - **例外**：使用者要求「把約定寫死／規則講清楚／不要再做錯」時，得**精準**更新 `.cursor/rules`（與 `portal-nav.js` 頂部註解對齊），避免重複踩雷；仍避免無關長文。
 
 （與導覽開放、頂欄 vs `site-guide` 相關條文以 **`user-scope-and-nav.mdc`**、**`portal-nav-rules.mdc`** 為準；實作前兩份都讀。）

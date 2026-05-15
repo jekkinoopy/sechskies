@@ -2101,6 +2101,15 @@ body.ebook-ssg2-page .ebook-intro-lead {
     line-height: 1.7;
 }
 
+body.ebook-ssg2-page .ebook-intro-note {
+    text-align: center;
+    max-width: 42rem;
+    margin: -0.75rem auto 1.25rem;
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.5;
+}
+
 body.ebook-ssg2-page .ebook-main,
 body.ebook-ssg2-page footer {
     position: relative;
@@ -2182,6 +2191,16 @@ body.ebook-ssg2-page .flip-ebook-aspect--pageflip > #my-flipbook {
     height: auto;
     max-width: 100%;
     overflow: visible;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* PageFlip 在 landscape 會把書寬當成 2×半頁；host 限寬才能穩定走 portrait 全幅 */
+body.ebook-ssg2-page .flip-ebook-aspect.flip-ebook-aspect--pageflip {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body.ebook-ssg2-page #my-flipbook .page {
