@@ -39,7 +39,10 @@
                 四月那場重逢，不只是一集綜藝，而是塵封十六年的旋律，終於在笑聲與淚水裡再次被聽見。這本紀實電子書留住《無限挑戰》六六歌2
                 的每一頁：有驚喜、有拉扯，也有那些當時說不出口的想念。慢慢翻過去吧——我們後來才明白，有些情誼早已超越了表演，只是在節目的鏡頭裡，換了一種方式，陪彼此一起變老。
             </p>
-            <p class="ebook-intro-note">翻頁方式：點擊書頁左、右側，或拖曳頁角即可往前／往後翻。若畫面載入較慢，請稍候再試。</p>
+            <div class="ebook-intro-notes fa-before-lead fa-before-lead--balloon">
+                <p class="ebook-intro-note">看看後面飄落的氣球，等等十秒，電子書就會出現囉。</p>
+                <p class="ebook-intro-note">翻頁方式：點擊書頁左、右側，或拖曳頁角即可往前／往後翻。</p>
+            </div>
         </section>
 
         <!-- <div class="flip-ebook-shell">
@@ -100,26 +103,20 @@
             var sizePage = await pdf.getPage(sizePageIndex);
             var natural = sizePage.getViewport({ scale: 1 });
             var shell = document.querySelector('.flip-ebook-shell');
-            var maxW = shell ? shell.clientWidth : Math.min(window.innerWidth, 1200);
-            var pageW = Math.max(320, Math.floor(maxW));
-            var pageH = Math.floor(pageW * (natural.height / natural.width));
-            var maxH = Math.floor(window.innerHeight * 0.72);
-            if (pageH > maxH) {
-                pageH = maxH;
-                pageW = Math.floor(pageH * (natural.width / natural.height));
-            }
-            var renderScale = (pageW / natural.width) * Math.min(window.devicePixelRatio || 1, 2);
-
-            /* 單頁寬高與 PDF 同比例；外殼可滿欄，書本置中（不拉扁 canvas） */
             var bookHost = document.getElementById('book-container');
             if (bookHost) {
-                bookHost.style.width = pageW + 'px';
+                bookHost.style.width = '100%';
                 bookHost.style.maxWidth = '100%';
-                bookHost.style.marginLeft = 'auto';
-                bookHost.style.marginRight = 'auto';
+                bookHost.style.marginLeft = '0';
+                bookHost.style.marginRight = '0';
             }
-            container.style.width = pageW + 'px';
+            container.style.width = '100%';
             container.style.maxWidth = '100%';
+
+            var measureEl = bookHost || shell;
+            var pageW = Math.max(320, Math.floor((measureEl && measureEl.clientWidth) || 0));
+            var pageH = Math.floor(pageW * (natural.height / natural.width));
+            var renderScale = (pageW / natural.width) * Math.min(window.devicePixelRatio || 1, 2);
 
             for (var i = 1; i <= pdf.numPages; i++) {
                 var page = await pdf.getPage(i);

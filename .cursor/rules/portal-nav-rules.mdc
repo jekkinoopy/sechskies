@@ -14,7 +14,7 @@ alwaysApply: true
 | 誰在看 | 哪一頁／哪塊 | 行為 |
 |--------|----------------|------|
 | **站主自己** | 僅 **`extra/site-guide.html`** | 頂欄必須 **`data-portal-nav data-portal-nav-all-open`**。腳本**不**對該頁頂欄套用籌備中；**不**對 `<main class="site-guide-main">` 內任何 `<a href>` 改寫。表上連結**全部要點得進**（由站主在 HTML 維護）。 |
-| **訪客／大家** | **除上列以外**的每一頁 | 頂欄一律套用 `applyComingSoonToNav`：`COMING_SOON_PAGES`、`INDEX_NAV_OPEN_HASHES` 說不能點就不能點。**禁止**在其他頁加 `data-portal-nav-all-open`。 |
+| **訪客／大家** | **除上列以外**的每一頁 | 頂欄＋**頁內所有 `<a href>`**（分頁列、內文等）依 `COMING_SOON_PAGES`、`INDEX_NAV_OPEN_HASHES` 鎖定；未公開者**一律標示「籌備中」**、不可點進。**禁止**在其他頁加 `data-portal-nav-all-open`。 |
 
 **硬規則（違反＝做錯）**
 
@@ -44,6 +44,12 @@ alwaysApply: true
 新增或調整完後，所有帶 **`data-portal-nav`** 的 `<nav class="portal-nav">` 都會在載入腳本時被注入同一份 HTML。
 
 ---
+
+## 1.1 未公開＝籌備中（全站一致）
+
+- **站主沒說對外開放**的頁／錨點：在訪客可見處**不得**留可點的真實 `href`（頂欄、totoga2 分頁列、首頁內文、頁尾 CTA 皆同）。
+- 腳本標記為 `data-coming-soon="true"` 時：提示與頁內按鈕須讓讀者看見 **「籌備中」**（`portal-nav.js` 的 `COMING_SOON_LABEL`），不是改寫成別的隨機句。
+- **唯一例外**：`extra/site-guide.html` 的 `main.site-guide-main` 內連結（站主索引自用）；該頁頂欄 `data-portal-nav-all-open` 僅影響頂欄，**不**豁免主文以外區塊。
 
 ## 2. 可點 vs「籌備中」：`COMING_SOON_PAGES`
 
@@ -135,4 +141,4 @@ alwaysApply: true
 | `docs/CHANGESET-review.md` | 歷次變更檢查清單筆記（非程式真值來源） |
 | `docs/sql/` | SQL 練習／筆記（`sql_plan.md`、`.sql` 腳本與匯出） |
 
-（導覽文案隨機句：`NAV_SOON_PHRASES`，僅影響籌備中連結的提示，與新頁是否開放無關。）
+（籌備中提示：`COMING_SOON_LABEL`＝「籌備中」；頂欄氣泡與頁內按鈕後綴同文案。）

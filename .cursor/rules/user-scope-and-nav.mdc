@@ -8,7 +8,7 @@ alwaysApply: true
 ## 速記（每次動導覽或 `portal-nav.js` 前先對齊）
 
 1. **`extra/site-guide.html`**：站主自用；該頁頂欄 `data-portal-nav-all-open` → **全部連結可點**；主文 `<main class="site-guide-main">` 的 `<a>` **不准**用腳本改成籌備中。
-2. **其他每一頁**：訪客面向 → **`COMING_SOON_PAGES` / `INDEX_NAV_OPEN_HASHES` 怎寫就怎鎖**；不准在其他頁加 `all-open`。
+2. **其他每一頁**：未公開＝**籌備中**（頂欄＋頁內連結皆鎖、須寫出「籌備中」）；依 **`COMING_SOON_PAGES` / `INDEX_NAV_OPEN_HASHES`**；不准在其他頁加 `all-open`。
 3. **`totoga2.html`**、**`variety.html`**：站主沒說「對外開放」→ **留在 `COMING_SOON_PAGES`**；不得自以為可以幫忙開放。
 4. **沒寫在指令裡的開放／連結／從 Set 移除／刪檔或刪導覽列**：**一律先問**，禁止推論；「刪除」未指明範圍（單檔 vs 頂欄整段 vs 資料夾）＝必須先問。
 5. 技術細節與檢查清單：**`portal-nav-rules.mdc`**（與本檔一起讀）。

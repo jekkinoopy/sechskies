@@ -1,20 +1,22 @@
 (() => {
     /**
      * ── 導覽「尚未開放」連結 ─────────────────────────────────────────
-     * 【兩個世界】① 僅 `extra/site-guide.html`：`<nav data-portal-nav data-portal-nav-all-open>` → 不套用籌備中，
-     *    頂欄全可點；`main.site-guide-main` 內 `<a>` 腳本不改寫（站主自用索引）。② 其餘每一頁：一律套用籌備中。
-     * 【totoga2】頂欄結構對齊 `site-guide` 主選單樹：傳奇的轉折（六六歌2）下四入口；`extra/totoga2-*.html` 可點。`fallen/totoga2.html`（檔名 totoga2.html）仍在 COMING_SOON_PAGES＝「圖文好讀版」訪客籌備中；未同意不得從 Set 刪除。
+     * 【兩個世界】① 僅 `extra/site-guide.html`：`<nav data-portal-nav-all-open>` 頂欄全可點；`main.site-guide-main` 內 `<a>` 不改寫。
+     *    ② 其餘每一頁：頂欄＋**頁內所有連結**（含 totoga2 分頁列、首頁內文）皆依 COMING_SOON／INDEX 白名單鎖定。
+     * 【totoga2】頂欄四入口：時間軸（`totoga2-copy-timeline.html`）、圖文好讀版（`totoga2.html`）在 Set；電子書／影片可點。未同意不得從 Set 刪除或擅自開放。
      * 【硬規則】檔案在 repo ≠ 可開放；未同意不得從 Set 刪名、不得擴白名單、不得在模板新增可點項。
-     * 文案 NAV_SOON_PHRASES：籌備中連結提示用。
+     * 【未公開】href 改 #、不可點。頂欄與頁內按鈕：NAV_SOON_PHRASES 滑過隨機氣泡（同 ::after）；無障礙 aria「尚無開放」；不加可見「（籌備中）」文字後綴。
+     * 【totoga2 開放】`extra/totoga2-copy-ebook.html`、`extra/totoga2-video.html` 可點；`totoga2-copy-timeline.html` 與 `fallen/totoga2.html` 在 Set 內。
      * 頂欄勿加 `portal-nav__sub`（站主未要求）；曾用副標見 `.cursor/portal-nav-optimization-backlog.md`。
      * 完整條文：`.cursor/rules/portal-nav-rules.mdc` + `user-scope-and-nav.mdc`
      */
-    const NAV_SOON_PHRASES = ["奇蹟醞釀中", // 頁面準備中，呼應黃色奇蹟的誕生
-        "感動載入中", // 資料讀取中，連結入坑時的悸動
-        "初心校準中", // 結構調整中，呼應 LOGO 的六人設計核心
-        "黃海漫延中", // 視覺填充中，發想自黃色海洋填滿漆黑的過程
-        "傳奇編排中", // 內容整理中，記錄 1999 年榮譽與歷史軌跡
-        "夢想航行中", // 未來規劃中，期待水晶男孩的下一個十年
+    const NAV_SOON_PHRASES = [
+        "奇蹟醞釀中",
+        "感動載入中",
+        "初心校準中",
+        "黃海漫延中",
+        "傳奇編排中",
+        "夢想航行中",
     ];
 
     /** 主選單欄 `mouseleave` 後延遲關閉（ms），方便移入子選單或右側飛出層，避免略偏就關閉 */
@@ -24,7 +26,7 @@
         return NAV_SOON_PHRASES[Math.floor(Math.random() * NAV_SOON_PHRASES.length)];
     }
 
-    /** 每次互動重抽，讀者沿導覽滑動時會交錯看到不同字樣 */
+    /** 籌備中連結：滑過／聚焦時隨機一句（氣泡與 title 同步，頂欄與頁內按鈕共用） */
     function rollSoonLabel(link) {
         const p = pickSoonPhrase();
         link.style.setProperty("--portal-nav-soon-msg", JSON.stringify(p));
@@ -38,6 +40,7 @@
         "minister.html",
         "minister_ge.html",
         "totoga2.html",
+        "totoga2-copy-timeline.html",
         "variety.html",
     ]);
 
@@ -105,12 +108,14 @@
         return new Set([...COMING_SOON_PAGES].map((p) => normalizePageKey(String(p))).filter(Boolean));
     }
 
-    /** 將籌備中規則套用至容器內錨點（僅由 `applyComingSoonToNav` 呼叫頂欄） */
+    /** 將籌備中規則套用至容器內錨點（頂欄或整頁；`site-guide` 主文除外） */
     function applyComingSoonToAnchorElements(container) {
+        if (!container) return;
         const pageKeysSoon = getPageKeysSoon();
 
         container.querySelectorAll("a[href]").forEach((link) => {
             if (link.classList.contains("logo")) return;
+            if (link.getAttribute("data-coming-soon") === "true") return;
 
             const href = link.getAttribute("href");
             if (!href || href === "#") return;
@@ -122,6 +127,42 @@
             if (!linkShouldBeComingSoon(href, pageKey, pageKeysSoon)) return;
 
             markLinkComingSoon(link, href);
+        });
+    }
+
+    /** 訪客頁：頁內連結與頂欄同一套 COMING_SOON；僅 site-guide 的 main.site-guide-main 跳過（頂欄 all-open 不影響此條） */
+    function applyComingSoonSiteWide() {
+        const siteGuideMain = document.querySelector("main.site-guide-main");
+        document.querySelectorAll("a[href]").forEach((link) => {
+            if (link.closest("nav.portal-nav")) return;
+            if (siteGuideMain && siteGuideMain.contains(link)) return;
+            if (link.classList.contains("logo")) return;
+
+            const href = link.getAttribute("href");
+            if (!href || href === "#") return;
+            if (/^https?:\/\//i.test(href)) return;
+
+            const pageKey = normalizePageKey(href);
+            if (!pageKey) return;
+
+            const pageKeysSoon = getPageKeysSoon();
+            if (!linkShouldBeComingSoon(href, pageKey, pageKeysSoon)) return;
+
+            markLinkComingSoon(link, href);
+        });
+    }
+
+    function blockNavigation(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    function bindComingSoonBlockers() {
+        document.querySelectorAll('a[data-coming-soon="true"]').forEach((link) => {
+            if (link.dataset.portalNavSoonBound === "1") return;
+            link.dataset.portalNavSoonBound = "1";
+            link.addEventListener("click", blockNavigation);
+            link.addEventListener("auxclick", blockNavigation);
         });
     }
 
@@ -229,15 +270,8 @@
         }
     });
 
-    const blockNavigation = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
-    document.querySelectorAll('a[data-coming-soon="true"]').forEach((link) => {
-        link.addEventListener("click", blockNavigation);
-        link.addEventListener("auxclick", blockNavigation);
-    });
+    applyComingSoonSiteWide();
+    bindComingSoonBlockers();
 
     const navs = Array.from(document.querySelectorAll(".portal-nav"));
     if (!navs.length) return;

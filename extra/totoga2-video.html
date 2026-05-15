@@ -12,32 +12,22 @@
 </head>
 
 <body class="ebook-ssg2-page totoga2-page totoga2-video-copy-page">
-    <header class="map-archive-header">
-        <div class="header-inner">
-            <h1 class="main-title">無限挑戰 · 六六歌2</h1>
-            <div class="subtitle-wrap">
-                <span class="sub-title">水晶男孩回來啦！</span>
-            </div>
-        </div>
-    </header>
-
     <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
 
     <canvas id="particles"></canvas>
 
-    <div id="bilivideo-tabs" class="bilivideo-hub">
-        <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 閱讀入口">
-            <a href="totoga2-copy-timeline.html" class="btn" title="時間軸與紀實八章長文單頁">時間軸</a>
-            <a href="totoga2-copy-ebook.html" class="btn" title="紀實電子書內容獨立成頁">電子書</a>
-            <a href="../fallen/totoga2.html" class="btn" title="單頁整合：影片／電子書／長文模式切換與八章錨點">圖文好讀版</a>
-            <a href="totoga2-video.html" class="btn" aria-current="page" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
-        </nav>
+    <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 閱讀入口">
+        <a href="totoga2-copy-timeline.html" class="btn" title="時間軸與紀實八章長文單頁">時間軸</a>
+        <a href="totoga2-copy-ebook.html" class="btn" title="紀實電子書內容獨立成頁">電子書</a>
+        <a href="../fallen/totoga2.html" class="btn" title="單頁整合：影片／電子書／長文模式切換與八章錨點">圖文好讀版</a>
+        <a href="totoga2-video.html" class="btn" aria-current="page" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
+    </nav>
 
-        <div class="content-container ebook-main">
-            <section class="ebook-intro section" aria-labelledby="ebook-bilivideo-heading">
-                <h2 class="section-title" id="ebook-bilivideo-heading">節目影片</h2>
+    <div class="content-container ebook-main">
+        <section class="ebook-intro section" aria-labelledby="ebook-bilivideo-heading">
+            <h2 class="section-title" id="ebook-bilivideo-heading">節目影片</h2>
 
-                <div class="bilivideo-tabs__shell">
+            <div id="bilivideo-tabs" class="bilivideo-tabs__shell">
                     <!-- tablist 在 DOM 上須先於 iframe，否則 B 站播放器合成層易蓋住下方按鈕文字；畫面順序改由 CSS flex order 控制 -->
                     <nav class="bilivideo-episode-nav" role="tablist" aria-label="節目影片集數">
                         <button type="button" class="btn bilivideo-episode-nav__tab bilivideo-episode-nav__tab--active"
@@ -77,9 +67,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
 
     <p class="ebook-back-link content-container">

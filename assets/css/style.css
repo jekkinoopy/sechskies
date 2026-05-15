@@ -370,13 +370,14 @@ nav a {
     color: rgba(212, 196, 150, 0.95);
 }
 
-.portal-nav a[data-coming-soon="true"] {
+/* 籌備中：頂欄與頁內 .btn／分頁列等共用隨機氣泡（不加可見「（籌備中）」後綴） */
+a[data-coming-soon="true"] {
     cursor: default;
     opacity: 0.82;
     position: relative;
 }
 
-.portal-nav a[data-coming-soon="true"]::after {
+a[data-coming-soon="true"]::after {
     content: var(--portal-nav-soon-msg);
     position: absolute;
     z-index: 120;
@@ -394,7 +395,10 @@ nav a {
     transition: opacity 0.16s ease;
 }
 
-.portal-nav>ul>li>a[data-coming-soon="true"]::after {
+.portal-nav>ul>li>a[data-coming-soon="true"]::after,
+a.btn[data-coming-soon="true"]::after,
+.totoga2-split-crossnav a[data-coming-soon="true"]::after,
+.ebook-back-link a[data-coming-soon="true"]::after {
     left: 50%;
     top: calc(100% + 4px);
     transform: translateX(-50%);
@@ -421,16 +425,22 @@ nav a {
     color: #5f5f5f;
 }
 
+a.btn[data-coming-soon="true"],
+.totoga2-split-crossnav a[data-coming-soon="true"],
+.ebook-back-link a[data-coming-soon="true"] {
+    pointer-events: auto;
+}
+
 @media (hover: hover) {
 
-    .portal-nav a[data-coming-soon="true"]:hover::after,
-    .portal-nav a[data-coming-soon="true"]:focus-visible::after {
+    a[data-coming-soon="true"]:hover::after,
+    a[data-coming-soon="true"]:focus-visible::after {
         opacity: 1;
     }
 }
 
 @media (hover: none) {
-    .portal-nav a[data-coming-soon="true"]:active::after {
+    a[data-coming-soon="true"]:active::after {
         opacity: 1;
         transition: opacity 0.08s ease;
     }
@@ -635,9 +645,7 @@ section {
 }
 
 .mission-section .mission-row+.mission-row {
-    margin-top: 2.75rem;
     padding-top: 2.75rem;
-    /* border-top: 1px solid rgba(255, 204, 0, 0.45); */
 }
 
 .mission-section .mission-row__visual {
@@ -841,6 +849,36 @@ section {
     .mark_y {
         animation: none;
     }
+}
+
+/* 左側 Font Awesome（::before）；--fa-before-icon、--fa-before-color 可覆寫 */
+.fa-before-lead {
+    position: relative;
+    padding-left: 1.75em;
+    text-align: left;
+}
+
+.fa-before-lead::before {
+    content: var(--fa-before-icon, "\f111");
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    font-size: 1.05em;
+    line-height: 1;
+    color: var(--fa-before-color, var(--primary, #ffcc00));
+}
+
+.fa-before-lead.fa-before-lead--balloon::before {
+    content: "";
+    font-family: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    top: 0.1em;
+    background-color: var(--fa-before-color, var(--primary, #ffcc00));
+    -webkit-mask: url('../images/icon/balloon.svg') center / contain no-repeat;
+    mask: url('../images/icon/balloon.svg') center / contain no-repeat;
 }
 
 /* 金句：基底只放結構：視覺請用 --mission / --awakening，兩句互不覆寫 */
@@ -1316,12 +1354,30 @@ footer a .mark_b {
 }
 
 .concert-page .concert-archive-header,
-.concert-page .portal-nav,
 .concert-page .search-section,
 .concert-page .concert-container,
 .concert-page footer {
     position: relative;
     z-index: 1;
+}
+
+/* 演唱會頁：勿與主內容同層 z-index:1（會被後方 DOM 蓋住）；對齊 map-page 黏頂＋較高層 */
+.concert-page .portal-nav {
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 0.8rem 100px;
+    background-color: var(--black);
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.concert-page .portal-nav>ul>li:hover,
+.concert-page .portal-nav>ul>li:focus-within {
+    z-index: 105;
 }
 
 .map-page .portal-nav {
@@ -2060,6 +2116,22 @@ body.ebook-ssg2-page .ebook-intro.section p + p {
     line-height: 1.5;
 }
 
+body.ebook-ssg2-page .ebook-intro-notes {
+    max-width: 42rem;
+    margin: 0 auto 1rem;
+}
+
+body.ebook-ssg2-page .ebook-intro-notes .ebook-intro-note {
+    margin: 0;
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.5;
+}
+
+body.ebook-ssg2-page .ebook-intro-notes .ebook-intro-note + .ebook-intro-note {
+    margin-top: 0.35rem;
+}
+
 body.ebook-ssg2-page .ebook-main,
 body.ebook-ssg2-page footer {
     position: relative;
@@ -2198,25 +2270,27 @@ body.ebook-ssg2-page.totoga2-ebook-copy-page .flip-ebook-aspect.flip-ebook-aspec
     max-width: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    display: block;
     box-sizing: border-box;
     border-radius: 14px;
     overflow: hidden;
 }
 
+body.ebook-ssg2-page.totoga2-ebook-copy-page #book-container.flip-ebook-aspect--pageflip,
 body.ebook-ssg2-page.totoga2-ebook-copy-page .flip-ebook-aspect--pageflip > #my-flipbook {
-    width: auto;
+    width: 100%;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0;
     overflow: hidden;
     border-radius: 14px;
+    box-sizing: border-box;
 }
 
 body.ebook-ssg2-page.totoga2-ebook-copy-page #my-flipbook .stf__parent,
 body.ebook-ssg2-page.totoga2-ebook-copy-page #my-flipbook .stf__wrapper {
+    width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
 }
 
 body.ebook-ssg2-page.totoga2-ebook-copy-page #my-flipbook .page {
@@ -2236,10 +2310,10 @@ body.totoga2-page .totoga2-hub-controls {
     flex-wrap: wrap;
 }
 
-body.totoga2-page.totoga2-video-copy-page .map-archive-header {
+body.totoga2-page .map-archive-header {
     height: auto;
-    min-height: 0;
-    padding: clamp(1rem, 2.8vw, 1.75rem) 20px clamp(1.1rem, 3vw, 1.9rem);
+    min-height: clamp(15rem, 42vh, 26rem);
+    padding: clamp(2rem, 5vh, 3.25rem) 20px;
     background-size: cover;
 }
 
@@ -2256,7 +2330,7 @@ body.totoga2-page.totoga2-video-copy-page {
 }
 
 /* 節目影片複本：上／中／下集在播放器外殼內、緊貼 iframe 下方；維持全站 .btn 黃膠囊 */
-body.totoga2-page.totoga2-video-copy-page .bilivideo-hub .bilivideo-tabs__shell {
+body.totoga2-page.totoga2-video-copy-page .ebook-main .bilivideo-tabs__shell {
     max-width: 960px;
     margin-left: auto;
     margin-right: auto;
