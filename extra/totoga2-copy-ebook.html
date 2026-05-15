@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="totoga2-split-nav.css">
 </head>
 
-<body class="ebook-ssg2-page totoga2-page">
+<body class="ebook-ssg2-page totoga2-page totoga2-ebook-copy-page">
     <header class="map-archive-header">
         <div class="header-inner">
             <h1 class="main-title">無限挑戰 · 六六歌2</h1>
@@ -26,10 +26,10 @@
     <canvas id="particles"></canvas>
 
     <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 閱讀入口">
-        <a href="totoga2-video.html" class="btn" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
-        <a href="totoga2-copy-ebook.html" class="btn" aria-current="page" title="紀實電子書內容獨立成頁">電子書</a>
         <a href="totoga2-copy-timeline.html" class="btn" title="時間軸與紀實八章長文單頁">時間軸</a>
-        <a href="../fallen/totoga2.html" class="btn" title="單頁整合：影片／電子書／長文模式切換與八章錨點">網頁版（TOTOGA2）</a>
+        <a href="totoga2-copy-ebook.html" class="btn" aria-current="page" title="紀實電子書內容獨立成頁">電子書</a>
+        <a href="../fallen/totoga2.html" class="btn" title="單頁整合：影片／電子書／長文模式切換與八章錨點">圖文好讀版</a>
+        <a href="totoga2-video.html" class="btn" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
     </nav>
 
     <div class="content-container ebook-main">
@@ -100,7 +100,7 @@
             var sizePage = await pdf.getPage(sizePageIndex);
             var natural = sizePage.getViewport({ scale: 1 });
             var shell = document.querySelector('.flip-ebook-shell');
-            var maxW = Math.min((shell && shell.clientWidth) || 1000, 1000) - 8;
+            var maxW = shell ? shell.clientWidth : Math.min(window.innerWidth, 1200);
             var pageW = Math.max(320, Math.floor(maxW));
             var pageH = Math.floor(pageW * (natural.height / natural.width));
             var maxH = Math.floor(window.innerHeight * 0.72);
@@ -110,7 +110,7 @@
             }
             var renderScale = (pageW / natural.width) * Math.min(window.devicePixelRatio || 1, 2);
 
-            /* 容器寬度 ≈ 單頁寬，配合 size:'fixed' 才會走 portrait（全幅 A4*2），不會切成左右兩半 */
+            /* 單頁寬高與 PDF 同比例；外殼可滿欄，書本置中（不拉扁 canvas） */
             var bookHost = document.getElementById('book-container');
             if (bookHost) {
                 bookHost.style.width = pageW + 'px';

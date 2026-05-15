@@ -3,9 +3,10 @@
      * ── 導覽「尚未開放」連結 ─────────────────────────────────────────
      * 【兩個世界】① 僅 `extra/site-guide.html`：`<nav data-portal-nav data-portal-nav-all-open>` → 不套用籌備中，
      *    頂欄全可點；`main.site-guide-main` 內 `<a>` 腳本不改寫（站主自用索引）。② 其餘每一頁：一律套用籌備中。
-     * 【totoga2】頂欄結構對齊 `site-guide` 主選單樹：傳奇的轉折（六六歌2）下四入口；`extra/totoga2-*.html` 可點。`fallen/totoga2.html`（檔名 totoga2.html）仍在 COMING_SOON_PAGES＝「網頁版（TOTOGA2）」訪客籌備中；未同意不得從 Set 刪除。
+     * 【totoga2】頂欄結構對齊 `site-guide` 主選單樹：傳奇的轉折（六六歌2）下四入口；`extra/totoga2-*.html` 可點。`fallen/totoga2.html`（檔名 totoga2.html）仍在 COMING_SOON_PAGES＝「圖文好讀版」訪客籌備中；未同意不得從 Set 刪除。
      * 【硬規則】檔案在 repo ≠ 可開放；未同意不得從 Set 刪名、不得擴白名單、不得在模板新增可點項。
      * 文案 NAV_SOON_PHRASES：籌備中連結提示用。
+     * 頂欄勿加 `portal-nav__sub`（站主未要求）；曾用副標見 `.cursor/portal-nav-optimization-backlog.md`。
      * 完整條文：`.cursor/rules/portal-nav-rules.mdc` + `user-scope-and-nav.mdc`
      */
     const NAV_SOON_PHRASES = ["奇蹟醞釀中", // 頁面準備中，呼應黃色奇蹟的誕生
@@ -171,49 +172,49 @@
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
 <ul>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">淪陷瞬間</span><span class="portal-nav__sub">Hero、入坑敘事與站方初衷；LOGO 與跨時空軌跡</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">淪陷瞬間</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">初心與軌跡</span><span class="portal-nav__sub">Hero、入坑敘事與站方初衷；LOGO 與跨時空軌跡</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">初心與軌跡</span></a></li>
             <li class="portal-nav__subgroup">
-                <span class="portal-nav__subgroup-head"><span class="portal-nav__label">傳奇的轉折（六六歌2）</span><span class="portal-nav__sub">四種入口：影片、電子書、時間軸、網頁版</span></span>
+                <span class="portal-nav__subgroup-head"><span class="portal-nav__label">傳奇的轉折（六六歌2）</span></span>
                 <ul class="portal-submenu-nested" aria-label="傳奇的轉折（六六歌2）">
-                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-video.html"><span class="portal-nav__label">影片</span><span class="portal-nav__sub">無限挑戰 · 六六歌2 嵌入影片單頁</span></a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-copy-ebook.html"><span class="portal-nav__label">電子書</span><span class="portal-nav__sub">紀實電子書內容獨立成頁</span></a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-copy-timeline.html"><span class="portal-nav__label">時間軸</span><span class="portal-nav__sub">時間軸與紀實八章長文單頁</span></a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}fallen/totoga2.html"><span class="portal-nav__label">網頁版（TOTOGA2）</span><span class="portal-nav__sub">單頁整合：影片／電子書／長文與八章錨點</span></a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-copy-timeline.html"><span class="portal-nav__label">時間軸</span></a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-copy-ebook.html"><span class="portal-nav__label">電子書</span></a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}fallen/totoga2.html"><span class="portal-nav__label">圖文好讀版</span></a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}extra/totoga2-video.html"><span class="portal-nav__label">影片</span></a></li>
                 </ul>
             </li>
             <li class="portal-nav__subgroup">
-                <span class="portal-nav__subgroup-head"><span class="portal-nav__label">全員發瘋</span><span class="portal-nav__sub">原來我是個正常人啊！團綜與失控現場</span></span>
+                <span class="portal-nav__subgroup-head"><span class="portal-nav__label">全員發瘋</span></span>
                 <ul class="portal-submenu-nested" aria-label="全員發瘋">
-                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html#variety"><span class="portal-nav__label">隊長帶弟弟</span><span class="portal-nav__sub">控場與隊內互動</span></a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/variety.html#variety"><span class="portal-nav__label">隊長帶弟弟</span></a></li>
                     <li class="portal-nav__subgroup portal-nav__subgroup--nested">
-                        <span class="portal-nav__subgroup-head portal-nav__subgroup-head--nested"><span class="portal-nav__label">各自暴走</span><span class="portal-nav__sub">獨立內頁籌備中</span></span>
+                        <span class="portal-nav__subgroup-head portal-nav__subgroup-head--nested"><span class="portal-nav__label">各自暴走</span></span>
                         <ul class="portal-submenu-nested portal-submenu-nested--tier3" aria-label="各自暴走">
-                            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/NJTW/NJTW5.html"><span class="portal-nav__label">新西遊記</span><span class="portal-nav__sub">成員介紹 · MEMBER GUIDE</span></a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/NJTW/NJTW5.html"><span class="portal-nav__label">新西遊記</span></a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}member/member.html"><span class="portal-nav__label">完整的六顆</span><span class="portal-nav__sub">六顆水晶 · 黑白分流</span></a></li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span><span class="portal-nav__sub">SECHSKIES CONCERT ARCHIVE</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}member/member.html"><span class="portal-nav__label">完整的六顆</span></a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">集結水晶</span><span class="portal-nav__sub">團體演唱會</span></a></li>
-            <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="隊長的氣場，尚無開放"><span class="portal-nav__label">隊長的氣場</span><span class="portal-nav__sub">個人見面會與演唱會</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">集結水晶</span></a></li>
+            <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="隊長的氣場，尚無開放"><span class="portal-nav__label">隊長的氣場</span></a></li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html"><span class="portal-nav__label">黃色留聲機</span><span class="portal-nav__sub">YELLOW PHONOGRAPH</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html"><span class="portal-nav__label">黃色留聲機</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#new"><span class="portal-nav__label">啟動新篇章</span><span class="portal-nav__sub">重啟後作品與單曲</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#classic"><span class="portal-nav__label">輝煌全盛期</span><span class="portal-nav__sub">1997–1999 年表</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#new"><span class="portal-nav__label">啟動新篇章</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#classic"><span class="portal-nav__label">輝煌全盛期</span></a></li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">Yellow Note</span><span class="portal-nav__sub">台灣行程表、成員行程篩選、搜尋與地圖主體</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">Yellow Note</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">視覺進化論</span><span class="portal-nav__sub">從好奇到全端：自述與時間軸式章節</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span><span class="portal-nav__sub">台灣行程表、成員行程篩選、搜尋與地圖</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">視覺進化論</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
         </ul>
     </li>
 </ul>

@@ -148,8 +148,9 @@ section.archive-block p:last-child {
     margin: 8px 6px;
 }
 
-.archive-intro-lead {
-    text-align: center;
+/* albums 等：archive-intro 內段落為內文層（非短字層） */
+section.archive-intro p {
+    text-align: left;
     margin-top: 8px;
 }
 

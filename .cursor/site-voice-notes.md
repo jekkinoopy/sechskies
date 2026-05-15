@@ -33,5 +33,5 @@
 
 ## 其他
 
-- 六六歌2 分頁（site-guide）：影片 → 電子書 → 時間軸 → 網頁版（TOTOGA2）  
+- 六六歌2 分頁（site-guide／頂欄／四鈕列）：時間軸 → 電子書 → 圖文好讀版→ 影片  
 - 規則：`.cursor/rules/site-voice.mdc`
