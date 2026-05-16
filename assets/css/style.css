@@ -246,12 +246,13 @@ nav a {
 .portal-nav .portal-nav__subgroup>.portal-submenu-nested {
     list-style: none;
     margin: 0;
-    padding: 8px 10px;
+    margin-left: -12px;
+    padding: 8px 10px 8px 22px;
     display: none;
     flex-direction: column;
     gap: 4px;
     position: absolute;
-    left: calc(100% + 6px);
+    left: 100%;
     top: 0;
     min-width: 216px;
     width: max-content;
@@ -321,12 +322,13 @@ nav a {
 .portal-nav .portal-submenu-nested--tier3 {
     list-style: none;
     margin: 0;
-    padding: 8px 10px;
+    margin-left: -12px;
+    padding: 8px 10px 8px 22px;
     display: none;
     flex-direction: column;
     gap: 2px;
     position: absolute;
-    left: calc(100% + 6px);
+    left: 100%;
     top: 0;
     min-width: 200px;
     width: max-content;
@@ -336,11 +338,14 @@ nav a {
     box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
     border: 1px solid rgba(0, 0, 0, 0.07);
     z-index: 102;
+    overflow: visible;
     box-sizing: border-box;
 }
 
 .portal-nav .portal-nav__subgroup--nested:hover>.portal-submenu-nested--tier3,
-.portal-nav .portal-nav__subgroup--nested:focus-within>.portal-submenu-nested--tier3 {
+.portal-nav .portal-nav__subgroup--nested:focus-within>.portal-submenu-nested--tier3,
+.portal-nav .portal-submenu-nested--tier3:hover,
+.portal-nav .portal-submenu-nested--tier3:focus-within {
     display: flex;
 }
 
@@ -348,16 +353,46 @@ nav a {
 
     .portal-nav .portal-nav__subgroup>.portal-submenu-nested {
         position: absolute !important;
-        left: calc(100% + 6px) !important;
+        left: 100% !important;
         top: 0 !important;
         right: auto !important;
+        margin-left: -12px !important;
+        padding-left: 22px !important;
     }
 
     .portal-nav .portal-submenu-nested--tier3 {
         position: absolute !important;
-        left: calc(100% + 6px) !important;
+        left: 100% !important;
         top: 0 !important;
         right: auto !important;
+        margin-left: -12px !important;
+        padding-left: 22px !important;
+    }
+
+    /* 滑向第三層時，左側透明 padding 接軌上一列，避免空隙斷 hover */
+    .portal-nav .portal-nav__subgroup--nested:hover,
+    .portal-nav .portal-nav__subgroup--nested:focus-within {
+        z-index: 111;
+    }
+
+    .portal-nav .portal-submenu .portal-nav__subgroup::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 18px;
+        height: 100%;
+        z-index: 90;
+    }
+
+    .portal-nav .portal-nav__subgroup--nested::before {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 18px;
+        height: 100%;
+        z-index: 110;
     }
 }
 
@@ -1540,7 +1575,11 @@ footer a .mark_b {
 
     .map-page .portal-nav .portal-nav__subgroup>.portal-submenu-nested {
         left: auto !important;
-        right: calc(100% + 6px) !important;
+        right: 100% !important;
+        margin-left: 0 !important;
+        margin-right: -12px !important;
+        padding-left: 10px !important;
+        padding-right: 22px !important;
     }
 
     .map-page .portal-nav .portal-nav__subgroup-head--nested::after {
@@ -1550,7 +1589,11 @@ footer a .mark_b {
 
     .map-page .portal-nav li.portal-nav__subgroup--nested>.portal-submenu-nested--tier3 {
         left: auto !important;
-        right: calc(100% + 6px) !important;
+        right: 100% !important;
+        margin-left: 0 !important;
+        margin-right: -12px !important;
+        padding-left: 10px !important;
+        padding-right: 22px !important;
     }
 }
 

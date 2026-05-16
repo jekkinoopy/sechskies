@@ -20,7 +20,7 @@
     ];
 
     /** 主選單欄 `mouseleave` 後延遲關閉（ms），方便移入子選單或右側飛出層，避免略偏就關閉 */
-    const SUBMENU_CLOSE_DELAY_MS = 480;
+    const SUBMENU_CLOSE_DELAY_MS = 650;
 
     function pickSoonPhrase() {
         return NAV_SOON_PHRASES[Math.floor(Math.random() * NAV_SOON_PHRASES.length)];
@@ -296,18 +296,38 @@
                 item.classList.add("open");
             };
 
+            const cancelClose = () => {
+                if (closeTimer) {
+                    window.clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
+            };
+
             const scheduleClose = () => {
+                cancelClose();
                 closeTimer = window.setTimeout(() => item.classList.remove("open"), SUBMENU_CLOSE_DELAY_MS);
             };
 
+            const leaveUnlessStillInside = (event) => {
+                const next = event.relatedTarget;
+                if (next instanceof Node && item.contains(next)) return;
+                scheduleClose();
+            };
+
             item.addEventListener("mouseenter", openItem);
-            item.addEventListener("mouseleave", scheduleClose);
+            item.addEventListener("mouseleave", leaveUnlessStillInside);
+            submenu.addEventListener("mouseenter", cancelClose);
+            submenu.addEventListener("mouseleave", leaveUnlessStillInside);
+            item.querySelectorAll(".portal-submenu-nested").forEach((panel) => {
+                panel.addEventListener("mouseenter", cancelClose);
+                panel.addEventListener("mouseleave", leaveUnlessStillInside);
+            });
             trigger.addEventListener("focus", openItem);
 
             trigger.addEventListener("click", (event) => {
                 const isSoon = trigger.getAttribute("data-coming-soon") === "true";
 
-                if (window.innerWidth <= 1024) {
+                if (window.innerWidth <= 767) {
                     event.preventDefault();
                     if (!isSoon && !item.classList.contains("coming-soon")) {
                         item.classList.toggle("open");
