@@ -104,3 +104,25 @@
 | 演唱會頁額外 | `assets/css/concert.css` |
 | NJTW5 頂部 | `variety/NJTW/njtw5.css` |
 | 協作規則 | `.cursor/rules/agent-must-ask.mdc` |
+
+---
+
+## 六、有 `header-inner`：頂欄內標題／副標「長得不一樣」的 CSS 套別
+
+只談 **`header.map-archive-header` → `.header-inner` 裡的 `h1.main-title`、`.subtitle-wrap`、`.sub-title`**（顏色、陰影、字級、字距、兩側黃線）。  
+連結基準：`待確認/.cursor/` → `../../` 到站根，**Ctrl+點** 開 HTML。
+
+> **線上 `assets/css/style.css` 現況**：內頁頂欄字樣幾乎都吃 **套別 A** 同一組 `.map-archive-header .…`；若你肉眼覺得某頁不同，先用下面代表頁並排，再回報頁名。
+
+| 套別 | 頂欄內字樣差在哪（摘要） | CSS 來源 | 點一頁確認 |
+|------|--------------------------|----------|------------|
+| **A｜內頁標準** | 主標 `clamp(2rem, 4.5vw, 3.2rem)`、黃字、`text-shadow` 黃光；副標 `0.92rem`、`#d4d4d4`、字距 `4px`；黃線 `3px` / `max-width 56px` | `style.css` → `.map-archive-header .main-title` 等（約 1566 行起） | [六六歌2 電子書](../../extra/totoga2-copy-ebook.html) |
+| **B｜演唱會** | 頂欄**仍應**是套別 A（`.map-archive-header .…` 優先）；另載 `concert.css` 的裸 `.main-title`（`3.5rem`）、`.sub-title`（`1rem`）主要搞**主內容**同名 class — 請專看 **banner 裡** 那組字與 A 是否真不同 | `concert.css` 先載 + `style.css` | [演唱會列表](../../concert/concert.html) |
+| **C｜首頁 hero（對照）** | **沒有** `header-inner`；`header#origin` + `.hero`：`h1` 約 `2.5rem`，`index.css` 再疊**描邊＋暈光**；副標 `clamp(1.12rem～1.52rem)`、`#e6e6e6`、字距 `0.22em` — 通常比內頁副標**大、亮** | `style.css` `.hero h1` + `index.css` `.home-page header .hero …` | [首頁](../../index.html) |
+
+**套別 A — 同套還有（頂欄字樣應與電子書相同，不必每頁點）**  
+`member/member.html`、`variety/variety.html`、`yellow-note/map.html`、`yellow-note/minister.html`、`extra/site-guide.html`、`extra/sunghoon.html`、`extra/minister_ge.html`（頂欄是 `map-archive-header`，**不是** `.hero`；`index.css` 只改首頁 hero）、`fallen/totoga2.html`、`extra/totoga2-copy-timeline.html`、`albums/albums.html`（有載 `index.css` 但 `body` 無 `home-page`，頂欄不受影響）。
+
+**沒有 `header-inner`、不列入上表**（結構就不是同一顆球）：`index` 以外見上文 §一 grok／NJTW5／影片／歌詞。
+
+**備份勿當線上**：`待確認/assets/css/style.css` 曾有 `body.totoga2-page .map-archive-header` 壓矮 banner、舊版 `100vh` 氣球圖 — 與目前站根 `assets/css/style.css` 可能不一致。

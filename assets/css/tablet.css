@@ -4,7 +4,7 @@
 @media (max-width: 991px) {
 
     .portal-nav>ul {
-        flex: 1 1 100%;
+        flex: none;
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: stretch;
