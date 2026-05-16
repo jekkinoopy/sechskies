@@ -36,6 +36,11 @@
             toggle.setAttribute("aria-expanded", open ? "true" : "false");
             toggle.setAttribute("aria-label", open ? "關閉選單" : "開啟選單");
         }
+        if (!isPortalNavDesktop()) {
+            document.body.classList.toggle("portal-nav-menu-open", open);
+        } else {
+            document.body.classList.remove("portal-nav-menu-open");
+        }
         if (!open) {
             nav.querySelectorAll(":scope > ul > li.open, .portal-nav__subgroup.open").forEach((el) => {
                 el.classList.remove("open");
