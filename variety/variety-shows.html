@@ -118,28 +118,24 @@
             line-height: 1.6;
         }
 
-        body.variety-shows-page .variety-shows-subsection {
-            margin-top: 2rem;
+        body.variety-shows-page .variety-shows-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 1.25rem;
         }
 
-        body.variety-shows-page .variety-shows-subsection:first-of-type {
+        body.variety-shows-page .variety-shows-table-slot {
             margin-top: 0;
         }
 
-        body.variety-shows-page .variety-shows-subsection>h3 {
-            margin: 0 0 0.75rem;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: #303030;
-            text-align: left;
+        body.variety-shows-page .variety-shows-table-slot+.variety-shows-table-slot {
+            margin-top: 1.5rem;
         }
 
-        body.variety-shows-page .variety-shows-placeholder {
-            margin: 0;
-            text-align: left;
-            color: #6a6a6a;
-            font-size: 0.92rem;
-            line-height: 1.65;
+        body.variety-shows-page .variety-shows-table-slot[hidden] {
+            display: none;
         }
 
         body.variety-shows-page .variety-shows-back {
@@ -186,9 +182,17 @@
                     autocomplete="off" aria-label="搜尋成員或節目">
             </div>
 
-            <section class="variety-shows-subsection" id="captain-brothers" aria-labelledby="captain-brothers-title">
-                <h3 id="captain-brothers-title">隊長帶弟弟</h3>
-                <p class="variety-shows-placeholder">團綜節目：多人一起上的固定出演與合體綜藝。</p>
+            <div class="variety-shows-tabs" role="tablist" aria-label="綜藝分類">
+                <button type="button" class="tab-btn active" role="tab" id="variety-tab-all" data-tab="all"
+                    aria-selected="true" aria-controls="variety-shows-panels">全員發瘋</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-captain" data-tab="captain"
+                    aria-selected="false" aria-controls="variety-shows-panels">隊長帶弟弟</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-solo" data-tab="solo"
+                    aria-selected="false" aria-controls="variety-shows-panels">各自暴走</button>
+            </div>
+
+            <div id="variety-shows-panels" class="variety-shows-panels">
+                <div class="variety-shows-table-slot" id="captain-brothers" data-show-tabs="all captain">
                 <div class="variety-wiki-table-wrap">
                     <table class="variety-wiki-table" id="variety-captain-table">
                         <thead>
@@ -338,11 +342,9 @@
                         </tbody>
                     </table>
                 </div>
-            </section>
+                </div>
 
-            <section class="variety-shows-subsection" id="each-rampage" aria-labelledby="each-rampage-title">
-                <h3 id="each-rampage-title">各自暴走</h3>
-                <p class="variety-shows-placeholder">個人綜藝：成員各自上的節目，之後在此分表整理。</p>
+                <div class="variety-shows-table-slot" id="each-rampage" data-show-tabs="all solo">
                 <div class="variety-wiki-table-wrap">
                     <table class="variety-wiki-table" id="variety-solo-table">
                         <thead>
@@ -362,7 +364,8 @@
                         </tbody>
                     </table>
                 </div>
-            </section>
+                </div>
+            </div>
 
             <a class="variety-shows-back" href="variety.html#variety"><i class="fa-solid fa-arrow-left"
                     aria-hidden="true"></i> 返回瘋子與天才</a>
@@ -380,18 +383,67 @@
     <script src="../assets/js/particles.js"></script>
     <script>
         (function () {
+            const tabBtns = document.querySelectorAll(".variety-shows-tabs .tab-btn");
+            const slots = document.querySelectorAll(".variety-shows-table-slot");
             const input = document.getElementById("variety-shows-search");
-            const rows = document.querySelectorAll(
-                "#variety-captain-table tbody tr, #variety-solo-table tbody tr"
-            );
-            if (!input || !rows.length) return;
-            input.addEventListener("input", () => {
-                const q = input.value.trim().toLowerCase();
-                rows.forEach((row) => {
-                    const text = row.textContent.replace(/\s+/g, " ").trim().toLowerCase();
-                    row.hidden = Boolean(q) && !text.includes(q);
+            const hashToTab = {
+                "captain-brothers": "captain",
+                "each-rampage": "solo",
+            };
+
+            function tabFromHash() {
+                const id = (location.hash || "").replace(/^#/, "");
+                return hashToTab[id] || "all";
+            }
+
+            function filterVisibleRows() {
+                const q = (input && input.value.trim().toLowerCase()) || "";
+                slots.forEach((slot) => {
+                    if (slot.hidden) return;
+                    slot.querySelectorAll("tbody tr").forEach((row) => {
+                        const text = row.textContent.replace(/\s+/g, " ").trim().toLowerCase();
+                        row.hidden = Boolean(q) && !text.includes(q);
+                    });
+                });
+            }
+
+            function showTab(tab) {
+                tabBtns.forEach((btn) => {
+                    const on = btn.dataset.tab === tab;
+                    btn.classList.toggle("active", on);
+                    btn.setAttribute("aria-selected", on ? "true" : "false");
+                });
+                slots.forEach((slot) => {
+                    const keys = (slot.dataset.showTabs || "").split(/\s+/);
+                    slot.hidden = !keys.includes(tab);
+                });
+                filterVisibleRows();
+            }
+
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const tab = btn.dataset.tab;
+                    showTab(tab);
+                    const hash =
+                        tab === "captain"
+                            ? "#captain-brothers"
+                            : tab === "solo"
+                              ? "#each-rampage"
+                              : "";
+                    history.replaceState(
+                        null,
+                        "",
+                        hash || location.pathname + location.search
+                    );
                 });
             });
+
+            if (input) {
+                input.addEventListener("input", filterVisibleRows);
+            }
+
+            window.addEventListener("hashchange", () => showTab(tabFromHash()));
+            showTab(tabFromHash());
         })();
     </script>
 </body>
