@@ -1809,7 +1809,7 @@ a {
 
     .merged-storyline .story-node:nth-of-type(odd),
     .merged-storyline .story-node:nth-of-type(even) {
-        margin-top: 35px;
+        margin-top: 60px;
     }
 }
 
