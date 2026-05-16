@@ -1,0 +1,57 @@
+# 站主與助手協作備忘
+
+> **明天先看** → [`.cursor/明天先看.md`](./明天先看.md) → 內頁 header 整理 [`inner-page-header-audit.md`](./inner-page-header-audit.md)
+
+由對話整理；**程式真值**仍以 repo 與 `.cursor/rules/*.mdc` 為準。本檔僅記「這次講定的做事方式」，不取代規則檔。
+
+---
+
+## 1. 邊界（站主明講）
+
+- **沒有叫你做的，不要順手做**（含刪註解、順手整理、自訂「以後我都會……」流程）。
+- **看不懂先問**；你說「執行」再改檔。你說「檢查」就只對照回報，**不擅自改**。
+- **不要自己訂規則**代替站主（例如自創「只調樣式就保留註解」這類概括）。
+
+---
+
+## 2. 參考圖怎麼讀
+
+- **畫線／粉線**：提醒「這一段要看」，**不是**「整段都要包 span」或「這裡一定要 `mark_b`」。
+- **實際標記**：對照圖裡**字重、黃標、一般內文**，再對應既有 class（`mark_y`、`mark_b`），自己判斷。
+- **開發者工具截圖**（勾選／刪除線）：照**屬性開關**改 CSS；沒叫動註解就不要動註解。
+
+---
+
+## 3. 首頁 `#mission`（做法，非定稿內容）
+
+- 第一段：站主若只說調 span，**只**增刪 `<span>` 與既有 class；未要求不改 CSS。實際哪些詞要 `mark_y`／`mark_b` **會變**，以當下 `index.html` 與站主圖為準，**不寫死**在筆記。
+- 第二段金句：未要求時**只改內文**、不改 span 結構。
+- devtools 截圖：照屬性開關改；沒叫動註解就不要動註解。
+
+---
+
+## 4. 籌備中連結（`portal-nav.js`，若後續對話有改動以檔案為準）
+
+- 頂欄與頁內按鈕：**`NAV_SOON_PHRASES` 隨機氣泡**（滑過）；無障礙 aria「尚無開放」。
+- 頁內按鈕：**不加**可見「（籌備中）」後綴。
+- `totoga2-copy-timeline.html` 在 `COMING_SOON_PAGES`（時間軸不公開）。
+
+---
+
+## 5. 2026-05 慘痛教訓（務必讀 `agent-must-ask.mdc`）
+
+- 用 PowerShell 批次改全站 HTML **沒 UTF-8** → 首頁中文全毀、`</span>` 露出；已 `git checkout` 還原 HTML。
+- **擅自**把 `map-archive-header` 改成 `inner-page-header`（站主沒點頭、沒給名字）。
+- 站主說先電子書 + dev `center 78%`，助手卻自加 `clamp`／全站 `100vh`／又全站改掉。
+- 頂欄擅自「傳奇的轉折（六六歌2）」— 已改回「傳奇的轉折」；以後 nav 文案不自擴。
+
+---
+
+## 6. 相關規則檔
+
+| 檔案 | 用途 |
+|------|------|
+| `.cursor/rules/agent-must-ask.mdc` | **必問再改**、禁止批次毀 UTF-8、header／nav 勿擅自改名 |
+| `.cursor/rules/ai-change-boundaries.mdc` | 變更範圍、共用 CSS |
+| `.cursor/rules/user-scope-and-nav.mdc` | 導覽開放、錨點刪除 |
+| `.cursor/rules/portal-nav-rules.mdc` | `portal-nav.js` 技術細節 |
