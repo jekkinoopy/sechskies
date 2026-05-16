@@ -45,10 +45,48 @@
 
 ---
 
-## 6. 相關規則檔
+## 6. 改完就給 commit（站主訂）
+
+**每做完一項改動**，回覆末尾**直接附**一段（不要為此反覆跑 `git status`／`git diff` 確認；助手自己知道改了什麼）：
+
+```bash
+git add .
+git commit -m "類型 修改重點"
+```
+
+| 項目 | 約定 |
+|------|------|
+| **類型** | 三選一，以本次修改**為主**的那一種：`feat`（新功能／新行為）、`fix`（修 bug／修壞掉的行为）、`style`（純樣式／排版，無新功能） |
+| **格式** | 類型後**空一格**，再接修改重點；整段 `""` 內建議維持 `類型 + 空格 + 重點` 一行 |
+| **字數** | 修改重點**15 字以內**（中文為主，標點計入字數；過長請精簡） |
+
+**範例**
+
+```bash
+git add .
+git commit -m "feat 頂欄992px漢堡選單"
+```
+
+```bash
+git add .
+git commit -m "fix 三層子選單hover接軌"
+```
+
+```bash
+git add .
+git commit -m "style 內頁標題深灰配色"
+```
+
+- 站主若只說「檢查」、未說執行：**不附** commit（也沒有改檔）。
+- 一次對話若分多項獨立交辦，**每項做完各附一段** commit，不要合併成一句含糊帶過。
+
+---
+
+## 7. 相關規則檔
 
 | 檔案 | 用途 |
 |------|------|
+| `.cursor/collaboration-notes.md` §6 | **改完附 commit**（類型、15 字內重點） |
 | `.cursor/rules/agent-must-ask.mdc` | **必問再改**、禁止批次毀 UTF-8、header／nav 勿擅自改名 |
 | `.cursor/rules/ai-change-boundaries.mdc` | 變更範圍、共用 CSS |
 | `.cursor/rules/user-scope-and-nav.mdc` | 導覽開放、錨點刪除 |
