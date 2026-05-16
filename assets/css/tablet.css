@@ -54,7 +54,7 @@
         background-position: center center;
     }
 
-    .hero h1 {
+    header#origin .hero .site-header-inner .main-title {
         font-size: clamp(1.75rem, 2.25vw + 1rem, 2.35rem);
     }
 

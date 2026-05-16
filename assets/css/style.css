@@ -1558,15 +1558,14 @@ header.map-archive-header {
     box-sizing: border-box;
 }
 
-/* 全站頂欄標題語彙（母本：extra/totoga2-copy-ebook.html → .header-inner.site-header-inner） */
+/* 全站頂欄標題語彙：黃色氣球底圖上用深灰字（易讀）；套在 .header-inner.site-header-inner，首頁 #origin 內亦然 */
 .site-header-inner .main-title {
     font-size: clamp(2rem, 4.5vw, 3.2rem);
     font-weight: 900;
-    color: var(--yellow, var(--primary));
+    color: var(--text-main, #333);
     letter-spacing: 6px;
-    text-transform: uppercase;
     margin: 0;
-    text-shadow: 0 0 30px rgba(255, 221, 0, 0.75);
+    text-shadow: none;
 }
 
 .site-header-inner .subtitle-wrap {
@@ -1581,15 +1580,16 @@ header.map-archive-header {
     content: "";
     flex: 1;
     height: 3px;
-    background-color: #ffcc00;
+    background-color: #5c5c5c;
     max-width: 56px;
 }
 
 .site-header-inner .sub-title {
     font-size: 0.92rem;
     letter-spacing: 4px;
-    color: #d4d4d4;
+    color: var(--text-muted, #888);
     margin: 0;
+    text-transform: uppercase;
 }
 
 .map-layout {
