@@ -518,6 +518,12 @@ nav a {
         position: relative;
     }
 
+    .portal-nav>ul>li.open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .portal-nav>ul>li>a,
     .portal-nav .portal-submenu a,
     .portal-nav .portal-submenu .portal-nav__subgroup-head,
@@ -530,7 +536,7 @@ nav a {
     .portal-nav>ul>li>a {
         width: 100%;
         min-height: 44px;
-        padding: 10px 8px;
+        padding: 10px 12px;
         box-sizing: border-box;
     }
 
@@ -538,6 +544,7 @@ nav a {
     .portal-nav .portal-submenu-nested a {
         display: flex;
         align-items: center;
+        width: 100%;
     }
 
     .portal-nav>ul>li:hover>.portal-submenu,
@@ -546,18 +553,47 @@ nav a {
     }
 
     .portal-nav>ul>li.open>.portal-submenu {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
     }
 
     .portal-nav .portal-submenu {
         position: static;
-        width: 100%;
+        width: min(100%, 20rem);
         min-width: 0;
-        margin-top: 4px;
-        padding: 6px 8px 10px;
+        margin: 4px auto 0;
+        padding: 8px 12px 10px;
         box-shadow: none;
         border-radius: 10px;
         background: rgba(255, 255, 255, 0.06);
+        box-sizing: border-box;
+    }
+
+    .portal-nav .portal-submenu .portal-nav__subgroup {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .portal-nav .portal-submenu .portal-nav__subgroup+.portal-nav__subgroup {
+        margin-top: 6px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .portal-nav .portal-submenu .portal-nav__subgroup-head,
+    .portal-nav .portal-nav__subgroup-head--nested {
+        width: 100%;
+        padding: 8px 12px !important;
+        justify-content: center;
+        text-align: center;
+        box-sizing: border-box;
     }
 
     .portal-nav .portal-submenu .portal-nav__subgroup-head::after,
