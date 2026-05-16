@@ -345,6 +345,7 @@
             const subgroupHead = event.target.closest(".portal-nav__subgroup-head");
             if (subgroupHead) {
                 event.preventDefault();
+                event.stopPropagation();
                 const subgroup = subgroupHead.closest(".portal-nav__subgroup");
                 if (subgroup) subgroup.classList.toggle("open");
                 return;
@@ -352,6 +353,17 @@
 
             const link = event.target.closest("a[href]");
             if (!link || link.classList.contains("logo")) return;
+
+            const topItem = link.closest(".portal-nav > ul > li");
+            const isTopTrigger =
+                topItem &&
+                link === topItem.querySelector(":scope > a") &&
+                topItem.querySelector(":scope > .portal-submenu");
+
+            if (isTopTrigger) {
+                return;
+            }
+
             if (link.getAttribute("data-coming-soon") === "true") return;
             const href = link.getAttribute("href");
             if (href && href !== "#") setPortalNavMenuOpen(nav, false);
@@ -437,7 +449,11 @@
 
                 if (!isPortalNavDesktop()) {
                     event.preventDefault();
+                    event.stopPropagation();
                     if (!isSoon && !item.classList.contains("coming-soon")) {
+                        items.forEach((other) => {
+                            if (other !== item) other.classList.remove("open");
+                        });
                         item.classList.toggle("open");
                     }
                     return;

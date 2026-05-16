@@ -317,11 +317,6 @@ nav a {
     box-sizing: border-box;
 }
 
-.portal-nav .portal-nav__subgroup:hover>.portal-submenu-nested,
-.portal-nav .portal-nav__subgroup:focus-within>.portal-submenu-nested {
-    display: flex;
-}
-
 .portal-nav .portal-submenu-nested li {
     padding-bottom: 0;
     list-style: none;
@@ -393,14 +388,19 @@ nav a {
     box-sizing: border-box;
 }
 
-.portal-nav .portal-nav__subgroup--nested:hover>.portal-submenu-nested--tier3,
-.portal-nav .portal-nav__subgroup--nested:focus-within>.portal-submenu-nested--tier3,
-.portal-nav .portal-submenu-nested--tier3:hover,
-.portal-nav .portal-submenu-nested--tier3:focus-within {
-    display: flex;
-}
-
 @media (min-width: 992px) {
+
+    .portal-nav .portal-nav__subgroup:hover>.portal-submenu-nested,
+    .portal-nav .portal-nav__subgroup:focus-within>.portal-submenu-nested {
+        display: flex;
+    }
+
+    .portal-nav .portal-nav__subgroup--nested:hover>.portal-submenu-nested--tier3,
+    .portal-nav .portal-nav__subgroup--nested:focus-within>.portal-submenu-nested--tier3,
+    .portal-nav .portal-submenu-nested--tier3:hover,
+    .portal-nav .portal-submenu-nested--tier3:focus-within {
+        display: flex;
+    }
 
     .portal-nav .portal-nav__subgroup>.portal-submenu-nested {
         position: absolute !important;
@@ -477,9 +477,7 @@ nav a {
             clamp(14px, 2vw + 10px, 32px)
             max(1rem, env(safe-area-inset-bottom, 0px));
         z-index: 10000;
-        overflow-x: hidden;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow: hidden;
         background-color: var(--black);
         grid-template-columns: 1fr;
         grid-template-rows: auto auto minmax(0, 1fr);
@@ -491,6 +489,14 @@ nav a {
         justify-items: center;
         align-content: start;
         box-sizing: border-box;
+    }
+
+    .portal-nav.portal-nav--open .logo,
+    .portal-nav.portal-nav--open .portal-nav__menu-toggle {
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+        background-color: var(--black);
     }
 
     .portal-nav .logo {
@@ -602,10 +608,18 @@ nav a {
         flex-direction: column;
         align-items: center;
         gap: 2px;
+        order: 1;
+    }
+
+    .portal-nav>ul>li.open>a {
+        order: 0;
     }
 
     .portal-nav .portal-submenu {
         position: static;
+        top: auto;
+        left: auto;
+        right: auto;
         width: min(100%, 20rem);
         min-width: 0;
         margin: 4px auto 0;
@@ -706,6 +720,18 @@ nav a {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .portal-nav .portal-submenu,
+    .portal-nav .portal-submenu-nested {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .portal-nav .portal-submenu>li,
+    .portal-nav .portal-submenu-nested>li {
+        list-style: none;
     }
 }
 
@@ -818,11 +844,14 @@ a.btn[data-coming-soon="true"],
     display: none !important;
 }
 
-.portal-nav>ul>li:hover>.portal-submenu,
-.portal-nav>ul>li:focus-within>.portal-submenu,
-.portal-nav>ul>li.open>.portal-submenu {
-    display: grid;
-    gap: 6px;
+@media (min-width: 992px) {
+
+    .portal-nav>ul>li:hover>.portal-submenu,
+    .portal-nav>ul>li:focus-within>.portal-submenu,
+    .portal-nav>ul>li.open>.portal-submenu {
+        display: grid;
+        gap: 6px;
+    }
 }
 
 #particles {
@@ -1778,9 +1807,12 @@ footer a .mark_b {
     overflow: visible;
 }
 
-.map-page .portal-nav>ul>li:hover .portal-submenu,
-.map-page .portal-nav>ul>li:focus-within .portal-submenu {
-    display: grid;
+@media (min-width: 992px) {
+
+    .map-page .portal-nav>ul>li:hover .portal-submenu,
+    .map-page .portal-nav>ul>li:focus-within .portal-submenu {
+        display: grid;
+    }
 }
 
 .map-page .portal-nav .portal-submenu a {
@@ -2294,10 +2326,14 @@ header.map-archive-header {
         position: static;
         min-width: 0;
         margin-top: 6px;
-        display: grid;
+        display: none;
         box-shadow: none;
         background: #fffaf0;
         padding: 8px;
+    }
+
+    .map-page .portal-nav>ul>li.open .portal-submenu {
+        display: grid;
     }
 
     #itinerary-search {
