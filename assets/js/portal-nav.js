@@ -451,10 +451,22 @@
                     event.preventDefault();
                     event.stopPropagation();
                     if (!isSoon && !item.classList.contains("coming-soon")) {
+                        const menuList = nav.querySelector(":scope > ul");
+                        const prevScroll = menuList ? menuList.scrollTop : 0;
                         items.forEach((other) => {
                             if (other !== item) other.classList.remove("open");
                         });
                         item.classList.toggle("open");
+                        if (!item.classList.contains("open")) {
+                            item.querySelectorAll(".portal-nav__subgroup.open").forEach((sub) => {
+                                sub.classList.remove("open");
+                            });
+                        }
+                        if (menuList) {
+                            requestAnimationFrame(() => {
+                                menuList.scrollTop = prevScroll;
+                            });
+                        }
                     }
                     return;
                 }

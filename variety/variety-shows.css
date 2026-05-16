@@ -1,0 +1,117 @@
+/* variety/variety-shows.html — 綜藝出演總表（維基式表格，僅本頁） */
+
+body.variety-shows-page .variety-shows-main {
+    padding-bottom: 48px;
+}
+
+body.variety-shows-page .variety-shows-lead {
+    max-width: 44rem;
+    margin: 0 auto 1.25rem;
+    text-align: left;
+    color: #4a4a4a;
+    line-height: 1.75;
+}
+
+body.variety-shows-page .variety-shows-section {
+    margin-top: 2rem;
+}
+
+body.variety-shows-page .variety-shows-section > h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #303030;
+    text-align: left;
+}
+
+body.variety-shows-page .variety-wiki-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    border-top: 4px solid var(--primary);
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+body.variety-shows-page .variety-wiki-table {
+    width: 100%;
+    min-width: 640px;
+    margin: 0;
+    border-collapse: collapse;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+body.variety-shows-page .variety-wiki-table thead th {
+    background: #fff9e0;
+    color: #303030;
+    font-weight: 700;
+    padding: 10px 8px;
+    border: 1px solid #d8d8d8;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+body.variety-shows-page .variety-wiki-table tbody td {
+    padding: 8px 10px;
+    border: 1px solid #d8d8d8;
+    text-align: center;
+    vertical-align: middle;
+    color: #303030;
+}
+
+body.variety-shows-page .variety-wiki-table tbody tr:nth-child(even) td {
+    background: #fafafa;
+}
+
+body.variety-shows-page .variety-wiki-table .variety-wiki-table__program {
+    font-weight: 600;
+}
+
+body.variety-shows-page .variety-wiki-table a {
+    color: #0645ad;
+    text-decoration: none;
+}
+
+body.variety-shows-page .variety-wiki-table a:hover,
+body.variety-shows-page .variety-wiki-table a:focus-visible {
+    text-decoration: underline;
+}
+
+body.variety-shows-page .variety-wiki-table a.variety-wiki-table__link--site {
+    color: #5a4a12;
+    font-weight: 600;
+}
+
+body.variety-shows-page .variety-shows-note {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: #6a6a6a;
+    text-align: left;
+    line-height: 1.6;
+}
+
+body.variety-shows-page .variety-shows-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: #5a4a12;
+}
+
+@media (max-width: 720px) {
+    body.variety-shows-page .variety-wiki-table {
+        font-size: 0.8rem;
+    }
+
+    body.variety-shows-page .variety-wiki-table thead th,
+    body.variety-shows-page .variety-wiki-table tbody td {
+        padding: 7px 6px;
+    }
+}
