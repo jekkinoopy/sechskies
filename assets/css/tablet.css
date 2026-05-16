@@ -1,5 +1,20 @@
 /* iPad／平板 RWD — max-width ≤1180px（含 iPad 直／橫與小平板／小筆電） */
 
+/* 頂欄漢堡：與 style.css 992 斷點一致，避免本檔 1180 規則把選單列壓回橫排 */
+@media (max-width: 991px) {
+
+    .portal-nav>ul {
+        flex: 1 1 100%;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .portal-nav>ul>li>a {
+        flex-direction: row;
+    }
+}
+
 @media (max-width: 1180px) {
 
     html:has(.portal-nav) {
@@ -45,7 +60,7 @@
         justify-content: center;
     }
 
-    nav ul {
+    nav:not(.portal-nav):not(.bilivideo-episode-nav) ul {
         gap: clamp(12px, 2vw, 20px);
     }
 

@@ -22,6 +22,27 @@
     /** 主選單欄 `mouseleave` 後延遲關閉（ms），方便移入子選單或右側飛出層，避免略偏就關閉 */
     const SUBMENU_CLOSE_DELAY_MS = 650;
 
+    /** 橫向＋右側飛出子選單；≤991px 改漢堡＋直向展開（對齊常見 992 斷點） */
+    const PORTAL_NAV_DESKTOP_MIN_PX = 992;
+
+    function isPortalNavDesktop() {
+        return window.matchMedia(`(min-width: ${PORTAL_NAV_DESKTOP_MIN_PX}px)`).matches;
+    }
+
+    function setPortalNavMenuOpen(nav, open) {
+        nav.classList.toggle("portal-nav--open", open);
+        const toggle = nav.querySelector(".portal-nav__menu-toggle");
+        if (toggle) {
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            toggle.setAttribute("aria-label", open ? "關閉選單" : "開啟選單");
+        }
+        if (!open) {
+            nav.querySelectorAll(":scope > ul > li.open, .portal-nav__subgroup.open").forEach((el) => {
+                el.classList.remove("open");
+            });
+        }
+    }
+
     function pickSoonPhrase() {
         return NAV_SOON_PHRASES[Math.floor(Math.random() * NAV_SOON_PHRASES.length)];
     }
@@ -212,7 +233,14 @@
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
-<ul>
+<button type="button" class="portal-nav__menu-toggle" aria-expanded="false" aria-controls="portal-primary-menu" aria-label="開啟選單">
+    <span class="portal-nav__menu-toggle-icon" aria-hidden="true">
+        <span class="portal-nav__menu-toggle-bar"></span>
+        <span class="portal-nav__menu-toggle-bar"></span>
+        <span class="portal-nav__menu-toggle-bar"></span>
+    </span>
+</button>
+<ul id="portal-primary-menu">
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}index.html"><span class="portal-nav__label">淪陷瞬間</span></a>
         <ul class="portal-submenu">
             <li class="portal-nav__subgroup">
@@ -280,6 +308,49 @@
     navs.forEach((nav) => {
         /* 僅頂層主欄；子選單內巢狀 li 不綁 open，否則會關閉整欄下拉 */
         const items = Array.from(nav.querySelectorAll(":scope > ul > li"));
+        const menuToggle = nav.querySelector(".portal-nav__menu-toggle");
+        const desktopMq = window.matchMedia(`(min-width: ${PORTAL_NAV_DESKTOP_MIN_PX}px)`);
+
+        if (menuToggle) {
+            menuToggle.addEventListener("click", () => {
+                setPortalNavMenuOpen(nav, !nav.classList.contains("portal-nav--open"));
+            });
+        }
+
+        const closeIfOutside = (event) => {
+            if (!nav.contains(event.target)) {
+                setPortalNavMenuOpen(nav, false);
+                items.forEach((item) => item.classList.remove("open"));
+            }
+        };
+
+        document.addEventListener("click", closeIfOutside);
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") setPortalNavMenuOpen(nav, false);
+        });
+
+        desktopMq.addEventListener("change", (event) => {
+            if (event.matches) setPortalNavMenuOpen(nav, false);
+        });
+
+        nav.addEventListener("click", (event) => {
+            if (isPortalNavDesktop()) return;
+
+            const subgroupHead = event.target.closest(".portal-nav__subgroup-head");
+            if (subgroupHead) {
+                event.preventDefault();
+                const subgroup = subgroupHead.closest(".portal-nav__subgroup");
+                if (subgroup) subgroup.classList.toggle("open");
+                return;
+            }
+
+            const link = event.target.closest("a[href]");
+            if (!link || link.classList.contains("logo")) return;
+            if (link.getAttribute("data-coming-soon") === "true") return;
+            const href = link.getAttribute("href");
+            if (href && href !== "#") setPortalNavMenuOpen(nav, false);
+        });
 
         items.forEach((item) => {
             const trigger = item.querySelector(":scope > a");
@@ -287,8 +358,11 @@
             if (!trigger || !submenu) return;
 
             let closeTimer = null;
+            const nestedPanels = Array.from(item.querySelectorAll(".portal-submenu-nested"));
+            const hoverBound = { on: false };
 
             const openItem = () => {
+                if (!isPortalNavDesktop()) return;
                 if (closeTimer) window.clearTimeout(closeTimer);
                 items.forEach((other) => {
                     if (other !== item) other.classList.remove("open");
@@ -314,20 +388,49 @@
                 scheduleClose();
             };
 
-            item.addEventListener("mouseenter", openItem);
-            item.addEventListener("mouseleave", leaveUnlessStillInside);
-            submenu.addEventListener("mouseenter", cancelClose);
-            submenu.addEventListener("mouseleave", leaveUnlessStillInside);
-            item.querySelectorAll(".portal-submenu-nested").forEach((panel) => {
-                panel.addEventListener("mouseenter", cancelClose);
-                panel.addEventListener("mouseleave", leaveUnlessStillInside);
+            const bindDesktopHover = () => {
+                if (hoverBound.on) return;
+                item.addEventListener("mouseenter", openItem);
+                item.addEventListener("mouseleave", leaveUnlessStillInside);
+                submenu.addEventListener("mouseenter", cancelClose);
+                submenu.addEventListener("mouseleave", leaveUnlessStillInside);
+                nestedPanels.forEach((panel) => {
+                    panel.addEventListener("mouseenter", cancelClose);
+                    panel.addEventListener("mouseleave", leaveUnlessStillInside);
+                });
+                hoverBound.on = true;
+            };
+
+            const unbindDesktopHover = () => {
+                if (!hoverBound.on) return;
+                item.removeEventListener("mouseenter", openItem);
+                item.removeEventListener("mouseleave", leaveUnlessStillInside);
+                submenu.removeEventListener("mouseenter", cancelClose);
+                submenu.removeEventListener("mouseleave", leaveUnlessStillInside);
+                nestedPanels.forEach((panel) => {
+                    panel.removeEventListener("mouseenter", cancelClose);
+                    panel.removeEventListener("mouseleave", leaveUnlessStillInside);
+                });
+                hoverBound.on = false;
+                item.classList.remove("open");
+            };
+
+            const syncDesktopHover = () => {
+                if (isPortalNavDesktop()) bindDesktopHover();
+                else unbindDesktopHover();
+            };
+
+            syncDesktopHover();
+            desktopMq.addEventListener("change", syncDesktopHover);
+
+            trigger.addEventListener("focus", () => {
+                if (isPortalNavDesktop()) openItem();
             });
-            trigger.addEventListener("focus", openItem);
 
             trigger.addEventListener("click", (event) => {
                 const isSoon = trigger.getAttribute("data-coming-soon") === "true";
 
-                if (window.innerWidth <= 767) {
+                if (!isPortalNavDesktop()) {
                     event.preventDefault();
                     if (!isSoon && !item.classList.contains("coming-soon")) {
                         item.classList.toggle("open");
@@ -339,12 +442,6 @@
                     event.preventDefault();
                 }
             });
-        });
-
-        document.addEventListener("click", (event) => {
-            if (!nav.contains(event.target)) {
-                items.forEach((item) => item.classList.remove("open"));
-            }
         });
 
         const navLinks = Array.from(nav.querySelectorAll("a[href]")).filter((link) => !link.classList.contains("logo"));
