@@ -6,54 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶男孩｜全員發瘋</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/concert.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
     <style>
-        /* 本頁專用：綜藝出演總表（維基式表格） */
-        body.variety-shows-page .variety-shows-main {
-            padding-bottom: 48px;
+        /* 本頁：對齊 concert.html 深色底＋白卡片；表格僅此頁 */
+        body.variety-shows-page .variety-shows-container {
+            padding: 50px 0 40px;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
         }
 
-        body.variety-shows-page .search-section {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin: 0 0 1.25rem;
+        body.variety-shows-page .variety-shows-archive-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 56px);
+            margin-bottom: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.02);
             position: relative;
             z-index: 1;
+            overflow: hidden;
         }
 
-        body.variety-shows-page .search-input {
-            width: min(100%, 400px);
-            padding: 12px 25px;
-            border: 2px solid #ddd;
-            border-radius: 30px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-            background-color: #fff;
+        body.variety-shows-page .variety-shows-heading {
+            display: block;
+            margin: 0 0 1.25rem;
+            font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+            font-weight: 900;
+            text-align: center;
             color: #333;
-            box-sizing: border-box;
+            letter-spacing: 0.04em;
         }
 
-        body.variety-shows-page .search-input:hover {
-            border-color: #bbb;
+        body.variety-shows-page .variety-shows-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 1.5rem;
         }
 
-        body.variety-shows-page .search-input:focus {
-            border-color: #ffcc00;
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.25);
-            transform: translateY(-2px);
+        body.variety-shows-page .variety-shows-table-slot[hidden] {
+            display: none;
+        }
+
+        body.variety-shows-page .variety-shows-table-slot+.variety-shows-table-slot {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
         }
 
         body.variety-shows-page .variety-table-wrap {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            border-radius: 4px;
-            border-top: 4px solid var(--primary);
-            background: #fff;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            margin: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
         }
 
         body.variety-shows-page .variety-table {
@@ -61,53 +72,41 @@
             min-width: 640px;
             margin: 0;
             border-collapse: collapse;
-            border-radius: 0;
-            box-shadow: none;
-            background: #fff;
-            font-size: 0.875rem;
-            line-height: 1.45;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background: transparent;
         }
 
         body.variety-shows-page .variety-table thead th {
-            background: #fff9e0;
-            color: #303030;
-            font-weight: 700;
-            padding: 10px 8px;
-            border: 1px solid #d8d8d8;
+            padding: 12px 10px;
+            border: none;
+            border-bottom: 2px solid #e6e6e6;
+            background: #fafafa;
+            color: #333;
+            font-weight: 800;
             text-align: center;
-            vertical-align: middle;
             white-space: nowrap;
         }
 
         body.variety-shows-page .variety-table tbody td {
-            padding: 8px 10px;
-            border: 1px solid #d8d8d8;
+            padding: 11px 10px;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
             text-align: center;
             vertical-align: middle;
-            color: #303030;
+            color: #444;
         }
 
-        body.variety-shows-page .variety-table__show-row:nth-child(even) td {
-            background: #fafafa;
+        body.variety-shows-page .variety-table--inner tbody tr:last-child td,
+        body.variety-shows-page .variety-table__year-list>.variety-table__show-row:last-child td {
+            border-bottom: 1px solid #f0f0f0;
         }
 
         body.variety-shows-page .variety-table__year-row>td {
             padding: 0;
-            text-align: left;
-            vertical-align: middle;
-            background: #fff9e0;
+            background: #fafafa;
+            border-bottom: 2px solid #e8e8e8;
             transition: background-color 0.15s ease;
-        }
-
-        body.variety-shows-page .variety-table__year-row .variety-table__year-cell {
-            padding: 0;
-            background: #fff9e0;
-        }
-
-        body.variety-shows-page .variety-table__year-pad {
-            padding: 0;
-            background: #fff9e0;
-            border-left: none;
         }
 
         body.variety-shows-page .variety-table__year-toggle {
@@ -116,28 +115,27 @@
             justify-content: space-between;
             gap: 12px;
             width: 100%;
-            min-height: 44px;
+            min-height: 48px;
             margin: 0;
-            padding: 12px 14px;
+            padding: 12px 16px;
             border: none;
             border-radius: 0;
             background: transparent;
             cursor: pointer;
             font: inherit;
-            color: inherit;
+            color: #333;
             text-align: left;
             box-sizing: border-box;
         }
 
         body.variety-shows-page .variety-table__year-row:not(.is-open)>td:has(.variety-table__year-toggle:hover),
         body.variety-shows-page .variety-table__year-row:not(.is-open)>td:has(.variety-table__year-toggle:focus-visible) {
-            background: #fff6eb;
+            background: #f5f5f5;
         }
 
         body.variety-shows-page .variety-table__year-row.is-open .variety-table__year-toggle:hover,
         body.variety-shows-page .variety-table__year-row.is-open .variety-table__year-toggle:focus-visible {
-            background: #fff6eb;
-            outline: none;
+            background: #f5f5f5;
         }
 
         body.variety-shows-page .variety-table__year-toggle:focus-visible {
@@ -145,20 +143,21 @@
         }
 
         body.variety-shows-page .variety-table__year-label {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: #5a4a12;
+            font-weight: 800;
+            font-size: clamp(1rem, 2vw, 1.12rem);
+            color: #333;
         }
 
         body.variety-shows-page .variety-table__year-meta {
             margin-left: auto;
-            font-size: 0.82rem;
-            color: #6a6a6a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #777;
         }
 
         body.variety-shows-page .variety-table__year-chevron {
-            color: #b48c00;
-            font-size: 0.9rem;
+            color: #999;
+            font-size: 0.85rem;
             transition: transform 0.2s ease;
         }
 
@@ -166,12 +165,31 @@
             transform: rotate(180deg);
         }
 
+        body.variety-shows-page .variety-table__year-panel {
+            padding: 0;
+            background: #fff;
+        }
+
+        body.variety-shows-page .variety-table__year-panel[hidden] {
+            display: none;
+        }
+
+        body.variety-shows-page .variety-table--inner {
+            margin: 0;
+        }
+
         body.variety-shows-page .variety-table__show-row[hidden] {
             display: none;
         }
 
+        body.variety-shows-page .variety-table tbody tr.variety-table__show-row:nth-child(even) td,
+        body.variety-shows-page .variety-table--inner tbody tr:nth-child(even) td {
+            background: #fcfcfc;
+        }
+
         body.variety-shows-page .variety-table .variety-table__program {
-            font-weight: 600;
+            font-weight: 700;
+            color: #333;
         }
 
         body.variety-shows-page .variety-table a {
@@ -186,11 +204,11 @@
 
         body.variety-shows-page .variety-table a.variety-table__link--site {
             color: #5a4a12;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         body.variety-shows-page .variety-table .variety-table__date {
-            color: #303030;
+            color: #444;
         }
 
         body.variety-shows-page .variety-table__air-date {
@@ -199,62 +217,43 @@
 
         body.variety-shows-page .variety-table .variety-table__range-arrow {
             margin: 0 0.18em;
-            color: #303030;
+            color: #666;
             font-size: 0.82em;
             vertical-align: 0.08em;
-        }
-
-        body.variety-shows-page .variety-shows-note {
-            margin-top: 0.75rem;
-            font-size: 0.82rem;
-            color: #6a6a6a;
-            text-align: left;
-            line-height: 1.6;
-        }
-
-        body.variety-shows-page .variety-shows-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 0 0 1.25rem;
-        }
-
-        body.variety-shows-page .variety-shows-table-slot {
-            margin-top: 0;
-        }
-
-        body.variety-shows-page .variety-shows-table-slot+.variety-shows-table-slot {
-            margin-top: 1.5rem;
-        }
-
-        body.variety-shows-page .variety-shows-table-slot[hidden] {
-            display: none;
         }
 
         body.variety-shows-page .variety-shows-back {
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            margin-top: 1.5rem;
-            font-weight: 600;
+            margin-top: 1.75rem;
+            font-weight: 700;
             color: #5a4a12;
         }
 
+        body.variety-shows-page footer {
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 720px) {
+            body.variety-shows-page .variety-shows-archive-card {
+                padding: 20px 14px;
+            }
+
             body.variety-shows-page .variety-table {
                 font-size: 0.8rem;
             }
 
             body.variety-shows-page .variety-table thead th,
             body.variety-shows-page .variety-table tbody td {
-                padding: 7px 6px;
+                padding: 9px 6px;
             }
         }
     </style>
 </head>
 
-<body class="chronicle-page variety-shows-page">
+<body class="concert-page variety-shows-page">
     <header class="map-archive-header">
         <div class="header-inner site-header-inner">
             <h1 class="main-title">全員發瘋</h1>
@@ -268,13 +267,15 @@
 
     <canvas id="particles"></canvas>
 
-    <main class="content-container variety-page-main variety-shows-main chronicle-reader">
-        <section id="variety-shows" class="variety-block" aria-labelledby="variety-shows-title">
-            <h2 class="section-title" id="variety-shows-title">全員發瘋</h2>
-            <div class="search-section">
-                <input type="search" id="variety-shows-search" class="search-input" placeholder="搜尋成員或節目…"
-                    autocomplete="off" aria-label="搜尋成員或節目">
-            </div>
+    <div class="search-section">
+        <input type="search" id="variety-shows-search" class="search-input" placeholder="搜尋成員或節目…"
+            autocomplete="off" aria-label="搜尋成員或節目">
+    </div>
+
+    <main class="concert-container variety-shows-container">
+        <section id="variety-shows" class="variety-shows-archive" aria-labelledby="variety-shows-title">
+            <div class="variety-shows-archive-card">
+            <h2 class="variety-shows-heading" id="variety-shows-title">全員發瘋</h2>
 
             <div class="variety-shows-tabs" role="tablist" aria-label="綜藝分類">
                 <button type="button" class="tab-btn active" role="tab" id="variety-tab-all" data-tab="all"
@@ -696,6 +697,7 @@
 
             <a class="variety-shows-back" href="variety.html#variety"><i class="fa-solid fa-arrow-left"
                     aria-hidden="true"></i> 返回瘋子與天才</a>
+            </div>
         </section>
     </main>
 
