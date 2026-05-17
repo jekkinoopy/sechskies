@@ -102,7 +102,8 @@
             width: 18%;
         }
 
-        body.variety-shows-page .variety-table thead th {
+        body.variety-shows-page .variety-table thead th,
+        body.variety-shows-page .variety-table__year-head th {
             padding: 12px 10px;
             border: none;
             border-bottom: 2px solid #e6e6e6;
@@ -111,6 +112,10 @@
             font-weight: 800;
             text-align: center;
             white-space: nowrap;
+        }
+
+        body.variety-shows-page .variety-table__year-head[hidden] {
+            display: none;
         }
 
         body.variety-shows-page .variety-table tbody td {
@@ -364,22 +369,7 @@
         <section id="variety-shows" class="variety-shows-archive" aria-label="全員發瘋">
             <div class="variety-shows-archive-card">
                 <table class="variety-table" id="captain-brothers" data-show-tabs="all captain">
-                            <colgroup>
-                                <col class="variety-table__col-air">
-                                <col class="variety-table__col-channel">
-                                <col class="variety-table__col-program">
-                                <col class="variety-table__col-member">
-                                <col class="variety-table__col-eps">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col">播出日期</th>
-                                    <th scope="col">頻道</th>
-                                    <th scope="col">節目名稱</th>
-                                    <th scope="col">出演成員</th>
-                                    <th scope="col">集數</th>
-                                </tr>
-                            </thead>
+
 <tbody class="variety-table__year-list">
 <tr class="variety-table__year-row" data-year="2016">
                                     <td colspan="5" class="variety-table__year-bar">
@@ -393,6 +383,13 @@
                                         </div>
                                         </div>
                                     </td>
+                                </tr>
+<tr class="variety-table__year-head" data-year="2016" hidden>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
                                 </tr>
 <tr class="variety-table__year-panel-row" data-year="2016" hidden>
                                     <td colspan="5" class="variety-table__year-panel-cell">
@@ -508,6 +505,13 @@
                                         </div>
                                     </td>
                                 </tr>
+<tr class="variety-table__year-head" data-year="2017" hidden>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
+                                </tr>
 <tr class="variety-table__year-panel-row" data-year="2017" hidden>
                                     <td colspan="5" class="variety-table__year-panel-cell">
                                         <div class="variety-table__year-panel" data-year="2017">
@@ -594,6 +598,13 @@
                                         </div>
                                     </td>
                                 </tr>
+<tr class="variety-table__year-head" data-year="2018" hidden>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
+                                </tr>
 <tr class="variety-table__year-panel-row" data-year="2018" hidden>
                                     <td colspan="5" class="variety-table__year-panel-cell">
                                         <div class="variety-table__year-panel" data-year="2018">
@@ -667,6 +678,13 @@
                                         </div>
                                         </div>
                                     </td>
+                                </tr>
+<tr class="variety-table__year-head" data-year="2019" hidden>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
                                 </tr>
 <tr class="variety-table__year-panel-row" data-year="2019" hidden>
                                     <td colspan="5" class="variety-table__year-panel-cell">
@@ -767,6 +785,13 @@
                                         </div>
                                         </div>
                                     </td>
+                                </tr>
+<tr class="variety-table__year-head" data-year="2020" hidden>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
                                 </tr>
 <tr class="variety-table__year-panel-row" data-year="2020" hidden>
                                     <td colspan="5" class="variety-table__year-panel-cell">
@@ -885,14 +910,26 @@
                 );
             }
 
+            function getYearHeadRow(slot, year) {
+                return slot.querySelector(
+                    `.variety-table__year-head[data-year="${year}"]`
+                );
+            }
+
             function getYearPanel(slot, year) {
                 return getYearPanelRow(slot, year)?.querySelector(
                     `.variety-table__year-panel[data-year="${year}"]`
                 );
             }
 
-            function openYearPanel(panelRow, panel) {
+            function setYearHeadVisible(slot, year, visible) {
+                const head = getYearHeadRow(slot, year);
+                if (head) head.hidden = !visible;
+            }
+
+            function openYearPanel(slot, panelRow, panel, year) {
                 if (!panelRow || !panel) return;
+                setYearHeadVisible(slot, year, true);
                 panelRow.hidden = false;
                 if (panel.classList.contains("is-open")) {
                     panel.style.maxHeight = `${panel.scrollHeight}px`;
@@ -905,7 +942,7 @@
                 });
             }
 
-            function closeYearPanel(panelRow, panel) {
+            function closeYearPanel(slot, panelRow, panel, year) {
                 if (!panelRow || !panel || !panel.classList.contains("is-open")) {
                     return;
                 }
@@ -918,6 +955,7 @@
                     panel.classList.remove("is-open");
                     panel.style.maxHeight = "";
                     panelRow.hidden = true;
+                    setYearHeadVisible(slot, year, false);
                     panel.removeEventListener("transitionend", onEnd);
                 };
                 panel.addEventListener("transitionend", onEnd);
@@ -944,19 +982,21 @@
 
                     if (yearOpen && panelRow && panel) {
                         if (q && !anyMatch) {
-                            closeYearPanel(panelRow, panel);
+                            closeYearPanel(slot, panelRow, panel, year);
                             yearRow.classList.remove("is-open");
                             if (btn) btn.setAttribute("aria-expanded", "false");
                         } else {
-                            openYearPanel(panelRow, panel);
+                            openYearPanel(slot, panelRow, panel, year);
                             panel.style.maxHeight = `${panel.scrollHeight}px`;
                         }
+                    } else {
+                        setYearHeadVisible(slot, year, false);
                     }
 
                     if (q && anyMatch && !yearOpen && panelRow && panel) {
                         yearRow.classList.add("is-open");
                         if (btn) btn.setAttribute("aria-expanded", "true");
-                        openYearPanel(panelRow, panel);
+                        openYearPanel(slot, panelRow, panel, year);
                     }
 
                     yearRow.hidden = Boolean(q) && !anyMatch;
@@ -973,9 +1013,9 @@
                 btn.setAttribute("aria-expanded", open ? "true" : "false");
                 yearRow.classList.toggle("is-open", open);
                 if (open) {
-                    openYearPanel(panelRow, panel);
+                    openYearPanel(slot, panelRow, panel, year);
                 } else {
-                    closeYearPanel(panelRow, panel);
+                    closeYearPanel(slot, panelRow, panel, year);
                 }
                 if (slot) syncYearRows(slot);
             }
