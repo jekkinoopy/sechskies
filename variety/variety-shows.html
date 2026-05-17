@@ -118,6 +118,19 @@
             display: none;
         }
 
+        body.variety-shows-page .variety-table__year-head {
+            transition: opacity 0.35s ease;
+        }
+
+        body.variety-shows-page .variety-table__year-head.is-closing {
+            opacity: 0;
+        }
+
+        body.variety-shows-page .variety-table__year-panel-row.is-closing .variety-table__year-panel-cell {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
         body.variety-shows-page .variety-table tbody td {
             padding: 11px 10px;
             border: none;
@@ -171,7 +184,8 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            body.variety-shows-page .variety-table__year-panel {
+            body.variety-shows-page .variety-table__year-panel,
+            body.variety-shows-page .variety-table__year-head {
                 transition: none;
             }
         }
@@ -924,13 +938,21 @@
 
             function setYearHeadVisible(slot, year, visible) {
                 const head = getYearHeadRow(slot, year);
-                if (head) head.hidden = !visible;
+                if (!head) return;
+                head.classList.remove("is-closing");
+                head.hidden = !visible;
             }
 
             function openYearPanel(slot, panelRow, panel, year) {
                 if (!panelRow || !panel) return;
-                setYearHeadVisible(slot, year, true);
+                const head = getYearHeadRow(slot, year);
+                if (head) {
+                    head.classList.remove("is-closing");
+                    head.hidden = false;
+                    head.style.opacity = "1";
+                }
                 panelRow.hidden = false;
+                panelRow.classList.remove("is-closing");
                 if (panel.classList.contains("is-open")) {
                     panel.style.maxHeight = `${panel.scrollHeight}px`;
                     return;
@@ -946,19 +968,33 @@
                 if (!panelRow || !panel || !panel.classList.contains("is-open")) {
                     return;
                 }
+                const head = getYearHeadRow(slot, year);
+                panelRow.classList.add("is-closing");
+                if (head) head.classList.add("is-closing");
+                panel.classList.remove("is-open");
                 panel.style.maxHeight = `${panel.scrollHeight}px`;
                 requestAnimationFrame(() => {
                     panel.style.maxHeight = "0";
                 });
                 const onEnd = (e) => {
                     if (e.propertyName !== "max-height") return;
-                    panel.classList.remove("is-open");
                     panel.style.maxHeight = "";
+                    panelRow.classList.remove("is-closing");
                     panelRow.hidden = true;
-                    setYearHeadVisible(slot, year, false);
+                    if (head) {
+                        head.classList.remove("is-closing");
+                        head.hidden = true;
+                    }
                     panel.removeEventListener("transitionend", onEnd);
                 };
                 panel.addEventListener("transitionend", onEnd);
+            }
+
+            function isYearAnimating(panel, panelRow) {
+                return (
+                    panel?.classList.contains("is-open") ||
+                    panelRow?.classList.contains("is-closing")
+                );
             }
 
             function syncYearRows(slot) {
@@ -989,7 +1025,11 @@
                             openYearPanel(slot, panelRow, panel, year);
                             panel.style.maxHeight = `${panel.scrollHeight}px`;
                         }
-                    } else {
+                    } else if (
+                        !yearOpen &&
+                        !isYearAnimating(panel, panelRow) &&
+                        panelRow?.hidden
+                    ) {
                         setYearHeadVisible(slot, year, false);
                     }
 
@@ -1017,7 +1057,8 @@
                 } else {
                     closeYearPanel(slot, panelRow, panel, year);
                 }
-                if (slot) syncYearRows(slot);
+                const q = (input && input.value.trim()) || "";
+                if (slot && q) syncYearRows(slot);
             }
 
             function filterVisibleRows() {
