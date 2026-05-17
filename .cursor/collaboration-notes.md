@@ -32,7 +32,7 @@
 
 - 頂欄與頁內按鈕：**`NAV_SOON_PHRASES` 隨機氣泡**（滑過）；無障礙 aria「尚無開放」。
 - 頁內按鈕：**不加**可見「（籌備中）」後綴。
-- `totoga2-copy-timeline.html` 在 `COMING_SOON_PAGES`（時間軸不公開）。
+- `totoga2/timeline.html` 在 `COMING_SOON_PAGES`（時間軸不公開）；圖文好讀版為 `totoga2/readable.html`。
 
 ---
 

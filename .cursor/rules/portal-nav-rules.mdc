@@ -20,7 +20,7 @@ alwaysApply: true
 
 1. **未經站主逐句同意**：不得從 `COMING_SOON_PAGES` **刪**檔名、不得擴充 `INDEX_NAV_OPEN_HASHES`、不得在 `buildPortalNavInnerHTML` **新增**可點項、不得把籌備中改成真 `href`、不得刪站主已同意列入頂欄的項。
 2. **「檔案在 repo」≠「可開放導覽」**；不得自行推論。
-3. **`fallen/totoga2.html`（整合頁）**、**`variety/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
+3. **`totoga2/readable.html`（圖文好讀版，檔名 `readable.html`）**、**`variety/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
 4. **「刪除／拿掉／不要了」**：若未寫明是**單一檔案**、**頂欄某一列**、**整段子選單**還是**整個資料夾**，**一律先問站主**，禁止自行擴大刪除範圍。
 5. **不確定**是否開放、連哪、是否例外：**先問站主再改**，不要猜。
 6. 站主說要刪的是 **`某頁#錨點`**（頁內區塊）時：先改該頁 DOM，再修死錨連結；**不要**只動導覽、也不要把「刪區塊」擴成刪頂欄整段。細節見 **`user-scope-and-nav.mdc`**（§ 頁面錨點刪除）。
@@ -65,7 +65,7 @@ alwaysApply: true
 | 新頁要**正式開放** | 寫進 `buildPortalNavInnerHTML`（`assets/js/portal-nav.js`），並**確認檔名不在** `COMING_SOON_PAGES`。若曾暫時關閉，記得從 Set **刪除**該檔名。 |
 | 新頁先**占位、不開放** | 可選擇：仍寫進導覽，但把檔名**加進** `COMING_SOON_PAGES`；或暫時不要放進導覽。 |
 
-（目前 Set 內含哪些檔，以 `assets/js/portal-nav.js` 為準；站主明講開放後才從 Set 移除該檔名，例如 `totoga2.html`。）
+（目前 Set 內含哪些檔，以 `assets/js/portal-nav.js` 為準；站主明講開放後才從 Set 移除該檔名，例如 `readable.html`。）
 
 ---
 

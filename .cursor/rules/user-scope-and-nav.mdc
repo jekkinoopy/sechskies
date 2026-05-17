@@ -9,7 +9,7 @@ alwaysApply: true
 
 1. **`extra/site-guide.html`**：站主自用；該頁頂欄 `data-portal-nav-all-open` → **全部連結可點**；主文 `<main class="site-guide-main">` 的 `<a>` **不准**用腳本改成籌備中。
 2. **其他每一頁**：未公開＝**籌備中**（頂欄＋頁內連結皆鎖、須寫出「籌備中」）；依 **`COMING_SOON_PAGES` / `INDEX_NAV_OPEN_HASHES`**；不准在其他頁加 `all-open`。
-3. **`totoga2.html`**、**`variety.html`**：站主沒說「對外開放」→ **留在 `COMING_SOON_PAGES`**；不得自以為可以幫忙開放。
+3. **`totoga2/readable.html`**（檔名 `readable.html`）、**`variety.html`**：站主沒說「對外開放」→ **留在 `COMING_SOON_PAGES`**；不得自以為可以幫忙開放。
 4. **沒寫在指令裡的開放／連結／從 Set 移除／刪檔或刪導覽列**：**一律先問**，禁止推論；「刪除」未指明範圍（單檔 vs 頂欄整段 vs 資料夾）＝必須先問。
 5. 技術細節與檢查清單：**`portal-nav-rules.mdc`**（與本檔一起讀）。
 6. **頂欄 `portal-nav`（header）**：文案與巢狀結構對齊 `extra/site-guide.html` **主選單樹**（有連結者）；`site-guide-nav-nolink` 與 `COMING_SOON_PAGES` 維持籌備中、**不准擅自開放或改未列開放之頁內容**。勿把此句誤做成 `extra/` 分頁列或全站 `nav` 黑底規則。
@@ -26,11 +26,11 @@ alwaysApply: true
 - **不得**因為「內容已搬到某頁」就自行推論「導覽也應該開放」——導覽是否開放**只聽使用者口述**。
 - 若使用者只要求搬內容、刪檔、改站內某段文案，**預設不改** `assets/js/portal-nav.js` 的開放狀態與連結目標。
 
-## 「傳奇的轉折」與 `fallen/totoga2.html`（特別記牢）
+## 「傳奇的轉折」與 `totoga2/readable.html`（特別記牢）
 
-- 頂欄模板裡「傳奇的轉折」連到 **`fallen/totoga2.html`**（見 `buildPortalNavInnerHTML`）。
-- 使用者**沒有明講對外開放整合頁**時：`totoga2.html` **必須**在 **`COMING_SOON_PAGES`** 裡 → 訪客頂欄該項為籌備中、**不可點進**。
-- **禁止**在未獲同意下：從 Set **移除** `totoga2.html`、或改成連到其他頁並當成已開放。
+- 頂欄「圖文好讀版」連到 **`totoga2/readable.html`**（見 `buildPortalNavInnerHTML`）。
+- 使用者**沒有明講對外開放整合頁**時：`readable.html` **必須**在 **`COMING_SOON_PAGES`** 裡 → 訪客頂欄該項為籌備中、**不可點進**。
+- **禁止**在未獲同意下：從 Set **移除** `readable.html`、或改成連到其他頁並當成已開放。
 - 首頁錨點另依 **`INDEX_NAV_OPEN_HASHES`**；與「傳奇的轉折／totoga2」分開判斷。
 
 ## 實作前自檢

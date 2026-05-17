@@ -438,3 +438,13 @@ header#origin .site-header-inner .subtitle-wrap::after {
         font-size: 1rem;
     }
 }
+
+/* 首頁時間軸末：2019／NOW 改為未完待續占位 */
+.home-page #timeline .story-node--tbc {
+    text-align: center;
+}
+
+.home-page #timeline .story-node--tbc h3 {
+    margin: 0;
+    white-space: nowrap;
+}

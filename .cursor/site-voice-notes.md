@@ -28,7 +28,7 @@
 
 ## 六六歌2 電子書 intro
 
-- 站主採用版：第一次感性改寫（「四月那場重逢…」開頭），見 `extra/totoga2-copy-ebook.html`。  
+- 站主採用版：第一次感性改寫（「四月那場重逢…」開頭），見 `totoga2/ebook.html`。  
 - **勿**再改成 FlipHTML5／PDF 技術說明，也**勿**把 `#start`＋整條 timeline 名詞塞滿一段（東拼西湊版）。
 
 ## 其他
