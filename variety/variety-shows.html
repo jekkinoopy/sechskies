@@ -122,8 +122,53 @@
             color: #444;
         }
 
-        body.variety-shows-page .variety-table__year-list>.variety-table__show-row:last-child td {
+        body.variety-shows-page .variety-table__year-panel>.variety-table__show-row:last-child td {
             border-bottom: 1px solid #f0f0f0;
+        }
+
+        body.variety-shows-page .variety-table__year-panel {
+            display: block;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+        }
+
+        body.variety-shows-page .variety-table__year-panel.is-open {
+            opacity: 1;
+        }
+
+        body.variety-shows-page .variety-table__year-panel tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        body.variety-shows-page .variety-table__year-panel td:nth-child(1) {
+            width: 22%;
+        }
+
+        body.variety-shows-page .variety-table__year-panel td:nth-child(2) {
+            width: 10%;
+        }
+
+        body.variety-shows-page .variety-table__year-panel td:nth-child(3) {
+            width: 28%;
+        }
+
+        body.variety-shows-page .variety-table__year-panel td:nth-child(4) {
+            width: 22%;
+        }
+
+        body.variety-shows-page .variety-table__year-panel td:nth-child(5) {
+            width: 18%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body.variety-shows-page .variety-table__year-panel {
+                transition: none;
+            }
         }
 
         body.variety-shows-page .variety-table__year-row>td {
@@ -223,7 +268,7 @@
             display: none;
         }
 
-        body.variety-shows-page .variety-table__show-row:nth-child(even of .variety-table__show-row) td {
+        body.variety-shows-page .variety-table__year-panel .variety-table__show-row:nth-child(even) td {
             background: #fcfcfc;
         }
 
@@ -341,7 +386,7 @@
                                 </tr>
                             </thead>
 <tbody class="variety-table__year-list">
-                                                                                                <tr class="variety-table__year-row" data-year="2016">
+<tr class="variety-table__year-row" data-year="2016">
                                     <td colspan="5" class="variety-table__year-bar">
                                         <div class="variety-table__year-bar-inner">
                                         <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2016-btn">
@@ -354,7 +399,10 @@
                                         </div>
                                     </td>
                                 </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+</tbody>
+<tbody class="variety-table__year-panel" data-year="2016" hidden>
+
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-04-22"
                                                             data-air-end="2016-06-17"><span
                                                                 class="variety-table__date">04/22</span>&nbsp;<i
@@ -368,7 +416,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;09</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-04-27"
                                                             data-air-end="2016-06-22"><span
                                                                 class="variety-table__date">04/27</span>&nbsp;<i
@@ -382,7 +430,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;09</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-05-04"
                                                             data-air-end="2016-07-20"><span
                                                                 class="variety-table__date">05/04</span>&nbsp;<i
@@ -396,7 +444,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;12</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-06-05"
                                                             data-air-end="2016-08-21"><span
                                                                 class="variety-table__date">06/05</span>&nbsp;<i
@@ -410,7 +458,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;12</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-09-05"
                                                             data-air-end="2016-11-21"><span
                                                                 class="variety-table__date">09/05</span>&nbsp;<i
@@ -424,7 +472,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;12</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2016" hidden>
+<tr class="variety-table__show-row" data-year="2016">
                                                         <td class="variety-table__air-date" data-air-start="2016-10-12"
                                                             data-air-end="2016-10-21"><span
                                                                 class="variety-table__date">10/12</span>&nbsp;<i
@@ -438,7 +486,9 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;02</td>
                                                     </tr>
-                                                                                                <tr class="variety-table__year-row" data-year="2017">
+                                                                                                </tbody>
+<tbody class="variety-table__year-list">
+<tr class="variety-table__year-row" data-year="2017">
                                     <td colspan="5" class="variety-table__year-bar">
                                         <div class="variety-table__year-bar-inner">
                                         <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2017-btn">
@@ -451,13 +501,16 @@
                                         </div>
                                     </td>
                                 </tr>
-<tr class="variety-table__show-row" data-year="2017" hidden>
+</tbody>
+<tbody class="variety-table__year-panel" data-year="2017" hidden>
+
+<tr class="variety-table__show-row" data-year="2017">
                                                         <td class="variety-table__air-date" data-air-start="2017-01-01"
                                                             data-air-end="2019-06-02"><span
                                                                 class="variety-table__date">01/01</span>&nbsp;<i
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;<span
-                                                                class="variety-table__date">19/06/02</span></td>
+                                                                class="variety-table__date">06/02</span></td>
                                                         <td>KBS2</td>
                                                         <td class="variety-table__program">超人回來了</td>
                                                         <td>高志鎔</td>
@@ -465,7 +518,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;280</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2017" hidden>
+<tr class="variety-table__show-row" data-year="2017">
                                                         <td class="variety-table__air-date" data-air-start="2017-01-08"
                                                             data-air-end="2017-03-12"><span
                                                                 class="variety-table__date">01/08</span>&nbsp;<i
@@ -479,7 +532,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;09＋導演版</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2017" hidden>
+<tr class="variety-table__show-row" data-year="2017">
                                                         <td class="variety-table__air-date" data-air-start="2017-06-13"
                                                             data-air-end="2017-08-22"><span
                                                                 class="variety-table__date">06/13</span>&nbsp;<i
@@ -493,13 +546,13 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;10＋導演版</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2017" hidden>
+<tr class="variety-table__show-row" data-year="2017">
                                                         <td class="variety-table__air-date" data-air-start="2017-12-05"
                                                             data-air-end="2018-01-09"><span
                                                                 class="variety-table__date">12/05</span>&nbsp;<i
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;<span
-                                                                class="variety-table__date">18/01/09</span></td>
+                                                                class="variety-table__date">01/09</span></td>
                                                         <td>tvN</td>
                                                         <td class="variety-table__program">姜食堂</td>
                                                         <td>殷志源</td>
@@ -507,7 +560,9 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;05＋導演版</td>
                                                     </tr>
-                                                                                                <tr class="variety-table__year-row" data-year="2018">
+                                                                                                </tbody>
+<tbody class="variety-table__year-list">
+<tr class="variety-table__year-row" data-year="2018">
                                     <td colspan="5" class="variety-table__year-bar">
                                         <div class="variety-table__year-bar-inner">
                                         <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2018-btn">
@@ -520,7 +575,10 @@
                                         </div>
                                     </td>
                                 </tr>
-<tr class="variety-table__show-row" data-year="2018" hidden>
+</tbody>
+<tbody class="variety-table__year-panel" data-year="2018" hidden>
+
+<tr class="variety-table__show-row" data-year="2018">
                                                         <td class="variety-table__air-date" data-air-start="2018-05-05"
                                                             data-air-end="2018-10-27"><span
                                                                 class="variety-table__date">05/05</span>&nbsp;<i
@@ -534,7 +592,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;25</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2018" hidden>
+<tr class="variety-table__show-row" data-year="2018">
                                                         <td class="variety-table__air-date" data-air-start="2018-09-30"
                                                             data-air-end="2018-10-28"><span
                                                                 class="variety-table__date">09/30</span>&nbsp;<i
@@ -550,7 +608,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;05</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2018" hidden>
+<tr class="variety-table__show-row" data-year="2018">
                                                         <td class="variety-table__air-date" data-air-start="2018-10-28"
                                                             data-air-end="2018-12-02"><span
                                                                 class="variety-table__date">10/28</span>&nbsp;<i
@@ -564,7 +622,9 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;05＋導演版</td>
                                                     </tr>
-                                                                                                <tr class="variety-table__year-row" data-year="2019">
+                                                                                                </tbody>
+<tbody class="variety-table__year-list">
+<tr class="variety-table__year-row" data-year="2019">
                                     <td colspan="5" class="variety-table__year-bar">
                                         <div class="variety-table__year-bar-inner">
                                         <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2019-btn">
@@ -577,7 +637,10 @@
                                         </div>
                                     </td>
                                 </tr>
-<tr class="variety-table__show-row" data-year="2019" hidden>
+</tbody>
+<tbody class="variety-table__year-panel" data-year="2019" hidden>
+
+<tr class="variety-table__show-row" data-year="2019">
                                                         <td class="variety-table__air-date" data-air-start="2019-05-31"
                                                             data-air-end="2019-07-05"><span
                                                                 class="variety-table__date">05/31</span>&nbsp;<i
@@ -591,7 +654,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;06</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2019" hidden>
+<tr class="variety-table__show-row" data-year="2019">
                                                         <td class="variety-table__air-date" data-air-start="2019-06-08"
                                                             data-air-end="2019-08-17"><span
                                                                 class="variety-table__date">06/08</span>&nbsp;<i
@@ -605,7 +668,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;11</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2019" hidden>
+<tr class="variety-table__show-row" data-year="2019">
                                                         <td class="variety-table__air-date" data-air-start="2019-07-05"
                                                             data-air-end="2019-08-02"><span
                                                                 class="variety-table__date">07/05</span>&nbsp;<i
@@ -619,7 +682,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;04</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2019" hidden>
+<tr class="variety-table__show-row" data-year="2019">
                                                         <td class="variety-table__air-date" data-air-start="2019-09-20"
                                                             data-air-end="2019-11-22"><span
                                                                 class="variety-table__date">09/20</span>&nbsp;<i
@@ -633,13 +696,13 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;10</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2019" hidden>
+<tr class="variety-table__show-row" data-year="2019">
                                                         <td class="variety-table__air-date" data-air-start="2019-10-25"
                                                             data-air-end="2020-01-03"><span
                                                                 class="variety-table__date">10/25</span>&nbsp;<i
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;<span
-                                                                class="variety-table__date">20/01/03</span></td>
+                                                                class="variety-table__date">01/03</span></td>
                                                         <td>tvN</td>
                                                         <td class="variety-table__program">新西遊記7</td>
                                                         <td>殷志源</td>
@@ -647,7 +710,9 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;11</td>
                                                     </tr>
-                                                                                                <tr class="variety-table__year-row" data-year="2020">
+                                                                                                </tbody>
+<tbody class="variety-table__year-list">
+<tr class="variety-table__year-row" data-year="2020">
                                     <td colspan="5" class="variety-table__year-bar">
                                         <div class="variety-table__year-bar-inner">
                                         <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2020-btn">
@@ -660,7 +725,10 @@
                                         </div>
                                     </td>
                                 </tr>
-<tr class="variety-table__show-row" data-year="2020" hidden>
+</tbody>
+<tbody class="variety-table__year-panel" data-year="2020" hidden>
+
+<tr class="variety-table__show-row" data-year="2020">
                                                         <td class="variety-table__air-date" data-air-start="2020-01-10"
                                                             data-air-end="2020-03-27"><span
                                                                 class="variety-table__date">01/10</span>&nbsp;<i
@@ -674,7 +742,7 @@
                                                                 class="fa-solid fa-circle-right variety-table__range-arrow"
                                                                 aria-hidden="true"></i>&nbsp;10＋導演版</td>
                                                     </tr>
-<tr class="variety-table__show-row" data-year="2020" hidden>
+<tr class="variety-table__show-row" data-year="2020">
                                                         <td class="variety-table__air-date" data-air-start="2020-10-09"
                                                             data-air-end="2020-12-18"><span
                                                                 class="variety-table__date">10/09</span>&nbsp;<i
@@ -689,7 +757,7 @@
                                                                 aria-hidden="true"></i>&nbsp;10＋導演版</td>
                                                     </tr>
                             </tbody>
-                </table>
+</table>
 
                 <table class="variety-table" id="each-rampage" data-show-tabs="all solo">
                             <thead>
@@ -754,29 +822,71 @@
                 return text.includes(q);
             }
 
+            function getYearPanel(slot, year) {
+                return slot.querySelector(
+                    `.variety-table__year-panel[data-year="${year}"]`
+                );
+            }
+
+            function openYearPanel(panel) {
+                if (!panel || panel.classList.contains("is-open")) return;
+                panel.hidden = false;
+                panel.style.maxHeight = "0";
+                panel.classList.add("is-open");
+                requestAnimationFrame(() => {
+                    panel.style.maxHeight = `${panel.scrollHeight}px`;
+                });
+            }
+
+            function closeYearPanel(panel) {
+                if (!panel || !panel.classList.contains("is-open")) return;
+                panel.style.maxHeight = `${panel.scrollHeight}px`;
+                requestAnimationFrame(() => {
+                    panel.style.maxHeight = "0";
+                });
+                const onEnd = (e) => {
+                    if (e.propertyName !== "max-height") return;
+                    panel.classList.remove("is-open");
+                    panel.hidden = true;
+                    panel.style.maxHeight = "";
+                    panel.removeEventListener("transitionend", onEnd);
+                };
+                panel.addEventListener("transitionend", onEnd);
+            }
+
             function syncYearRows(slot) {
                 const q = (input && input.value.trim().toLowerCase()) || "";
                 slot.querySelectorAll(".variety-table__year-row").forEach((yearRow) => {
                     const year = yearRow.dataset.year;
                     const btn = yearRow.querySelector(".variety-table__year-toggle");
-                    const detailRows = slot.querySelectorAll(
-                        `.variety-table__show-row[data-year="${year}"]`
-                    );
+                    const panel = getYearPanel(slot, year);
+                    const detailRows = panel
+                        ? panel.querySelectorAll(".variety-table__show-row")
+                        : [];
                     let anyMatch = false;
                     const yearOpen = yearRow.classList.contains("is-open");
 
                     detailRows.forEach((row) => {
                         const match = rowMatchesSearch(row, q);
                         if (match) anyMatch = true;
-                        row.hidden = !yearOpen || (q && !match);
+                        row.hidden = Boolean(q) && !match;
                     });
 
-                    if (q && anyMatch) {
+                    if (yearOpen && panel) {
+                        if (q && !anyMatch) {
+                            closeYearPanel(panel);
+                            yearRow.classList.remove("is-open");
+                            if (btn) btn.setAttribute("aria-expanded", "false");
+                        } else {
+                            openYearPanel(panel);
+                            panel.style.maxHeight = `${panel.scrollHeight}px`;
+                        }
+                    }
+
+                    if (q && anyMatch && !yearOpen) {
                         yearRow.classList.add("is-open");
                         if (btn) btn.setAttribute("aria-expanded", "true");
-                        detailRows.forEach((row) => {
-                            row.hidden = !rowMatchesSearch(row, q);
-                        });
+                        openYearPanel(panel);
                     }
 
                     yearRow.hidden = Boolean(q) && !anyMatch;
@@ -785,10 +895,17 @@
 
             function setYearOpen(yearRow, open) {
                 const btn = yearRow.querySelector(".variety-table__year-toggle");
-                if (!btn) return;
+                const year = yearRow.dataset.year;
+                const slot = yearRow.closest("table[data-show-tabs]");
+                const panel = slot ? getYearPanel(slot, year) : null;
+                if (!btn || !panel) return;
                 btn.setAttribute("aria-expanded", open ? "true" : "false");
                 yearRow.classList.toggle("is-open", open);
-                const slot = yearRow.closest("table[data-show-tabs]");
+                if (open) {
+                    openYearPanel(panel);
+                } else {
+                    closeYearPanel(panel);
+                }
                 if (slot) syncYearRows(slot);
             }
 
