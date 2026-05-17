@@ -16,8 +16,7 @@
     --text-muted: #4d4d4d;
     --surface: #fffdf7;
     --surface-soft: #fff9e8;
-    /* 導覽無法進入之提示後備（互動後各連結以 inline 變數覆寫，每次滑過／聚焦重抽） */
-    --portal-nav-soon-msg: "奇蹟醞釀";
+
 }
 
 /* 1. 先處理 body 和全域，確保沒人亂給外距 */
@@ -2073,12 +2072,10 @@ header.inner-page-header::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(18, 14, 8, 0.52) 0%,
-        rgba(18, 14, 8, 0.38) 45%,
-        rgba(18, 14, 8, 0.5) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(18, 14, 8, 0.52) 0%,
+            rgba(18, 14, 8, 0.38) 45%,
+            rgba(18, 14, 8, 0.5) 100%);
     z-index: 0;
     pointer-events: none;
 }
