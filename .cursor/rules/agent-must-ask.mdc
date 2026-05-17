@@ -9,7 +9,7 @@ alwaysApply: true
 
 1. **站主沒說「執行」→ 不改檔**（可先說明、對照、列計畫）。
 2. **站主說「先改一頁」→ 只改那一頁**，不得順手全站套用。
-3. **class 改名／全站換名**：先問站主**確切 class 字串**，不得自創（例如不得擅自 `inner-page-header`）；不得用 PowerShell 批次替換 HTML。
+3. **class 改名／全站換名**：先問站主**確切 class 字串**；全站內頁 banner 現用 **`inner-page-header`**（禁止再改回 `map-archive-header` 等單頁名）；不得用 PowerShell 批次替換 HTML。
 4. **導覽文案**：不得自加括號、副標、路徑說明（例如禁止擅自「傳奇的轉折（六六歌2）」）；`portal-nav.js` 改字前先對站主原句。
 5. **CSS 對齊 devtools**：站主給的勾選／數值照抄；若必須補 `min-height`、`padding` 等 devtools 沒有的值，**先寫明「這是我補的」**，等站主說執行再寫入。
 
@@ -20,7 +20,7 @@ alwaysApply: true
 
 ## 內頁 header（約定方向，名稱待站主定）
 
-- 全站內頁共用**一個** header class；**不要**用單頁主題名（如 `map-archive-header` 當全站名）— 要改名須站主指定後再執行。
+- 全站內頁 banner：**`header.inner-page-header`**（勿用 `map-archive-header` 等單頁名當全站 class）。
 - 首頁僅 **`header#origin`** 全屏 Hero，與內頁 header class 分開。
 - 樣式以站主在**電子書頁** devtools 調過的為準後，再談是否套其他內頁（須站主說執行）。
 
