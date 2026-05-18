@@ -49,63 +49,121 @@
             overflow: visible;
         }
 
-        .container11 {
+        /* 一欄（全寬）；二／三／四欄共用高度，左右由修飾 class 決定 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-1,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 {
             width: 100%;
             height: 100%;
+            box-sizing: border-box;
         }
 
-        .container21 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 {
             float: right;
             width: 50%;
-            height: 100%;
         }
 
-        .container22 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 {
             float: left;
             width: 50%;
-            height: 100%;
         }
 
-        .container31 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 {
             float: left;
-            width: 33%;
-            height: 100%;
+            width: 33.33%;
         }
 
-        .container32 {
-            float: left;
-            width: 33%;
-            height: 100%;
-        }
-
-        .container33 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 {
             float: right;
-            width: 33%;
-            height: 100%;
+            width: 33.33%;
         }
 
-        .container41 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42 {
             float: left;
             width: 25%;
-            height: 100%;
         }
 
-        .container42 {
-            float: left;
-            width: 25%;
-            height: 100%;
-        }
-
-        .container43 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 {
             float: right;
             width: 25%;
-            height: 100%;
         }
 
-        .container44 {
-            float: right;
-            width: 25%;
-            height: 100%;
+        /* 各欄內文字區：與一欄 section 同款邊距（不另縮 42rem 置中欄） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-1 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section {
+            width: 100%;
+            max-width: 100%;
+            float: none;
+            clear: both;
+            box-sizing: border-box;
+            margin-bottom: 1.25rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section p.ebook-intro-lead {
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 1.25rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section h3 {
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader img {
@@ -144,64 +202,7 @@
             display: block;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container11 {
-            width: 100%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container21 {
-            float: right;
-            width: 50%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container22 {
-            float: left;
-            width: 50%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container31 {
-            float: left;
-            width: 33.33%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container32 {
-            float: left;
-            width: 33.33%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container33 {
-            float: right;
-            width: 33.33%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container41 {
-            float: left;
-            width: 25%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container42 {
-            float: left;
-            width: 25%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container43 {
-            float: right;
-            width: 25%;
-            height: 100%;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container44 {
-            float: right;
-            width: 25%;
-            height: 100%;
-        }
+        /* 作業區沿用上方二／三／四欄規則（scoped 於 .readable-homework-block） */
 
         /* 與全站 section 同款：main 內勿用 div，且勿與 container21 等 float 綁同一元素 */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader section.ebook-intro.section {
@@ -270,7 +271,7 @@
             <article id="challenge" data-title="無限挑戰">
 
                 <div class="container">
-                    <div class="container11">
+                    <div class="container11 readable-col-1">
                         <img src="/totoga2/readable/7-2_160416_0_02_35水晶男孩.jpg" alt="水晶男孩 COM' BACK">
                         <section class="ebook-intro section">
                             <h2 class="section-title">世紀末的追星狂狂熱，你聽過那場驚天動地的「黃色奇蹟」嗎？</h2>
@@ -287,20 +288,22 @@
                 </div>
 
                 <div class="container">
-                    <div class="container22">
+                    <div class="container22 readable-col-2 readable-col-2--left">
                         <img src="/totoga2/readable/04-2_totoka.png" alt="六六歌第二季">
                     </div>
-                    <section class="ebook-intro section">
-                        <h3>六六歌第二季：獨一無二的專屬企劃</h3>
-                        <p class="ebook-intro-lead">和第一季不同的是，第一季是由許多藝人共同完成一個舞台，而第二季專門為一個團體而企劃。</p>
-                        <p class="ebook-intro-lead">節目一開場，來到 2016 年 2 月 17 日，兩位來歷不明的人裝扮成 90 年代的偶像，氣喘吁吁地跳著 90
-                            年代的流行歌曲－〈品生品死〉。像是如魚得水的純黑蚱蜢和正在跳蹦床的純白小鬼，當年帥氣的造型現在看起來和大媽沒有差別，模樣相當逗趣！</p>
-                        <p class="ebook-intro-lead">
-                            無限挑戰中原本的五名主持卻只來兩位，原來是因為這次的企劃是高度機密，為了避免消息走漏讓企劃流局，遺憾的先將另外三名排除在外，由口風較緊的國民主持人劉在錫和 HAHA 參與。接著
-                            HAHA
-                            開始猜測嘉賓，依照身上的裝扮大概念猜到，是不是一開始跳的舞曲〈品生品死〉的原唱，正是第一季曾出演過的水院、在德所屬團體－水晶男孩。</p>
-                        <p class="ebook-intro-note">圖片來源：MBC</p>
-                    </section>
+                    <div class="container21 readable-col-2 readable-col-2--right">
+                        <section class="ebook-intro section">
+                            <h3>六六歌第二季：獨一無二的專屬企劃</h3>
+                            <p class="ebook-intro-lead">和第一季不同的是，第一季是由許多藝人共同完成一個舞台，而第二季專門為一個團體而企劃。</p>
+                            <p class="ebook-intro-lead">節目一開場，來到 2016 年 2 月 17 日，兩位來歷不明的人裝扮成 90 年代的偶像，氣喘吁吁地跳著 90
+                                年代的流行歌曲－〈品生品死〉。像是如魚得水的純黑蚱蜢和正在跳蹦床的純白小鬼，當年帥氣的造型現在看起來和大媽沒有差別，模樣相當逗趣！</p>
+                            <p class="ebook-intro-lead">
+                                無限挑戰中原本的五名主持卻只來兩位，原來是因為這次的企劃是高度機密，為了避免消息走漏讓企劃流局，遺憾的先將另外三名排除在外，由口風較緊的國民主持人劉在錫和 HAHA 參與。接著
+                                HAHA
+                                開始猜測嘉賓，依照身上的裝扮大概念猜到，是不是一開始跳的舞曲〈品生品死〉的原唱，正是第一季曾出演過的水院、在德所屬團體－水晶男孩。</p>
+                            <p class="ebook-intro-note">圖片來源：MBC</p>
+                        </section>
+                    </div>
                 </div>
 
                 <div class="container">
@@ -319,7 +322,7 @@
                 </div>
 
                 <div class="container">
-                    <div class="container11">
+                    <div class="container11 readable-col-1">
                         <img src="/totoga2/readable/6-1需要極度保密.jpeg" alt="正式交涉高度保密">
                         <section class="ebook-intro section" style="padding-top: 15px;">
                             <h2 class="section-title">正式交涉</h2>
@@ -330,82 +333,86 @@
                 </div>
 
                 <div class="container">
-                    <section class="ebook-intro section">
-                        <h3>冷凍美男－姜成勳</h3>
-                        <p class="ebook-intro-lead">印象深刻的是主唱姜成勳擁有和 20 年前一樣的驚人外貌，堪稱冷凍人級別！還被張水院虧說到 70 歲還是會繼續留這個髮型！</p>
-                        <p class="ebook-intro-lead">事實上這段期間他經歷了波折，遭到合夥人詐騙卻被誣告，過了兩年法院才還他清白，應該是最辛苦的他，反而只覺得對粉絲和大眾感到抱歉，令人心疼！
-                        </p>
-                    </section>
-                    <div class="container22">
+                    <div class="container21 readable-col-2 readable-col-2--right">
                         <img src="/totoga2/readable/11-1_冷凍人.jpeg" alt="冷凍美男姜成勳">
+                    </div>
+                    <div class="container22 readable-col-2 readable-col-2--left">
+                        <section class="ebook-intro section">
+                            <h3>冷凍美男－姜成勳</h3>
+                            <p class="ebook-intro-lead">印象深刻的是主唱姜成勳擁有和 20 年前一樣的驚人外貌，堪稱冷凍人級別！還被張水院虧說到 70 歲還是會繼續留這個髮型！</p>
+                            <p class="ebook-intro-lead">事實上這段期間他經歷了波折，遭到合夥人詐騙卻被誣告，過了兩年法院才還他清白，應該是最辛苦的他，反而只覺得對粉絲和大眾感到抱歉，令人心疼！
+                            </p>
+                        </section>
                     </div>
                 </div>
                 <div class="container">
-                    <div class="container31">
+                    <div class="container31 readable-col-3 readable-col-3--left">
                         <img src="/totoga2/readable/11-3_160416_0_03.png" alt="李宰鎮">
                     </div>
-                    <section class="ebook-intro section">
-                        <h3>魔性魅力－李宰鎮</h3>
-                        <p class="ebook-intro-lead">節目剛開始時，大家高興地彼此問候，唯獨被嚇壞的李宰鎮問為什麼要這樣歡迎，性格似乎有點與眾不同。訪問輪到他時，就連劉在錫和 HAHA
-                            都緊張這座必須要跨越的喜馬拉雅山。</p>
-                        <p class="ebook-intro-lead">
-                            隨著節目的進行，開始發現他的魔性魅力，李宰鎮的獨特思考方式、新穎的回答，具有他個人特色的綜藝感，讓採訪過無數來賓，見過大風大浪的劉在錫也爆笑又暴跳！</p>
-                    </section>
-                    <div class="container33">
+                    <div class="container32 readable-col-3 readable-col-3--left">
+                        <section class="ebook-intro section">
+                            <h3>魔性魅力－李宰鎮</h3>
+                            <p class="ebook-intro-lead">節目剛開始時，大家高興地彼此問候，唯獨被嚇壞的李宰鎮問為什麼要這樣歡迎，性格似乎有點與眾不同。訪問輪到他時，就連劉在錫和 HAHA
+                                都緊張這座必須要跨越的喜馬拉雅山。</p>
+                            <p class="ebook-intro-lead">
+                                隨著節目的進行，開始發現他的魔性魅力，李宰鎮的獨特思考方式、新穎的回答，具有他個人特色的綜藝感，讓採訪過無數來賓，見過大風大浪的劉在錫也爆笑又暴跳！</p>
+                        </section>
+                    </div>
+                    <div class="container33 readable-col-3 readable-col-3--right">
                         <img src="/totoga2/readable/12-2_160416_0_07.png" alt="劉在錫反應">
                     </div>
                 </div>
 
                 <div class="container">
-                    <div class="container41">
+                    <div class="container41 readable-col-4 readable-col-4--left">
                         <img src="/totoga2/readable/12-1_160416_0_06.png" alt="崩潰分鏡 1">
                     </div>
-                    <div class="container42">
+                    <div class="container42 readable-col-4 readable-col-4--left">
                         <img src="/totoga2/readable/12-3_為什麼你要笑.jpeg" alt="為什麼你要笑">
                     </div>
-                    <div class="container43">
+                    <div class="container43 readable-col-4 readable-col-4--right">
                         <img src="/totoga2/readable/12-4_160416_0_18.jpeg" alt="崩潰分鏡 2">
                     </div>
-                    <div class="container44">
+                    <div class="container44 readable-col-4 readable-col-4--right">
                         <img src="/totoga2/readable/12-5_啊啊..jpeg" alt="啊啊..">
                     </div>
                 </div>
 
                 <div class="container">
-                    <div class="container31">
+                    <div class="container31 readable-col-3 readable-col-3--left">
                         <img src="/totoga2/readable/13-1_那是我畫的!所以是我的!.jpeg" alt="那是我畫的!所以是我的!">
                     </div>
-                    <div class="container32">
+                    <div class="container32 readable-col-3 readable-col-3--left">
                         <img src="/totoga2/readable/13-2哥得自己畫!.jpeg" alt="哥得自己畫!">
                     </div>
-                    <div class="container33">
+                    <div class="container33 readable-col-3 readable-col-3--right">
                         <img src="/totoga2/readable/13-31779025232670.jpg" alt="肖像畫成品">
                     </div>
                 </div>
 
                 <div class="container">
-                    <div class="container31">
+                    <div class="container31 readable-col-3 readable-col-3--left">
                         <img src="/totoga2/readable/13-4_160416_0_05.png" alt="訪談過程">
                     </div>
-                    <div class="container32">
+                    <div class="container32 readable-col-3 readable-col-3--left">
                         <img src="/totoga2/readable/13-5_ScreenShot-VideoID-2epKr_O2s9E-TimeS-31.png" alt="對話節錄">
                     </div>
-                    <div class="container33">
+                    <div class="container33 readable-col-3 readable-col-3--right">
                         <img src="/totoga2/readable/13-7_生氣在錫大頭版.png" alt="生氣在錫大頭版">
                     </div>
                 </div>
                 <div class="container">
-                    <div class="container22">
+                    <div class="container22 readable-col-2 readable-col-2--left">
                         <img src="/totoga2/readable/11-2_無法輕易征服的高山 宰鎮.jpeg" alt="無法輕易征服的高山 宰鎮">
                     </div>
-                    <div class="container21">
+                    <div class="container21 readable-col-2 readable-col-2--right">
                         <img src="/totoga2/readable/11-4_160416_0_08.jpeg" alt="綜藝感爆發">
                     </div>
                 </div>
 
                 <div class="readable-homework-block">
                         <div class="container" style="height: 22vh;">
-                            <div class="container11">
+                            <div class="container11 readable-col-1">
                                 <div class="box-content">
                                     <h3>魔性魅力－李宰鎮</h3>
                                     <p style="margin-top: 10px; font-size: 1.1rem;">
@@ -417,19 +424,19 @@
                         </div>
 
                         <div class="container" style="height: 30vh;">
-                            <div class="container31">
+                            <div class="container31 readable-col-3 readable-col-3--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/11-2_無法輕易征服的高山 宰鎮.jpeg" alt="無法輕易征服的高山">
                                 </div>
                             </div>
-                            <div class="container32">
+                            <div class="container32 readable-col-3 readable-col-3--left">
                                 <div class="box-content">
                                     <h3>無法輕易征服的高山</h3>
                                     <p style="font-size: 0.95rem;">面對這座高山，主持人們頻頻在李宰鎮獨特的思考迴路中迷失方向。他是必須要「清楚表達才聽得懂的極端 O
                                         型」人格，不按綜藝套路出牌，讓劉在錫讚嘆這絕對是自己「生平第一次看到的角色」！</p>
                                 </div>
                             </div>
-                            <div class="container33">
+                            <div class="container33 readable-col-3 readable-col-3--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/11-3_160416_0_03.jpg" alt="初登場畫面">
                                 </div>
@@ -437,12 +444,12 @@
                         </div>
 
                         <div class="container" style="height: 30vh;">
-                            <div class="container22">
+                            <div class="container22 readable-col-2 readable-col-2--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/11-4_160416_0_08.jpg" alt="主持人群感到緊張">
                                 </div>
                             </div>
-                            <div class="container21">
+                            <div class="container21 readable-col-2 readable-col-2--right">
                                 <div class="box-content">
                                     <h3>見過大風大浪也緊張</h3>
                                     <p>隨著訪問推進，李宰鎮那具有個人特色的綜藝感漸漸展露。他的耿直反應和新穎回答，讓採訪過無數來賓的劉在錫和 HAHA
@@ -453,17 +460,17 @@
                         </div>
 
                         <div class="container" style="height: 32vh;">
-                            <div class="container31">
+                            <div class="container31 readable-col-3 readable-col-3--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/12-1_160416_0_06.jpg" alt="宰鎮突然大笑">
                                 </div>
                             </div>
-                            <div class="container32">
+                            <div class="container32 readable-col-3 readable-col-3--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/12-2_160416_0_07.jpg" alt="HAHA被嚇到">
                                 </div>
                             </div>
-                            <div class="container33">
+                            <div class="container33 readable-col-3 readable-col-3--right">
                                 <div class="box-content">
                                     <h3>無預警爆發的魔性笑聲</h3>
                                     <p style="font-size: 0.95rem;">
@@ -474,14 +481,14 @@
                         </div>
 
                         <div class="container" style="height: 35vh;">
-                            <div class="container22">
+                            <div class="container22 readable-col-2 readable-col-2--left">
                                 <div class="box-content">
                                     <h3>讓全場陷入混亂的「精神衝擊」</h3>
                                     <p>控場能力一流的劉在錫也徹底崩潰，一邊按耐著受驚的心臟，一邊哭笑不得、畢恭畢敬地追問：「真的真的很抱歉，但是為什麼你要笑？」這種摸不著頭緒卻又無敵純真的個人特色，讓劉在錫也爆笑又暴跳！
                                     </p>
                                 </div>
                             </div>
-                            <div class="container21">
+                            <div class="container21 readable-col-2 readable-col-2--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/12-3_為什麼你要笑.jpg" alt="為什麼你要笑近鏡頭">
                                 </div>
@@ -489,12 +496,12 @@
                         </div>
 
                         <div class="container" style="height: 35vh;">
-                            <div class="container31">
+                            <div class="container31 readable-col-3 readable-col-3--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-1_那是我畫的!所以是我的!.jpg" alt="那是我畫的所以是我的">
                                 </div>
                             </div>
-                            <div class="container32">
+                            <div class="container32 readable-col-3 readable-col-3--left">
                                 <div class="box-content">
                                     <h3>靈魂拷問與相當無語</h3>
                                     <p style="font-size: 0.9rem;">
@@ -502,7 +509,7 @@
                                         瞬間失去語言能力，雙手交疊乖乖坐好，靈魂短暫登出。</p>
                                 </div>
                             </div>
-                            <div class="container33">
+                            <div class="container33 readable-col-3 readable-col-3--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/12-5_啊啊..jpg" alt="啊啊相當無語字幕">
                                 </div>
@@ -510,12 +517,12 @@
                         </div>
 
                         <div class="container" style="height: 35vh;">
-                            <div class="container22">
+                            <div class="container22 readable-col-2 readable-col-2--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-1_那是我畫的!所以是我的!.jpg" alt="那是我畫的所以是我的">
                                 </div>
                             </div>
-                            <div class="container21">
+                            <div class="container21 readable-col-2 readable-col-2--right">
                                 <div class="box-content">
                                     <h3>絕對所有權！</h3>
                                     <p>好不容易在現場畫完了畫，當在錫哥理所當然地伸手準備拿走時，李宰鎮卻像個護著玩具的小孩，理直氣壯地一把護住自己的作品，神色認真地回絕：「不行，為什麼你要拿走？那是我畫的！所以是我的！」
@@ -525,22 +532,22 @@
                         </div>
 
                         <div class="container" style="height: 40vh;">
-                            <div class="container41">
+                            <div class="container41 readable-col-4 readable-col-4--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-2哥得自己畫!.jpg" alt="哥得自己畫截圖">
                                 </div>
                             </div>
-                            <div class="container42">
+                            <div class="container42 readable-col-4 readable-col-4--left">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-4_160416_0_05.jpg" alt="志源大喊畫面">
                                 </div>
                             </div>
-                            <div class="container43">
+                            <div class="container43 readable-col-4 readable-col-4--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-5_ScreenShot-VideoID-2epKr_O2s9E-TimeS-31.jpg" alt="志源摟住宰鎮">
                                 </div>
                             </div>
-                            <div class="container44">
+                            <div class="container44 readable-col-4 readable-col-4--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-6_ScreenShot-VideoID-2epKr_O2s9E-TimeS-42.jpeg" alt="聯手逼退在錫">
                                 </div>
@@ -548,7 +555,7 @@
                         </div>
 
                         <div class="container" style="height: 35vh;">
-                            <div class="container22">
+                            <div class="container22 readable-col-2 readable-col-2--left">
                                 <div class="box-content">
                                     <h3>隊長聯手逗弄主持人的日常</h3>
                                     <p>坐在一旁的隊長殷志源看著在錫哥被宰鎮逼到牆角，完全進入了看戲模式！志源非但沒有解圍，反而一把摟住自家大哥，理直氣壯地站在宰鎮這邊，對著在錫哥大喊：「哥要是想拿走，你得自己畫！」
@@ -558,7 +565,7 @@
                                         逗得毫無還手之力。這種難以預測的思考方式與出人意料的回答，更讓所有人對這位神祕又迷人的角色充滿了無限的好奇！</p>
                                 </div>
                             </div>
-                            <div class="container21">
+                            <div class="container21 readable-col-2 readable-col-2--right">
                                 <div class="box-content" style="padding: 0;">
                                     <img src="readable/13-31779025232670.jpg" alt="水晶男孩現場互動">
                                 </div>
@@ -567,7 +574,8 @@
                 </div>
 
                 <div class="container">
-                    <section class="ebook-intro section">
+                    <div class="container22 readable-col-2 readable-col-2--left">
+                        <section class="ebook-intro section">
                         <h2 class="section-title">秘密召集與重組意願</h2>
                                 <p class="ebook-intro-lead">2016 年，是解散後的第 16 年，也正好是水晶男孩出道的第 20
                                     年，因此成為了第二季的邀約對象。六六歌製作組趁著水晶男孩隊長殷志源參加無限挑戰拍攝時，謹慎向他提議出演企劃，希望能夠講述這閃耀六人組合的故事。</p>
@@ -580,9 +588,10 @@
                                 </p>
                                 <p class="ebook-intro-note">圖片來源：MBC</p>
                             </section>
-                            <div class="container22">
-                                <section class="ebook-intro section"
-                                    style="background-color: var(--primary); color: var(--black); height:100%;">
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right">
+                        <section class="ebook-intro section"
+                            style="background-color: var(--primary); color: var(--black); height:100%;">
                                     <h3 style="color:var(--black); border-left-color:var(--black)">保密協議與解散緣由</h3>
                                     <p class="ebook-intro-lead">
                                         進而聊到解散情況，當時解散的原因是不滿公司的壓榨，原本想集體離開公司，卻被公司強制解散…當時鬧得很大，父母都到公司開會了...
@@ -614,23 +623,27 @@
                         </div>
 
                         <div class="container">
-                            <section class="ebook-intro section">
-                                <h3>KTV挑戰：考驗默契的難關</h3>
-                                <p class="ebook-intro-lead">光是成員們有鬥志合體還不夠，必須在 KTV 機器評鑑分數超過 95
-                                    分才可以繼續。離開舞台這麼久，不是歌詞記不得，舞蹈也零零落落，隊長殷志源甚至連自己有沒有唱都忘了！</p>
-                                <p class="ebook-intro-lead">主唱姜成勳熱唱時，其他成員竟然還在後方開會討論舞步！而且還跳錯首，唱的是〈COM'
-                                    BACK〉跳的卻是〈品生品死〉！每首歌曲的起承轉合都是姜成勳，歌曲大股東姜成勳非但一人飾兩角、頂替高志溶的部分，也記得舞步帶領成員。但，歌都是姜成勳在唱，先失聲的卻是李宰鎮，令劉在錫笑到滿臉脹紅。
-                                </p>
-                            </section>
-                            <section class="ebook-intro section">
-                                <h3>第六顆水晶－高志溶的尋訪</h3>
+                            <div class="container22 readable-col-2 readable-col-2--left">
+                                <section class="ebook-intro section">
+                                    <h3>KTV挑戰：考驗默契的難關</h3>
+                                    <p class="ebook-intro-lead">光是成員們有鬥志合體還不夠，必須在 KTV 機器評鑑分數超過 95
+                                        分才可以繼續。離開舞台這麼久，不是歌詞記不得，舞蹈也零零落落，隊長殷志源甚至連自己有沒有唱都忘了！</p>
+                                    <p class="ebook-intro-lead">主唱姜成勳熱唱時，其他成員竟然還在後方開會討論舞步！而且還跳錯首，唱的是〈COM'
+                                        BACK〉跳的卻是〈品生品死〉！每首歌曲的起承轉合都是姜成勳，歌曲大股東姜成勳非但一人飾兩角、頂替高志溶的部分，也記得舞步帶領成員。但，歌都是姜成勳在唱，先失聲的卻是李宰鎮，令劉在錫笑到滿臉脹紅。
+                                    </p>
+                                </section>
+                            </div>
+                            <div class="container21 readable-col-2 readable-col-2--right">
+                                <section class="ebook-intro section">
+                                    <h3>第六顆水晶－高志溶的尋訪</h3>
                                 <p class="ebook-intro-lead">籌備接近尾聲時，劉在錫終於帶到高志溶的話題，才知道原來殷志源和李宰鎮也 16
                                     年沒有和高志溶見面了。殷志源表示高志溶的工作是需要專業性的，所以可能會希望隱藏曾是藝人的事實。KTV
                                     過關後，劉在錫決定親自去拜訪高志溶。</p>
                                 <p class="ebook-intro-lead">自 2015 年 12
                                     月開始，製作組曾多次會面高志溶，終於憑藉著高志溶友人的幫忙，由劉在錫親自與他見面。高志溶已經成為公司理事，有穩定的家庭和職場生活，對於消失在演藝圈 16
                                     年的他來說，重新回到舞台上展開活動、再次把私生活交給大眾檢視，絕不是一件容易的事。透過劉在錫的真誠說服，他是否會踏上舞台呢？ʕ •ᴥ•ʔ</p>
-                            </section>
+                                </section>
+                            </div>
                         </div>
 
                         <div class="container">
@@ -652,23 +665,27 @@
                         </div>
 
                         <div class="container">
-                            <section class="ebook-intro section">
-                                <h3>第一站：高速公路休息站</h3>
+                            <div class="container22 readable-col-2 readable-col-2--left">
+                                <section class="ebook-intro section">
+                                    <h3>第一站：高速公路休息站</h3>
                                 <p class="ebook-intro-lead">2016 年 4 月 14
                                     日，無限挑戰的主持人分別接送每位成員，裝扮好當年的模樣後，先是到了高速公路休息站？！沒想到因為沒有保守好秘密，淪落到休息站表演的地步！還是化妝室旁，時隔這麼多年的表演舞台，和想像中的完全不一樣！
                                 </p>
                                 <p class="ebook-intro-lead">
                                     消磨膝蓋準備表演的〈品生品死〉，台下卻很冷清，還好唱到國民歌曲〈Couple〉時，很多觀眾還是耳熟能詳，甚至可以跟著唱跳。一開始覺得丟人想找地洞鑽的他們，表演到後來也跟著興奮了！
                                 </p>
-                            </section>
-                            <section class="ebook-intro section">
-                                <h3>第二站：民俗村與瘋狂粉絲</h3>
+                                </section>
+                            </div>
+                            <div class="container21 readable-col-2 readable-col-2--right">
+                                <section class="ebook-intro section">
+                                    <h3>第二站：民俗村與瘋狂粉絲</h3>
                                 <p class="ebook-intro-lead">接著來到民俗村，正好有一群國小生來校外教學，20
                                     年前都還沒出生的孩子們，根本不認識他們！看著這些觀眾，興起了想把對方變成粉絲的心情，更加賣力地表演著。本來感到文化衝擊的孩子們，看到李宰鎮跟金在德合作的 Back
                                     down
                                     後，瞬間被俘虜，氣氛逐漸升溫！</p>
                                 <p class="ebook-intro-lead">第二首〈Couple〉前奏一下，觀眾立刻興奮起來，甚至還有狂熱粉絲亂入舞台抱住殷志源，嚇到他差點唱不出來！</p>
-                            </section>
+                                </section>
+                            </div>
                         </div>
 
                         <div class="container">
@@ -687,8 +704,9 @@
                         </div>
 
                         <div class="container">
-                            <section class="ebook-intro section">
-                                <h3>高志溶的真心與團魂</h3>
+                            <div class="container22 readable-col-2 readable-col-2--left">
+                                <section class="ebook-intro section">
+                                    <h3>高志溶的真心與團魂</h3>
                                 <p class="ebook-intro-lead">
                                     鏡頭帶到高志溶出現前在車上受訪的畫面，高志溶雖然有了自己的生活，但想到解散後，除了殷志源發展最好，其他成員們都經歷很多辛苦的事。知道其他成員從以前就很希望重組，也認為這次出演無限挑戰對成員來說是很好的機會。
                                 </p>
@@ -696,15 +714,18 @@
                                     雖然他無法再次以水晶男孩的身分在演藝圈活動，但希望成員們可以藉由這個機會復出，所以最後決定出演，希望自己能幫忙抓住這個機會。而成員們雖然希望高志溶出現，但也表示尊重高志溶的選擇；當製作組提到待會要見到成員時，高志溶略為哽咽地說：「應該會很吃驚吧...可能以為我不會來吧...」一直以來無法回應成員期待的他，眼眶瞬間泛紅，雙方為彼此著想的心意，是他們重視這份情誼的最好證明！
                                 </p>
                             </section>
-                            <section class="ebook-intro section">
-                                <h3>無人能取代的第六個位置</h3>
-                                <p class="ebook-intro-lead">
-                                    彼此聊了過往和近況後，準備出發演出場地。殷志源表示此刻很像是去見初戀的心情，很擔心自己會破壞粉絲心中的美好回憶。雖然高志溶沒有和他們一起練習歌舞，但光是他的出現，就讓成員們心理變得非常踏實！
-                                </p>
-                                <p class="ebook-intro-lead">
-                                    在劉在錫的提議下，成員們在高志溶面前表演了〈Couple〉五人版，大家很有默契地空出高志溶的位置。高志溶感慨萬千地看著成員的表演，看似完美的舞台，少了高志溶仍有一點不足。表演到高志溶的部分時，沒有人站在中間，為他空著他應該在的位置。高志溶猶豫著什麼時候加入，到了副歌時，高志溶突然跳起來加入表演！他一加入，成員們紛紛回頭看著他，像以前一樣燦爛歡笑著，就像
-                                    16 年前，六個人完整的舞台！</p>
-                            </section>
+                            </div>
+                            <div class="container21 readable-col-2 readable-col-2--right">
+                                <section class="ebook-intro section">
+                                    <h3>無人能取代的第六個位置</h3>
+                                    <p class="ebook-intro-lead">
+                                        彼此聊了過往和近況後，準備出發演出場地。殷志源表示此刻很像是去見初戀的心情，很擔心自己會破壞粉絲心中的美好回憶。雖然高志溶沒有和他們一起練習歌舞，但光是他的出現，就讓成員們心理變得非常踏實！
+                                    </p>
+                                    <p class="ebook-intro-lead">
+                                        在劉在錫的提議下，成員們在高志溶面前表演了〈Couple〉五人版，大家很有默契地空出高志溶的位置。高志溶感慨萬千地看著成員的表演，看似完美的舞台，少了高志溶仍有一點不足。表演到高志溶的部分時，沒有人站在中間，為他空著他應該在的位置。高志溶猶豫著什麼時候加入，到了副歌時，高志溶突然跳起來加入表演！他一加入，成員們紛紛回頭看著他，像以前一樣燦爛歡笑著，就像
+                                        16 年前，六個人完整的舞台！</p>
+                                </section>
+                            </div>
                         </div>
 
                         <div class="container">
@@ -745,22 +766,26 @@
                         </div>
 
                         <div class="container">
-                            <section class="ebook-intro section">
-                                <h3>我是水晶男孩的高志溶</h3>
-                                <p class="ebook-intro-lead">
-                                    表演完〈請記得我〉，台下瘋狂揮舞著氣球，大喊著高志溶。高志溶在台上正式問候：「大家好，我是水晶男孩的高志溶！」小黃們聲嘶力竭地大喊著：「我們很想你！」</p>
-                                <p class="ebook-intro-lead">
-                                    看著台下小黃，高志溶無法輕易回答，想到小黃苦苦地等待，他不禁紅了眼眶，久久說不出話來...台下小黃安慰地應援著：「不要哭！高志溶！」「沒關係！高志溶！」當高志溶每次想開口時都和忍著哭的粉絲對視，所以一直說不出話...
-                                </p>
-                            </section>
-                            <section class="ebook-intro section">
-                                <h3>殷隊的體貼與釋懷</h3>
+                            <div class="container22 readable-col-2 readable-col-2--left">
+                                <section class="ebook-intro section">
+                                    <h3>我是水晶男孩的高志溶</h3>
+                                    <p class="ebook-intro-lead">
+                                        表演完〈請記得我〉，台下瘋狂揮舞著氣球，大喊著高志溶。高志溶在台上正式問候：「大家好，我是水晶男孩的高志溶！」小黃們聲嘶力竭地大喊著：「我們很想你！」</p>
+                                    <p class="ebook-intro-lead">
+                                        看著台下小黃，高志溶無法輕易回答，想到小黃苦苦地等待，他不禁紅了眼眶，久久說不出話來...台下小黃安慰地應援著：「不要哭！高志溶！」「沒關係！高志溶！」當高志溶每次想開口時都和忍著哭的粉絲對視，所以一直說不出話...
+                                    </p>
+                                </section>
+                            </div>
+                            <div class="container21 readable-col-2 readable-col-2--right">
+                                <section class="ebook-intro section">
+                                    <h3>殷隊的體貼與釋懷</h3>
                                 <p class="ebook-intro-lead">殷志源為了讓他緩和，主動開口：「志溶在各位的喜愛下度過了 20
                                     代初期，但他現在跟大家一樣過著平凡的生活...他能做出這個艱難的決定，我們都很感謝...他現在百感交集說不出話...」</p>
                                 <p class="ebook-intro-lead">準備好開口後，高志溶說：「剛才心情非常複雜，和大家重逢真的很開心，沒想到現在還有這麼多人會來呢！16
                                     年來，好像第一次六個人同台，讓我想起了最後的舞台...」小黃們發出了不捨的嘆息聲。聽到了短暫的心得後，殷志源逗著他說：「不管怎麽說，我想他要多上一點節目才行！」讓高志溶笑出來緩解緊張感。
                                 </p>
-                            </section>
+                                </section>
+                            </div>
                         </div>
 
                         <div class="container">
