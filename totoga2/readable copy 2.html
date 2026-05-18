@@ -54,10 +54,10 @@
             box-shadow: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11) > .container11 > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21) > [class^="container2"] > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31) > [class^="container3"] > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41) > [class^="container4"] > img {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21)>[class^="container2"]>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31)>[class^="container3"]>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41)>[class^="container4"]>img {
             border-radius: 10px;
         }
 
@@ -222,7 +222,7 @@
             width: 100%;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11) > .container11 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11 {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -232,8 +232,8 @@
             display: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container21,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container22 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22 {
             float: none;
             width: auto;
             flex: 1 1 50%;
@@ -242,8 +242,8 @@
             flex-direction: column;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container21 > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container22 > img {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22>img {
             flex: 1 1 auto;
             width: 100%;
             height: 100%;
@@ -251,27 +251,49 @@
             object-fit: cover;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container21 > section.ebook-intro.section,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) > .container22 > section.ebook-intro.section {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22>section.ebook-intro.section {
             flex: 1 1 auto;
             min-height: 100%;
             margin-bottom: 0;
         }
 
-        /* 上二圖 + 下全寬文：同一張列卡內換行（container11 禁止縮進同一列） */
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) {
+        /* container22 內兩張圖上下排列 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--stack>img {
+            flex: 1 1 0;
+            width: 100%;
+            min-height: 0;
+            height: auto;
+            object-fit: cover;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.readable-col-2--stack>img {
+            flex: 1 1 0;
+            min-height: 0;
+            height: auto;
+        }
+
+        /* 上：container22 雙圖直排；下：container11 全寬文（無 container21） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21)) {
+            display: flex;
             flex-wrap: wrap;
-            column-gap: 1rem;
             row-gap: 1rem;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container22,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container21 {
-            flex: 1 1 calc(50% - 0.5rem);
-            max-width: calc(50% - 0.5rem);
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.readable-col-2--stack {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            float: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container11 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.container11 {
             flex: 0 0 100%;
             width: 100%;
             max-width: 100%;
@@ -280,7 +302,33 @@
             clear: both;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container11 > section.ebook-intro.section {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.container11>section.ebook-intro.section {
+            margin-bottom: 0;
+        }
+
+        /* 上二圖 + 下全寬文：同一張列卡內換行（其他區塊仍用 container11） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) {
+            flex-wrap: wrap;
+            column-gap: 1rem;
+            row-gap: 1rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container22,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container21 {
+            flex: 1 1 calc(50% - 0.5rem);
+            max-width: calc(50% - 0.5rem);
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container11 {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            float: none;
+            clear: both;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container11>section.ebook-intro.section {
             margin-bottom: 0;
         }
 
@@ -295,9 +343,9 @@
             display: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container31,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container32,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container33 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33 {
             float: none;
             width: auto;
             flex: 1 1 33.33%;
@@ -306,9 +354,9 @@
             flex-direction: column;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container31 > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container32 > img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container33 > img {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33>img {
             flex: 1 1 auto;
             width: 100%;
             height: 100%;
@@ -316,9 +364,9 @@
             object-fit: cover;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container31 > section.ebook-intro.section,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container32 > section.ebook-intro.section,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) > .container33 > section.ebook-intro.section {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33>section.ebook-intro.section {
             flex: 1 1 auto;
             min-height: 100%;
             margin-bottom: 0;
@@ -335,10 +383,10 @@
             display: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) > .container41,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) > .container42,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) > .container43,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) > .container44 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container42,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container44 {
             float: none;
             width: auto;
             flex: 1 1 25%;
@@ -347,7 +395,7 @@
             flex-direction: column;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) > [class^="container4"] > img {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>[class^="container4"]>img {
             flex: 1 1 auto;
             width: 100%;
             height: 100%;
@@ -557,7 +605,7 @@
 
                 <div class="container">
                     <div class="container31 readable-col-3 readable-col-3--left">
-                        <img src="/totoga2/readable/11-2_無法輕易征服的高山 宰鎮.jpeg" alt="無法輕易征服的高山">
+                        <img src="/totoga2/readable/11-3_160416_0_03.png" alt="無法輕易征服的高山">
                     </div>
                     <div class="container32 readable-col-3 readable-col-3--left">
                         <section class="ebook-intro section">
@@ -567,7 +615,7 @@
                         </section>
                     </div>
                     <div class="container33 readable-col-3 readable-col-3--right">
-                        <img src="/totoga2/readable/11-3_160416_0_03.png" alt="初登場畫面">
+                        <img src=alt="初登場畫面">
                     </div>
                 </div>
 

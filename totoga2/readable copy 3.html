@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶男孩｜無限挑戰六六歌2 — 圖文好讀版</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/tablet.css">
+    <style>
+        /* 圖列 .container：float 排版（作業要求） */
+        body.ebook-ssg2-page.totoga2-page main#totoga2-reader.chronicle-reader {
+            max-width: min(1280px, 96vw);
+            padding-left: 0;
+            padding-right: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container {
+            width: 100%;
+            max-width: none;
+            margin: 0 0 1.25rem;
+            padding: 0;
+            height: auto;
+            min-height: 0;
+            clear: both;
+            box-sizing: border-box;
+            position: static;
+            z-index: auto;
+        }
+
+        /* 同列共用奶油底、外框與欄間距（內文 section 仍保留 padding，不重複底色） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11),
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22),
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33),
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) {
+            padding: 0.75rem;
+            gap: 0.75rem;
+            background: var(--surface);
+            border: 1px solid rgba(255, 204, 0, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader [class^="container2"] section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader [class^="container3"] section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader [class^="container4"] section.ebook-intro.section {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21)>[class^="container2"]>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31)>[class^="container3"]>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41)>[class^="container4"]>img {
+            border-radius: 10px;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader .container:has(img) {
+            height: auto;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader .container:has(img)::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader .container:has(img)>[class^="container"] {
+            height: auto;
+            min-height: 0;
+            overflow: visible;
+        }
+
+        /* 一欄（全寬）；二／三／四欄共用高度，左右由修飾 class 決定 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-1,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 {
+            float: right;
+            width: 50%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 {
+            float: left;
+            width: 50%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 {
+            float: left;
+            width: 33.33%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 {
+            float: right;
+            width: 33.33%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4--left,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42 {
+            float: left;
+            width: 25%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4--right,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 {
+            float: right;
+            width: 25%;
+        }
+
+        /* 各欄內文字區：與一欄 section 同款邊距（不另縮 42rem 置中欄） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-1 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43 section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 section.ebook-intro.section {
+            width: 100%;
+            max-width: 100%;
+            float: none;
+            clear: both;
+            box-sizing: border-box;
+            margin-bottom: 1.25rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43 section.ebook-intro.section p.ebook-intro-lead,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 section.ebook-intro.section p.ebook-intro-lead {
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 1.25rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-3 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-4 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container41 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43 section.ebook-intro.section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 section.ebook-intro.section h3 {
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 二欄列：父層 flex 等高（欄位改 flex 分寬，不再只靠 50% float 寬） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22) {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11 {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)::after {
+            display: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22 {
+            float: none;
+            width: auto;
+            flex: 1 1 50%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22>img {
+            flex: 1 1 auto;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container21>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.container22>section.ebook-intro.section {
+            flex: 1 1 auto;
+            min-height: 100%;
+            margin-bottom: 0;
+        }
+
+        /* container22 內兩張圖上下排列 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2--stack>img {
+            flex: 1 1 0;
+            width: 100%;
+            min-height: 0;
+            height: auto;
+            object-fit: cover;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container21):has(> .container22)>.readable-col-2--stack>img {
+            flex: 1 1 0;
+            min-height: 0;
+            height: auto;
+        }
+
+        /* 上：container22 雙圖直排；下：container11 全寬文（無 container21） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21)) {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 1rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.readable-col-2--stack {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            float: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.container11 {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            float: none;
+            clear: both;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .readable-col-2--stack):has(> .container11):not(:has(> .container21))>.container11>section.ebook-intro.section {
+            margin-bottom: 0;
+        }
+
+        /* 上二圖 + 下全寬文：同一張列卡內換行（其他區塊仍用 container11） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) {
+            flex-wrap: wrap;
+            column-gap: 1rem;
+            row-gap: 1rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container22,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container21 {
+            flex: 1 1 calc(50% - 0.5rem);
+            max-width: calc(50% - 0.5rem);
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container11 {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            float: none;
+            clear: both;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11)>.container11>section.ebook-intro.section {
+            margin-bottom: 0;
+        }
+
+        /* 三欄列：同上等高 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)::after {
+            display: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33 {
+            float: none;
+            width: auto;
+            flex: 1 1 33.33%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32>img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33>img {
+            flex: 1 1 auto;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container31>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container32>section.ebook-intro.section,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33)>.container33>section.ebook-intro.section {
+            flex: 1 1 auto;
+            min-height: 100%;
+            margin-bottom: 0;
+        }
+
+        /* 四欄列：flex 等高 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44) {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)::after {
+            display: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container42,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container44 {
+            float: none;
+            width: auto;
+            flex: 1 1 25%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container41):has(> .container42):has(> .container43):has(> .container44)>[class^="container4"]>img {
+            flex: 1 1 auto;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+
+        /* 全寬單一 section：維持獨立卡片，避免與列卡雙重 margin */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> section.ebook-intro.section):not(:has(> [class^="container"])) {
+            margin-bottom: 0;
+            padding: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        /* 作業 float 區：只套 .readable-homework-block 內，不動全站 body／header */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .container {
+            width: 100%;
+            height: 35vh;
+            clear: both;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .box-content {
+            padding: 20px;
+            height: 100%;
+            overflow: visible;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .box-content h2,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .box-content h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .box-content h4 {
+            margin-bottom: 10px;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-homework-block .box-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 作業區沿用上方二／三／四欄規則（scoped 於 .readable-homework-block） */
+
+        /* 與全站 section 同款：main 內勿用 div，且勿與 container21 等 float 綁同一元素 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader section.ebook-intro.section {
+            clear: both;
+            width: 100%;
+            float: none;
+            box-sizing: border-box;
+        }
+
+        /* 只調字級；對齊／42rem 閱讀欄與頂部 intro 同用 style.css（勿改 text-align、max-width） */
+        body.ebook-ssg2-page.totoga2-page .ebook-main .ebook-intro.section h2.section-title {
+            font-size: 1.5rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section h3 {
+            max-width: 42rem;
+            margin: 0.5rem auto 0.875rem;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--primary);
+            color: #2a2a2a;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
+        }
+
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section[style*="background-color: var(--black)"] h3,
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section[style*="background-color: var(--primary)"] h3 {
+            border-left-color: currentColor;
+        }
+    </style>
+    <link rel="stylesheet" href="split-nav.css">
+</head>
+
+<body class="ebook-ssg2-page totoga2-page">
+    <header class="inner-page-header">
+        <div class="header-inner site-header-inner">
+            <h1 class="main-title">無限挑戰 · 六六歌2</h1>
+            <div class="subtitle-wrap">
+                <span class="sub-title">水晶男孩回來啦！</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+
+    <canvas id="particles"></canvas>
+
+    <nav class="ebook-back-link content-container totoga2-split-crossnav" aria-label="六六歌2 閱讀入口">
+        <a href="timeline.html" class="btn" title="時間軸與紀實八章長文單頁">時間軸</a>
+        <a href="ebook.html" class="btn" title="紀實電子書內容獨立成頁">電子書</a>
+        <a href="readable.html" class="btn" aria-current="page" title="單頁整合：影片／電子書／長文模式切換與八章錨點">圖文好讀版</a>
+        <a href="video.html" class="btn" title="無限挑戰 · 六六歌2 嵌入影片單頁">影片</a>
+    </nav>
+
+    <div class="content-container ebook-main">
+        <section class="ebook-intro section" aria-label="圖文好讀版說明">
+            <h2 class="section-title">圖文好讀版</h2>
+            <p class="ebook-intro-lead">
+                若你錯過了當年的直播，或想邊看節目截圖邊重溫敘事，這裡把《無限挑戰》六六歌2 的紀實整理成可一路往下讀的圖文長文；笑點與淚點交錯，六顆水晶如何再次站上舞台，都在這一頁。
+            </p>
+        </section>
+
+        <main class="content-container chronicle-reader" id="totoga2-reader" data-mode="scroll">
+            <article id="challenge" data-title="無限挑戰">
+
+                <div class="container" style="height: auto; min-height: 45vh; margin-bottom: 20px;">
+                    <div class="container11 readable-col-1">
+                        <img src="/totoga2/readable/7-2_160416_0_02_35水晶男孩.jpg" alt="水晶男孩 COM' BACK"
+                            style="width: 100%; height: auto; display: block;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h2 class="section-title">世紀末的追星狂狂熱，你聽過那場驚天動地的「黃色奇蹟」嗎？</h2>
+                            <p class="ebook-intro-lead">在大韓民國綜藝史上，MBC《無限挑戰》締造了無數眼淚與歡笑，而其中最傳奇的企劃，莫過於將 90
+                                年代叱吒風雲的傳奇歌手們重新召集回舞台的「星期六星期六是歌手」（簡稱六六歌）。受邀歌手必須先在 KTV 唱歌通過測試，成績超過 95 分才能擁有登台資格。</p>
+                            <p class="ebook-intro-lead">當時，創下無數輝煌紀錄、卻在 2000
+                                年事業巔峰期無預警解散的超級男團——<strong>「水晶男孩（SECHSKIES）」</strong>，成員金在德、張水院曾受邀參與第一季。兩人雖通過測試，但皆認為若要以水晶男孩名義踏上舞台，必須要以「完整體」參加才有意義。可惜當時未能集結六顆水晶，第一季由
+                                Turbo、S.E.S Singer、Jinusean 等歌手引爆熱潮，而無數粉絲期盼的水晶男孩只能抱憾缺席。</p>
+                            <p class="ebook-intro-lead"><strong>傳奇不該就此謝幕。</strong></p>
+                            <p class="ebook-intro-lead">於是，六六歌於 2016 年 4 月開啟了第二季的篇章。</p>
+                            <p class="ebook-intro-note">圖片來源：MBC</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 38vh; margin-bottom: 20px;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <img src="/totoga2/readable/04-2_totoka.png" alt="六六歌第二季"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h3>六六歌第二季：獨一無二的專屬企劃</h3>
+                            <p class="ebook-intro-lead">和第一季不同的是，第一季是由許多藝人共同完成一個舞台，而第二季專門為一個團體而企劃。</p>
+                            <p class="ebook-intro-lead">節目一開場，來到 2016 年 2 月 17 日，兩位來歷不明的人裝扮成 90 年代的偶像，氣喘吁吁地跳著 90
+                                年代的流行歌曲－〈品生品死〉。像是如魚得水的純黑蚱蜢和正在跳蹦床的純白小鬼，當年帥氣的造型現在看起來和大媽沒有差別，模樣相當逗趣！</p>
+                            <p class="ebook-intro-lead">
+                                無限挑戰中原本的五名主持卻只來兩位，原來是因為這次的企劃是高度機密，為了避免消息走漏讓企劃流局，遺憾的先將另外三名排除在外，由口風較緊的國民主持人劉在錫和 HAHA 參與。接著
+                                HAHA 開始猜測嘉賓，依照身上的裝扮大概念猜到，是不是一開始跳的舞曲〈品生品死〉的原唱，正是第一季曾出演過的水院、在德所屬團體－水晶男孩。</p>
+                            <p class="ebook-intro-note">圖片來源：MBC</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 30vh; margin-bottom: 20px; clear: both;">
+                    <div class="container11 readable-col-1">
+                        <section class="ebook-intro section">
+                            <h2 class="section-title">傳奇男團：水晶男孩（SECHSKIES）</h2>
+                            <p class="ebook-intro-lead">1997 年 4 月 15 日出道，一出道就和 H.O.T（韓國第一支男孩團體，「韓流」的開山鼻祖）平分秋色，為 90
+                                年代歌壇颶風兩大山脈，人氣非常高。</p>
+                            <p class="ebook-intro-lead">團體中另分為以
+                                Rap、舞蹈為主的黑水晶（殷志源、李宰鎮、金在德）及以歌唱為主的白水晶（姜成勳、高志溶、張水院）。水晶男孩的團名，是德語的「六顆水晶」；他們的全盛期，也如名字一般閃耀。發行五張專輯，銷售量卻高達
+                                190 萬張、演唱會門票年年售罄、曾獲得 32 次冠軍獎盃，僅三年一個月便取得如此輝煌的成績。</p>
+                            <p class="ebook-intro-note">圖片來源：MBC</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 45vh; margin-bottom: 20px; clear: both;">
+                    <div class="container11 readable-col-1">
+                        <img src="/totoga2/readable/6-1需要極度保密.jpeg" alt="正式交涉高度保密"
+                            style="width: 100%; height: auto; display: block;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h2 class="section-title">正式交涉與保密協議</h2>
+                            <p class="ebook-intro-lead">兩位主持爆笑登場後，互相寒暄近況、簡單介紹一下水晶男孩、也提到當年備受矚目的動作 Back down
+                                (扶著後腦勺往後倒地)、過往的吵架故事......等，讓觀眾經由對話對水晶男孩有進一步地認識。</p>
+
+                            <p class="ebook-intro-lead"><strong>【做不做公演？游擊演唱會的殘酷規則】</strong><br>
+                                和第一季提前告知並讓觀眾申請入場不同，第二季是<strong>游擊演唱會</strong>！公演當天才能展開宣傳並聚集觀眾，演出者必須全程戴上眼罩，直到活動正式開始那一刻才能摘下眼罩看到現場觀眾人數。這是在他們解散後才出現的新型節目形式，如今終於可以親自嘗試了，光是想像都讓人激動，觀眾也相當期待！
+                            </p>
+                            <p class="ebook-intro-lead">
+                                由於游擊演唱會必須臨時聚集觀眾，不能提前公開日程，因此成員們需要和製作組簽訂一個<strong>保密協議</strong>。只有在保密完全成功的情況下，才能正常地按原計劃進行演唱會。如果在演唱會之前消息意外走漏，主辦方將會立刻取消演唱會，直接實行<strong>「B計劃：愛做不做公演」</strong>！此計劃內容為不管是什麼奇葩場地，只要有觀眾需要，成員就必須立刻趕去現場演出。
+                            </p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <section class="ebook-intro section">
+                            <h3>冷凍美男－姜成勳</h3>
+                            <p class="ebook-intro-lead">令人印象深刻的是，主唱姜成勳擁有和 20
+                                年前完全一模一樣的驚人外貌，堪稱「冷凍人」級別！甚至還被張水院私下吐槽虧說：「他就算到了 70 歲還是會繼續留這個招牌髮型吧！」</p>
+                            <p class="ebook-intro-lead">
+                                然而，在光鮮的外表背後，這段解散期間他經歷了無數波折。曾遭到合夥人惡意詐騙，甚至反被誣告，足足痛苦地過了兩年，法院才終於判決還他清白。在這段日子裡承受了最多、最辛苦的他，此時此刻反而只覺得對等待多年的粉絲和大眾感到無比抱歉，真心讓人感到心疼！
+                            </p>
+                        </section>
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <img src="/totoga2/readable/11-1_冷凍人.jpeg" alt="冷凍美男姜成勳"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <img src="/totoga2/readable/11-2_無法輕易征服的高山 宰鎮.jpeg" alt="無法輕易征服的高山 宰鎮"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <img src="/totoga2/readable/11-4_160416_0_08.jpeg" alt="綜藝感爆發"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container31 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <img src="/totoga2/readable/11-3_160416_0_03.png" alt="無法輕易征服的高山"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container32 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <section class="ebook-intro section" style="padding: 15px;">
+                            <h3>魔性魅力－李宰鎮</h3>
+                            <p class="ebook-intro-lead" style="font-size: 0.95rem;">
+                                節目剛開始時，大家高興地彼此問候，唯獨被嚇壞的李宰鎮滿臉防備地追問為什麼要這樣熱烈歡迎，獨特的性格似乎有點與眾不同。訪問輪到他時，就連劉在錫和 HAHA
+                                都瞬間緊張起來，面對這座必須要跨越的「綜藝喜馬拉雅山」使出渾身解數，卻頻頻在他奇特的思考迴路中迷失方向。</p>
+                        </section>
+                    </div>
+                    <div class="container33 readable-col-3 readable-col-3--right" style="float: right; width: 33.33%;">
+                        <section class="ebook-intro section" style="padding: 15px;">
+                            <h3>無法輕易征服的高山</h3>
+                            <p class="ebook-intro-lead" style="font-size: 0.95rem;">他是那種必須要「清楚表達才聽得懂的極端 O
+                                型」人格，完全不按綜藝套路出牌。當大家都被節目組意外的游擊宣布嚇到時，李宰鎮卻一秒潑冷水說自己「早就猜到了」，讓劉在錫瞬間語塞！直白四次元的反應，更讓劉在錫忍不住對著鏡頭驚嘆這絕對是自己「生平第一次看到的角色」！
+                            </p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 32vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <img src="/totoga2/readable/11-4_160416_0_08.jpeg" alt="主持人群感到緊張"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h3>見過大風大浪也緊張</h3>
+                            <p class="ebook-intro-lead">隨著訪問推進，李宰鎮那具有個人特色的綜藝感漸漸展露。他的耿直反應和新穎回答，讓採訪過無數來賓的劉在錫和 HAHA
+                                從一開始就繃緊了神經，完全無法預測接下來的局勢發展。</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container31 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <img src="/totoga2/readable/12-1_160416_0_06.png" alt="宰鎮突然大笑"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container32 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <img src="/totoga2/readable/12-2_160416_0_07.png" alt="HAHA被嚇到"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container33 readable-col-3 readable-col-3--right" style="float: right; width: 33.33%;">
+                        <section class="ebook-intro section" style="padding: 15px;">
+                            <h3>無預警爆發的魔性笑聲</h3>
+                            <p class="ebook-intro-lead" style="font-size: 0.95rem;">
+                                就在介紹規則和訪談進行到一半時，李宰鎮因為自己腦海中想像到的有趣畫面，突然毫無預警地獨自放聲大笑「嗯哈哈哈哈～」。那毫無防備的突發笑彈，瞬間打破錄影現場的節奏，直接把兩位主持人嚇了一大跳！不過早已經習慣宰鎮這種四次元個性的水晶男孩團員們，反而覺得主持人的受驚反應超有趣，跟著笑翻全場。
+                            </p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 32vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h3>讓全場陷入混亂的「精神衝擊」</h3>
+                            <p class="ebook-intro-lead">面對這毫無前因後果的突發笑彈，坐在一旁的 HAHA
+                                直接被嚇到雙眼圓睜、下巴脫臼，滿臉寫著茫然。控場能力一流的劉在錫也徹底崩潰，一邊按耐著受驚的心臟，一邊哭笑不得、畢恭畢敬地追問：「真的真的很抱歉，但是為什麼你要笑？」這種摸不著頭緒卻又無敵純真的個人特色，讓劉在錫也爆笑又暴跳！
+                            </p>
+                        </section>
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <img src="/totoga2/readable/12-3_為什麼你要笑.jpeg" alt="為什麼你要笑近鏡頭"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container31 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <section class="ebook-intro section" style="padding: 15px;">
+                            <h3>當場畫在錫的臉</h3>
+                            <p class="ebook-intro-lead" style="font-size: 0.9rem;">
+                                當節目組提到李宰鎮不久前舉辦過個人畫展、擅長繪畫時，便提出現場展示的要求，要他當場畫在錫的臉。沒想到宰鎮一邊拿著筆，畫到一半卻突然純真地提出自己的疑惑，拋出靈魂拷問：「你們為什麼見到諧星就要他搞笑，見到會畫畫的人就一定要他畫畫呢？」讓劉在錫瞬間覺得自己好像被嚴厲教訓了！
+                            </p>
+                        </section>
+                    </div>
+                    <div class="container32 readable-col-3 readable-col-3--left" style="float: left; width: 33.33%;">
+                        <section class="ebook-intro section" style="padding: 15px;">
+                            <h3>靈魂拷問與相當無語</h3>
+                            <p class="ebook-intro-lead" style="font-size: 0.9rem;">
+                                這番完全跳脫綜藝框架、既無辜又讓人無法反駁的真性情發言，再度讓現場氣氛陷入奇妙的停滯。面對這種史無前例的直球攻勢，剛剛還試圖控場的劉在錫和 HAHA
+                                瞬間失去了語言能力，只能雙手交疊、乖乖坐好，臉上掛著複雜而空洞的微笑。現場字幕更精準地配上「啊啊…相當無語…」，完美道出了主持人在這位「純真奇男子」面前，靈魂短暫登出、徹底無能為力的狀態。
+                            </p>
+                        </section>
+                    </div>
+                    <div class="container33 readable-col-3 readable-col-3--right" style="float: right; width: 33.33%;">
+                        <img src="/totoga2/readable/12-5_啊啊..jpeg" alt="啊啊相當無語字幕"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 35vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <img src="/totoga2/readable/13-1_那是我畫的!所以是我的!.jpeg" alt="那是我畫的所以是我的"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h3>絕對所有權！</h3>
+                            <p class="ebook-intro-lead">
+                                好不容易在現場把肖像畫完成了，一般情況下嘉賓都會大方送給節目，但李宰鎮不喜歡「正常」，他真的是非常不平凡！當在錫哥表示會帶回家好好收藏並理所當然地伸手準備拿走時，李宰鎮卻像個護著玩具的小孩，理直氣壯地一把護住自己的作品，神色認真地回絕：「不行，為什麼你要拿走？那是我畫的！所以是我的！」
+                            </p>
+                            <p class="ebook-intro-lead">這番毫無心機的「所有權宣告」，直接讓在錫哥當場抱頭崩潰，甚至開玩笑地指著宰鎮大喊：「這哥是惡魔嗎？！」</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 32vh; margin-bottom: 20px; clear: both;">
+                    <div class="container41 readable-col-4 readable-col-4--left" style="float: left; width: 25%;">
+                        <img src="/totoga2/readable/13-2哥得自己畫!.jpeg" alt="哥得自己畫截圖"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container42 readable-col-4 readable-col-4--left" style="float: left; width: 25%;">
+                        <img src="/totoga2/readable/13-4_160416_0_05.png" alt="志源大喊畫面"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container43 readable-col-4 readable-col-4--right" style="float: right; width: 25%;">
+                        <img src="/totoga2/readable/13-5_ScreenShot-VideoID-2epKr_O2s9E-TimeS-31.png" alt="志源摟住宰鎮"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="container44 readable-col-4 readable-col-4--right" style="float: right; width: 25%;">
+                        <img src="/totoga2/readable/13-6_ScreenShot-VideoID-2epKr_O2s9E-TimeS-42.jpeg" alt="聯手逼退在錫"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <div class="container" style="height: auto; min-height: 45vh; margin-bottom: 20px; clear: both;">
+                    <div class="container22 readable-col-2 readable-col-2--left" style="float: left; width: 50%;">
+                        <section class="ebook-intro section" style="padding: 20px;">
+                            <h3>隊長聯手逗弄主持人的日常，與突如其來的「解散真相」</h3>
+                            <p class="ebook-intro-lead">
+                                這時候，最精彩的水晶男孩「日常生態」出現了。坐在一旁的隊長殷志源看著在錫哥被宰鎮逼到牆角，非但沒有出來打圓場，反而一把摟住自家大哥，理直氣壯地站在宰鎮這邊，順著那無厘頭的耿直邏輯，對著在錫哥大喊：「哥要是想拿走，你得自己畫！」這神補刀的一句話，讓在錫更覺得他簡直是個調皮的天才！
+                            </p>
+
+                            <p class="ebook-intro-lead"><strong>【嚴肅話題下的爆笑神反轉】</strong><br>
+                                接著大家聊到當年最沉重的話題——解散的真正情況。當時解散的原因其實是因為不滿公司的壓榨與不公，成員原本想著要集體離開公司，卻被公司強制宣布解散……當時在社會上鬧得非常大，甚至連雙方父母都親自跑到公司開會抗議了。然而，就在全場氣氛陷入一片嚴肅與感傷的時候，李宰鎮又突然毫無預警地笑出聲來，冷不防地說道：「當時我父母親其實是去結算（拿錢）的啦！」
+                            </p>
+                            <p class="ebook-intro-lead">這句話一出，讓剛剛還沉浸在悲傷情緒中的劉在錫和 HAHA
+                                再次瞬間無語、徹底崩潰，只能哭笑不得地互相幫對方按摩心臟來緩解精神衝擊。整個訪談過程中，李宰鎮這種不按牌理出牌的回應，各種讓主持人防不勝防的崩潰，絕對是節目中最大的看點！
+                            </p>
+                        </section>
+                    </div>
+                    <div class="container21 readable-col-2 readable-col-2--right" style="float: right; width: 50%;">
+                        <img src="/totoga2/readable/13-31779025232670.jpg" alt="水晶男孩現場互動"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank">
+            Design by <span class="mark_b">Jekkinoopy Studio</span>
+        </a>
+    </footer>
+    </main>
+    </div>
+
+    <p class="ebook-back-link content-container">
+        <a href="../index.html#story" class="btn">回到首頁 · 傳奇的轉折</a>
+    </p>
+
+    <script src="../assets/js/particles.js"></script>
+    <script src="../assets/js/portal-nav.js"></script>
+</body>
+
+</html>
