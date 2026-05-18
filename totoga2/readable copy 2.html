@@ -211,6 +211,28 @@
             box-sizing: border-box;
         }
 
+        /* 只調字級；對齊／42rem 閱讀欄與頂部 intro 同用 style.css（勿改 text-align、max-width） */
+        body.ebook-ssg2-page.totoga2-page .ebook-main .ebook-intro.section h2.section-title {
+            font-size: 1.5rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section h3 {
+            max-width: 42rem;
+            margin: 0.5rem auto 0.875rem;
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--primary);
+            color: #2a2a2a;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
+        }
+
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section[style*="background-color: var(--black)"] h3,
+        body.ebook-ssg2-page.totoga2-page .ebook-main #totoga2-reader .ebook-intro.section[style*="background-color: var(--primary)"] h3 {
+            border-left-color: currentColor;
+        }
+
     </style>
     <link rel="stylesheet" href="split-nav.css">
 </head>
@@ -385,7 +407,7 @@
                         <div class="container" style="height: 22vh;">
                             <div class="container11">
                                 <div class="box-content">
-                                    <h1>魔性魅力－李宰鎮</h1>
+                                    <h3>魔性魅力－李宰鎮</h3>
                                     <p style="margin-top: 10px; font-size: 1.1rem;">
                                         節目剛開始時，大家高興地彼此問候，唯獨被嚇壞的李宰鎮問為什麼要這樣歡迎，性格似乎有點與眾不同。訪問輪到他時，就連劉在錫和 HAHA
                                         都緊張這座必須要跨越的喜馬拉雅山。
