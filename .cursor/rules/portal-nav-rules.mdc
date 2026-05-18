@@ -1,5 +1,5 @@
 ---
-description: 全站頂欄導覽 portal-nav.js（buildPortalNavInnerHTML、COMING_SOON_PAGES、INDEX_NAV_OPEN_HASHES、籌備中、新頁檢查清單）；與 user-scope-and-nav 搭配。
+description: 全站導覽與籌備中（portal-nav.js、site-guide、開放邊界、刪錨點）
 alwaysApply: true
 ---
 
@@ -23,13 +23,7 @@ alwaysApply: true
 3. **`totoga2/readable.html`（圖文好讀版，檔名 `readable.html`）**、**`variety/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
 4. **「刪除／拿掉／不要了」**：若未寫明是**單一檔案**、**頂欄某一列**、**整段子選單**還是**整個資料夾**，**一律先問站主**，禁止自行擴大刪除範圍。
 5. **不確定**是否開放、連哪、是否例外：**先問站主再改**，不要猜。
-6. 站主說要刪的是 **`某頁#錨點`**（頁內區塊）時：先改該頁 DOM，再修死錨連結；**不要**只動導覽、也不要把「刪區塊」擴成刪頂欄整段。細節見 **`user-scope-and-nav.mdc`**（§ 頁面錨點刪除）。
-
-## 0.1 站主同意（細項）
-
-- **未經站主明確同意**，不得自行：從 `COMING_SOON_PAGES` 移除檔名、擴充 `INDEX_NAV_OPEN_HASHES`、在 `buildPortalNavInnerHTML` **新增**導覽項目、**刪除站主已同意列入頂欄**的項目、或把籌備中連結改成可點（**全站導覽頁頂欄例外見 §0**）。
-- **`extra/site-guide.html`**：站主自用；條件同 §0 表格。（僅此頁可加 `data-portal-nav-all-open`。）
-- 頂欄模板**不含**未同意掛列的頁；該頁仍可由 `site-guide` 主文或網址直開（站主自用）。
+6. 站主說刪 **`某頁#錨點`**：見下方 **§8 頁面錨點刪除**（先改 DOM，再修死鏈；禁止只動導覽）。
 
 ---
 
@@ -123,22 +117,18 @@ alwaysApply: true
 
 ---
 
-## 7. 與使用者約定：開放範圍
+## 8. 頁面錨點刪除（`某頁.html#id`）
 
-- **不要**在未經使用者**明確交代**的情況下，自行把導覽改為「可點進入」或更換目標頁（例如把「傳奇的轉折」改成連到 `totoga2.html`）。
-- 「傳奇的轉折」是否開放、連到哪裡，**只依使用者指示**；意圖與邊界亦見 **`.cursor/rules/user-scope-and-nav.mdc`**。
+指該 HTML 裡 **`id="…"` 的那一區**／`<section>`，不是刪整檔、不是刪資料夾、不是刪頂欄整段「全員發瘋」，也不是擅自改 `COMING_SOON_PAGES`（除非原句一併交代）。
 
----
+1. **先**在目標頁拿掉該 DOM。  
+2. **再**修仍指向死錨的 `href`（最小必要）。  
+3. **禁止**只改 `portal-nav.js`／`site-guide.html` 卻不刪頁內區塊。
 
-## 相關檔案
+錨點拿掉後，書籤網址列仍可能顯示 `#…`，不代表 DOM 還在。header 大標 ≠ 已刪的 `#id` 區塊。「刪除」範圍不清 → **先問**。
 
-| 檔案 | 用途 |
-|------|------|
-| `assets/js/portal-nav.js` | `buildPortalNavInnerHTML`、`COMING_SOON_PAGES`、`INDEX_NAV_OPEN_HASHES`、籌備中邏輯 |
-| `assets/css/style.css` | `.portal-nav`、子選單、`.nav-current` 等樣式 |
-| `.cursor/rules/user-scope-and-nav.mdc` | 意圖與導覽開放（與本規則搭配） |
-| `.cursor/rules/ai-change-boundaries.mdc` | 變更範圍與共用 CSS 邊界 |
-| `docs/CHANGESET-review.md` | 歷次變更檢查清單筆記（非程式真值來源） |
-| `docs/sql/` | SQL 練習／筆記（`sql_plan.md`、`.sql` 腳本與匯出） |
+## 名詞
 
-（籌備中提示：`COMING_SOON_LABEL`＝「籌備中」；頂欄氣泡與頁內按鈕後綴同文案。）
+- **頂欄**：`portal-nav.js` 注入的 `<nav class="portal-nav" data-portal-nav>`。  
+- **全站索引**：`extra/site-guide.html`（可列草稿；**不等於**頂欄要掛）。  
+- **程式真值**：`assets/js/portal-nav.js`（`COMING_SOON_LABEL`＝「籌備中」）。

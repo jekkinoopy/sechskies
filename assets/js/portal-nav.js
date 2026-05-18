@@ -8,7 +8,7 @@
      * 【未公開】href 改 #、不可點。頂欄與頁內按鈕：NAV_SOON_PHRASES 滑過隨機氣泡（同 ::after）；無障礙 aria「尚無開放」；不加可見「（籌備中）」文字後綴。
      * 【totoga2 開放】`totoga2/ebook.html`、`totoga2/video.html` 可點；`timeline.html` 與 `totoga2/readable.html` 在 Set 內。
      * 頂欄勿加 `portal-nav__sub`（站主未要求）；曾用副標見 `.cursor/portal-nav-optimization-backlog.md`。
-     * 完整條文：`.cursor/rules/portal-nav-rules.mdc` + `user-scope-and-nav.mdc`
+     * 完整條文：`.cursor/rules/portal-nav-rules.mdc`
      */
     const NAV_SOON_PHRASES = [
         "奇蹟醞釀中",

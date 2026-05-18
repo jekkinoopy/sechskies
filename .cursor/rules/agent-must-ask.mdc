@@ -1,31 +1,52 @@
 ---
-description: 助手必問再改（站主明講）；防擅自改名、批次改檔、編碼毀檔
+description: 必問再改、Git commit／禁 push、UTF-8、內頁 header、對圖與 devtools
 alwaysApply: true
 ---
 
-# 必問再改（站主已多次強調）
+# 必問再改與 Git（站主訂）
 
-## 硬規則
+## 改檔
 
-1. **站主沒說「執行」→ 不改檔**（可先說明、對照、列計畫）。
-2. **站主說「先改一頁」→ 只改那一頁**，不得順手全站套用。
-3. **class 改名／全站換名**：先問站主**確切 class 字串**；全站內頁 banner 現用 **`inner-page-header`**（禁止再改回 `map-archive-header` 等單頁名）；不得用 PowerShell 批次替換 HTML。
-4. **導覽文案**：不得自加括號、副標、路徑說明（例如禁止擅自「傳奇的轉折（六六歌2）」）；`portal-nav.js` 改字前先對站主原句。
-5. **CSS 對齊 devtools**：站主給的勾選／數值照抄；若必須補 `min-height`、`padding` 等 devtools 沒有的值，**先寫明「這是我補的」**，等站主說執行再寫入。
+1. **沒說「執行」→ 不改檔**（可先說明、對照、列計畫）。**「檢查」→ 只回報**。
+2. **只改被點名的那一頁／區塊**；未寫到的檔不開、不刪、不重構。
+3. **class 全站換名**：先問確切字串。內頁 banner 用 **`inner-page-header`**（禁止改回 `map-archive-header` 等）。**禁止** PowerShell 批次改 `.html`（須 UTF-8 安全，如逐檔 `StrReplace`）。
+4. **頂欄文案**：禁止擅自加括號、副標（如「傳奇的轉折（六六歌2）」）；改 `portal-nav.js` 前對站主原句。
+5. **devtools**：勾選／數值照抄；補 devtools 沒有的值須標「這是我補的」，等站主說執行再寫入。
+6. **參考圖**：粉線＝看這段，不是整段包 span。`mark_y`／`mark_b` 對照圖裡實際字重。
+7. **首頁 `#mission`**：只調 span 時只動 `<span>`；金句未要求時只改內文。沒叫動註解就不動註解。
 
-## 禁止（曾毀站）
+## 內頁 header
 
-- **禁止**用 PowerShell `Get-Content` / `Set-Content`（或未指定 `-Encoding utf8`）批次改 **`.html`** → 會把 UTF-8 中文弄成 `?`、標籤斷裂（如 `?/span>`）。
-- 若需批次改 HTML：只用 **UTF-8 安全**方式（例如逐檔 `StrReplace`、或 `git` 還原後手改），改完抽查 `index.html` 首屏中文是否正常。
+- 內頁：**`header.inner-page-header`**。首頁 Hero：**`header#origin`**。樣式以站主在電子書頁調過的為準；要套他頁須站主說執行。
 
-## 內頁 header（約定方向，名稱待站主定）
+## Git：改完末尾附 commit
 
-- 全站內頁 banner：**`header.inner-page-header`**（勿用 `map-archive-header` 等單頁名當全站 class）。
-- 首頁僅 **`header#origin`** 全屏 Hero，與內頁 header class 分開。
-- 樣式以站主在**電子書頁** devtools 調過的為準後，再談是否套其他內頁（須站主說執行）。
+每做完**一項**改動並已寫入檔案，回覆末尾附（**勿**為此反覆跑 `git status`／`git diff`）：
+
+```bash
+git add .
+git commit -m "類型 修改重點"
+```
+
+| 項目 | 約定 |
+|------|------|
+| 類型 | `feat`｜`fix`｜`style` 三選一 |
+| 重點 | **15 字以內**（標點計入） |
+| add | **一律 `git add .`**，禁止只 add 單檔 |
+
+- 只說「檢查」、未改檔 → 不附 commit。多項獨立交辦 → 每項各附一段。
+
+## Git：禁止擅自 push
+
+- **禁止 `git push`**，除非站主原句「幫我 push」等。只貼 push 錯誤 ≠ 同意 push。
+- 修 push 失敗：只動本機（壓圖、`.gitignore`、`amend`／filter-branch **先問**），末尾只給站主：
+
+```bash
+git push origin main
+```
+
+- GitHub 單檔 **> 100 MB** 拒 push。`*.png.bak` 已在根 `.gitignore`，勿 `git add .` 送進備份檔。
 
 ## 回覆
 
-- 站主說字太多時：**短句**，先答「做沒做、為什麼壞」，不要長篇道歉後又擅自改一輪。
-- **改完一項並已寫入檔案**：回覆末尾附 `git add .` + `git commit -m "feat|fix|style 重點"`（重點 **15 字以內**）；細則見 `.cursor/collaboration-notes.md` §6。勿為附 commit 反覆查 git。
-- **禁止擅自 `git push`**：除非站主原句要求推遠端；修 push 失敗只改本機，末尾給站主自行的 `git push …` 即可。見 `.cursor/collaboration-notes.md` §6.1。
+- 站主要短句時：先答做沒做、為什麼壞，勿長篇道歉後又擅自改一輪。
