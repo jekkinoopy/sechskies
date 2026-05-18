@@ -258,6 +258,32 @@
             margin-bottom: 0;
         }
 
+        /* 上二圖 + 下全寬文：同一張列卡內換行（container11 禁止縮進同一列） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) {
+            flex-wrap: wrap;
+            column-gap: 1rem;
+            row-gap: 1rem;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container22,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container21 {
+            flex: 1 1 calc(50% - 0.5rem);
+            max-width: calc(50% - 0.5rem);
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container11 {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            float: none;
+            clear: both;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container22):has(> .container21):has(> .container11) > .container11 > section.ebook-intro.section {
+            margin-bottom: 0;
+        }
+
         /* 三欄列：同上等高 */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container31):has(> .container32):has(> .container33) {
             display: flex;
@@ -519,9 +545,6 @@
                     <div class="container21 readable-col-2 readable-col-2--right">
                         <img src="/totoga2/readable/11-4_160416_0_08.jpeg" alt="綜藝感爆發">
                     </div>
-                </div>
-
-                <div class="container">
                     <div class="container11 readable-col-1">
                         <section class="ebook-intro section">
                             <h3>魔性魅力－李宰鎮</h3>
