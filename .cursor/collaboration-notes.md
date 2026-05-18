@@ -42,6 +42,7 @@
 - **擅自**把 `map-archive-header` 改成 `inner-page-header`（站主沒點頭、沒給名字）。
 - 站主說先電子書 + dev `center 78%`，助手卻自加 `clamp`／全站 `100vh`／又全站改掉。
 - 頂欄擅自「傳奇的轉折（六六歌2）」— 已改回「傳奇的轉折」；以後 nav 文案不自擴。
+- **擅自 `git push`**（站主只貼 push 失敗錯誤、沒說「幫我 push」）— 禁止再犯；修 push 問題只動本機，結尾給站主自己下的 `git push` 指令。
 
 ---
 
@@ -84,11 +85,35 @@ git commit -m "style 內頁標題深灰配色"
 
 ---
 
+## 6.1 Git：只附 commit，**禁止擅自 push**（站主訂）
+
+| 可以做 | 不可以做 |
+|--------|----------|
+| 改檔後末尾附 `git add .` + `git commit -m "…"`（§6） | **`git push`**、**`git push -u origin …`**、代站主推遠端 |
+| 站主貼 push 失敗：查原因、本機 amend／壓圖／改 `.gitignore`，**說明後請站主自己 push** | 以為「幫他推上去比較省事」就 push |
+| 站主明講「幫我 push」「推上去」 | 用 push 當改完的預設收尾 |
+
+**結尾範例（修完 push 擋下時）：**
+
+```bash
+git push origin main
+```
+
+（由站主在本機執行；助手不代跑。）
+
+### 大檔／備份（2026-05 push 擋下）
+
+- GitHub 單檔 **> 100 MB** 會拒 push；`totoga2/readable/` 曾卡 `13-7_生氣在錫大頭版.png` 與 **`.png.bak`**。
+- 已加 repo 根 **`.gitignore`**：`*.png.bak`。**勿** `git add .` 把 `.bak` 送進 commit。
+- 壓圖只改工作區檔案時，若需改寫**已 commit 未 push** 的歷史，先問站主是否同意 amend／filter-branch；**仍不代 push**。
+
+---
+
 ## 7. 相關規則檔
 
 | 檔案 | 用途 |
 |------|------|
-| `.cursor/collaboration-notes.md` §6 | **改完附 commit**（類型、15 字內重點） |
+| `.cursor/collaboration-notes.md` §6、§6.1 | **改完附 commit**；**禁止擅自 push** |
 | `.cursor/rules/agent-must-ask.mdc` | **必問再改**、禁止批次毀 UTF-8、header／nav 勿擅自改名 |
 | `.cursor/rules/ai-change-boundaries.mdc` | 變更範圍、共用 CSS |
 | `.cursor/rules/user-scope-and-nav.mdc` | 導覽開放、錨點刪除 |

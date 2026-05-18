@@ -28,3 +28,4 @@ alwaysApply: true
 
 - 站主說字太多時：**短句**，先答「做沒做、為什麼壞」，不要長篇道歉後又擅自改一輪。
 - **改完一項並已寫入檔案**：回覆末尾附 `git add .` + `git commit -m "feat|fix|style 重點"`（重點 **15 字以內**）；細則見 `.cursor/collaboration-notes.md` §6。勿為附 commit 反覆查 git。
+- **禁止擅自 `git push`**：除非站主原句要求推遠端；修 push 失敗只改本機，末尾給站主自行的 `git push …` 即可。見 `.cursor/collaboration-notes.md` §6.1。
