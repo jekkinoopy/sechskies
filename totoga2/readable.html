@@ -1060,6 +1060,15 @@
         </a>
     </footer>
     <script src="../assets/js/particles.js"></script>
+    <!-- GitHub Pages 在 /sechskies/ 子路徑：修正舊版 src="/totoga2/readable/..." -->
+    <script>
+        (function () {
+            if (location.pathname.indexOf("/sechskies/") !== 0) return;
+            document.querySelectorAll('img[src^="/totoga2/"], img[src^=" /totoga2/"]').forEach(function (img) {
+                img.src = "/sechskies" + img.getAttribute("src").trim();
+            });
+        })();
+    </script>
     <script src="../assets/js/portal-nav.js"></script>
 </body>
 
