@@ -109,31 +109,52 @@ $favoriteSong = fansform_post('favorite_song');
         }
 
         body.fansform-page .form-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             margin-bottom: 2.5rem;
         }
 
         body.fansform-page .form-title h2 {
+            --form-title-diamond: calc(1.15em * 0.8);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 0.35em;
+            max-width: 100%;
+            margin: 0;
+            padding: 0 0.5rem;
             font-size: clamp(1.6rem, 4vw, 2.25rem);
+            line-height: 1.15;
             font-weight: 900;
             color: var(--primary);
-            display: inline-block;
             letter-spacing: 0.12em;
-            padding: 0 1.5rem;
+            text-align: center;
+            white-space: nowrap;
         }
 
         body.fansform-page .form-title h2::before,
         body.fansform-page .form-title h2::after {
-            content: "💎";
-            margin-inline: 0.35em;
+            content: "";
+            flex: 0 0 var(--form-title-diamond);
+            align-self: center;
+            width: var(--form-title-diamond);
+            height: var(--form-title-diamond);
+            margin: 0;
+            background: url("assets/svg/crystal-diamond.svg") no-repeat center / contain;
         }
 
         body.fansform-page .form-title p {
+            width: 100%;
+            max-width: 28em;
+            margin: 0.65rem 0 0;
             font-size: 0.9rem;
             color: var(--dark-yellow);
-            margin-top: 0.65rem;
             font-weight: 600;
             letter-spacing: 0.15em;
+            text-align: center;
         }
 
         body.fansform-page .sechskies-form fieldset {

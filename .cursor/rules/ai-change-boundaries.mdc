@@ -27,6 +27,11 @@ alwaysApply: true
 - **同一列／並排多欄**：預設 **等高**（例如 flex 同列 `align-items: stretch`、grid 同列對齊高度），除非該次明講要頂對齊或其他非等高編排。
 - **同一層級、同類可重複元件**（例如多張 **CARD**、同一 pattern 的 tile）：預設 **等寬**（同一 breakpoint 下寬度一致），除非明講破格。
 - **短字層**（站主慣稱「十字以內」——極短標、標籤、按鈕字、頂欄主標、區塊小標等；語意上不要硬拆成兩行）：盡量 **單行、不換行**；**水平置中**。
+- **交付前必檢・置中**（每次改版面／新區塊／表單標題後**自動確認**，勿等站主提醒）：
+  - 短字層、區塊主標、表單大標、按鈕列、圖示＋標題並排：父層 `text-align: center` 或 `display: flex` + `justify-content: center` + `align-items: center`（必要時 `margin-inline: auto`）。
+  - `::before`／`::after` 裝飾圖（含 SVG 背景）與文字同一行時：標題用 **`inline-flex` + `align-items: center` + `justify-content: center`**，勿只靠 `inline-block` + `vertical-align` 猜視覺置中。
+  - 內文層 `p` 維持置左；僅容器可 `max-width` + `margin-inline: auto` 置中區塊本身。
+  - 窄螢幕若標題過長：先縮字級或 `letter-spacing`，仍無法單行再與站主確認是否允許換行。
 - **內文層（body）**（超過短字層——`<p>` 整段導語、說明、列表前引言）：允許自然換行；**置左**對齊。規則敘述用「內文／body 層」，**不要**用某個 `*-lead`、`*-intro` 等 class 名當成這一層的定義。
 - **怎麼判斷**：看**實際字數與語意**（是否明顯超過約十字、是否為段落內文），**不是**看 class 字串。HTML 裡的 `<body class="某頁">` 是**頁面作用範圍**，與「內文層」是兩件事，勿混為一談。
 - **CSS 怎麼寫**：短字層 → 標題／按鈕等既有元件規則（多為置中）。內文層 → 在該頁 **`body.頁面類名` 底下**對**段落 `p`**（或該區 `section` 內 `p`）設 `text-align: left`；欄寬可 `max-width` + `margin-inline: auto`，但字仍左對齊。**禁止**在規則檔或新頁面把內文層綁死在自創 class 名上當唯一依據。
