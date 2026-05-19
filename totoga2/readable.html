@@ -36,8 +36,12 @@
 
         /* 同列共用奶油底、外框與欄間距（內文 section 仍保留 padding，不重複底色） */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container {
+            width: 100%;
+            max-width: none;
             margin-block: 30px;
+            margin-inline: auto;
             padding: 0.75rem;
+            box-sizing: border-box;
         }
 
         /* 整列一張卡（排除 overlap-style）；欄內不再各自一張 */
@@ -123,7 +127,6 @@
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .readable-col-2,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container21,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container22 {
-            height: 100%;
             box-sizing: border-box;
         }
 
@@ -142,7 +145,6 @@
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container31,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container32,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container33 {
-            height: 100%;
             box-sizing: border-box;
         }
 
@@ -162,7 +164,6 @@
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container42,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container43,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container44 {
-            height: 100%;
             box-sizing: border-box;
         }
 
@@ -224,11 +225,14 @@
 
         /* ─── 修正關鍵：排除作業區（.readable-homework-block），不讓 Flex 破壞作業 ─── */
 
-        /* 二欄列：僅在非作業區使用 Flex 佈局 */
+        /* 二欄列：flex 全寬；子欄取消 float 才不會整卡偏左留白 */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22) {
             display: flex;
-            align-items: stretch;
+            align-items: center;
+            justify-content: center;
             width: 100%;
+            max-width: 100%;
+            margin-inline: auto;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11 {
@@ -243,31 +247,46 @@
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container21,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container22 {
+            float: none;
             width: auto;
             flex: 1 1 50%;
             min-width: 0;
+            max-width: 50%;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container21>section.ebook-section h3,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container22>section.ebook-section h3 {
+            width: 100%;
+            text-align: center;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container21>section.ebook-intro.section,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container22>section.ebook-intro.section,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container21>section.ebook-section,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container22>section.ebook-section {
-            flex: 1 1 auto;
-            align-self: stretch;
-            min-height: 100%;
-            height: 100%;
+            flex: 0 1 auto;
+            align-self: center;
+            width: 100%;
+            min-height: 0;
+            height: auto;
             margin-bottom: 0;
             box-sizing: border-box;
         }
 
-        /* 二／三欄 flex 等高（不動 float；四欄維持 float 25%；排除 overlap-style） */
+        /* 同列多欄：子欄上下置中（排除 overlap、作業區） */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>[class^="container2"],
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>[class^="container3"] {
-            align-self: stretch;
-            align-items: stretch;
-            justify-content: flex-start;
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>[class^="container3"],
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>[class^="container4"] {
+            align-self: center;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            min-height: 0;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader.chronicle-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22):has(img)>[class^="container2"],
@@ -276,12 +295,21 @@
             min-height: 0;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>[class^="container2"]>img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>[class^="container3"]>img {
-            flex: 1 1 auto;
-            align-self: stretch;
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>[class^="container2"]>img {
+            flex: 0 1 auto;
+            align-self: center;
             width: 100%;
-            height: 100%;
+            max-width: 100%;
+            height: auto;
+            margin-inline: auto;
+            object-fit: contain;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>[class^="container3"]>img {
+            flex: 0 1 auto;
+            align-self: center;
+            width: 100%;
+            height: auto;
             max-height: none;
             min-height: 0;
             margin-block: 0;
@@ -289,10 +317,11 @@
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>[class^="container3"]>section.ebook-section {
-            flex: 1 1 auto;
-            align-self: stretch;
-            min-height: 100%;
-            height: 100%;
+            flex: 0 1 auto;
+            align-self: center;
+            width: 100%;
+            min-height: 0;
+            height: auto;
             margin-bottom: 0;
             box-sizing: border-box;
         }
@@ -340,11 +369,14 @@
             margin-bottom: 0.75rem;
         }
 
-        /* 三欄列：flex 等高（排除 overlap-style） */
+        /* 三欄列：flex 全寬（排除 overlap-style） */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33) {
             display: flex;
-            align-items: stretch;
+            align-items: center;
+            justify-content: center;
             width: 100%;
+            max-width: 100%;
+            margin-inline: auto;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)::after {
@@ -354,19 +386,62 @@
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>.container31,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>.container32,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container31):has(> .container32):has(> .container33)>.container33 {
+            float: none;
             width: auto;
             flex: 1 1 33.33%;
             min-width: 0;
+            height: auto;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             margin-top: 0;
+            box-sizing: border-box;
         }
 
-        /* 四欄列：維持 float 25%／33% 寬，不套 flex（避免蓋掉 container4x 寬度） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container21,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)>.container22 {
+            height: auto;
+        }
+
+        /* 四欄列：flex 同列上下置中 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44) {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 100%;
+            margin-inline: auto;
+        }
+
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)::after {
-            content: "";
-            display: table;
-            clear: both;
+            display: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container41,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container42,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container43,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>.container44 {
+            float: none;
+            width: auto;
+            flex: 1 1 22%;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container41):has(> .container42):has(> .container43):has(> .container44)>[class^="container4"]>img {
+            flex: 0 1 auto;
+            align-self: center;
+            width: 100%;
+            height: auto;
+            margin-inline: auto;
+            object-fit: contain;
         }
 
         /* 全寬單一 section */
@@ -444,42 +519,91 @@
             /* border-left: 5px solid var(--primary); */
         }
 
-        /* 文字在上、左右圖在下（不套用三欄 flex） */
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images {
-            display: block;
+        /* 文字在上、左右圖在下：flex 同列上下置中 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single) {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
             width: 100%;
+            gap: 0.75rem;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images::after {
-            content: "";
-            display: table;
-            clear: both;
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)::after {
+            display: none;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images>.container11 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)>.container11 {
+            flex: 1 1 100%;
             width: 100%;
             float: none;
             clear: both;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images>.container31 {
-            float: left;
-            width: 50%;
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)>.container31,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)>.container33 {
+            float: none;
+            flex: 1 1 calc(50% - 0.5rem);
+            min-width: 0;
+            max-width: 50%;
             box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images>.container33 {
-            float: right;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images>.container31 img,
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images>.container33 img {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)>.container31 img,
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images:not(.readable-text-then-images--single)>.container33 img {
             width: 100%;
             max-width: 100%;
             height: auto;
             display: block;
+            margin-inline: auto;
+            object-fit: contain;
+        }
+
+        /* 文字在上、單圖在下，整塊置中 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single::after {
+            display: none;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single>.container11 {
+            width: 100%;
+            max-width: 42rem;
+            margin-inline: auto;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single>.container11 section.ebook-section h3 {
+            text-align: center;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single>.container11 section.ebook-section p.ebook-intro-lead {
+            text-align: left;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single>.container31 {
+            float: none;
+            width: 100%;
+            max-width: 36rem;
+            margin-inline: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.readable-text-then-images.readable-text-then-images--single>.container31 img {
+            margin-inline: auto;
         }
 
         /* overlap：三欄皆 float:left 30／46／30＋中欄負 margin（對齊粉線參考橫排相疊） */
@@ -798,7 +922,7 @@
 
 
 
-                    <div class="container" style="display: inline-flex; gap: 1.5rem;">
+                    <div class="container">
                         <div class="container41">
                             <img src="./readable/26-3_水晶男孩高志溶.jpg" alt="水晶男孩高志溶">
                             <img src="./readable/27-1_我們很想念你!.jpg" alt="我們很想念你">
