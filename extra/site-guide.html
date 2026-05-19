@@ -63,6 +63,17 @@
             color: rgba(0, 0, 0, 0.38);
             letter-spacing: 0.02em;
         }
+
+        /* 選單名稱（短字層）：單行不斷行；欄寬不足時由表格外層橫向捲動 */
+        body.site-guide-page .site-guide-nav-table td.site-guide-nav-menu-cell {
+            white-space: nowrap;
+            width: 1%;
+        }
+
+        body.site-guide-page .site-guide-nav-table .site-guide-nav-name,
+        body.site-guide-page .site-guide-nav-table .site-guide-nav-name a {
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -138,6 +149,30 @@
                             <td class="site-guide-nav-link-cell"><a
                                     href="../totoga2/readable.html"><code>totoga2/readable.html</code></a></td>
                         </tr>
+                        <tr data-site-guide-depth="4">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
+                                        href="../totoga2/readable%20copy.html">圖文好讀版 · 複本</a></span></td>
+                            <td class="site-guide-nav-desc">與正式版同結構之草稿複本。</td>
+                            <td class="site-guide-nav-link-cell"><a
+                                    href="../totoga2/readable%20copy.html"><code>totoga2/readable copy.html</code></a>
+                            </td>
+                        </tr>
+                        <tr data-site-guide-depth="4">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
+                                        href="../totoga2/readable%20copy%202.html">圖文好讀版 · 複本 2</a></span></td>
+                            <td class="site-guide-nav-desc">與正式版同結構之草稿複本。</td>
+                            <td class="site-guide-nav-link-cell"><a
+                                    href="../totoga2/readable%20copy%202.html"><code>totoga2/readable copy 2.html</code></a>
+                            </td>
+                        </tr>
+                        <tr data-site-guide-depth="4">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
+                                        href="../totoga2/readable%20copy%203.html">圖文好讀版 · 複本 3</a></span></td>
+                            <td class="site-guide-nav-desc">與正式版同結構之草稿複本。</td>
+                            <td class="site-guide-nav-link-cell"><a
+                                    href="../totoga2/readable%20copy%203.html"><code>totoga2/readable copy 3.html</code></a>
+                            </td>
+                        </tr>
                         <tr data-site-guide-depth="3">
                             <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
                                         href="../totoga2/video.html">影片</a></span></td>
@@ -151,7 +186,14 @@
                             <td class="site-guide-nav-desc">—</td>
                             <td class="site-guide-nav-link-cell"><span class="site-guide-nav-nolink">—</span></td>
                         </tr>
-                        https://zh.wikipedia.org/wiki/%E6%B0%B4%E6%99%B6%E7%94%B7%E5%AD%A9%E5%BD%B1%E8%A6%96%E4%BD%9C%E5%93%81%E5%88%97%E8%A1%A8
+                        <tr data-site-guide-depth="3">
+                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
+                                        href="../variety/variety-shows.html">全員發瘋</a></span></td>
+                            <td class="site-guide-nav-desc">綜藝節目存檔表；含隊長帶弟弟、各自暴走等區塊錨點。</td>
+                            <td class="site-guide-nav-link-cell"><a
+                                    href="../variety/variety-shows.html"><code>variety/variety-shows.html</code></a>
+                            </td>
+                        </tr>
                         <tr data-site-guide-depth="3">
                             <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
                                         href="../variety/variety.html#variety">隊長帶弟弟</a></span></td>
@@ -305,6 +347,10 @@
                             <td>整合長頁 · <code>totoga2/readable.html</code></td>
                         </tr>
                         <tr>
+                            <td><a href="../totoga2/readable%20copy.html">圖文好讀版 · 複本</a> 等</td>
+                            <td>草稿複本 · <code>readable copy.html</code>／<code>readable copy 2.html</code>／<code>readable copy 3.html</code></td>
+                        </tr>
+                        <tr>
                             <td><a href="../totoga2/video.html">影片</a></td>
                             <td>平行單頁 · <code>totoga2/video.html</code></td>
                         </tr>
@@ -320,6 +366,9 @@
                         <li><a href="../totoga2/timeline.html">時間軸</a></li>
                         <li><a href="../totoga2/ebook.html">電子書</a></li>
                         <li><a href="../totoga2/readable.html">圖文好讀版</a></li>
+                        <li><a href="../totoga2/readable%20copy.html">複本</a></li>
+                        <li><a href="../totoga2/readable%20copy%202.html">複本 2</a></li>
+                        <li><a href="../totoga2/readable%20copy%203.html">複本 3</a></li>
                         <li><a href="../totoga2/video.html">影片</a></li>
                     </ul>
                     <nav class="site-guide-chapter-nav" aria-label="totoga2 章節">
@@ -447,8 +496,8 @@
         <section class="site-guide-group site-guide-group--extra" aria-labelledby="sg-nav-extra">
             <h2 class="section-title" id="sg-nav-extra">extra/ 其餘</h2>
             <p class="site-guide-folder-hint">未列頂欄主模板之草稿／實驗頁。主選單對應頁面已移至
-                <code>fallen/</code>、<code>member/</code>、<code>yellow-note/</code>、<code>variety/</code> 等資料夾；六六歌2
-                四入口之複本仍在本目錄。
+                <code>member/</code>、<code>yellow-note/</code>、<code>variety/</code> 等資料夾；六六歌2 圖文好讀版之草稿複本在
+                <code>totoga2/readable copy*.html</code>（主選單樹第四層與正式版並列）。
             </p>
             <div class="site-guide-nav-table-wrap">
                 <table class="site-guide-mini-table">
