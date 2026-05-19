@@ -71,6 +71,7 @@
             align-self: auto;
             justify-content: flex-start;
             align-items: stretch;
+            height: auto;
         }
 
         /* 欄內透明（蓋過全站 section 預設底與陰影）；overlap 內欄不套用 */
@@ -442,16 +443,15 @@
             /* border-left: 5px solid var(--primary); */
         }
 
-        /* 只有在 .overlap-style 裡面的 31、32、33 才會套用重疊效果 */
-
-        .overlap-style .container31 {
+        /* overlap 三圖相疊（維持 float；欄位 margin 左右皆有，不鎖 img 單邊 margin） */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style .container31 {
             float: left;
             width: 30%;
             position: relative;
             z-index: 1;
         }
 
-        .overlap-style .container32 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style .container32 {
             float: left;
             width: 46%;
             position: relative;
@@ -460,24 +460,31 @@
             margin-right: -8%;
         }
 
-        .overlap-style .container33 {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style .container33 {
             float: left;
             width: 30%;
             position: relative;
             z-index: 1;
         }
 
-        /* 清除浮動也只針對這個外層 */
-        .overlap-style::after {
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style::after {
             content: "";
             display: block;
             clear: both;
         }
 
-        /* overlap 三張重疊圖維持直角（其餘好讀版圖片見上方 chronicle-reader img） */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style img {
             border-radius: 0;
             overflow: visible;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container.overlap-style .container32 img {
+            width: 42%;
+            max-width: none;
+            height: auto;
+            display: block;
+            position: relative;
+            z-index: 2;
         }
     </style>
     <link rel="stylesheet" href="split-nav.css">
