@@ -421,9 +421,15 @@ img {
 }
 
 .con-4.con-access-denied {
+    position: relative;
+}
+
+/* 灰階／淡化只套內容，不套 CANCELED 水印（::before 在卡片層） */
+.con-4.con-access-denied > .title,
+.con-4.con-access-denied > img,
+.con-4.con-access-denied > [class*="con-4-"] {
     filter: grayscale(80%);
     opacity: 0.7;
-    position: relative;
 }
 
 .con-access-denied .location::before {
@@ -509,11 +515,12 @@ img {
     transform: translate(-50%, -50%) rotate(-15deg);
     font-size: clamp(2rem, 10vw, 4.5rem);
     font-weight: 900;
-    color: rgba(204, 0, 0, 0.1);
-    border: 8px solid rgba(204, 0, 0, 0.1);
+    color: rgba(204, 0, 0, 0.18);
+    border: 8px solid rgba(204, 0, 0, 0.18);
     padding: 10px 30px;
     letter-spacing: 10px;
     pointer-events: none;
-    z-index: 2;
+    z-index: 10;
     white-space: nowrap;
+    opacity: 1;
 }
