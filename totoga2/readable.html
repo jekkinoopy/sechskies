@@ -181,8 +181,6 @@
 
         /* 各欄內文字區：與一欄 section 同款邊距（不另縮 42rem 置中欄） */
 
-        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11 section.ebook-intro.section,
-
         /* 多欄內文段落：移除置中約束 */
         body.ebook-ssg2-page.totoga2-page #totoga2-reader [class^="container2"] section.ebook-intro.section p.ebook-intro-lead,
         body.ebook-ssg2-page.totoga2-page #totoga2-reader [class^="container3"] section.ebook-intro.section p.ebook-intro-lead,
@@ -254,6 +252,29 @@
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
+        }
+
+        /* 單欄 container11：標題、圖、內文同寬（42rem）左右置中 */
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:has(> .container11)>.container11:has(> section.ebook-section) {
+            align-items: center;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11>section.ebook-section {
+            width: 100%;
+            max-width: 42rem;
+            margin-inline: auto;
+            box-sizing: border-box;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11>section.ebook-section>img {
+            width: 100%;
+            max-width: 100%;
+            margin-inline: auto;
+            display: block;
+        }
+
+        body.ebook-ssg2-page.totoga2-page #totoga2-reader .container11>section.ebook-section>h2.section-title {
+            text-align: center;
         }
 
         body.ebook-ssg2-page.totoga2-page #totoga2-reader .container:not(.readable-homework-block):not(.overlap-style):has(> .container21):has(> .container22)::after {
@@ -745,7 +766,7 @@
                     <div class="container">
                         <div class="container11">
                             <section class="ebook-section">
-                                <h2 class="section-title">世紀末的追星狂熱，你聽過那場驚天動地的「黃色奇蹟」嗎？</h2>
+                                <h2 class="section-title">世紀末的追星潮，那場驚天動地的「黃色奇蹟」!</h2>
                                 <img src="./readable/07-2_160416_0_02_35水晶男孩.jpg" alt="水晶男孩 COM' BACK">
                                 <p class="ebook-intro-lead" style="margin-top: 30px;">
                                     在大韓民國綜藝史上，MBC《無限挑戰》締造了無數眼淚與歡笑，而其中最傳奇的企劃，莫過於將 90
