@@ -515,8 +515,9 @@ img {
     transform: translate(-50%, -50%) rotate(-15deg);
     font-size: clamp(2rem, 10vw, 4.5rem);
     font-weight: 900;
-    color: rgba(204, 0, 0, 0.18);
-    border: 8px solid rgba(204, 0, 0, 0.18);
+    color: rgba(180, 0, 0, 0.28);
+    background: transparent;
+    border: 6px solid rgba(180, 0, 0, 0.22);
     padding: 10px 30px;
     letter-spacing: 10px;
     pointer-events: none;
