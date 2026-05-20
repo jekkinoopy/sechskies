@@ -422,14 +422,28 @@ img {
 
 .con-4.con-access-denied {
     position: relative;
+    --access-canceled-color: rgba(180, 0, 0, 0.32);
+    --access-canceled-border: rgba(180, 0, 0, 0.26);
+    /* 訊息列：同色票但不透明，勿用父層 opacity（會連子元素一起淡化） */
+    --access-denied-message-color: #7a1618;
 }
 
-/* 灰階／淡化只套內容，不套 CANCELED 水印（::before 在卡片層） */
+/* 灰階／淡化：標題、圖、場次區地點行；con-4-1 本體不再整塊 opacity */
 .con-4.con-access-denied > .title,
-.con-4.con-access-denied > img,
-.con-4.con-access-denied > [class*="con-4-"] {
-    filter: grayscale(80%);
-    opacity: 0.7;
+.con-4.con-access-denied > img {
+    filter: grayscale(95%) brightness(0.82);
+    opacity: 0.5;
+}
+
+.con-4.con-access-denied > [class*="con-4-"] > .location {
+    filter: grayscale(95%) brightness(0.82);
+    opacity: 0.72;
+}
+
+.con-4.con-access-denied .track-list.access-denied-message,
+.con-4.con-access-denied .track-list.access-denied-message .track-item {
+    opacity: 1 !important;
+    filter: none !important;
 }
 
 .con-access-denied .location::before {
@@ -469,10 +483,12 @@ img {
     display: none;
 }
 
-.con-access-denied .denied-text {
+.con-4.con-access-denied .denied-text,
+.con-4.con-access-denied .denied-text span {
     font-family: "Courier New", Courier, monospace;
-    color: #cc0000 !important;
-    font-size: 0.85rem;
+    color: var(--access-denied-message-color) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
     font-style: italic;
     padding-left: 35px;
 }
@@ -483,11 +499,11 @@ img {
     overflow: visible;
 }
 
-.con-access-denied .track-item.denied-text::before {
+.con-4.con-access-denied .track-item.denied-text::before {
     content: "\f071" !important;
     font-family: "Font Awesome 6 Free" !important;
     font-weight: 900 !important;
-    color: #cc0000 !important;
+    color: var(--access-denied-message-color) !important;
     font-size: 0.8rem !important;
     font-style: normal !important;
     display: inline-block;
@@ -513,13 +529,13 @@ img {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-15deg);
-    font-size: clamp(2rem, 10vw, 4.5rem);
+    font-size: clamp(3rem, 15vw, 6.75rem);
     font-weight: 900;
-    color: rgba(180, 0, 0, 0.28);
+    color: var(--access-canceled-color);
     background: transparent;
-    border: 6px solid rgba(180, 0, 0, 0.22);
-    padding: 10px 30px;
-    letter-spacing: 10px;
+    border: 9px solid var(--access-canceled-border);
+    padding: 15px 45px;
+    letter-spacing: 15px;
     pointer-events: none;
     z-index: 10;
     white-space: nowrap;
