@@ -43,11 +43,11 @@ body {
     line-height: 1.6;
 }
 
-/* 首頁 Hero：滿版 cover（勿用 108%／vw 限高，否則上下留黑） */
+/* 首頁 Hero：隨寬度 16:9 等比縮放（圖已更新，不需 108% 放大） */
 header#origin {
     width: 100%;
-    height: 100dvh;
-    min-height: 100dvh;
+    height: min(56.25vw, 100dvh);
+    min-height: 0;
     background-image: url('../images/header.jpg');
     background-position: center center;
     background-repeat: no-repeat;

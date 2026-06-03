@@ -64,7 +64,7 @@
         gap: clamp(12px, 2vw, 20px);
     }
 
-    header {
+    header.inner-page-header {
         background-size: cover;
         background-position: center center;
     }
