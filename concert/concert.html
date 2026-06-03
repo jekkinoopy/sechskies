@@ -97,14 +97,61 @@
             box-shadow: 0 0 10px rgba(255, 204, 0, 0.35);
         }
 
-        #concert-search-result {
+        .concert-search-result {
             display: block;
             width: 100%;
             margin: 0;
+        }
+
+        .concert-search-summary {
+            margin: 0 0 12px;
             text-align: center;
             font-size: 0.95rem;
             line-height: 1.6;
             color: #fff;
+        }
+
+        .concert-search-hits {
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 720px;
+            text-align: left;
+        }
+
+        .concert-search-hits li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            background: rgba(255, 248, 223, 0.1);
+            border: 1px solid rgba(255, 204, 0, 0.35);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .concert-search-hits .hit-track {
+            display: block;
+            font-weight: 700;
+            color: #ffdd00;
+        }
+
+        .concert-search-hits .hit-meta {
+            display: block;
+            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.82rem;
+        }
+
+        .concert-search-hits .hit-more {
+            text-align: center;
+            border-style: dashed;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .track-item.is-search-hit .track {
+            color: #ffdd00;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -128,7 +175,9 @@
                 <input type="text" class="search-input" id="concert-member" value="" placeholder="成員或段落（可空白）">
                 <button type="button" class="concert-search-btn" id="concert-search-btn">查詢</button>
             </div>
-            <span id="concert-search-result">輸入後按「查詢」，會顯示比對結果。</span>
+            <div id="concert-search-result" class="concert-search-result" aria-live="polite">
+                <p class="concert-search-summary">輸入後按「查詢」，會在下方列出比對到的曲目。</p>
+            </div>
         </div>
     </div>
     <div class="concert-container">
