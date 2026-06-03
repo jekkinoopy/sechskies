@@ -52,10 +52,8 @@ function expandVenueForTrackItem(trackItem) {
 }
 
 function scrollToSearchResults() {
-    const panel = document.querySelector(".concert-search-panel");
-    const target = panel || myResult;
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!myResult) return;
+    myResult.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function jumpToTrackHit(hit) {

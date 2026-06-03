@@ -40,7 +40,7 @@
             z-index: 5;
         }
 
-        /* 巡迴搜尋：輸入列 + 奶油說明／結果卡（對齊 #stage-now 白黃風格） */
+        /* 巡迴搜尋：輸入列 + 結果列表（黑底區，白字） */
         .concert-search-box {
             width: 100%;
             max-width: 920px;
@@ -48,7 +48,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .concert-search-row {
@@ -97,6 +97,7 @@
             box-shadow: 0 0 10px rgba(255, 204, 0, 0.35);
         }
 
+        /* 說明區暫隱：要恢復顯示時取消以下註解，並取消 HTML 內說明區塊註解
         .concert-search-panel {
             width: 100%;
             max-width: 720px;
@@ -164,29 +165,25 @@
             color: #6a6a6a;
         }
 
-        .concert-search-guide-steps strong {
-            color: #4a4a4a;
-            font-weight: 700;
-        }
-
-        .concert-search-result {
-            display: block;
-            width: 100%;
+        .concert-search-result--in-panel {
             margin: 14px 0 0;
             padding-top: 14px;
             border-top: 1px solid #eadfb2;
         }
+        */
 
-        .concert-search-result:not(:has(.concert-search-hits)) .concert-search-summary {
-            margin: 0;
+        .concert-search-result {
+            display: block;
+            width: 100%;
+            max-width: 720px;
         }
 
         .concert-search-summary {
-            margin: 0 0 12px;
+            margin: 0 0 10px;
             text-align: center;
             font-size: 0.92rem;
             line-height: 1.65;
-            color: #444;
+            color: #fff;
         }
 
         .concert-search-hits {
@@ -194,55 +191,52 @@
             margin: 0;
             padding: 0;
             display: grid;
-            gap: 10px;
+            gap: 8px;
             text-align: left;
         }
 
         .concert-search-hits li {
-            padding: 12px 14px;
-            background: #fff;
-            border: 1px solid #eadfb2;
-            border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            padding: 10px 12px 10px 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: none;
+            border-left: 3px solid rgba(255, 204, 0, 0.55);
+            border-radius: 0 10px 10px 0;
             font-size: 0.88rem;
             line-height: 1.5;
         }
 
         .concert-search-hits li.concert-search-hit-jump {
             cursor: pointer;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
 
         .concert-search-hits li.concert-search-hit-jump:hover,
         .concert-search-hits li.concert-search-hit-jump:focus-visible,
         .concert-search-hits li.concert-search-hit-jump.is-active {
-            border-color: #ffcc00;
-            box-shadow: 0 6px 18px rgba(255, 204, 0, 0.22);
-            transform: translateY(-1px);
+            background: rgba(255, 204, 0, 0.12);
+            border-left-color: #ffcc00;
             outline: none;
         }
 
         .concert-search-hits .hit-track {
             display: block;
             font-weight: 700;
-            color: #2c2c2c;
+            color: #ffdd00;
         }
 
         .concert-search-hits .hit-meta {
             display: block;
-            margin-top: 6px;
-            color: #6a6a6a;
+            margin-top: 4px;
+            color: rgba(255, 255, 255, 0.72);
             font-size: 0.8rem;
             line-height: 1.5;
         }
 
         .concert-search-hits .hit-more {
             text-align: center;
-            border-style: dashed;
-            background: #fffef8;
-            color: #7f6712;
+            border-left-style: dashed;
+            color: rgba(255, 255, 255, 0.75);
             cursor: default;
-            box-shadow: none;
         }
 
         .track-item.is-search-hit .track {
@@ -267,12 +261,12 @@
     <div class="search-section">
         <div class="concert-search-box">
             <div class="concert-search-row">
-                <input type="text" class="search-input" id="concert-query" value="" placeholder="搜尋曲目或場次"
-                    aria-describedby="concert-search-hint">
+                <input type="text" class="search-input" id="concert-query" value="" placeholder="搜尋曲目或場次">
                 <input type="text" class="search-input" id="concert-member" value=""
-                    placeholder="成員或 ENCORE／Solo…（可空白）" aria-describedby="concert-search-hint">
+                    placeholder="成員或 ENCORE／Solo…（可空白）">
                 <button type="button" class="concert-search-btn" id="concert-search-btn">查詢</button>
             </div>
+            <!-- 說明區暫隱：恢復時取消註解，並把 #concert-search-result 移入 .concert-search-panel 內
             <div class="concert-search-panel">
                 <section class="concert-search-guide" id="concert-search-hint" aria-label="搜尋說明">
                     <h2 class="concert-search-guide-title">怎麼搜尋</h2>
@@ -288,10 +282,9 @@
                     </ul>
                     <p class="concert-search-guide-steps"><strong>①</strong> 查詢或 Enter 顯示結果列表　<strong>②</strong> 點列表某一列，跳到下方該場次與曲目（兩格都有填時須同時符合）</p>
                 </section>
-                <div id="concert-search-result" class="concert-search-result" aria-live="polite">
-                    <p class="concert-search-summary">尚未查詢。</p>
-                </div>
             </div>
+            -->
+            <div id="concert-search-result" class="concert-search-result" aria-live="polite"></div>
         </div>
     </div>
     <div class="concert-container">
