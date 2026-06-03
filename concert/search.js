@@ -52,8 +52,10 @@ function expandVenueForTrackItem(trackItem) {
 }
 
 function scrollToSearchResults() {
-    if (!myResult) return;
-    myResult.scrollIntoView({ behavior: "smooth", block: "start" });
+    const panel = document.querySelector(".concert-search-panel");
+    const target = panel || myResult;
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function jumpToTrackHit(hit) {
@@ -84,21 +86,20 @@ function renderSearchResults(getQuery, getMember, hits) {
     if (!hits.length) {
         summary.textContent = `曲目或場次「${getQuery || "（未填）"}」${getMember.trim() ? `、成員「${getMember}」` : ""}：沒有比對到曲目，請換字再試。`;
         myResult.replaceChildren(summary);
+        scrollToSearchResults();
         return;
     }
 
     if (getMember.trim()) {
-        summary.textContent = `曲目或場次「${getQuery || "（未填）"}」、成員「${getMember}」：共 ${hits.length} 筆。點任一列可跳到歌單。`;
+        summary.textContent = `曲目或場次「${getQuery || "（未填）"}」、成員「${getMember}」：共 ${hits.length} 筆。請點列表中的場次，再跳到下方歌單。`;
     } else {
-        summary.textContent = `曲目或場次「${getQuery}」：共 ${hits.length} 筆。點任一列可跳到歌單。`;
+        summary.textContent = `曲目或場次「${getQuery}」：共 ${hits.length} 筆。請點列表中的場次，再跳到下方歌單。`;
     }
 
     const list = document.createElement("ul");
     list.className = "concert-search-hits";
 
     hits.slice(0, SEARCH_LIST_MAX).forEach(function (hit) {
-        if (hit.el) hit.el.classList.add("is-search-hit");
-
         const li = document.createElement("li");
         li.className = "concert-search-hit-jump";
         li.setAttribute("role", "button");
@@ -117,11 +118,13 @@ function renderSearchResults(getQuery, getMember, hits) {
         if (metaLine.textContent) li.appendChild(metaLine);
 
         li.addEventListener("click", function () {
+            setActiveSearchListItem(list, li);
             jumpToTrackHit(hit);
         });
         li.addEventListener("keydown", function (event) {
             if (event.key === "Enter" || event.key === " ") {
                 event.preventDefault();
+                setActiveSearchListItem(list, li);
                 jumpToTrackHit(hit);
             }
         });
@@ -137,8 +140,7 @@ function renderSearchResults(getQuery, getMember, hits) {
     }
 
     myResult.replaceChildren(summary, list);
-
-    jumpToTrackHit(hits[0]);
+    scrollToSearchResults();
 }
 
 function runSearch() {
