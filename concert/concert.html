@@ -124,13 +124,11 @@
     <div class="search-section">
         <div class="concert-search-box">
             <div class="concert-search-row">
-                <input type="text" class="search-input" id="concert-query"
-                    placeholder="搜尋曲目或場次…">
-                <input type="text" class="search-input" id="concert-member"
-                    placeholder="成員或段落（可空白）…">
-                <button type="button" class="concert-search-btn" id="concert-search-btn">查這場巡迴</button>
+                <input type="text" class="search-input" id="concert-query" value="" placeholder="搜尋曲目或場次">
+                <input type="text" class="search-input" id="concert-member" value="" placeholder="成員或段落（可空白）">
+                <button type="button" class="concert-search-btn" id="concert-search-btn">查詢</button>
             </div>
-            <span id="concert-search-result">輸入後按「查這場巡迴」，會顯示比對結果。</span>
+            <span id="concert-search-result">輸入後按「查詢」，會顯示比對結果。</span>
         </div>
     </div>
     <div class="concert-container">
@@ -265,7 +263,7 @@
                 </div>
             </div>
 
-            <div class="con-2" data-tour="20TH ANNIV.">
+            <!-- <div class="con-2" data-tour="20TH ANNIV.">
                 <span class="title">2017-2018&nbsp;&nbsp;|&nbsp;&nbsp;20TH ANNIVERSARY</span>
                 <img src="../assets/images/concert/2017.jpg" alt="">
 
@@ -453,7 +451,7 @@
                     </div>
                     <label for="expand-con-2-5" class="expand-btn"></label>
                 </div>
-            </div>
+            </div> -->
             <!-- 演唱會 03 -->
             <div class="con-3" data-tour="NOW・HERE・AGAIN.">
                 <span class="title">2018&nbsp;&nbsp;|&nbsp;&nbsp;NOW・HERE・AGAIN</span>
@@ -682,6 +680,8 @@
             Design by <span class="mark_b">Jekkinoopy Studio</span>
         </a>
     </footer>
+    <!-- <link rel="stylesheet" href="search.css"> -->
+    <script src="search.js"></script>
     <script>
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
