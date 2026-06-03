@@ -51,11 +51,6 @@ function expandVenueForTrackItem(trackItem) {
     }
 }
 
-function scrollToSearchResults() {
-    if (!myResult) return;
-    myResult.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 function jumpToTrackHit(hit) {
     if (!hit?.el) return;
 
@@ -84,7 +79,6 @@ function renderSearchResults(getQuery, getMember, hits) {
     if (!hits.length) {
         summary.textContent = `曲目或場次「${getQuery || "（未填）"}」${getMember.trim() ? `、成員「${getMember}」` : ""}：沒有比對到曲目，請換字再試。`;
         myResult.replaceChildren(summary);
-        scrollToSearchResults();
         return;
     }
 
@@ -138,7 +132,6 @@ function renderSearchResults(getQuery, getMember, hits) {
     }
 
     myResult.replaceChildren(summary, list);
-    scrollToSearchResults();
 }
 
 function runSearch() {
