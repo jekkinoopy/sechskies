@@ -43,6 +43,36 @@ function clearSearchHighlights() {
     });
 }
 
+function expandVenueForTrackItem(trackItem) {
+    const venueBlock = trackItem?.closest(".track-list")?.parentElement;
+    const expand = venueBlock?.querySelector(".expand-trigger");
+    if (expand) {
+        expand.checked = true;
+    }
+}
+
+function scrollToSearchResults() {
+    if (!myResult) return;
+    myResult.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function jumpToTrackHit(hit) {
+    if (!hit?.el) return;
+
+    clearSearchHighlights();
+    expandVenueForTrackItem(hit.el);
+    hit.el.classList.add("is-search-hit");
+    hit.el.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function setActiveSearchListItem(list, activeLi) {
+    if (!list) return;
+    list.querySelectorAll(".concert-search-hit-jump").forEach(function (item) {
+        item.classList.remove("is-active");
+    });
+    if (activeLi) activeLi.classList.add("is-active");
+}
+
 function renderSearchResults(getQuery, getMember, hits) {
     if (!myResult) return;
 
@@ -52,15 +82,15 @@ function renderSearchResults(getQuery, getMember, hits) {
     summary.className = "concert-search-summary";
 
     if (!hits.length) {
-        summary.textContent = `關鍵字「${getQuery || "（未填）"}」${getMember.trim() ? `、成員「${getMember}」` : ""}：沒有比對到曲目，請換字再試。`;
+        summary.textContent = `曲目或場次「${getQuery || "（未填）"}」${getMember.trim() ? `、成員「${getMember}」` : ""}：沒有比對到曲目，請換字再試。`;
         myResult.replaceChildren(summary);
         return;
     }
 
     if (getMember.trim()) {
-        summary.textContent = `關鍵字「${getQuery || "（未填）"}」、成員「${getMember}」：共 ${hits.length} 筆，以下列出前 ${Math.min(hits.length, SEARCH_LIST_MAX)} 筆。`;
+        summary.textContent = `曲目或場次「${getQuery || "（未填）"}」、成員「${getMember}」：共 ${hits.length} 筆。點任一列可跳到歌單。`;
     } else {
-        summary.textContent = `關鍵字「${getQuery}」：共 ${hits.length} 筆，以下列出前 ${Math.min(hits.length, SEARCH_LIST_MAX)} 筆。`;
+        summary.textContent = `曲目或場次「${getQuery}」：共 ${hits.length} 筆。點任一列可跳到歌單。`;
     }
 
     const list = document.createElement("ul");
@@ -70,6 +100,11 @@ function renderSearchResults(getQuery, getMember, hits) {
         if (hit.el) hit.el.classList.add("is-search-hit");
 
         const li = document.createElement("li");
+        li.className = "concert-search-hit-jump";
+        li.setAttribute("role", "button");
+        li.setAttribute("tabindex", "0");
+        li.setAttribute("aria-label", `跳到曲目：${hit.trackName}`);
+
         const trackLine = document.createElement("span");
         trackLine.className = "hit-track";
         trackLine.textContent = hit.trackName;
@@ -80,41 +115,64 @@ function renderSearchResults(getQuery, getMember, hits) {
 
         li.appendChild(trackLine);
         if (metaLine.textContent) li.appendChild(metaLine);
+
+        li.addEventListener("click", function () {
+            jumpToTrackHit(hit);
+        });
+        li.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                jumpToTrackHit(hit);
+            }
+        });
+
         list.appendChild(li);
     });
 
     if (hits.length > SEARCH_LIST_MAX) {
         const more = document.createElement("li");
         more.className = "hit-more";
-        more.textContent = `另有 ${hits.length - SEARCH_LIST_MAX} 筆未顯示，請縮小關鍵字。`;
+        more.textContent = `另有 ${hits.length - SEARCH_LIST_MAX} 筆未顯示，請縮小曲目或場次。`;
         list.appendChild(more);
     }
 
     myResult.replaceChildren(summary, list);
 
-    const firstHit = hits[0]?.el;
-    if (firstHit) {
-        firstHit.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    jumpToTrackHit(hits[0]);
+}
+
+function runSearch() {
+    let getQuery = myQuery ? myQuery.value : "";
+    let getMember = myMember ? myMember.value : "";
+
+    if (!getQuery.trim() && !getMember.trim()) {
+        myResult.replaceChildren();
+        const summary = document.createElement("p");
+        summary.className = "concert-search-summary";
+        summary.textContent = "請至少輸入曲目／場次，或成員其中一項。";
+        myResult.appendChild(summary);
+        clearSearchHighlights();
+        return;
     }
+
+    const hits = findMatchingTracks(getQuery, getMember);
+    renderSearchResults(getQuery, getMember, hits);
+}
+
+function handleSearchEnter(event) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    runSearch();
 }
 
 // 2.action
 if (myBtn && myResult) {
-    myBtn.addEventListener("click", function () {
-        let getQuery = myQuery ? myQuery.value : "";
-        let getMember = myMember ? myMember.value : "";
+    myBtn.addEventListener("click", runSearch);
 
-        if (!getQuery.trim() && !getMember.trim()) {
-            myResult.replaceChildren();
-            const summary = document.createElement("p");
-            summary.className = "concert-search-summary";
-            summary.textContent = "請至少輸入曲目／場次，或成員其中一項。";
-            myResult.appendChild(summary);
-            clearSearchHighlights();
-            return;
-        }
-
-        const hits = findMatchingTracks(getQuery, getMember);
-        renderSearchResults(getQuery, getMember, hits);
-    });
+    if (myQuery) {
+        myQuery.addEventListener("keydown", handleSearchEnter);
+    }
+    if (myMember) {
+        myMember.addEventListener("keydown", handleSearchEnter);
+    }
 }

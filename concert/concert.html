@@ -103,6 +103,17 @@
             margin: 0;
         }
 
+        .concert-search-hint {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 0 12px;
+            padding: 0 6px;
+            text-align: left;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
         .concert-search-summary {
             margin: 0 0 12px;
             text-align: center;
@@ -128,6 +139,18 @@
             color: #fff;
             font-size: 0.88rem;
             line-height: 1.5;
+        }
+
+        .concert-search-hits li.concert-search-hit-jump {
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .concert-search-hits li.concert-search-hit-jump:hover,
+        .concert-search-hits li.concert-search-hit-jump:focus-visible {
+            background: rgba(255, 204, 0, 0.15);
+            border-color: #ffcc00;
+            outline: none;
         }
 
         .concert-search-hits .hit-track {
@@ -171,12 +194,17 @@
     <div class="search-section">
         <div class="concert-search-box">
             <div class="concert-search-row">
-                <input type="text" class="search-input" id="concert-query" value="" placeholder="搜尋曲目或場次">
-                <input type="text" class="search-input" id="concert-member" value="" placeholder="成員或段落（可空白）">
+                <input type="text" class="search-input" id="concert-query" value="" placeholder="搜尋曲目或場次"
+                    aria-describedby="concert-search-hint">
+                <input type="text" class="search-input" id="concert-member" value=""
+                    placeholder="成員或 ENCORE／Solo…（可空白）" aria-describedby="concert-search-hint">
                 <button type="button" class="concert-search-btn" id="concert-search-btn">查詢</button>
             </div>
+            <p class="concert-search-hint" id="concert-search-hint">
+                <strong>曲目或場次</strong>：曲名、巡演名或場地（例：COUPLE、釜山、YELLOW NOTE）。<strong>成員或段落</strong>：可留白；要縮小範圍時可填成員名，或歌單裡的段落標記（例：殷志源、ENCORE、BLACKKIES、Solo）。兩格都有填時，需同時符合。按查詢或 Enter；點結果可跳到下方歌單。
+            </p>
             <div id="concert-search-result" class="concert-search-result" aria-live="polite">
-                <p class="concert-search-summary">輸入後按「查詢」，會在下方列出比對到的曲目。</p>
+                <p class="concert-search-summary">尚未查詢。</p>
             </div>
         </div>
     </div>
