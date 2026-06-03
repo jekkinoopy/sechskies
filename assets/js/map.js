@@ -77,7 +77,7 @@
     const openMapLinkEun = document.getElementById("open-map-link-eun");
     const dayGroups = new Map();
 
-    let currentMember = "all";
+    let currentMember = "eun";
     let currentKeyword = "";
     const memberMaps = {
         eun: {
@@ -93,7 +93,7 @@
         ko: "高高父子遊台灣",
         eun: "殷空少搭飛機去台灣高雄"
     };
-    const memberSortOrder = { ko: 0, eun: 1 };
+    const memberSortOrder = { eun: 0, ko: 1 };
 
     function normalizeMember(member) {
         if (member === "kogo") return "ko";

@@ -25,9 +25,9 @@
 <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
 
 <div class="member-tabs" aria-label="成員篩選">
-    <button class="tab-btn active" data-member="all" aria-pressed="true">全部行程</button>
+    <button class="tab-btn active" data-member="eun" aria-pressed="true">殷空少搭飛機去台灣高雄</button>
     <button class="tab-btn" data-member="ko" aria-pressed="false">高高父子遊台灣</button>
-    <button class="tab-btn" data-member="eun" aria-pressed="false">殷空少搭飛機去台灣高雄</button>
+    <button class="tab-btn" data-member="all" aria-pressed="false">全部行程</button>
 </div>
 
 <canvas id="particles"></canvas>
@@ -36,24 +36,17 @@
     placeholder="搜尋地點、描述、標籤（例如：九份、夜市、Day 2）">
 
 <main id="taipei" class="content-container map-layout">
-    <!-- 備註：Google My Maps 嵌入。「全部行程」並排兩張；單一成員時只顯示對應一張。
+    <!-- 備註：Google My Maps 嵌入。預設殷志源單圖；「全部行程」並排兩張（殷志源在上／左）。
      右側列表為敘事與導覽；地圖與標籤在 map.js 的 memberMaps 設定。 -->
     <section class="map-sticky">
         <h2 class="map-title">水晶男孩台灣行程地圖</h2>
-        <div class="map-embed-single" id="map-embed-single" hidden>
+        <div class="map-embed-single" id="map-embed-single">
             <iframe id="member-map" class="map-my-maps-frame" title="SECHSKIES 踩點地圖（單一行程）" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
                 src="https://www.google.com/maps/d/embed?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI&ehbc=2E312F">
             </iframe>
         </div>
-        <div class="map-embed-all" id="map-embed-all">
-            <div class="map-embed-pair">
-                <p class="map-embed-label">高高父子遊台灣</p>
-                <iframe id="member-map-ko" class="map-my-maps-frame" title="高高父子遊台灣 踩點地圖" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/d/embed?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw&hl=zh-TW&ehbc=2E312F">
-                </iframe>
-            </div>
+        <div class="map-embed-all" id="map-embed-all" hidden>
             <div class="map-embed-pair">
                 <p class="map-embed-label">殷空少搭飛機去台灣高雄</p>
                 <iframe id="member-map-eun" class="map-my-maps-frame" title="殷志源高雄行程 踩點地圖" loading="lazy"
@@ -61,17 +54,24 @@
                     src="https://www.google.com/maps/d/embed?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI&ehbc=2E312F">
                 </iframe>
             </div>
+            <div class="map-embed-pair">
+                <p class="map-embed-label">高高父子遊台灣</p>
+                <iframe id="member-map-ko" class="map-my-maps-frame" title="高高父子遊台灣 踩點地圖" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/d/embed?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw&hl=zh-TW&ehbc=2E312F">
+                </iframe>
+            </div>
         </div>
         <div class="map-links-wrap">
-            <a id="open-map-link" class="map-link" target="_blank" hidden
+            <a id="open-map-link" class="map-link" target="_blank"
                 href="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">
                 在 Google My Maps 開啟完整地圖
             </a>
-            <div id="open-map-links-dual" class="map-links-dual">
-                <a id="open-map-link-ko" class="map-link" target="_blank"
-                    href="https://www.google.com/maps/d/u/0/viewer?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw">開啟「高高父子遊台灣」My Maps</a>
+            <div id="open-map-links-dual" class="map-links-dual" hidden>
                 <a id="open-map-link-eun" class="map-link" target="_blank"
                     href="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">開啟「殷空少搭飛機去台灣高雄」My Maps</a>
+                <a id="open-map-link-ko" class="map-link" target="_blank"
+                    href="https://www.google.com/maps/d/u/0/viewer?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw">開啟「高高父子遊台灣」My Maps</a>
             </div>
         </div>
     </section>
