@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
+    <style>
+        /* display:grid / flex 會蓋掉 HTML hidden，預設只顯示單張地圖 */
+        body.map-page .map-embed-all[hidden],
+        body.map-page .map-embed-single[hidden],
+        body.map-page .map-links-dual[hidden],
+        body.map-page #open-map-link[hidden] {
+            display: none !important;
+        }
+
+        body.map-page .detail-panel {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 
 <body class="map-page">
@@ -78,7 +92,21 @@
 
     <section class="itinerary-list">
         <!-- 備註：每張卡的 data-* 是「細節面板的資料來源」。
-         你只要改 data-date/title/desc/quote/tag/link 和圖片，就會同步更新下方介紹。 -->
+         你只要改 data-date/title/desc/quote/tag/link 和圖片，就會同步更新上方介紹。 -->
+        <article class="detail-panel" id="detail-panel" aria-live="polite">
+            <div class="detail-photo">
+                <img id="detail-image" src="https://picsum.photos/seed/day1-airport/900/520" alt="行程節目截圖">
+            </div>
+            <div class="detail-content">
+                <span id="detail-date" class="date">Day 1</span>
+                <h3 id="detail-title">臺灣桃園國際機場</h3>
+                <p id="detail-desc">高高父子遊台灣 Day 1 首站，從桃園機場正式開啟三天行程。</p>
+                <blockquote id="detail-quote">「旅程從落地那一刻就開始了。」</blockquote>
+                <div id="detail-tag" class="tag">#高高父子遊台灣 #Day1 #機場</div>
+                <a id="detail-link" class="detail-link" target="_blank"
+                    href="https://maps.google.com/?q=臺灣桃園國際機場">查看此地點</a>
+            </div>
+        </article>
         <article class="polaroid-card active" data-member="eun" data-date="殷志源 Day 1" data-title="仁川國際機場"
             data-desc="殷空少搭飛機去台灣高雄 Day 1 起點，從仁川出發。"
             data-quote="高雄，我們來了。" data-tag="#殷志源 #Day1 #出發"
@@ -480,21 +508,6 @@
                 <h3>胡家天燈</h3>
                 <p class="description">高高父子遊台灣 Day 3 第六站。</p>
                 <div class="tag">#高高父子遊台灣 #Day3</div>
-            </div>
-        </article>
-
-        <article class="detail-panel" id="detail-panel" aria-live="polite">
-            <div class="detail-photo">
-                <img id="detail-image" src="https://picsum.photos/seed/day1-airport/900/520" alt="行程節目截圖">
-            </div>
-            <div class="detail-content">
-                <span id="detail-date" class="date">Day 1</span>
-                <h3 id="detail-title">臺灣桃園國際機場</h3>
-                <p id="detail-desc">高高父子遊台灣 Day 1 首站，從桃園機場正式開啟三天行程。</p>
-                <blockquote id="detail-quote">「旅程從落地那一刻就開始了。」</blockquote>
-                <div id="detail-tag" class="tag">#高高父子遊台灣 #Day1 #機場</div>
-                <a id="detail-link" class="detail-link" target="_blank"
-                    href="https://maps.google.com/?q=臺灣桃園國際機場">查看此地點</a>
             </div>
         </article>
     </section>

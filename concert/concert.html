@@ -18,17 +18,17 @@
             gap: 0 !important;
         }
 
-        body.concert-page #stage-now > .con-1,
-        body.concert-page #stage-now > .con-2,
-        body.concert-page #stage-now > .con-3,
-        body.concert-page #stage-now > .con-4 {
+        body.concert-page #stage-now>.con-1,
+        body.concert-page #stage-now>.con-2,
+        body.concert-page #stage-now>.con-3,
+        body.concert-page #stage-now>.con-4 {
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
             flex: 0 0 auto;
         }
 
-        body.concert-page #stage-now > .con-4:last-child {
+        body.concert-page #stage-now>.con-4:last-child {
             margin-bottom: 0;
         }
 
@@ -38,6 +38,73 @@
 
         body.concert-page .con-4[data-tour="ACCESS"]::after {
             z-index: 5;
+        }
+
+        /* 巡迴搜尋：樣式對齊 .search-input；第一列 input+btn，第二列白字結果 */
+        .concert-search-box {
+            width: 100%;
+            max-width: 920px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .concert-search-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .concert-search-row .search-input {
+            flex: 1 1 200px;
+            width: auto;
+            max-width: 320px;
+            margin: 0;
+        }
+
+        .concert-search-row .search-input:focus {
+            width: auto;
+            max-width: 340px;
+            transform: translateY(-2px);
+        }
+
+        .concert-search-btn {
+            flex: 0 0 auto;
+            padding: 12px 22px;
+            border: 2px solid #ffcc00;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: #ffcc00;
+            color: #2f2f2f;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .concert-search-btn:hover {
+            border-color: #e6b800;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.25);
+        }
+
+        .concert-search-btn:focus {
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.35);
+        }
+
+        #concert-search-result {
+            display: block;
+            width: 100%;
+            margin: 0;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #fff;
         }
     </style>
 </head>
@@ -55,7 +122,16 @@
     <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
     <canvas id="particles"></canvas>
     <div class="search-section">
-        <input type="text" class="search-input" placeholder="搜尋曲目或場次...">
+        <div class="concert-search-box">
+            <div class="concert-search-row">
+                <input type="text" class="search-input" id="concert-query"
+                    placeholder="搜尋曲目或場次…">
+                <input type="text" class="search-input" id="concert-member"
+                    placeholder="成員或段落（可空白）…">
+                <button type="button" class="concert-search-btn" id="concert-search-btn">查這場巡迴</button>
+            </div>
+            <span id="concert-search-result">輸入後按「查這場巡迴」，會顯示比對結果。</span>
+        </div>
     </div>
     <div class="concert-container">
 

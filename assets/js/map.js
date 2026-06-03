@@ -173,7 +173,7 @@
 
         group.appendChild(toggle);
         group.appendChild(body);
-        itineraryList.insertBefore(group, detailPanel);
+        itineraryList.appendChild(group);
         dayGroups.set(dayLabel, { group, toggle, body });
         return dayGroups.get(dayLabel);
     }
