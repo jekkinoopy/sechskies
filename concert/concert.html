@@ -40,14 +40,24 @@
             z-index: 5;
         }
 
-        /* 巡迴搜尋：輸入列 + 結果列表（黑底區，白字） */
+        /* 巡迴搜尋：寬度／圓角對齊 .concert-container、.con-1 */
+        .concert-page .search-section {
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+
         .concert-search-box {
             width: 100%;
-            max-width: 920px;
-            padding: 0 20px;
+            max-width: none;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: stretch;
             gap: 12px;
         }
 
@@ -175,7 +185,6 @@
         .concert-search-result {
             display: block;
             width: 100%;
-            max-width: 720px;
         }
 
         .concert-search-summary {
@@ -186,57 +195,54 @@
             color: #fff;
         }
 
+        /* 結果列表：結構複用 concert.css；外殼與下方 con-1 同寬同圓角 */
         .concert-search-hits {
-            list-style: none;
+            width: 100%;
+        }
+
+        body.concert-page .concert-search-mirror-card.con-1 {
+            width: 100%;
+            max-width: 100%;
             margin: 0;
-            padding: 0;
-            display: grid;
-            gap: 8px;
-            text-align: left;
+            border-radius: 16px;
+            padding: 50px 100px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.02);
         }
 
-        .concert-search-hits li {
-            padding: 10px 12px 10px 14px;
-            background: rgba(255, 255, 255, 0.06);
-            border: none;
-            border-left: 3px solid rgba(255, 204, 0, 0.55);
-            border-radius: 0 10px 10px 0;
-            font-size: 0.88rem;
-            line-height: 1.5;
+        @media (max-width: 920px) {
+            body.concert-page .search-section {
+                padding-left: clamp(12px, 3vw, 20px);
+                padding-right: clamp(12px, 3vw, 20px);
+            }
+
+            body.concert-page .concert-search-mirror-card.con-1 {
+                padding: clamp(32px, 5vw, 44px) clamp(22px, 5vw, 48px);
+            }
         }
 
-        .concert-search-hits li.concert-search-hit-jump {
+        body.concert-page .concert-search-mirror-card .con-yk-1.concert-search-hit-jump {
             cursor: pointer;
-            transition: background 0.2s ease, border-color 0.2s ease;
+            transition: box-shadow 0.2s ease;
         }
 
-        .concert-search-hits li.concert-search-hit-jump:hover,
-        .concert-search-hits li.concert-search-hit-jump:focus-visible,
-        .concert-search-hits li.concert-search-hit-jump.is-active {
-            background: rgba(255, 204, 0, 0.12);
-            border-left-color: #ffcc00;
+        body.concert-page .concert-search-mirror-card .con-yk-1.concert-search-hit-jump:hover,
+        body.concert-page .concert-search-mirror-card .con-yk-1.concert-search-hit-jump:focus-visible {
+            box-shadow: 0 4px 14px rgba(255, 204, 0, 0.2);
             outline: none;
         }
 
-        .concert-search-hits .hit-track {
-            display: block;
-            font-weight: 700;
-            color: #ffdd00;
+        body.concert-page .concert-search-mirror-card .con-yk-1.concert-search-hit-jump.is-active {
+            box-shadow: 0 0 0 2px #ffcc00;
         }
 
-        .concert-search-hits .hit-meta {
-            display: block;
-            margin-top: 4px;
-            color: rgba(255, 255, 255, 0.72);
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-
-        .concert-search-hits .hit-more {
+        .concert-search-more {
+            margin: 10px 0 0;
+            padding: 8px 12px;
             text-align: center;
-            border-left-style: dashed;
-            color: rgba(255, 255, 255, 0.75);
-            cursor: default;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .track-item.is-search-hit .track {

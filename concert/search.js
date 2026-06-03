@@ -60,12 +60,58 @@ function jumpToTrackHit(hit) {
     hit.el.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-function setActiveSearchListItem(list, activeLi) {
-    if (!list) return;
-    list.querySelectorAll(".concert-search-hit-jump").forEach(function (item) {
+function setActiveSearchHit(container, activeEl) {
+    if (!container) return;
+    container.querySelectorAll(".concert-search-hit-jump").forEach(function (item) {
         item.classList.remove("is-active");
     });
-    if (activeLi) activeLi.classList.add("is-active");
+    if (activeEl) activeEl.classList.add("is-active");
+}
+
+function createSearchHitVenue(hit) {
+    const venue = document.createElement("div");
+    venue.className = "con-yk-1";
+
+    const locText = [hit.tourTitle, hit.location].filter(Boolean).join(" · ");
+    if (locText) {
+        const loc = document.createElement("span");
+        loc.className = "location";
+        loc.textContent = locText;
+        venue.appendChild(loc);
+    }
+
+    const trackList = document.createElement("div");
+    trackList.className = "track-list";
+    const trackItem = document.createElement("div");
+    trackItem.className = "track-item";
+    const trackSpan = document.createElement("span");
+    trackSpan.className = "track";
+    trackSpan.textContent = hit.trackName;
+    trackItem.appendChild(trackSpan);
+    trackList.appendChild(trackItem);
+    venue.appendChild(trackList);
+
+    return venue;
+}
+
+function bindSearchHitJump(venueEl, hit, container) {
+    venueEl.classList.add("concert-search-hit-jump");
+    venueEl.setAttribute("role", "button");
+    venueEl.setAttribute("tabindex", "0");
+    venueEl.setAttribute("aria-label", `跳到曲目：${hit.trackName}`);
+
+    function go() {
+        setActiveSearchHit(container, venueEl);
+        jumpToTrackHit(hit);
+    }
+
+    venueEl.addEventListener("click", go);
+    venueEl.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            go();
+        }
+    });
 }
 
 function renderSearchResults(getQuery, getMember, hits) {
@@ -88,50 +134,28 @@ function renderSearchResults(getQuery, getMember, hits) {
         summary.textContent = `曲目或場次「${getQuery}」：共 ${hits.length} 筆。請點列表中的場次，再跳到下方歌單。`;
     }
 
-    const list = document.createElement("ul");
-    list.className = "concert-search-hits";
+    const hitsWrap = document.createElement("div");
+    hitsWrap.className = "concert-search-hits";
+
+    const mirrorCard = document.createElement("div");
+    mirrorCard.className = "con-1 concert-search-mirror-card";
 
     hits.slice(0, SEARCH_LIST_MAX).forEach(function (hit) {
-        const li = document.createElement("li");
-        li.className = "concert-search-hit-jump";
-        li.setAttribute("role", "button");
-        li.setAttribute("tabindex", "0");
-        li.setAttribute("aria-label", `跳到曲目：${hit.trackName}`);
-
-        const trackLine = document.createElement("span");
-        trackLine.className = "hit-track";
-        trackLine.textContent = hit.trackName;
-
-        const metaLine = document.createElement("span");
-        metaLine.className = "hit-meta";
-        metaLine.textContent = [hit.tourTitle, hit.location].filter(Boolean).join(" · ");
-
-        li.appendChild(trackLine);
-        if (metaLine.textContent) li.appendChild(metaLine);
-
-        li.addEventListener("click", function () {
-            setActiveSearchListItem(list, li);
-            jumpToTrackHit(hit);
-        });
-        li.addEventListener("keydown", function (event) {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                setActiveSearchListItem(list, li);
-                jumpToTrackHit(hit);
-            }
-        });
-
-        list.appendChild(li);
+        const venue = createSearchHitVenue(hit);
+        bindSearchHitJump(venue, hit, mirrorCard);
+        mirrorCard.appendChild(venue);
     });
 
+    hitsWrap.appendChild(mirrorCard);
+
     if (hits.length > SEARCH_LIST_MAX) {
-        const more = document.createElement("li");
-        more.className = "hit-more";
+        const more = document.createElement("p");
+        more.className = "concert-search-more";
         more.textContent = `另有 ${hits.length - SEARCH_LIST_MAX} 筆未顯示，請縮小曲目或場次。`;
-        list.appendChild(more);
+        hitsWrap.appendChild(more);
     }
 
-    myResult.replaceChildren(summary, list);
+    myResult.replaceChildren(summary, hitsWrap);
 }
 
 function runSearch() {
