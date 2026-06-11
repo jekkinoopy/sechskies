@@ -1,5 +1,5 @@
 body.concert-page {
-    background-color: var(--deep-black, #0a0a0a);
+    background-color: var(--color-bg);
     margin: 0;
     padding: 0;
 }

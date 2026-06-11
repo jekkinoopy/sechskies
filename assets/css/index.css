@@ -10,7 +10,7 @@
     content: '';
     position: absolute;
     width: 6px;
-    background-color: var(--primary);
+    background-color: var(--color-brand);
     top: 0;
     bottom: 0;
     left: 50%;
@@ -39,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFD700;
+    color: var(--color-brand);
     text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
@@ -61,20 +61,20 @@
 .date-tag {
     display: inline-block;
     padding: 8px 20px;
-    background: var(--accent);
-    color: var(--text);
+    background: var(--color-brand);
+    color: var(--color-text-dark);
     border-radius: 50px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .content h3 {
-    color: var(--primary);
+    color: var(--color-brand);
     margin: 10px 0;
 }
 
 .content p {
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     line-height: 1.6;
 }
 
@@ -158,12 +158,12 @@ section.archive-intro p {
 
 /*
  * 首頁 hero 主標／副標：與全站 .site-header-inner 相同（index.css 在 style.css 之後載入）。
- * 若留舊版 .home-page header .hero h1 { color: var(--primary); text-shadow: … } 會蓋過 style.css。
+ * 若留舊版 .home-page header .hero h1 { color: var(--color-brand); text-shadow: … } 會蓋過 style.css。
  */
 .home-page header#origin .site-header-inner .main-title {
     font-size: clamp(2rem, 4.5vw, 3.2rem);
     font-weight: 900;
-    color: var(--text-main, #333);
+    color: var(--color-text);
     letter-spacing: 6px;
     margin: 0;
     text-shadow: none;
@@ -172,7 +172,7 @@ section.archive-intro p {
 .home-page header#origin .site-header-inner .sub-title {
     font-size: 0.92rem;
     letter-spacing: 4px;
-    color: var(--text-muted, #888);
+    color: var(--color-text-muted);
     text-transform: uppercase;
 }
 
@@ -282,7 +282,7 @@ header#origin .site-header-inner .subtitle-wrap::after {
 }
 
 .home-page .landing-intro .mark_b {
-    color: var(--light-yellow);
+    color: var(--color-brand-light);
 }
 
 .home-page #intro .intro-text .slogan-quote--awakening + .core-description {
@@ -365,7 +365,7 @@ header#origin .site-header-inner .subtitle-wrap::after {
 .home-page #journey .merged-storyline .story-node .journey-month {
     margin: 0.75rem 0 0.3rem;
     padding: 0.32rem 0.7rem 0.32rem 0;
-    border-right: 3px solid var(--primary);
+    border-right: 3px solid var(--color-brand);
     border-left: 0;
     font-size: 0.82rem;
     font-weight: 800;

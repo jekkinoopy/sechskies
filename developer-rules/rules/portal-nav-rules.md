@@ -1,0 +1,134 @@
+---
+description: 全站導覽與籌備中（portal-nav.js、site-guide、開放邊界、刪錨點）
+alwaysApply: true
+---
+
+# 【全站導覽邏輯】portal-nav.js・籌備中控制・site-guide 例外
+
+之後**每新增一個要上線、可點的 HTML 頁面**，請一併完成導覽更新；規則都集中在 **`assets/js/portal-nav.js`**。
+
+---
+
+## 0. 兩個世界（最高優先，實作前必讀）
+
+| 誰在看 | 哪一頁／哪塊 | 行為 |
+|--------|----------------|------|
+| **站主自己** | 僅 **`extra/site-guide.html`** | 頂欄必須 **`data-portal-nav data-portal-nav-all-open`**。腳本**不**對該頁頂欄套用籌備中；**不**對 `<main class="site-guide-main">` 內任何 `<a href>` 改寫。表上連結**全部要點得進**（由站主在 HTML 維護）。 |
+| **訪客／大家** | **除上列以外**的每一頁 | 頂欄＋**頁內所有 `<a href>`**（分頁列、內文等）依 `COMING_SOON_PAGES`、`INDEX_NAV_OPEN_HASHES` 鎖定；未公開者**一律標示「籌備中」**、不可點進。**禁止**在其他頁加 `data-portal-nav-all-open`。 |
+
+**硬規則（違反＝做錯）**
+
+1. **未經站主逐句同意**：不得從 `COMING_SOON_PAGES` **刪**檔名、不得擴充 `INDEX_NAV_OPEN_HASHES`、不得在 `buildPortalNavInnerHTML` **新增**可點項、不得把籌備中改成真 `href`、不得刪站主已同意列入頂欄的項。
+2. **「檔案在 repo」≠「可開放導覽」**；不得自行推論。
+3. **`totoga2/readable.html`（圖文好讀版，檔名 `readable.html`）**、**`variety/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
+4. **「刪除／拿掉／不要了」**：若未寫明是**單一檔案**、**頂欄某一列**、**整段子選單**還是**整個資料夾**，**一律先問站主**，禁止自行擴大刪除範圍。
+5. **不確定**是否開放、連哪、是否例外：**先問站主再改**，不要猜。
+6. 站主說刪 **`某頁#錨點`**：見下方 **§8 頁面錨點刪除**（先改 DOM，再修死鏈；禁止只動導覽）。
+
+---
+
+## 1. 必做：把頁面掛進導覽 HTML
+
+在 **`buildPortalNavInnerHTML`**（`assets/js/portal-nav.js`）裡維護連結：
+
+- 依資訊架構放在對應的 **`<li>`** 底下；需要子選單時用 **`portal-submenu`**。
+- `href` 使用**站根相對路徑**（腳本會依當前頁深度加上前綴 `rp`）：例如 `` `${rp}variety/variety.html` ``、`` `${rp}index.html#section` ``。
+- Logo 列：`` `${rp}index.html` `` 與 `` `${rp}assets/images/logov.svg` ``。
+
+新增或調整完後，所有帶 **`data-portal-nav`** 的 `<nav class="portal-nav">` 都會在載入腳本時被注入同一份 HTML。
+
+---
+
+## 1.1 未公開＝籌備中（全站一致）
+
+- **站主沒說對外開放**的頁／錨點：在訪客可見處**不得**留可點的真實 `href`（頂欄、totoga2 分頁列、首頁內文、頁尾 CTA 皆同）。
+- 腳本標記為 `data-coming-soon="true"` 時：提示與頁內按鈕須讓讀者看見 **「籌備中」**（`portal-nav.js` 的 `COMING_SOON_LABEL`），不是改寫成別的隨機句。
+- **唯一例外**：`extra/site-guide.html` 的 `main.site-guide-main` 內連結（站主索引自用）；該頁頂欄 `data-portal-nav-all-open` 僅影響頂欄，**不**豁免主文以外區塊。
+
+## 2. 可點 vs「籌備中」：`COMING_SOON_PAGES`
+
+腳本會對導覽裡的連結做 **`applyComingSoonToNav`**：
+
+- 若連結的**檔名**（小寫）出現在 **`COMING_SOON_PAGES`** 這個 `Set` 裡，該連結會被改成 **`href="#"`**、加上 **`data-coming-soon="true"`**，點擊無法前往（顯示隨機籌備中文案）。
+- **不要出現在 Set 裡**＝視為已開放，維持真實 `href`。
+
+因此：
+
+| 需求 | 做法 |
+|------|------|
+| 新頁要**正式開放** | 寫進 `buildPortalNavInnerHTML`（`assets/js/portal-nav.js`），並**確認檔名不在** `COMING_SOON_PAGES`。若曾暫時關閉，記得從 Set **刪除**該檔名。 |
+| 新頁先**占位、不開放** | 可選擇：仍寫進導覽，但把檔名**加進** `COMING_SOON_PAGES`；或暫時不要放進導覽。 |
+
+（目前 Set 內含哪些檔，以 `assets/js/portal-nav.js` 為準；站主明講開放後才從 Set 移除該檔名，例如 `readable.html`。）
+
+---
+
+## 3. 首頁錨點：`INDEX_NAV_OPEN_HASHES`
+
+指向 **`index.html#...`** 的連結，除了檔名判斷外，還會看 **錨點**：
+
+- 若 `href` 是 `index.html#某錨點`，且該錨點**不在** **`INDEX_NAV_OPEN_HASHES`**，會被當成籌備中（與整頁關閉不同，是「這個錨點未開」）。
+- 新增首頁區塊且要從導覽直達時：在 **`INDEX_NAV_OPEN_HASHES`** 加上對應字串，例如 `"#story"`（**僅在使用者要求開放該錨點時**；若約定維持關閉則勿加入）。
+
+---
+
+## 3.1 索引頁頂欄全開（僅 `site-guide.html`）
+
+- **`extra/site-guide.html`** 的 `<nav>` 使用 **`data-portal-nav data-portal-nav-all-open`** 時：注入後**不套用**籌備中，頂欄連結維持真實 `href`。主文 `main.site-guide-main` 內連結不由腳本改寫。
+- **禁止**在 `site-guide.html` 以外的頁面使用 `data-portal-nav-all-open`。
+
+---
+
+## 4. 新頁面 HTML 檢查清單
+
+- 在 `<body>` 內適當位置放：
+
+  ```html
+  <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+  ```
+
+- 在 `</body>` 前載入（順序可與現有頁一致）：
+
+  ```html
+  <script src="assets/js/portal-nav.js"></script>
+  ```
+
+  內頁（例如 `extra/`、`fallen/`、`member/`、`yellow-note/`、`variety/` 下）請用相對站根深度，例如：
+
+  ```html
+  <script src="../assets/js/portal-nav.js"></script>
+  ```
+
+- 若該頁有 **`assets/js/particles.js`**／共用樣式（`assets/css/style.css` 等），比照其他內頁一併引入即可。
+
+---
+
+## 5. 刻意不進導覽的頁面
+
+若某頁只給自己用（例如站內索引、草稿），**不要**寫進 `buildPortalNavInnerHTML` 即可；不必改 `COMING_SOON_PAGES`。
+
+---
+
+## 6. 改完請自檢
+
+1. 從導覽點進新頁是否正常。
+2. 若應為開放頁，確認不會變成「尚無開放」、不會被改成 `href="#"`。
+3. 若為首頁錨點，確認已加入 `INDEX_NAV_OPEN_HASHES`（若有需要）。
+
+---
+
+## 7. 頁面錨點刪除（`某頁.html#id`）
+
+指該 HTML 裡 **`id="…"` 的那一區**／`<section>`，不是刪整檔、不是刪資料夾、不是刪頂欄整段「全員發瘋」，也不是擅自改 `COMING_SOON_PAGES`（除非原句一併交代）。
+
+1. **先**在目標頁拿掉該 DOM。  
+2. **再**修仍指向死錨的 `href`（最小必要）。  
+3. **禁止**只改 `portal-nav.js`／`site-guide.html` 卻不刪頁內區塊。
+
+錨點拿掉後，書籤網址列仍可能顯示 `#…`，不代表 DOM 還在。header 大標 ≠ 已刪的 `#id` 區塊。「刪除」範圍不清 → **先問**。
+
+## 名詞
+
+- **頂欄**：`portal-nav.js` 注入的 `<nav class="portal-nav" data-portal-nav>`。  
+- **全站索引**：`extra/site-guide.html`（可列草稿；**不等於**頂欄要掛）。  
+- **程式真值**：`assets/js/portal-nav.js`（`COMING_SOON_LABEL`＝「籌備中」）。
