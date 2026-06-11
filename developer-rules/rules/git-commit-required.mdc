@@ -4,7 +4,7 @@ globs: "*"
 alwaysApply: true
 ---
 
-# Git 規範（commit・push）
+# 【Git 完整規範】commit 格式・push 禁令・修復流程
 
 ## Commit：改完必附
 

@@ -3,7 +3,7 @@ description: 全站導覽與籌備中（portal-nav.js、site-guide、開放邊�
 alwaysApply: true
 ---
 
-# 全站導覽列規則（`assets/js/portal-nav.js`）
+# 【全站導覽邏輯】portal-nav.js・籌備中控制・site-guide 例外
 
 之後**每新增一個要上線、可點的 HTML 頁面**，請一併完成導覽更新；規則都集中在 **`assets/js/portal-nav.js`**。
 
