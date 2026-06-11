@@ -1,9 +1,9 @@
 ---
-description: 必問再改、Git commit／禁 push、UTF-8、內頁 header、對圖與 devtools
+description: 必問再改、UTF-8、內頁 header、對圖與 devtools
 alwaysApply: true
 ---
 
-# 必問再改與 Git（站主訂）
+# 必問再改（站主訂）
 
 ## 改檔
 
@@ -11,14 +11,10 @@ alwaysApply: true
 2. **只改被點名的那一頁／區塊**；未寫到的檔不開、不刪、不重構。
 3. **class 全站換名**：先問確切字串。內頁 banner 用 **`inner-page-header`**（禁止改回 `map-archive-header` 等）。**禁止** PowerShell 批次改 `.html`（須 UTF-8 安全，如逐檔 `StrReplace`）。
 4. **頂欄文案**：禁止擅自加括號、副標（如「傳奇的轉折（六六歌2）」）；改 `portal-nav.js` 前對站主原句。
-5. **devtools**：勾選／數值照抄；補 devtools 沒有的值須標「這是我補的」，等站主說執行再寫入。
+5. **devtools（Chrome DevTools Styles 面板）**：勾選／數值照抄；補 devtools 沒有的值須標「這是我補的」，等站主說執行再寫入。
 6. **參考圖**：粉線＝看這段，不是整段包 span。`mark_y`／`mark_b` 對照圖裡實際字重。
 7. **首頁 `#mission`**：只調 span 時只動 `<span>`；金句未要求時只改內文。沒叫動註解就不動註解。
 
 ## 內頁 header
 
 - 內頁：**`header.inner-page-header`**。首頁 Hero：**`header#origin`**。樣式以站主在電子書頁調過的為準；要套他頁須站主說執行。
-
-## 回覆
-
-- 站主要短句時：先答做沒做、為什麼壞，勿長篇道歉後又擅自改一輪。
