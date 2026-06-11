@@ -43,5 +43,5 @@ alwaysApply: true
 ## 文件與規則檔
 
 - **不要**主動新增或長篇修改 `README`、`docs/*.md`，除非站主明講。
-- **約定只寫在** `.cursor/rules/*.mdc`（**合併進既有檔**，勿再新增散落 `*-notes.md`／目錄索引）。禁止放在 `docs/` 或站主日常會開的目錄。
+- **約定只寫在** `developer-rules/rules/*.mdc`（**合併進既有檔**，勿再新增散落 `*-notes.md`／目錄索引）。禁止放在 `docs/` 或站主日常會開的目錄。
 - 動導覽／籌備中／`site-guide`：**只讀** `portal-nav-rules.mdc`。

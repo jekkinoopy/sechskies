@@ -19,21 +19,6 @@ alwaysApply: true
 
 - 內頁：**`header.inner-page-header`**。首頁 Hero：**`header#origin`**。樣式以站主在電子書頁調過的為準；要套他頁須站主說執行。
 
-## Git：改完末尾附 commit
-
-見 **`git-commit-required.mdc`**（格式、死線、禁止為 commit 跑終端機檢查）。
-
-## Git：禁止擅自 push
-
-- **禁止 `git push`**，除非站主原句「幫我 push」等。只貼 push 錯誤 ≠ 同意 push。
-- 修 push 失敗：只動本機（壓圖、`.gitignore`、`amend`／filter-branch **先問**），末尾只給站主：
-
-```bash
-git push origin main
-```
-
-- GitHub 單檔 **> 100 MB** 拒 push。`*.png.bak` 已在根 `.gitignore`，勿 `git add .` 送進備份檔。
-
 ## 回覆
 
 - 站主要短句時：先答做沒做、為什麼壞，勿長篇道歉後又擅自改一輪。
