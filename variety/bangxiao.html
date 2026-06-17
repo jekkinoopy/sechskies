@@ -48,9 +48,10 @@
         }
 
         .bangxiao-page .member-check {
-            display: grid;
-            grid-template-rows: 1fr auto;
-            justify-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 14px 10px;
             background: var(--color-surface-soft);
             border: 2px solid rgba(255, 204, 0, 0.18);
@@ -58,12 +59,13 @@
             cursor: pointer;
             transition: border-color 0.18s ease, background 0.18s ease;
             user-select: none;
-            min-height: 210px;
+            height: 210px;
+            position: relative;
+            box-sizing: border-box;
         }
 
         .bangxiao-page .member-check--all {
-            grid-template-rows: 1fr;
-            min-height: unset;
+            height: auto;
         }
 
         .bangxiao-page .member-check:has(input:checked) {
@@ -84,14 +86,19 @@
             pointer-events: none;
         }
 
-        /* name + role 的包裝層，在 grid 1fr row 裡上下置中 */
+        /* name + role：預設 flex 置中，選取後釘頂 */
         .bangxiao-page .member-check__info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             gap: 4px;
             width: 100%;
+        }
+
+        .bangxiao-page .member-check:has(input:checked) .member-check__info {
+            position: absolute;
+            top: 14px;
+            left: 0;
         }
 
         .bangxiao-page .member-check__name {
@@ -147,22 +154,21 @@
             margin: 0 0 0.75rem;
         }
 
-        /* 卡片展開明細：永遠佔空間，卡片高度因此固定，未選時淡出 */
+        /* 卡片展開明細：絕對定位，不佔 flex 空間 */
         .bangxiao-page .member-detail {
+            position: absolute;
+            bottom: 14px;
+            left: 0;
+            width: 100%;
             visibility: hidden;
             opacity: 0;
-            width: 100%;
             text-align: center;
-            border-top: 1px solid transparent;
-            margin-top: 10px;
-            padding-top: 10px;
-            transition: opacity 0.25s ease, visibility 0.25s ease, border-color 0.25s ease;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
         }
 
         .bangxiao-page .member-check:has(input:checked) .member-detail {
             visibility: visible;
             opacity: 1;
-            border-top-color: rgba(255, 204, 0, 0.35);
         }
 
         .bangxiao-page .member-detail__count {
@@ -388,7 +394,7 @@
                     : '';
 
                 resultEl.html(
-                    '<p class="result-headline">你總共有 <strong>' + totalStr + '</strong> 個節目要補，慢慢養老吧！</p>' +
+                    '<p class="result-headline">你總共有 <strong>' + totalStr + '</strong> 個節目要補！</p>' +
                     groupNote
                 );
             });
