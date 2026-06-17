@@ -1,0 +1,166 @@
+
+<style>
+  body { margin: 0; }
+  .spec { font-family: var(--font-sans); padding: 1.5rem 0; }
+  .group { margin-bottom: 2rem; }
+  .group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .swatch { border-radius: var(--border-radius-md); overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+  .swatch-color { height: 56px; }
+  .swatch-info { padding: 8px 10px; background: var(--color-background-primary); }
+  .swatch-token { font-size: 11px; font-weight: 500; color: var(--color-text-primary); font-family: var(--font-mono); word-break: break-all; }
+  .swatch-hex { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; font-family: var(--font-mono); }
+  .swatch-desc { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+  .root-block { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); padding: 1rem 1.25rem; margin-top: 2rem; }
+  .root-block pre { margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-primary); white-space: pre; overflow-x: auto; line-height: 1.7; }
+  .copy-btn { float: right; font-size: 11px; padding: 4px 10px; margin-top: -2px; cursor: pointer; }
+</style>
+
+<div class="spec">
+  <div class="group">
+    <div class="group-label">品牌色 Brand</div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#ffcc00;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-brand</div>
+          <div class="swatch-hex">#ffcc00</div>
+          <div class="swatch-desc">主強調色・按鈕・裝飾</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#fceea7;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-brand-light</div>
+          <div class="swatch-hex">#fceea7</div>
+          <div class="swatch-desc">淡黃底・hover 背景</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4e492b;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-brand-dark</div>
+          <div class="swatch-hex">#4e492b</div>
+          <div class="swatch-desc">深棕黃文字・引言色</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">背景色 Background</div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0a0a0a; border-bottom: 0.5px solid #333;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-bg</div>
+          <div class="swatch-hex">#0a0a0a</div>
+          <div class="swatch-desc">全站頁面底色</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1a1a1a; border-bottom: 0.5px solid #333;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-bg-raised</div>
+          <div class="swatch-hex">#1a1a1a</div>
+          <div class="swatch-desc">導覽列・頁尾・深色卡片</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#fcfaf2;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-bg-alt</div>
+          <div class="swatch-hex">#fcfaf2</div>
+          <div class="swatch-desc">淺色替代底</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">表面色 Surface</div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#fffdf7;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-surface</div>
+          <div class="swatch-hex">#fffdf7</div>
+          <div class="swatch-desc">section 底色</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#fff9e8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-surface-soft</div>
+          <div class="swatch-hex">#fff9e8</div>
+          <div class="swatch-desc">卡片・暖白底</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">文字色 Text</div>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#333333;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-text</div>
+          <div class="swatch-hex">#333333</div>
+          <div class="swatch-desc">一般內文</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1a1a1a; border-bottom: 0.5px solid #333;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-text-dark</div>
+          <div class="swatch-hex">#1a1a1a</div>
+          <div class="swatch-desc">強調・標題文字</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4d4d4d;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-text-muted</div>
+          <div class="swatch-hex">#4d4d4d</div>
+          <div class="swatch-desc">次要說明文字</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#f4f4f4;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-text-inverse</div>
+          <div class="swatch-hex">#f4f4f4</div>
+          <div class="swatch-desc">深色背景上的淺色文字</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="root-block">
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('css-code').innerText)">
+      <i class="ti ti-copy" aria-hidden="true"></i> 複製
+    </button>
+    <pre id="css-code">:root {
+  /* Brand */
+  --color-brand:        #ffcc00;
+  --color-brand-light:  #fceea7;
+  --color-brand-dark:   #4e492b;
+
+  /* Background */
+  --color-bg:           #0a0a0a;
+  --color-bg-raised:    #1a1a1a;
+  --color-bg-alt:       #fcfaf2;
+
+  /* Surface */
+  --color-surface:      #fffdf7;
+  --color-surface-soft: #fff9e8;
+
+  /* Text */
+  --color-text:         #333333;
+  --color-text-dark:    #1a1a1a;
+  --color-text-muted:   #4d4d4d;
+  --color-text-inverse: #f4f4f4;
+}</pre>
+  </div>
+</div>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: lightblue;
+            margin: auto;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+
+        .input-container {
+            background-color: lightblue;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .output-container {
+            background-color: lightpink;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+        }
+
+        input {
+            width: 80%;
+            height: 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        select,
+        option {
+            text-align: center;
+            width: 80%;
+            height: 30px;
+            border-radius: 20px;
+        }
+
+        button {
+            width: 50%;
+            height: 30px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box input-container">
+        <input type="checkbox" name="num1" id="num1" value="200" placeholder="num1?">
+        <input type="checkbox" name="num2" id="num2" value="100" placeholder="num2?">
+        <!-- <input type="text" name="opt" id="opt" value="+" placeholder="opt?"> -->
+        <select name="opt" id="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <button type="button" id="myBtn">submit</button>
+    </div>
+    <div class="box output-container">
+        <span id="mySpan">1 + 1 = 2</span>
+    </div>
+
+    <!-- jquery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // jquery 寫code
+        $(document).ready(function () {
+            // 1.bind
+            const myBtn = $('#myBtn');
+            const num1 = $('#num1');
+            const num2 = $('#num2');
+            const opt = $('#opt');
+            const mySpan = $('#mySpan');
+
+            console.log('myBtn', myBtn);
+            console.log('num1', num1);
+            console.log('num2', num2);
+            console.log('opt', opt);
+            console.log('mySpan', mySpan);
+
+            // 2.action
+
+            // click submit
+            // get num1,num2,opt
+
+            // click submit
+            myBtn.click(function (e) {
+                // console.log('e', e);
+
+                // form submit 不要讓她送出
+                // e.preventDefault();
+
+                // get num1,num2,opt
+                // 懶人包 所有input的數字 全部都要做Number() 轉型
+                let getNum1 = Number(num1.val());
+                let getNum2 = Number(num2.val());
+                let getOpt = opt.val();
+
+                // js typeof() method
+                //  console.log('getNum1', getNum1);
+                // console.log('typeof getNum1', typeof (getNum1));
+                // console.log('getNum2', getNum2);
+                // console.log('typeof getNum2', typeof (getNum2));
+                // console.log('getOpt', getOpt);
+                // console.log('typeof getOpt', typeof (getOpt));
+
+                // getNum1 + getNum2 = result 
+                let result = 0;
+
+                // 小小練習
+                // 1.opt 改用select
+                // 2.if else 改成 switch case
+
+                switch (getOpt) {
+                    case "+":
+                        result = getNum1 + getNum2;
+                        break;
+                    case "-":
+                        result = getNum1 - getNum2;
+                        break;
+                    case "*":
+                        result = getNum1 * getNum2;
+                        break;
+
+                    case "/":
+                        result = getNum1 / getNum2;
+                        break;
+                }
+
+
+                // if (getOpt == "+") {
+                //     result = getNum1 + getNum2;
+                // } else if (getOpt == "-") {
+                //     result = getNum1 - getNum2;
+                // } else if (getOpt == "*") {
+                //     result = getNum1 * getNum2;
+                // } else if (getOpt == "/") {
+                //     result = getNum1 / getNum2;
+                // } else {
+                //     alert('opt 請輸入 + - * /');
+
+                //     // 重新reload 該頁面
+
+                //     location.reload();
+                //     // setTimeout(() => {
+                //     //     location.reload();
+                //     // }, 3000);
+
+                //     return false;
+                // }
+
+
+
+                console.log('result', result);
+
+                let tmpText = `${getNum1} ${getOpt} ${getNum2} = ${result}`
+                mySpan.text(tmpText);
+
+
+
+
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
