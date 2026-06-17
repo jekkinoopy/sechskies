@@ -48,11 +48,9 @@
         }
 
         .bangxiao-page .member-check {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            justify-items: center;
             padding: 14px 10px;
             background: var(--color-surface-soft);
             border: 2px solid rgba(255, 204, 0, 0.18);
@@ -60,6 +58,12 @@
             cursor: pointer;
             transition: border-color 0.18s ease, background 0.18s ease;
             user-select: none;
+            min-height: 210px;
+        }
+
+        .bangxiao-page .member-check--all {
+            grid-template-rows: 1fr;
+            min-height: unset;
         }
 
         .bangxiao-page .member-check:has(input:checked) {
@@ -78,6 +82,16 @@
             width: 0;
             height: 0;
             pointer-events: none;
+        }
+
+        /* name + role 的包裝層，在 grid 1fr row 裡上下置中 */
+        .bangxiao-page .member-check__info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            width: 100%;
         }
 
         .bangxiao-page .member-check__name {
@@ -206,12 +220,11 @@
         </section>
 
         <section class="checker-section">
-            <h2 class="section-title">我要補幾個？</h2>
+            <h2 class="section-title">甜蜜負擔計量器</h2>
             <div class="subtitle-wrap">
                 <span class="sub-title">SELECT YOUR BIAS</span>
             </div>
-            <p class="checker-lead">勾選你的本命（可複選），算出你的待補清單有多長。</p>
-
+            <p class="checker-lead">勾選你的本命（貪心全選也沒關係！），算出這輩子夠你慢慢養老的甜蜜負擔有多長。</p>
             <div class="member-grid">
                 <label class="member-check member-check--all">
                     <input type="checkbox" id="member-all">
@@ -219,56 +232,68 @@
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="jiwon">
-                    <span class="member-check__name">殷志源</span>
-                    <span class="member-check__role">Leader・Rapper</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">殷志源</span>
+                        <span class="member-check__role">Leader・Rapper</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">50+ 部</span>
-                        <p class="member-detail__works">《兩天一夜》第一季・《新西遊記》系列・《姜食堂》系列</p>
+                        <p class="member-detail__works">《兩天一夜》第一季<br>《新西遊記》系列<br>《姜食堂》系列</p>
                     </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="jaejin">
-                    <span class="member-check__name">李宰鎮</span>
-                    <span class="member-check__role">Rapper・Dancer</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">李宰鎮</span>
+                        <span class="member-check__role">Rapper・Dancer</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">5 部</span>
-                        <p class="member-detail__works">《無限挑戰》六六歌2・《花樣旅行》・《全知干預視角》</p>
+                        <p class="member-detail__works">《無限挑戰》六六歌2<br>《花樣旅行》<br>《全知干預視角》</p>
                     </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="jaeduck">
-                    <span class="member-check__name">金在德</span>
-                    <span class="member-check__role">Rapper・Dancer</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">金在德</span>
+                        <span class="member-check__role">Rapper・Dancer</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">10+ 部</span>
-                        <p class="member-detail__works">《尋笑人》・《不朽的名曲》・《與張水院的同居生活》</p>
+                        <p class="member-detail__works">《Tony An的魅力TV》<br>《介紹美食店的男人》<br>《我家的熊孩子》</p>
                     </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="sunghoon">
-                    <span class="member-check__name">姜成勳</span>
-                    <span class="member-check__role">Vocalist</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">姜成勳</span>
+                        <span class="member-check__role">Vocalist</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">5 部</span>
-                        <p class="member-detail__works">《Sugar Man》・《心動 Video Star》・《家師父一體》</p>
+                        <p class="member-detail__works">《神秘音樂秀：蒙面歌王》<br>《二重唱歌謠祭》<br>《能力者們》</p>
                     </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="suwon">
-                    <span class="member-check__name">張水院</span>
-                    <span class="member-check__role">Vocalist</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">張水院</span>
+                        <span class="member-check__role">Vocalist</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">20+ 部</span>
-                        <p class="member-detail__works">《全知干預視角》・《林大叔的搞笑演技學堂》・《演藝家中介》</p>
+                        <p class="member-detail__works">《全知干預視角》<br>《演員學校》<br>《本月的活動王》</p>
                     </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="jiyong">
-                    <span class="member-check__name">高志溶</span>
-                    <span class="member-check__role">Vocalist</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">高志溶</span>
+                        <span class="member-check__role">Vocalist</span>
+                    </div>
                     <div class="member-detail">
                         <span class="member-detail__count">3 部</span>
-                        <p class="member-detail__works">《無限挑戰》重組特輯・《超人回來了》・《大腦性感的時代》</p>
+                        <p class="member-detail__works">《無限挑戰》重組特輯<br>《超人回來了》<br>《大腦性感的時代》</p>
                     </div>
                 </label>
             </div>
