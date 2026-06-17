@@ -39,22 +39,53 @@
 - **站主索引**（自用）：`extra/site-guide.html`（`data-portal-nav-all-open`，不對外）
 - **內頁 header class**：`inner-page-header`（禁改回舊名）
 
+### variety/ 頁面
+
+| 檔案 | 頁面標題 | 說明 |
+|------|----------|------|
+| `variety/bangxiao.html` | 世紀級寶藏 / 爆笑養老院 | 甜蜜負擔計量器；六人卡片選取 + jQuery 計算；CTA → `totoga2/ebook.html` |
+| `variety/variety-shows.html` | 全員發瘋 | 綜藝節目存檔表；tabs + 搜尋；已對齊 albums.html 扁平結構 |
+| `variety/NJTW/NJTW5.html` | 新西遊記5 | 各自暴走專頁 |
+
+---
+
+## portal-nav 操作守則（血淚版）
+
+> 每次新增或修改導覽，必須先讀這裡再動手。
+
+1. **先查 `extra/site-guide.html` 確認層級**，再動 `portal-nav.js`。  
+   site-guide 的 depth 數字 = nav 的層級：depth-1 是第一層 `<li>`，depth-2 是子選單項目，depth-3 是 subgroup 裡的巢狀項目。
+
+2. **`COMING_SOON_PAGES` 只放檔名**（不含路徑）。  
+   `normalizePageKey` 只取 href 最後一段，所以 `variety/bangxiao.html` → 比對 `bangxiao.html`。
+
+3. **直接連結不需要 subgroup**。  
+   子選單內只要 `<li><a>` 就夠；`portal-nav__subgroup` 只在該項目還有巢狀子項目時才用（例如「傳奇的轉折」有時間軸、電子書等四項）。
+
+4. **site-guide.html 要同步更新**，否則站主索引頁會顯示舊名稱。
+
+5. **commit 前網站不會更新**。本地端強制重整用 `Ctrl+Shift+R`；GitHub Pages 需 `git push` 後等約 1 分鐘。
+
 ---
 
 ## 目前工作狀態
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-06-11
+**最後更新：** 2026-06-17
 
 **進行中：**
-- 初次設定，尚未開始具體任務
+- 無
 
 **待確認：**
-- developer-rules 健檢結果待站主確認（本次對話尚未執行）
+- developer-rules 健檢尚未執行
 
 **已完成：**
 - 建立 CLAUDE.md 跨裝置上下文檔案
+- 新增 `variety/bangxiao.html`（世紀級寶藏 / 爆笑養老院，甜蜜負擔計量器）
+- `variety/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
+- portal-nav 新增世紀級寶藏，正確放入淪陷瞬間子選單
+- `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
 
 ---
 
