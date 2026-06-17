@@ -66,6 +66,35 @@
 
         .bangxiao-page .member-check--all {
             height: auto;
+            min-height: 60px;
+        }
+
+        /* 團飯卡：info 不需要動，detail 回歸正常流 */
+        .bangxiao-page .member-check--all .member-check__info {
+            position: static;
+            transform: none;
+            transition: none;
+        }
+
+        .bangxiao-page .member-check--all:has(input:checked) .member-check__info {
+            position: static;
+            transform: none;
+        }
+
+        .bangxiao-page .member-check--all .member-detail {
+            position: static;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            padding-top: 0;
+            transition: max-height 0.4s ease, padding-top 0.4s ease;
+        }
+
+        .bangxiao-page .member-check--all:has(input:checked) .member-detail {
+            max-height: 300px;
+            padding-top: 10px;
         }
 
         .bangxiao-page .member-check:has(input:checked) {
@@ -97,7 +126,7 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            transition: top 0.3s ease, transform 0.3s ease;
+            transition: top 0.4s ease, transform 0.4s ease;
         }
 
         .bangxiao-page .member-check:has(input:checked) .member-check__info {
@@ -168,7 +197,7 @@
             opacity: 0;
             text-align: center;
             transform: translateY(12px);
-            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
         }
 
         .bangxiao-page .member-check:has(input:checked) .member-detail {
@@ -237,7 +266,13 @@
             <div class="member-grid">
                 <label class="member-check member-check--all">
                     <input type="checkbox" id="member-all">
-                    <span class="member-check__name">我是團飯！！六顆都要</span>
+                    <div class="member-check__info">
+                        <span class="member-check__name">我是團飯！！六顆都要</span>
+                    </div>
+                    <div class="member-detail">
+                        <span class="member-detail__count">5 部</span>
+                        <p class="member-detail__works">《無限挑戰》重組特輯<br>《無本質青春旅行》<br>《三時四餐》<br>《不要回頭看》<br>《在峇里島的大小事》</p>
+                    </div>
                 </label>
                 <label class="member-check">
                     <input type="checkbox" name="member" value="jiwon">
@@ -308,7 +343,7 @@
             </div>
 
             <button type="button" id="calcBtn" class="btn checker-btn">
-                算算我要補幾個 <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                天啊太嗨了！要補幾個？<i class="fa-solid fa-calculator" aria-hidden="true"></i>
             </button>
 
             <div class="checker-result" id="calcResult" role="status" aria-live="polite"></div>
