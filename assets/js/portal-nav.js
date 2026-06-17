@@ -234,7 +234,7 @@
     }
 
     /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面
-     * 五主項：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note（全員是瘋子子選單暫關）。 */
+     * 六主項：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、世紀級寶藏、Yellow Note。 */
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
@@ -257,7 +257,7 @@
                     <li><a target="_blank" rel="noopener noreferrer" href="${rp}totoga2/video.html"><span class="portal-nav__label">影片</span></a></li>
                 </ul>
             </li>
-            <!-- 全員是瘋子（原全員發瘋）：暫不顯示子選單；恢復時改回 subgroup 並用此標題 -->
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/bangxiao.html"><span class="portal-nav__label">世紀級寶藏</span></a></li>
         </ul>
     </li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}member/member.html"><span class="portal-nav__label">完整的六顆</span></a></li>

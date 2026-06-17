@@ -6,29 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶男孩｜全員發瘋</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/concert.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
     <style>
-        /* 本頁：對齊 concert.html 深色底＋白卡片；表格僅此頁 */
-        body.variety-shows-page .variety-shows-container {
-            padding: 50px 0 40px;
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-        }
-
-        body.variety-shows-page .variety-shows-archive-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 56px);
-            margin-bottom: 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-            position: relative;
-            z-index: 1;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
         body.variety-shows-page .variety-shows-toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -61,11 +42,11 @@
             margin: 0 0 0 auto;
         }
 
-        body.variety-shows-page .variety-shows-archive-card>.variety-table[data-show-tabs][hidden] {
+        body.variety-shows-page .variety-table[data-show-tabs][hidden] {
             display: none;
         }
 
-        body.variety-shows-page .variety-shows-archive-card>.variety-table[data-show-tabs]+.variety-table[data-show-tabs] {
+        body.variety-shows-page .variety-table[data-show-tabs]+.variety-table[data-show-tabs] {
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid #eee;
@@ -273,16 +254,7 @@
             color: #5a4a12;
         }
 
-        body.variety-shows-page footer {
-            position: relative;
-            z-index: 1;
-        }
-
         @media (max-width: 720px) {
-            body.variety-shows-page .variety-shows-archive-card {
-                padding: 20px 14px;
-            }
-
             body.variety-shows-page .variety-table {
                 font-size: 0.8rem;
             }
@@ -295,7 +267,7 @@
     </style>
 </head>
 
-<body class="concert-page variety-shows-page">
+<body class="variety-shows-page">
     <header class="inner-page-header">
         <div class="header-inner site-header-inner">
             <h1 class="main-title">全員發瘋</h1>
@@ -309,22 +281,21 @@
 
     <canvas id="particles"></canvas>
 
-    <div class="variety-shows-toolbar search-section">
-        <div class="variety-shows-tabs" role="tablist" aria-label="綜藝分類">
-            <button type="button" class="tab-btn active" role="tab" id="variety-tab-all" data-tab="all"
-                aria-selected="true" aria-controls="variety-shows">全部</button>
-            <button type="button" class="tab-btn" role="tab" id="variety-tab-captain" data-tab="captain"
-                aria-selected="false" aria-controls="variety-shows">隊長帶弟弟</button>
-            <button type="button" class="tab-btn" role="tab" id="variety-tab-solo" data-tab="solo"
-                aria-selected="false" aria-controls="variety-shows">各自暴走</button>
+    <div class="container">
+        <div class="variety-shows-toolbar">
+            <div class="variety-shows-tabs" role="tablist" aria-label="綜藝分類">
+                <button type="button" class="tab-btn active" role="tab" id="variety-tab-all" data-tab="all"
+                    aria-selected="true" aria-controls="variety-shows">全部</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-captain" data-tab="captain"
+                    aria-selected="false" aria-controls="variety-shows">隊長帶弟弟</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-solo" data-tab="solo"
+                    aria-selected="false" aria-controls="variety-shows">各自暴走</button>
+            </div>
+            <input type="search" id="variety-shows-search" class="search-input" placeholder="搜尋成員或節目…"
+                autocomplete="off" aria-label="搜尋成員或節目">
         </div>
-        <input type="search" id="variety-shows-search" class="search-input" placeholder="搜尋成員或節目…"
-            autocomplete="off" aria-label="搜尋成員或節目">
-    </div>
 
-    <main class="concert-container variety-shows-container">
-        <section id="variety-shows" class="variety-shows-archive" aria-label="全員發瘋">
-            <div class="variety-shows-archive-card">
+        <section id="variety-shows" aria-label="全員發瘋" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
                 <table class="variety-table" id="captain-brothers" data-show-tabs="all captain">
                 <colgroup>
                     <col class="variety-table__col-air">
@@ -739,9 +710,8 @@
 
             <a class="variety-shows-back" href="variety.html#variety"><i class="fa-solid fa-arrow-left"
                     aria-hidden="true"></i> 返回瘋子與天才</a>
-            </div>
         </section>
-    </main>
+    </div>
 
     <footer>
         <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>

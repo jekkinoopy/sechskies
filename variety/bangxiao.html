@@ -223,6 +223,33 @@
             text-align: center;
         }
 
+        .bangxiao-page .result-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1.2rem;
+            color: var(--color-brand-dark);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid var(--color-brand);
+            padding-bottom: 2px;
+            transition: border-color 0.18s ease, color 0.18s ease;
+        }
+
+        .bangxiao-page .result-cta:hover {
+            border-color: var(--color-brand-dark);
+        }
+
+        .bangxiao-page .result-cta .cta-arrow {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .bangxiao-page .result-cta:hover .cta-arrow {
+            transform: translateX(5px);
+        }
+
         @media (max-width: 540px) {
             .bangxiao-page .member-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -234,7 +261,7 @@
 <body class="bangxiao-page">
     <header class="inner-page-header">
         <div class="header-inner site-header-inner">
-            <h1 class="main-title">世紀級寶藏庫</h1>
+            <h1 class="main-title">世紀級寶藏</h1>
             <div class="subtitle-wrap">
                 <span class="sub-title">LEGENDARY VARIETY ARCHIVE</span>
             </div>
@@ -427,7 +454,10 @@
 
                 resultEl.html(
                     '<p class="result-headline">你總共有 <strong>' + totalStr + '</strong> 個節目要補！</p>' +
-                    groupNote
+                    groupNote +
+                    '<a class="result-cta" href="../totoga2/ebook.html" target="_blank" rel="noopener noreferrer">' +
+                    '進坑挖寶囉 <span class="cta-arrow">→</span>' +
+                    '</a>'
                 );
             });
         });
