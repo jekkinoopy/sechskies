@@ -103,23 +103,82 @@
 
         /* 結果區塊 */
         .bangxiao-page .checker-result {
-            min-height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 20px;
+            display: block;
+            padding: 18px 20px;
             border-radius: 12px;
             background: var(--color-surface-soft);
             border: 1px solid rgba(255, 204, 0, 0.25);
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--color-brand-dark);
-            letter-spacing: 0.02em;
-            transition: opacity 0.2s ease;
         }
 
         .bangxiao-page .checker-result:empty {
             display: none;
+        }
+
+        .bangxiao-page .result-headline {
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-brand-dark);
+            margin: 0 0 0.5rem;
+        }
+
+        .bangxiao-page .result-headline strong {
+            font-size: 1.25rem;
+        }
+
+        .bangxiao-page .result-group {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin: 0 0 0.75rem;
+        }
+
+        .bangxiao-page .result-members {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 0.85rem;
+        }
+
+        .bangxiao-page .result-member {
+            display: grid;
+            grid-template-columns: auto auto 1fr;
+            gap: 0 10px;
+            align-items: baseline;
+            padding: 8px 12px;
+            background: rgba(255, 204, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .bangxiao-page .result-member__name {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            white-space: nowrap;
+        }
+
+        .bangxiao-page .result-member__count {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: var(--color-brand-dark);
+            white-space: nowrap;
+        }
+
+        .bangxiao-page .result-member__works {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 540px) {
+            .bangxiao-page .result-member {
+                grid-template-columns: auto auto;
+                grid-template-rows: auto auto;
+            }
+
+            .bangxiao-page .result-member__works {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 540px) {
@@ -173,32 +232,32 @@
                     <span class="member-check__name">我是團飯！！六顆都要</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="jiwon" data-score="0">
+                    <input type="checkbox" name="member" value="jiwon">
                     <span class="member-check__name">殷志源</span>
                     <span class="member-check__role">Leader・Rapper</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="jaejin" data-score="0">
+                    <input type="checkbox" name="member" value="jaejin">
                     <span class="member-check__name">李宰鎮</span>
                     <span class="member-check__role">Rapper・Dancer</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="jaeduck" data-score="0">
+                    <input type="checkbox" name="member" value="jaeduck">
                     <span class="member-check__name">金在德</span>
                     <span class="member-check__role">Rapper・Dancer</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="sunghoon" data-score="0">
+                    <input type="checkbox" name="member" value="sunghoon">
                     <span class="member-check__name">姜成勳</span>
                     <span class="member-check__role">Vocalist</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="suwon" data-score="0">
+                    <input type="checkbox" name="member" value="suwon">
                     <span class="member-check__name">張水院</span>
                     <span class="member-check__role">Vocalist</span>
                 </label>
                 <label class="member-check">
-                    <input type="checkbox" name="member" value="jiyong" data-score="0">
+                    <input type="checkbox" name="member" value="jiyong">
                     <span class="member-check__name">高志溶</span>
                     <span class="member-check__role">Vocalist</span>
                 </label>
@@ -227,14 +286,34 @@
 
     <script>
         $(document).ready(function () {
-            // ── 本命推薦指數對照表（數字待站主填入） ──
-            const scores = {
-                jiwon:    0,
-                jaejin:   0,
-                jaeduck:  0,
-                sunghoon: 0,
-                suwon:    0,
-                jiyong:   0,
+            const GROUP_SCORE = 7;
+
+            // 成員資料：數量、是否為估計值（+）、三部代表作
+            const memberData = {
+                jiwon: {
+                    score: 50, est: true,
+                    works: ['《兩天一夜》第一季', '《新西遊記》系列', '《姜食堂》系列']
+                },
+                jaejin: {
+                    score: 5, est: false,
+                    works: ['《無限挑戰》六六歌2', '《花樣旅行》', '《全知干預視角》']
+                },
+                jaeduck: {
+                    score: 10, est: true,
+                    works: ['《尋笑人》（客串話題）', '《不朽的名曲》', '《與張水院的同居生活》']
+                },
+                suwon: {
+                    score: 20, est: true,
+                    works: ['《全知干預視角》', '《林大叔的搞笑演技學堂》', '《演藝家中介》（機器人始祖）']
+                },
+                sunghoon: {
+                    score: 5, est: false,
+                    works: ['《Sugar Man》', '《心動（Video Star）》', '《家師父一體》（早期客串）']
+                },
+                jiyong: {
+                    score: 3, est: false,
+                    works: ['《無限挑戰》重組特輯', '《超人回來了》（與昇材）', '《大腦性感的時代》']
+                },
             };
 
             const calcBtn  = $('#calcBtn');
@@ -255,21 +334,40 @@
                 const checked = $('input[name="member"]:checked');
 
                 if (checked.length === 0) {
-                    resultEl.text('先勾一個本命吧！');
+                    resultEl.html('<p class="result-headline">先勾一個本命吧！</p>');
                     return;
                 }
 
-                let total = 0;
+                const isAll = checked.length === $('input[name="member"]').length;
+                let total   = isAll ? GROUP_SCORE : 0;
+                let hasEst  = false;
+                let worksHTML = '';
+
                 checked.each(function () {
-                    total += scores[$(this).val()];
+                    const val  = $(this).val();
+                    const data = memberData[val];
+                    const name = $(this).closest('label').find('.member-check__name').text();
+
+                    total += data.score;
+                    if (data.est) hasEst = true;
+
+                    worksHTML +=
+                        '<div class="result-member">' +
+                            '<span class="result-member__name">' + name + '</span>' +
+                            '<span class="result-member__count">' + data.score + (data.est ? '+' : '') + ' 部</span>' +
+                            '<span class="result-member__works">' + data.works.join('・') + '</span>' +
+                        '</div>';
                 });
 
-                const names = checked.map(function () {
-                    return $(this).siblings('.member-check__name').text();
-                }).get().join('、');
+                const totalStr  = total + (hasEst ? '+' : '');
+                const groupNote = isAll
+                    ? '<p class="result-group">（含團體綜藝 ' + GROUP_SCORE + ' 部）</p>'
+                    : '';
 
-                resultEl.text(
-                    '本命是 ' + names + '，你總共有 ' + total + ' 個節目要補，慢慢養老吧！'
+                resultEl.html(
+                    '<p class="result-headline">你總共有 <strong>' + totalStr + '</strong> 個節目要補，慢慢養老吧！</p>' +
+                    groupNote +
+                    '<div class="result-members">' + worksHTML + '</div>'
                 );
             });
         });
