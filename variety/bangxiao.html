@@ -293,7 +293,7 @@
                     </div>
                     <div class="member-detail">
                         <span class="member-detail__count">5 部</span>
-                        <p class="member-detail__works">《無限挑戰》六六歌2<br>《花樣旅行》<br>《全知干預視角》</p>
+                        <p class="member-detail__works">《打工達人的誕生》<br>《花樣旅行》<br>《全知干預視角》</p>
                     </div>
                 </label>
                 <label class="member-check">
@@ -337,7 +337,7 @@
                     </div>
                     <div class="member-detail">
                         <span class="member-detail__count">3 部</span>
-                        <p class="member-detail__works">《無限挑戰》重組特輯<br>《超人回來了》<br>《大腦性感的時代》</p>
+                        <p class="member-detail__works">《超人回來了》<br>《新穎的整理》<br>《非首腦會談》</p>
                     </div>
                 </label>
             </div>
@@ -375,7 +375,7 @@
                 },
                 jaejin: {
                     score: 5, est: false,
-                    works: ['《無限挑戰》六六歌2', '《花樣旅行》', '《全知干預視角》']
+                    works: ['《打工達人的誕生》', '《花樣旅行》', '《全知干預視角》']
                 },
                 jaeduck: {
                     score: 10, est: true,
@@ -391,22 +391,16 @@
                 },
                 jiyong: {
                     score: 3, est: false,
-                    works: ['《無限挑戰》重組特輯', '《超人回來了》（與昇材）', '《大腦性感的時代》']
+                    works: ['《超人回來了》', '《新穎的整理》', '《非首腦會談》']
                 },
             };
 
             const calcBtn = $('#calcBtn');
             const resultEl = $('#calcResult');
 
-            // 團飯全選：勾全部；個別全勾時也同步亮全選卡
+            // 團飯：勾了就全選六人，但六人的變動不反過來影響團飯
             $('#member-all').on('change', function () {
                 $('input[name="member"]').prop('checked', this.checked);
-            });
-
-            $('input[name="member"]').on('change', function () {
-                const total = $('input[name="member"]').length;
-                const checked = $('input[name="member"]:checked').length;
-                $('#member-all').prop('checked', total === checked);
             });
 
             calcBtn.click(function () {
