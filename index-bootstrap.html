@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECHSKIES - 水晶男孩傳奇介紹</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/tablet.css">
+    <style>
+        /* ── Bootstrap 疊加後的還原保護：Bootstrap Reboot 會重設 body／標題／段落的邊距與底色，
+           這裡把原本 style.css 的數值原封不動疊回來，確保外觀跟改版前一致 ── */
+        body.home-page {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Noto Sans TC', system-ui, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 刻意用純標籤選擇器（不加 .home-page class）：
+           優先權只需贏過 Bootstrap Reboot 的同層級標籤選擇器即可（載入順序在後即贏），
+           不能贏過 .section-title 這類 class 選擇器——才不會蓋掉個別標題本來就設定好的間距 */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        ul,
+        ol,
+        dl,
+        dd,
+        blockquote,
+        hr {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 同理：Bootstrap 也用純標籤選擇器 a{color:...;text-decoration:underline}，
+           跟 style.css 的 a{color:var(--color-text);text-decoration:none} 同量級、
+           但載入在後會贏，把沒有專屬 class 的連結（例如頁尾 .studio-link）變成
+           Bootstrap 預設的藍色底線連結——這裡疊回原本數值 */
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        /* ── 現有 portal-nav 疊上 Bootstrap navbar / navbar-nav / nav-link class 後的還原保護：
+           .navbar、.navbar-expand-lg、.navbar-dark 都是「類別選擇器」，跟 style.css 原本的
+           .portal-nav / .portal-nav>ul>li>a 同量級或更高，載入順序在後會贏，所以外觀會跑掉。
+           這裡把原本的數值原封不動疊回來（#portal-primary-menu 用 id 選擇器保證優先權最高）。── */
+        body.home-page .portal-nav {
+            width: 100%;
+            margin: 0 0 14px;
+            padding: 0.8rem 100px;
+            background-color: var(--color-bg-raised);
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem 1rem;
+            box-sizing: border-box;
+        }
+
+        #portal-primary-menu {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: clamp(8px, 1.4vw, 18px);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            min-width: 0;
+            flex: 1 1 200px;
+        }
+
+        #portal-primary-menu>li>a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.15;
+            text-decoration: none;
+            color: var(--color-brand);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            padding: 2px 4px;
+        }
+
+        /* ── 新增：跨時空軌跡段落快覽（錨點導覽用，低調文字列，不做按鈕感） ── */
+        .home-page .story-archive-nav-wrap {
+            margin: 0 auto 2rem;
+            max-width: 720px;
+        }
+
+        .home-page .story-archive-nav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4px 0;
+        }
+
+        .home-page .story-archive-year {
+            display: inline-block;
+            padding: 4px 14px;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-right: 1px solid rgba(255, 204, 0, 0.3);
+            transition: color 0.2s ease;
+        }
+
+        .home-page .story-archive-year:last-child {
+            border-right: none;
+        }
+
+        .home-page .story-archive-year:hover {
+            color: var(--color-brand);
+        }
+
+        .home-page .story-node {
+            scroll-margin-top: var(--home-nav-offset, 84px);
+        }
+    </style>
+</head>
+
+<body class="home-page">
+    <header id="origin">
+        <div class="hero">
+            <div class="header-inner site-header-inner">
+                <h1 class="main-title">SECHSKIES<br>水晶男孩</h1>
+                <div class="subtitle-wrap">
+                    <span class="sub-title">六顆永恆的水晶 • 左右命運的傳奇</span>
+                </div>
+            </div>
+            <!-- <a href="#start" class="btn">從這裡開始淪陷</a> -->
+        </div>
+    </header>
+
+    <nav class="portal-nav navbar navbar-expand-lg navbar-dark" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+
+        <section id="start">
+            <h2 class="section-title">好奇的開端</h2>
+            <div class="intro-text">
+                <p class="core-description">
+                    這段旅程始於 2016 年 4 月，透過國民綜藝<span class="mark_b mark_y">《無限挑戰》</span>的回歸企劃，讓原本不認識這組傳奇的我，因一時好奇點開節目。
+                    即便錯過了那個屬於他們的世紀末，但跟著節目的編排鋪陳，從歡笑到感動，我被這些熱血、真誠且專業的大男孩所震撼。
+                </p>
+                <p class="call-to-action">
+                    身為在回歸後才被這場 <span class="mark_b mark_y">「黃色奇蹟」</span>
+                    擊中的新一代粉絲，我深刻體會那種從好奇觀看到最終徹底淪陷的悸動。這種從<span class="mark_b"><span class="fan-journey-wave"
+                            role="text">路人&nbsp;<i class="fa-solid fa-circle-right"
+                                aria-hidden="true"></i>&nbsp;入坑否定期&nbsp;<i class="fa-solid fa-circle-right"
+                                aria-hidden="true"></i>&nbsp;瘋狂考古期&nbsp;<i class="fa-solid fa-circle-right"
+                                aria-hidden="true"></i>&nbsp;坑底躺平深陷其中</span></span>的過程，證明了魅力可以跨越時間，也正是這一切自我覺醒的起點，驅動我不斷進化的無限可能。
+                </p>
+            </div>
+        </section>
+        <section id="mission" class="mission-section">
+            <div class="mission-zigzag">
+                <div class="mission-row mission-row--intro">
+                    <div class="mission-row__visual">
+                        <div class="logo-wrapper">
+                            <img src="./assets/images/logo.png" alt="SECHSKIES Logo Concept">
+                            <div class="caption">
+                                <span class="caption__line caption__line--title"><span class="arrow-icon mark_b"
+                                        aria-hidden="true">↑</span>設計概念：</span>
+                                <span class="caption__line">六角形水晶、黃色海洋與我們的初心Six</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mission-row__body">
+                        <h2 class="section-title mission-block-title">成立的初衷</h2>
+                        <p class="mission-lead">
+                            以推廣 <span class="mark_y">SECHSKIES 水晶男孩</span> 為核心，旨在透過 專業的視覺策展 宣傳成員魅力與小黃們的應援活動。嘗試以水晶男孩為
+                            <span class="mark_b">靈感主軸</span>，延伸至 網頁開發、視覺設計與內容企劃 等多重領域，將對偶像的喜愛轉化為 <span
+                                class="mark_b">實質的專業養分</span>。在這裡，你不只能探索他們的 <span class="mark_b">傳奇軌跡</span>，更能見證追星如何激發
+                            <span class="mark_b">創作潛能</span>。
+                        </p>
+                        <div class="slogan-quote slogan-quote--mission">
+                            <span class="slogan-quote__inner">我要用這個<span
+                                    class="mark_b">網站</span>證明：<br>追星的孩子不僅不會變壞，更會因為那份<span
+                                    class="mark_b">守護並推廣的熱情</span>，<br>讓現在的自己變得比追星前的自己還要厲害!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-row mission-row--concept">
+                    <div class="mission-row__body">
+                        <h3 class="mission-logo-heading">LOGO 設計理念</h3>
+                        <p>
+                            <span class="mark_b">「晶」</span>字發想來自<span class="mark_b">六角形的水晶</span>，為了強調水晶男孩<span
+                                class="mark_b">初心為六人</span>。上半部形似<span class="mark_b">數字
+                                6</span>，搭配演唱會必備的<span class="mark_b">手燈圖案</span>，代表粉絲和水晶<span
+                                class="mark_b">密不可分的關係</span>。<br>色彩配置發想來自無限挑戰六六歌特輯的回歸舞台，成員脫下眼罩的剎那，整個場地從<span
+                                class="mark_b mark_y">一片漆黑瞬間發亮</span>，映入眼簾的是一片<span class="mark_b">黃色海洋</span>，<span
+                                class="mark_y">讓成員和粉絲的世界跟著亮了起來</span>。以此片段為契機，設計成<span
+                                class="mark_b">黑色系與黃色系</span>的色彩搭配，來記錄那瞬間的感動。
+                        </p>
+                    </div>
+                    <div class="mission-row__visual">
+                        <div class="mission-moment-wrap">
+                            <div class="mission-gif-frame" role="group" aria-label="回歸演唱會／黃色氣球海（16：9）">
+                                <!-- 若改為 GIF 動圖，將底下 src 換成 ./assets/images/mission-balloon-sea.gif 即可 -->
+                                <img src="./assets/images/黃色海洋.gif" alt="無限挑戰 六六歌2 放送畫面：全場黃色氣球海">
+                            </div>
+                            <span class="caption">
+                                <span class="arrow-icon" aria-hidden="true">↑</span>
+                                回歸演唱會的動人瞬間-黃色氣球海
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="timeline" class="story-archive">
+            <h2 class="section-title">跨時空軌跡</h2>
+            <div class="subtitle-wrap">
+                <span class="sub-title">SECHSKIES STORY ARCHIVE</span>
+            </div>
+
+            <div class="container-fluid story-archive-nav-wrap">
+                <div class="story-archive-nav-list">
+                    <a class="story-archive-year" href="#era-1997">傳奇誕生</a>
+                    <a class="story-archive-year" href="#era-2000">凍結世界</a>
+                    <a class="story-archive-year" href="#era-2016">完整回歸</a>
+                    <a class="story-archive-year" href="#era-2016-05">夢境成真</a>
+                    <a class="story-archive-year" href="#era-2016-09">九月首演</a>
+                    <a class="story-archive-year" href="#era-2016-12">溫柔陪伴</a>
+                    <a class="story-archive-year" href="#era-tbc">未完待續</a>
+                </div>
+            </div>
+
+            <div class="merged-storyline">
+                <article id="era-1997" class="story-node" data-era="1997">
+                    <h3>傳奇的誕生：六道光芒劃破韓流夜空</h3>
+                    <p>1997年4月15日，水晶男孩以強悍的《學園別曲》為起點，「黑水晶｜Rap與舞蹈」、「白水晶｜主唱」的雙色魅力交織，奠定了
+                        K-POP第一代傳奇的地位，開創了屬於黃色海洋的盛世與巔峰。</p>
+                    <p>在那段被韓劇<a
+                            href="https://www.disneyplus.com/browse/entity-3979fb82-8681-44e8-b7be-e313091f0d73?distributionPartner=google"
+                            class="story-external-inline" target="_blank" rel="noopener noreferrer"><span
+                                class="story-external-inline__label">《請回答1997》</span><i
+                                class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>奉為經典的歲月裡，水晶男孩與
+                        H.O.T.
+                        並稱為兩大巔峰。無論是雨中那場被劇集致敬的粉絲大戰，還是為了買票露宿街頭的狂熱，白與黃的旗幟對決，成了那個世代集體記憶的起點。</p>
+                </article>
+
+                <article id="era-2000" class="story-node" data-era="2000">
+                    <h3>遺憾的休止符：凍結有你的世界</h3>
+                    <p>在最燦爛的時刻，這首華麗的樂章卻被迫畫下了休止符，2000年5月正式解散。成員各自發展走出了不同道路，水晶進入休眠期。
+                    </p>
+                    <p>那一場如同劇中描寫般、讓全韓無數少女世界崩塌的夢想演唱會告別現場，將未完的旋律封存在冷冽的空氣中。這一停頓，就是長達十六年的靜默，成為我們心中最完整、卻也最令人心碎的凝煉模樣。
+                    </p>
+                </article>
+                <article id="era-2016" class="story-node story-node--ebook-ssg2" data-era="2016">
+                    <h3>感動合體：那一晚，我們找回了完整</h3>
+                    <p>塵封十六年的時光被溫柔拂去，跨越六千多天的等待，黃色氣球海再次淹沒了上岩運動場。當六個身影重新站在一起，那幅曾被凍結在 2000
+                        年的畫面終於再次「溶解」並重合。那一晚，淚水證明了奇蹟真的存在，我們終於找回了那份久違的完整，以為故事從此能圓滿續寫。</p>
+                    <span class="timeline-ebook-cta" aria-label="傳奇書寫中，連結暫停">
+                        <span>點我見證傳奇</span><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i>
+                    </span>
+                </article>
+                <article id="era-2016-05" class="story-node" data-era="2016.05">
+                    <h3>從路人到鐵粉：從夢境進現實</h3>
+                    <p>當《無限挑戰》的燈光熄滅，原以為那場重逢只是曇花一現。當我們陷入瘋狂但卻不敢過度期待合體、只在螢幕前等待每個oppa消息的時光，終於盼到了 5月 11
+                        日與 YG的簽約消息，所有新舊小黃從絕望中打醒。從未知的空虛到塵埃落定的感動——原來這不是終點，奇蹟真的在現實生了根。</p>
+                </article>
+                <article id="era-2016-09" class="story-node" data-era="2016.09">
+                    <h3>九月首場：黃色海洋裡的羈絆</h3>
+                    <p>四月的重逢是老黃們守候十六年的淚水；而九月的單獨演唱會，則讓無數新小黃見證了那份無法動搖的羈絆。在那片黃色海洋裡，我們不只愛上了水晶男孩，更愛上了他們與小黃之間的愛情。雖然遺憾沒能親眼看見六人並肩的畫面，但那股新舊交織的生命力，確實為水晶注入了新的靈魂。
+                    </p>
+                </article>
+                <article id="era-2016-12" class="story-node" data-era="2016.12">
+                    <h3>第六顆水晶：另一種形式的陪伴</h3>
+                    <p>而志溶雖然未參與合體，卻在十二月聖誕夜那場釜山演唱會落幕當天，帶著孩子在《超人回來了》的預告驚喜現身。這不是告別，而是他選擇以另一種最真實、最溫馨的形式，在現實生活中繼續陪伴著大家。舞台上的空位雖然令人難過，但看到他帶著孩子幸福的模樣，我們才明白：原來水晶與粉絲的羈絆，早已超越了表演的定義，而是要在彼此的生活裡，一起寫下新的篇章。
+                    </p>
+                </article>
+
+                <article id="era-tbc" class="story-node story-node--tbc" data-era="未完">
+                    <h3>未完待續</h3>
+                </article>
+            </div>
+        </section>
+        <!-- 
+        <section id="story" class="story-archive">
+            <h2 class="section-title">傳奇的轉折</h2>
+            <div class="subtitle-wrap">
+                <span class="sub-title">PLOT TWIST</span>
+            </div>
+            <p class="intro-text">
+                像劇情的反轉一樣過癮：這幾個節點，剛好是許多人從「旁觀綜藝」滑進「正式入坑」的轉軌。若想讀對白級細節，請開
+                <a href="totoga2/readable.html">六六歌2 整合專區</a>（影片／電子書／紀實長文八章，同一頁切換模式即可）。
+            </p>
+            <div class="story-ebook-cta">
+                <a href="totoga2/readable.html#ebook" class="btn story-ebook-btn">開啟六六歌2 紀實電子書</a>
+                <a href="totoga2/readable.html" class="btn story-ebook-btn">六六歌2 整合專區</a>
+            </div>
+
+            <div class="merged-storyline">
+                <article id="special" class="story-node" data-era="六六歌">
+                    <h3>六六歌實錄</h3>
+                    <p>把懸念、試探與哭點縫在同一條時間軸上；很多人第一次真正把「水晶男孩」打進搜尋框，就是從這種瘋狂的剪輯節奏開始。</p>
+                    <p><a href="totoga2/readable.html#ssg2">對照這一段幕後敘事</a></p>
+                </article>
+                <article id="negotiate" class="story-node" data-era="交涉">
+                    <h3>命運的交涉</h3>
+                    <p>KTV、游擊演唱會規則、與其說講道理不如說把真心擺上桌面——交涉的不是合約字面，而是還願不願意再一次肩並肩。</p>
+                    <p><a href="totoga2/readable.html#negotiate">讀交涉與對話肌理</a></p>
+                </article>
+                <article id="complete" class="story-node" data-era="歸位">
+                    <h3>拼圖的歸位</h3>
+                    <p>變數一個個被排除之後，驚喜接上登場段落；缺一角舞台的視覺，終於對齊觀眾席上堅守的那片黃。</p>
+                    <p><a href="totoga2/readable.html#gather">從「召集」段開始補這條線</a></p>
+                </article>
+                <article id="past" class="story-node" data-era="最初">
+                    <h3>巔峰與雨天</h3>
+                    <p>急凍、告別、各自的跑道——並不是要你沉浸遺憾，而是讓你懂：後來每一次亮燈，為什麼會更值得尖叫。</p>
+                    <p><a href="totoga2/readable.html#sechskies-profile">讀這條脈絡的起點</a></p>
+                </article>
+            </div>
+        </section> -->
+    </div>
+
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank">
+            Design by <span class="mark_b">Jekkinoopy Studio</span>
+        </a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/portal-nav.js"></script>
+    <script>
+        /* portal-nav.js 產生選單後，疊上 Bootstrap navbar-nav / nav-item / nav-link class；
+           只加 class，不動原本結構與行為，不碰 assets/js/portal-nav.js 本體 */
+        (function () {
+            var menu = document.getElementById('portal-primary-menu');
+            if (!menu) return;
+            menu.classList.add('navbar-nav');
+            Array.from(menu.children).forEach(function (li) {
+                li.classList.add('nav-item');
+                var link = li.querySelector(':scope > a');
+                if (link) link.classList.add('nav-link');
+            });
+        })();
+
+        /* 錨點跳轉距離：實際量測 sticky nav 的高度（桌機／手機漢堡展開高度不同），
+           寫進 --home-nav-offset，取代猜測值，避免跳轉後蓋住或跳過頭。
+           另外 .story-node::after（年代標籤）用絕對定位貼在卡片「上緣外側」
+           （style.css：≥1181px top:-20px、≤900px top:-14px），
+           這段浮出去的高度不算在 story-node 自己的框裡，
+           所以量完 nav 高度後要再加一點緩衝，才不會讓標籤被 nav 蓋住。 */
+        (function () {
+            var nav = document.querySelector('.portal-nav');
+            if (!nav) return;
+
+            var ERA_TAG_CLEARANCE = 24; // 年代標籤外凸的緩衝空間
+
+            function syncNavOffset() {
+                var height = Math.ceil(nav.getBoundingClientRect().height);
+                document.documentElement.style.setProperty('--home-nav-offset', (height + ERA_TAG_CLEARANCE) + 'px');
+            }
+
+            syncNavOffset();
+            window.addEventListener('resize', syncNavOffset);
+            window.addEventListener('load', syncNavOffset);
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(syncNavOffset);
+            }
+        })();
+    </script>
+</body>
+
+</html>
