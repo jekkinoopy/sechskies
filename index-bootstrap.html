@@ -53,10 +53,13 @@
             text-decoration: none;
         }
 
-        /* ── 現有 portal-nav 疊上 Bootstrap navbar / navbar-nav / nav-link class 後的還原保護：
-           .navbar、.navbar-expand-lg、.navbar-dark 都是「類別選擇器」，跟 style.css 原本的
-           .portal-nav / .portal-nav>ul>li>a 同量級或更高，載入順序在後會贏，所以外觀會跑掉。
-           這裡把原本的數值原封不動疊回來（#portal-primary-menu 用 id 選擇器保證優先權最高）。── */
+        /* ── 現有 portal-nav 疊上 Bootstrap navbar / navbar-expand-lg / navbar-dark class 後的還原保護：
+           Bootstrap 的 .navbar{display:flex...} 沒有寫在 media query 裡、卻跟 style.css
+           原本桌機／手機兩種 .portal-nav 版面同量級，且整包 bootstrap.min.css 載入在後，
+           兩種寬度都會被它蓋掉——這是手機漢堡版面失效的原因。這裡照原本的中斷點分別疊回去。
+           內層 .portal-nav>ul、.portal-nav>ul>li>a 這些選擇器本來就贏過 Bootstrap 的
+           .navbar-nav／.nav-link（多一層 combinator，優先權本來就比較高），不需要額外處理，
+           上一版加的 #portal-primary-menu id 選擇器優先權太高，反而蓋掉手機版的收合邏輯，已移除。── */
         body.home-page .portal-nav {
             width: 100%;
             margin: 0 0 14px;
@@ -76,30 +79,39 @@
             box-sizing: border-box;
         }
 
-        #portal-primary-menu {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: flex-end;
-            gap: clamp(8px, 1.4vw, 18px);
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            min-width: 0;
-            flex: 1 1 200px;
-        }
+        @media (max-width: 991px) {
+            body.home-page .portal-nav {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-areas:
+                    "logo toggle"
+                    "menu menu";
+                align-items: center;
+                column-gap: 0.75rem;
+                row-gap: 0;
+            }
 
-        #portal-primary-menu>li>a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            line-height: 1.15;
-            text-decoration: none;
-            color: var(--color-brand);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            padding: 2px 4px;
+            body.home-page .portal-nav.portal-nav--open {
+                position: fixed;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                height: 100dvh;
+                margin: 0;
+                padding:
+                    max(0.85rem, env(safe-area-inset-top, 0px)) clamp(14px, 2vw + 10px, 32px) max(1rem, env(safe-area-inset-bottom, 0px));
+                z-index: 10000;
+                overflow: hidden;
+                background-color: var(--color-bg-raised);
+                grid-template-columns: 1fr;
+                grid-template-rows: auto minmax(0, 1fr);
+                grid-template-areas:
+                    "top"
+                    "menu";
+                row-gap: 1.75rem;
+                align-content: start;
+                box-sizing: border-box;
+            }
         }
 
         /* ── 新增：跨時空軌跡段落快覽（錨點導覽用，低調文字列，不做按鈕感） ── */
