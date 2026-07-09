@@ -210,49 +210,74 @@
             margin-right: auto;
         }
 
-        /* ③ 表單區：單欄直排 */
-        body.crystal-dance-page .form-stack {
+        /* ③ summer-form：分階段邊框排版（風格參考見面會應援調查表，顏色用全站 token） */
+        body.crystal-dance-page .summer-form {
             max-width: 720px;
             margin: 0 auto;
         }
 
-        body.crystal-dance-page .form-label {
-            font-weight: 700;
+        body.crystal-dance-page .summer-form__stage + .summer-form__stage {
+            margin-top: 2rem;
+        }
+
+        body.crystal-dance-page .summer-form__stage-title {
+            font-weight: 800;
             color: var(--color-brand-dark);
-            font-size: 0.9rem;
-            margin-bottom: 0.45rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+            text-align: left;
         }
 
-        body.crystal-dance-page .form-stack .col-12 {
-            margin-bottom: 0.25rem;
-        }
-
-        body.crystal-dance-page .form-control,
-        body.crystal-dance-page .form-select {
+        body.crystal-dance-page .summer-form__stage-body {
             border: 1px solid rgba(255, 204, 0, 0.35);
-            border-radius: 10px;
-            padding: 0.6rem 0.85rem;
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
             background: #fff;
         }
 
-        body.crystal-dance-page .form-control:focus,
-        body.crystal-dance-page .form-select:focus {
+        body.crystal-dance-page .summer-form__stage-body--notice {
+            background: var(--color-surface-soft);
+        }
+
+        body.crystal-dance-page .summer-form__stage-body .row {
+            --bs-gutter-y: 1.35rem;
+        }
+
+        body.crystal-dance-page .summer-form .form-label {
+            font-weight: 700;
+            color: var(--color-brand-dark);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        body.crystal-dance-page .summer-form .form-control,
+        body.crystal-dance-page .summer-form .form-select {
+            border: 1px solid rgba(255, 204, 0, 0.35);
+            border-radius: 10px;
+            padding: 0.65rem 0.9rem;
+            background: #fff;
+        }
+
+        body.crystal-dance-page .summer-form .form-control:focus,
+        body.crystal-dance-page .summer-form .form-select:focus {
             border-color: var(--color-brand);
             box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.2);
         }
 
-        body.crystal-dance-page .form-control[type="file"] {
+        body.crystal-dance-page .summer-form .form-control[type="file"] {
             border-style: dashed;
             cursor: pointer;
             background: var(--color-surface-soft);
         }
 
-        body.crystal-dance-page .form-text {
+        body.crystal-dance-page .summer-form .form-text {
             color: var(--color-text-muted);
             font-size: 0.82rem;
+            margin-top: 0.35rem;
         }
 
-        body.crystal-dance-page .btn-outline-dance {
+        body.crystal-dance-page .summer-form .btn-outline-dance {
             border: 1.5px solid var(--color-brand-dark);
             color: var(--color-brand-dark);
             border-radius: 999px;
@@ -262,78 +287,85 @@
             background: #fff;
         }
 
-        body.crystal-dance-page .btn-check:checked + .btn-outline-dance,
-        body.crystal-dance-page .btn-outline-dance:hover {
+        body.crystal-dance-page .summer-form .btn-check:checked + .btn-outline-dance,
+        body.crystal-dance-page .summer-form .btn-outline-dance:hover {
             background: var(--color-brand);
             color: var(--color-brand-dark);
             border-color: var(--color-brand-dark);
         }
 
-        body.crystal-dance-page .btn-dance {
-            background: var(--color-brand);
-            color: var(--color-brand-dark);
-            border: none;
-            border-radius: 999px;
-            font-weight: 800;
-            padding: 0.75rem 1.5rem;
-            letter-spacing: 0.5px;
+        body.crystal-dance-page .summer-form__option-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.15rem;
         }
 
-        body.crystal-dance-page .btn-dance:hover {
-            background: var(--color-brand-dark);
-            color: var(--color-text-inverse);
-        }
-
-        body.crystal-dance-page .btn-reset-dance {
-            background: #fff;
-            color: var(--color-brand-dark);
-            border: 1.5px solid var(--color-brand-dark);
-            border-radius: 999px;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
-        }
-
-        body.crystal-dance-page .btn-reset-dance:hover {
-            background: var(--color-surface-soft);
-        }
-
-        /* 填寫須知：表單上方單欄提示區 */
-        body.crystal-dance-page .info-panel {
-            background: var(--color-surface-soft);
-            border: 1px solid rgba(255, 204, 0, 0.22);
-            border-radius: 14px;
-            padding: 1.5rem 1.75rem;
-            margin-bottom: 2.5rem;
-        }
-
-        body.crystal-dance-page .info-panel h3 {
-            font-weight: 800;
-            color: var(--color-brand-dark);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.06em;
-        }
-
-        body.crystal-dance-page .info-list {
+        body.crystal-dance-page .summer-form .info-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 1rem;
+            margin: 0;
             display: flex;
             flex-direction: column;
             gap: 0.85rem;
         }
 
-        body.crystal-dance-page .info-list li {
+        body.crystal-dance-page .summer-form .info-list li {
             color: var(--color-text-muted);
             font-size: 0.9rem;
             line-height: 1.75;
         }
 
-        body.crystal-dance-page .info-footer-text {
+        body.crystal-dance-page .summer-form .info-footer-text {
             color: var(--color-text-muted);
             font-size: 0.8rem;
             opacity: 0.85;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        body.crystal-dance-page .summer-form__actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        body.crystal-dance-page .summer-form .btn-dance {
+            background: var(--color-brand);
+            color: var(--color-brand-dark);
+            border: none;
+            border-radius: 999px;
+            font-weight: 800;
+            padding: 0.8rem 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        body.crystal-dance-page .summer-form .btn-dance:hover {
+            background: var(--color-brand-dark);
+            color: var(--color-text-inverse);
+        }
+
+        body.crystal-dance-page .summer-form .btn-reset-dance {
+            background: #fff;
+            color: var(--color-brand-dark);
+            border: 1.5px solid var(--color-brand-dark);
+            border-radius: 999px;
+            font-weight: 700;
+            padding: 0.8rem 1.5rem;
+        }
+
+        body.crystal-dance-page .summer-form .btn-reset-dance:hover {
+            background: var(--color-surface-soft);
+        }
+
+        @media (max-width: 575.98px) {
+            body.crystal-dance-page .summer-form__stage-body {
+                padding: 1.25rem 1.15rem;
+            }
+
+            body.crystal-dance-page .summer-form__actions {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 575.98px) {
@@ -400,10 +432,9 @@
                         <iframe src="https://www.youtube.com/embed/fkJmOMPirBc" title="20TH 正式影片：SECHSKIES 20週年紀念串燒舞蹈"
                         allowfullscreen></iframe>
                     </div>
-                    <div class="section-body">
-                        <p>2017 年，台灣小黃以水晶男孩出道 20 周年為契機，籌辦了經典歌曲串燒聯舞應援。這不只是一次跳舞活動，而是把青春、等待、回歸與重新相遇濃縮在同一支影片裡的集體記憶。</p>
-                        <p>水晶熱舞社希望延續這份記憶，將 20TH 的熱血行動整理成可以被再次看見的紀錄，也為 2027/04/15 的 30TH 應援企劃預留新的開始。</p>
-                    </div>
+<div class="section-body">
+    <p>水晶熱舞社是<span class="mark_b mark_y">水晶男孩推廣部</span>底下的舞蹈應援企劃，從 20TH 台灣小黃串燒聯舞的集體記憶出發，整理 SECHSKIES 經典舞台、翻跳紀錄與應援行動，並<span class="fan-journey-wave">預備在 2027/04/15 30TH 前</span>募集新的參與者，由歷屆台灣小黃接力延續。</p>
+</div>
                 </div>
 
                 <h3 class="sub-section-title">延伸閱讀</h3>
@@ -452,119 +483,134 @@
             <h2 class="section-title">30TH 應援募集表單</h2>
             <p class="form-lead">這份表單是水晶熱舞社為 2027/04/15 30TH 預備的應援募集模組，用來整理參與者想練的歌曲、可支援的內容與想留下的祝福。</p>
 
-            <div class="form-stack">
-                <div class="info-panel">
-                    <h3>填寫須知</h3>
-                    <ul class="info-list">
-                        <li>📎 檔案格式：影片或圖片皆可，建議單檔 100MB 以內</li>
-                        <li>🔒 這份資料僅供水晶熱舞社內部整理 30TH 應援企劃使用</li>
-                        <li>📅 送出後若確定參與，之後會另行公告練習與錄製時間</li>
-                    </ul>
-                    <p class="info-footer-text">水晶男孩推廣部・30TH 應援企劃</p>
+            <form class="summer-form" action="#">
+
+                <div class="summer-form__stage">
+                    <h3 class="summer-form__stage-title">填寫須知</h3>
+                    <div class="summer-form__stage-body summer-form__stage-body--notice">
+                        <ul class="info-list">
+                            <li>📎 檔案格式：影片或圖片皆可，建議單檔 100MB 以內</li>
+                            <li>🔒 這份資料僅供水晶熱舞社內部整理 30TH 應援企劃使用</li>
+                            <li>📅 送出後若確定參與，之後會另行公告練習與錄製時間</li>
+                        </ul>
+                        <p class="info-footer-text">水晶男孩推廣部・30TH 應援企劃</p>
+                    </div>
                 </div>
 
-                <form action="#">
-                    <div class="row g-4">
-                        <div class="col-12 col-sm-6">
-                            <label for="nickname" class="form-label">暱稱</label>
-                            <input type="text" class="form-control" id="nickname" name="nickname"
-                                placeholder="例：熱舞小黃" required>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                placeholder="dance@example.com" required>
-                        </div>
-
-                        <div class="col-12 col-sm-6">
-                            <label for="dance_years" class="form-label">練舞經驗年數</label>
-                            <input type="number" class="form-control" id="dance_years" name="dance_years"
-                                min="0" max="30" placeholder="0">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <label for="available_date" class="form-label">可參與日期</label>
-                            <input type="date" class="form-control" id="available_date" name="available_date">
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label d-block">是否參加過 20TH</label>
-                            <div class="d-flex flex-wrap gap-2 mt-1">
-                                <input type="radio" class="btn-check" name="attended_20th"
-                                    id="attended_20th_yes" value="attended" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="attended_20th_yes">參加過 20TH</label>
-
-                                <input type="radio" class="btn-check" name="attended_20th"
-                                    id="attended_20th_video" value="watched_video" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="attended_20th_video">看過 20TH 影片</label>
-
-                                <input type="radio" class="btn-check" name="attended_20th"
-                                    id="attended_20th_first" value="first_time" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="attended_20th_first">第一次知道</label>
+                <div class="summer-form__stage">
+                    <h3 class="summer-form__stage-title">第一階段｜參與者基本資料</h3>
+                    <div class="summer-form__stage-body">
+                        <div class="row g-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="nickname" class="form-label">暱稱</label>
+                                <input type="text" class="form-control" id="nickname" name="nickname"
+                                    placeholder="例：熱舞小黃" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="dance@example.com" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="dance_years" class="form-label">練舞經驗年數</label>
+                                <input type="number" class="form-control" id="dance_years" name="dance_years"
+                                    min="0" max="30" placeholder="0">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="available_date" class="form-label">可參與日期</label>
+                                <input type="date" class="form-control" id="available_date" name="available_date">
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-12">
-                            <label class="form-label d-block">想參與的 30TH 內容（可複選）</label>
-                            <div class="d-flex flex-wrap gap-2 mt-1">
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_cover" value="cover" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_cover">翻跳</label>
+                <div class="summer-form__stage">
+                    <h3 class="summer-form__stage-title">第二階段｜30TH 參與意向</h3>
+                    <div class="summer-form__stage-body">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label class="form-label d-block">是否參加過 20TH</label>
+                                <div class="summer-form__option-row">
+                                    <input type="radio" class="btn-check" name="attended_20th"
+                                        id="attended_20th_yes" value="attended" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="attended_20th_yes">參加過 20TH</label>
 
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_medley" value="medley" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_medley">串燒聯舞</label>
+                                    <input type="radio" class="btn-check" name="attended_20th"
+                                        id="attended_20th_video" value="watched_video" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="attended_20th_video">看過 20TH 影片</label>
 
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_blessing" value="blessing" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_blessing">祝福影片</label>
+                                    <input type="radio" class="btn-check" name="attended_20th"
+                                        id="attended_20th_first" value="first_time" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="attended_20th_first">第一次知道</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label d-block">想參與的 30TH 內容（可複選）</label>
+                                <div class="summer-form__option-row">
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_cover" value="cover" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_cover">翻跳</label>
 
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_graphic" value="graphic" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_graphic">圖文應援</label>
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_medley" value="medley" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_medley">串燒聯舞</label>
 
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_editing" value="editing" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_editing">影片剪輯</label>
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_blessing" value="blessing" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_blessing">祝福影片</label>
 
-                                <input type="checkbox" class="btn-check" name="participate_content"
-                                    id="content_archive" value="archive" autocomplete="off">
-                                <label class="btn btn-outline-dance" for="content_archive">資料整理</label>
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_graphic" value="graphic" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_graphic">圖文應援</label>
+
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_editing" value="editing" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_editing">影片剪輯</label>
+
+                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                        id="content_archive" value="archive" autocomplete="off">
+                                    <label class="btn btn-outline-dance" for="content_archive">資料整理</label>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-12 col-sm-6">
-                            <label for="song" class="form-label">想練的歌曲</label>
-                            <select class="form-select" id="song" name="song">
-                                <option value="" selected>請選擇歌曲</option>
-                                <option value="couple">Couple</option>
-                                <option value="comeback">Com' Back</option>
-                                <option value="road_fighter">Road Fighter</option>
-                                <option value="pom_saeng_pom_sa">Pom Saeng Pom Sa</option>
-                                <option value="other">其他</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <label for="reference_file" class="form-label">上傳參考影片或圖片</label>
-                            <input class="form-control" type="file" id="reference_file" name="reference_file"
-                                accept="image/*,video/*">
-                            <div class="form-text">翻跳影片、舞台照片或剪輯素材皆可</div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="message_30th" class="form-label">想對 30TH 說的話</label>
-                            <textarea class="form-control" id="message_30th" name="message_30th" rows="4"
-                                placeholder="想對水晶熱舞社說的話、想貢獻的部分、想見到誰、想留下的祝福……"></textarea>
+                <div class="summer-form__stage">
+                    <h3 class="summer-form__stage-title">第三階段｜應援內容與祝福</h3>
+                    <div class="summer-form__stage-body">
+                        <div class="row g-4">
+                            <div class="col-12 col-sm-6">
+                                <label for="song" class="form-label">想練的歌曲</label>
+                                <select class="form-select" id="song" name="song">
+                                    <option value="" selected>請選擇歌曲</option>
+                                    <option value="couple">Couple</option>
+                                    <option value="comeback">Com' Back</option>
+                                    <option value="road_fighter">Road Fighter</option>
+                                    <option value="pom_saeng_pom_sa">Pom Saeng Pom Sa</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="reference_file" class="form-label">上傳參考影片或圖片</label>
+                                <input class="form-control" type="file" id="reference_file" name="reference_file"
+                                    accept="image/*,video/*">
+                                <div class="form-text">翻跳影片、舞台照片或剪輯素材皆可</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="message_30th" class="form-label">想對 30TH 說的話</label>
+                                <textarea class="form-control" id="message_30th" name="message_30th" rows="4"
+                                    placeholder="想對水晶熱舞社說的話、想貢獻的部分、想見到誰、想留下的祝福……"></textarea>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="d-grid d-sm-flex gap-3 mt-5">
-                        <button type="reset"
-                            class="btn btn-reset-dance flex-fill order-2 order-sm-1">重新填寫</button>
-                        <button type="submit"
-                            class="btn btn-dance flex-fill order-1 order-sm-2">送出應援表單 💛</button>
-                    </div>
-                </form>
-            </div>
+                <div class="summer-form__actions">
+                    <button type="reset" class="btn btn-reset-dance">重新填寫</button>
+                    <button type="submit" class="btn btn-dance">送出應援表單 💛</button>
+                </div>
+            </form>
         </section>
 
     </div>
