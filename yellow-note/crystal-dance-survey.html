@@ -10,11 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
     <style>
-        /* ── Bootstrap 疊加後的還原保護（同 index-bootstrap.html 手法）：
-           Bootstrap Reboot 用純標籤選擇器重設 body／標題／段落／連結，
-           這裡用同量級、但寫在 Bootstrap 後面的純標籤選擇器疊回全站原本數值，
-           不會贏過 .section-title 這類 class 選擇器，不影響本頁其他樣式 ── */
-        body {
+        /* Bootstrap Reboot 還原（同 index-bootstrap.html） */
+        body.crystal-dance-page {
             background-color: var(--color-bg);
             color: var(--color-text);
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif;
@@ -43,388 +40,229 @@
             text-decoration: none;
         }
 
-        /* 水晶熱舞社：水晶男孩推廣部旗下舞蹈應援企劃。
-           顏色一律對齊全站 color-tokens（--color-brand 系列），不自創色號 */
-        :root {
-            --dance-yellow: var(--color-brand);
-            --dance-yellow-light: var(--color-brand-light);
-            --dance-yellow-dark: var(--color-brand-dark);
-            --dance-ink: var(--color-brand-dark);
+        /* ── 頁面專用（scoped） ── */
+        body.crystal-dance-page section>p {
+            color: var(--color-text-muted);
+            line-height: 1.85;
+            max-width: 760px;
+            text-align: left;
+            margin-bottom: 0.85rem;
         }
 
-        /* 大標底圖：本頁專用照片（社團應援視覺），只覆蓋本頁，不動全站共用的 header.jpg */
-        body.crystal-dance-page header.inner-page-header {
-            background-image: url('../assets/images/crystal-dance-hero.jpg');
-            background-position: center 68%;
+        body.crystal-dance-page section>p:last-of-type {
+            margin-bottom: 0;
         }
 
-        /* ── Hero 區（沿用 inner-page-header 當主標，這裡只放引言與頁內導覽） ── */
-        .crystal-dance-hero {
-            text-align: center;
-        }
-
-        .crystal-dance-hero .category-tag {
+        body.crystal-dance-page .category-tag {
             display: inline-block;
-            background: var(--dance-yellow-light);
-            color: var(--dance-ink);
-            padding: .35rem 1.1rem;
+            background: var(--color-brand-light);
+            color: var(--color-brand-dark);
+            padding: 0.35rem 1.1rem;
             border-radius: 999px;
-            font-size: .8rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 1px;
             margin-bottom: 1rem;
         }
 
-        .crystal-dance-hero .hero-desc {
-            color: var(--color-text-muted);
-            line-height: 1.85;
-            max-width: 640px;
-            margin: 0 auto 1.5rem;
-        }
-
-        .crystal-dance-hero .quick-nav {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            justify-content: center;
-            gap: .6rem;
-            padding: .25rem 0 .5rem;
-        }
-
-        .crystal-dance-hero .quick-nav a {
-            white-space: nowrap;
-            text-decoration: none;
-        }
-
-        /* --- 各段落共用標題樣式 --- */
-        .section-alt {
-            background: rgba(255, 204, 0, 0.08);
-        }
-
-        .section-kicker {
-            font-weight: 800;
-            color: var(--dance-yellow-dark);
-            letter-spacing: 2px;
-            font-size: .85rem;
-            text-transform: uppercase;
-            margin-bottom: .5rem;
-        }
-
-        .crystal-dance-page .section-title {
-            text-align: left;
-            margin-bottom: 1.1rem;
-        }
-
-        .section-lead {
-            color: var(--color-text-muted);
-            line-height: 1.85;
+        body.crystal-dance-page .hero-banner {
+            display: block;
+            width: 100%;
             max-width: 760px;
+            aspect-ratio: 21 / 9;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 204, 0, 0.28);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 1.25rem;
         }
 
-        .section-lead+.section-lead {
-            margin-top: .9rem;
-        }
-
-        /* --- 活動主視覺 / 表單 Banner --- */
-        .event-banner {
-            background: linear-gradient(135deg, var(--dance-yellow) 0%, var(--dance-yellow-light) 100%);
-            border-radius: 24px;
-            padding: 2.25rem 2.5rem;
-            text-align: center;
-            color: var(--dance-ink);
-            box-shadow: 0 12px 30px rgba(255, 204, 0, .25);
-        }
-
-        .event-banner .event-badge {
-            display: inline-block;
-            background: var(--dance-ink);
-            color: var(--dance-yellow-light);
-            padding: .35rem 1.1rem;
-            border-radius: 999px;
-            font-size: .8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: .9rem;
-        }
-
-        .event-banner h2 {
-            font-weight: 900;
-            letter-spacing: 3px;
-            font-size: 1.9rem;
-            margin-bottom: .6rem;
-        }
-
-        .event-banner p {
-            margin: 0 auto;
-            font-weight: 600;
-            letter-spacing: .5px;
-            max-width: 640px;
-        }
-
-        /* --- 熱舞社介紹：關鍵字 chip --- */
-        .keyword-row {
+        body.crystal-dance-page .keyword-row {
             margin-top: 1.5rem;
         }
 
-        .keyword-chip {
-            background: #fff;
-            border: 1.5px solid var(--dance-yellow);
-            border-radius: 999px;
-            padding: .5rem 1.1rem;
+        body.crystal-dance-page .keyword-chip {
             font-weight: 700;
-            color: var(--dance-ink);
-            display: inline-flex;
+            color: var(--color-brand-dark);
+        }
+
+        body.crystal-dance-page .page-nav-wrap {
+            margin: 1.75rem auto 0;
+            max-width: 720px;
+        }
+
+        body.crystal-dance-page .page-nav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            gap: .4rem;
+            gap: 4px 0;
         }
 
-        /* --- 20TH 影片回顧 --- */
-        .video-card {
-            background: #fff;
-            border: 1.5px solid var(--dance-yellow);
-            border-radius: 16px;
-            padding: 1rem;
-            height: 100%;
-            box-shadow: 0 6px 18px rgba(255, 204, 0, .1);
-        }
-
-        .video-tag {
+        body.crystal-dance-page .page-nav-link {
             display: inline-block;
-            background: var(--dance-yellow-dark);
-            color: #fff;
-            font-weight: 700;
-            font-size: .75rem;
-            padding: .3rem .8rem;
-            border-radius: 999px;
-            margin-bottom: .75rem;
+            padding: 4px 14px;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-right: 1px solid rgba(255, 204, 0, 0.3);
+            transition: color 0.2s ease;
         }
 
-        .video-card .ratio {
+        body.crystal-dance-page .page-nav-link:last-child {
+            border-right: none;
+        }
+
+        body.crystal-dance-page .page-nav-link:hover {
+            color: var(--color-brand);
+        }
+
+        body.crystal-dance-page .sub-section-title {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--color-brand-dark);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        body.crystal-dance-page .video-label {
+            display: block;
+            color: var(--color-brand-dark);
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        body.crystal-dance-page .card--main-video {
+            max-width: 720px;
+            margin: 1.5rem auto 0;
+        }
+
+        body.crystal-dance-page .card .ratio {
             border-radius: 10px;
             overflow: hidden;
         }
 
-        /* --- 經典舞曲區 --- */
-        .song-card {
-            background: #fff;
-            border: 1.5px solid var(--dance-yellow);
-            border-radius: 16px;
-            padding: 1.5rem;
-            height: 100%;
-            box-shadow: 0 6px 18px rgba(255, 204, 0, .1);
-        }
-
-        .song-card h4 {
-            color: var(--dance-yellow-dark);
-            font-weight: 800;
-            margin-bottom: .8rem;
-        }
-
-        .song-card .song-meta {
-            font-size: .78rem;
-            font-weight: 800;
-            color: var(--dance-ink);
-            background: var(--dance-yellow-light);
-            display: inline-block;
-            padding: .15rem .6rem;
-            border-radius: 999px;
-            margin-bottom: .4rem;
-        }
-
-        .song-card p {
-            font-size: .9rem;
-            color: var(--color-text-muted);
-            line-height: 1.7;
-            margin-bottom: .9rem;
-        }
-
-        /* --- 30TH 應援企劃 --- */
-        .countdown-strip {
-            background: var(--dance-ink);
-            color: var(--dance-yellow-light);
-            border-radius: 16px;
-            padding: .9rem 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: .6rem;
-            font-weight: 800;
-            letter-spacing: 1px;
+        body.crystal-dance-page .countdown-note {
+            display: block;
             margin-top: 1.5rem;
-        }
-
-        /* --- 30TH 應援募集表單 --- */
-        .form-intro {
-            background: var(--color-surface-soft);
-            border-left: 4px solid var(--dance-yellow-dark);
-            padding: 1rem 1.25rem;
-            border-radius: 0 12px 12px 0;
-            color: var(--dance-ink);
-            font-weight: 600;
-            margin-bottom: 1.75rem;
-        }
-
-        .form-panel {
-            background: #fff;
-            border: 1.5px solid var(--dance-yellow);
-            border-radius: 20px;
-            padding: 2rem;
-            height: 100%;
-            box-shadow: 0 8px 24px rgba(255, 204, 0, .12);
-        }
-
-        .panel-title {
-            font-weight: 800;
-            color: var(--dance-yellow-dark);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .form-label {
+            text-align: center;
             font-weight: 700;
-            color: var(--dance-ink);
+            color: var(--color-brand-dark);
+            letter-spacing: 0.5px;
         }
 
-        .form-control,
-        .form-select {
+        body.crystal-dance-page .form-lead {
+            color: var(--color-text-muted);
+            line-height: 1.85;
+            max-width: 760px;
+            text-align: left;
+            margin: 0 auto 1.75rem;
+        }
+
+        body.crystal-dance-page .form-label {
+            font-weight: 700;
+            color: var(--color-brand-dark);
+        }
+
+        body.crystal-dance-page .form-control,
+        body.crystal-dance-page .form-select {
             border: 1.5px solid var(--color-brand-light);
             border-radius: 12px;
-            padding: .65rem .9rem;
+            padding: 0.65rem 0.9rem;
         }
 
-        .form-control:focus,
-        .form-select:focus {
-            border-color: var(--dance-yellow-dark);
-            box-shadow: 0 0 0 .2rem rgba(255, 204, 0, .25);
+        body.crystal-dance-page .form-control:focus,
+        body.crystal-dance-page .form-select:focus {
+            border-color: var(--color-brand-dark);
+            box-shadow: 0 0 0 0.2rem rgba(255, 204, 0, 0.25);
         }
 
-        .form-control[type="file"] {
+        body.crystal-dance-page .form-control[type="file"] {
             border-style: dashed;
             cursor: pointer;
         }
 
-        .form-text {
+        body.crystal-dance-page .form-text {
             color: var(--color-text-muted);
         }
 
-        /* 身份 / 興趣以按鈕型 radio、checkbox 呈現，比預設外觀更接近真實企劃頁 */
-        .btn-outline-dance {
-            border: 1.5px solid var(--dance-yellow-dark);
-            color: var(--dance-yellow-dark);
+        body.crystal-dance-page .btn-outline-dance {
+            border: 1.5px solid var(--color-brand-dark);
+            color: var(--color-brand-dark);
             border-radius: 999px;
             font-weight: 600;
-            padding: .4rem 1.15rem;
+            padding: 0.4rem 1.15rem;
         }
 
-        .btn-check:checked+.btn-outline-dance,
-        .btn-outline-dance:hover {
-            background: var(--dance-yellow);
-            color: var(--dance-ink);
-            border-color: var(--dance-yellow-dark);
+        body.crystal-dance-page .btn-check:checked+.btn-outline-dance,
+        body.crystal-dance-page .btn-outline-dance:hover {
+            background: var(--color-brand);
+            color: var(--color-brand-dark);
+            border-color: var(--color-brand-dark);
         }
 
-        .btn-dance {
-            background: var(--dance-yellow);
-            color: var(--dance-ink);
-            border: 2px solid var(--dance-yellow-dark);
+        body.crystal-dance-page .btn-dance {
+            background: var(--color-brand);
+            color: var(--color-brand-dark);
+            border: 2px solid var(--color-brand-dark);
             border-radius: 999px;
             font-weight: 800;
-            padding: .75rem;
+            padding: 0.75rem;
         }
 
-        .btn-dance:hover {
-            background: var(--dance-yellow-dark);
-            color: #fff;
+        body.crystal-dance-page .btn-dance:hover {
+            background: var(--color-brand-dark);
+            color: var(--color-text-inverse);
         }
 
-        .btn-reset-dance {
+        body.crystal-dance-page .btn-reset-dance {
             background: #fff;
-            color: var(--dance-yellow-dark);
-            border: 2px solid var(--dance-yellow-dark);
+            color: var(--color-brand-dark);
+            border: 2px solid var(--color-brand-dark);
             border-radius: 999px;
             font-weight: 700;
-            padding: .75rem;
+            padding: 0.75rem;
         }
 
-        .btn-reset-dance:hover {
+        body.crystal-dance-page .btn-reset-dance:hover {
             background: #fdecec;
             border-color: #dc3545;
             color: #dc3545;
         }
 
-        /* --- 填寫須知卡 --- */
-        .info-card {
-            background: linear-gradient(160deg, var(--dance-ink) 0%, var(--color-bg-raised) 100%);
-            color: var(--dance-yellow-light);
-            border-radius: 20px;
-            padding: 2rem;
-            height: 100%;
-            box-shadow: 0 8px 24px rgba(78, 73, 43, .3);
-        }
-
-        .info-tag {
-            display: inline-block;
-            background: var(--dance-yellow);
-            color: var(--dance-ink);
-            padding: .3rem 1rem;
-            border-radius: 999px;
-            font-size: .75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .info-card h3 {
-            color: #fff;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .info-list {
+        body.crystal-dance-page .info-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 1.5rem;
+            margin: 0 0 1.25rem;
             display: flex;
             flex-direction: column;
-            gap: .6rem;
+            gap: 0.6rem;
         }
 
-        .info-list li {
-            background: rgba(255, 255, 255, .08);
-            padding: .6rem 1rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: .9rem;
-            line-height: 1.5;
+        body.crystal-dance-page .info-list li {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        .info-footer {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .5rem;
+        body.crystal-dance-page .info-footer-text {
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
         }
 
-        .mini-badge {
-            border: 1px solid var(--dance-yellow);
-            color: var(--dance-yellow-light);
-            padding: .25rem .8rem;
-            border-radius: 999px;
-            font-size: .75rem;
+        body.crystal-dance-page #about {
+            text-align: center;
         }
 
-        @media (max-width: 575.98px) {
-            .event-banner {
-                padding: 1.75rem 1.25rem;
-                border-radius: 18px;
-            }
+        body.crystal-dance-page #about>p {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-            .event-banner h2 {
-                font-size: 1.5rem;
-                letter-spacing: 1px;
-            }
-
-            .form-panel,
-            .info-card {
-                padding: 1.5rem;
-            }
+        body.crystal-dance-page .sub-section-title--flush {
+            margin-top: 0;
         }
     </style>
 </head>
@@ -443,136 +281,94 @@
 
     <canvas id="particles"></canvas>
 
-    <main class="content-container crystal-dance-main">
+    <div class="container">
 
-        <section class="crystal-dance-hero">
+        <!-- ① 認識水晶熱舞社 -->
+        <section id="about">
             <span class="category-tag">水晶男孩推廣部・舞蹈應援企劃</span>
-            <p class="hero-desc">水晶熱舞社是水晶男孩推廣部中的舞蹈應援企劃，從 20TH
-                台灣小黃串燒聯舞的集體記憶出發，整理經典舞台、翻跳紀錄與應援行動，並預備在 2027/04/15 30TH 前募集新的參與者。</p>
-
-            <nav class="quick-nav" aria-label="頁面導覽">
-                <a href="#about" class="btn btn-outline-dance btn-sm">02 熱舞社介紹</a>
-                <a href="#throwback-20th" class="btn btn-outline-dance btn-sm">03 20TH 影片回顧</a>
-                <a href="#song-archive" class="btn btn-outline-dance btn-sm">04 經典舞曲區</a>
-                <a href="#project-30th" class="btn btn-outline-dance btn-sm">05 30TH 應援企劃</a>
-                <a href="#form-30th" class="btn btn-outline-dance btn-sm">06 應援募集表單</a>
-            </nav>
-        </section>
-
-        <!-- 02 熱舞社介紹 -->
-        <section id="about" class="section-alt">
-            <div class="section-kicker">02 · 熱舞社介紹</div>
+            <img class="hero-banner" src="../assets/images/crystal-dance-hero.jpg" alt="水晶熱舞社應援視覺">
             <h2 class="section-title">水晶熱舞社不是一般社團</h2>
-            <p class="section-lead">水晶熱舞社不是獨立成立的社團，而是「水晶男孩推廣部」底下的舞蹈、翻跳、應援與影片紀錄分類。凡是跟 SECHSKIES
+            <p>水晶熱舞社是水晶男孩推廣部中的舞蹈應援企劃，從 20TH
+                台灣小黃串燒聯舞的集體記憶出發，整理經典舞台、翻跳紀錄與應援行動，並預備在 2027/04/15 30TH 前募集新的參與者。</p>
+            <p>水晶熱舞社不是獨立成立的社團，而是「水晶男孩推廣部」底下的舞蹈、翻跳、應援與影片紀錄分類。凡是跟 SECHSKIES
                 舞台有關的練習、重現與紀錄，都會被收進這個企劃裡，由歷屆台灣小黃接力整理與延續。</p>
-            <div class="keyword-row d-flex flex-wrap gap-2">
+            <div class="keyword-row d-flex flex-wrap justify-content-center gap-2">
                 <span class="keyword-chip">💛 經典舞台</span>
                 <span class="keyword-chip">🕺 應援舞蹈</span>
                 <span class="keyword-chip">🎥 翻跳紀錄</span>
                 <span class="keyword-chip">💃 串燒聯舞</span>
                 <span class="keyword-chip">🇹🇼 台灣小黃</span>
             </div>
+            <nav class="page-nav-wrap" aria-label="頁面導覽">
+                <div class="page-nav-list">
+                    <a href="#about" class="page-nav-link">認識熱舞社</a>
+                    <a href="#from-20th-to-30th" class="page-nav-link">20TH 到 30TH</a>
+                    <a href="#form-30th" class="page-nav-link">應援表單</a>
+                </div>
+            </nav>
         </section>
 
-        <!-- 03 20TH 影片回顧 -->
-        <section id="throwback-20th">
-            <div class="section-kicker">03 · 20TH 影片回顧</div>
-            <h2 class="section-title">20TH 影片回顧</h2>
-            <p class="section-lead">2017 年，台灣小黃以水晶男孩出道 20 周年為契機，籌辦了經典歌曲串燒聯舞應援。這不只是一次跳舞活動，而是把青春、等待、回歸與重新相遇濃縮在同一支影片裡的集體記憶。</p>
-            <p class="section-lead">水晶熱舞社希望延續這份記憶，將 20TH 的熱血行動整理成可以被再次看見的紀錄，也為 2027/04/15 的 30TH 應援企劃預留新的開始。</p>
+        <!-- ② 從 20TH 到 30TH -->
+        <section id="from-20th-to-30th">
+            <h2 class="section-title">從 20TH 到 30TH</h2>
+            <p>2017 年，台灣小黃以水晶男孩出道 20 周年為契機，籌辦了經典歌曲串燒聯舞應援。這不只是一次跳舞活動，而是把青春、等待、回歸與重新相遇濃縮在同一支影片裡的集體記憶。</p>
+            <p>水晶熱舞社希望延續這份記憶，將 20TH 的熱血行動整理成可以被再次看見的紀錄，也為 2027/04/15 的 30TH 應援企劃預留新的開始。</p>
 
-            <div class="row g-4 mt-1">
-                <div class="col-12 col-sm-6">
-                    <div class="video-card">
-                        <span class="video-tag">20TH 預告影片</span>
+            <div class="card card--main-video">
+                <span class="video-label">20TH 正式影片</span>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/fkJmOMPirBc" title="20TH 正式影片：SECHSKIES 20週年紀念串燒舞蹈"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3 class="sub-section-title">延伸閱讀</h3>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100">
+                        <span class="video-label">預告</span>
                         <div class="ratio ratio-16x9">
                             <iframe src="https://www.youtube.com/embed/ARi0cfpv6mE" title="20TH 預告影片"
                                 allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6">
-                    <div class="video-card">
-                        <span class="video-tag">20TH 正式影片</span>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100">
+                        <span class="video-label">幕後花絮 #1</span>
                         <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/fkJmOMPirBc" title="20TH 正式影片"
+                            <iframe src="https://www.youtube.com/embed/nygNm5mtsJM" title="幕後花絮 #1"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card h-100">
+                        <span class="video-label">幕後花絮 #2・雨中共舞</span>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/f04neSErUEY" title="幕後花絮 #2・雨中共舞"
                                 allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 04 經典舞曲區 -->
-        <section id="song-archive" class="section-alt">
-            <div class="section-kicker">04 · 經典舞曲區</div>
-            <h2 class="section-title">經典舞曲區</h2>
-            <p class="section-lead">以下挑出幾首在應援與翻跳中最常出現的舞曲，作為 30TH 練習與串燒聯舞編排的參考清單。</p>
-
-            <div class="row g-4 mt-1">
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="song-card">
-                        <span class="song-meta">舞台印象</span>
-                        <h4>Couple</h4>
-                        <p>輕快的對唱感舞台，經典的雙人互動走位，常被剪進歷年的「回憶殺」混剪影片裡。</p>
-                        <span class="song-meta">適合原因</span>
-                        <p>旋律好記、隊形變化不複雜，很適合當作團體應援的入門曲目。</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="song-card">
-                        <span class="song-meta">舞台印象</span>
-                        <h4>Com' Back</h4>
-                        <p>回歸舞台代表曲之一，節奏明快、口號感強，很容易帶動全場氣氛。</p>
-                        <span class="song-meta">適合原因</span>
-                        <p>副歌重複性高，就算是第一次參加應援的小黃也能快速跟上。</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="song-card">
-                        <span class="song-meta">舞台印象</span>
-                        <h4>Road Fighter</h4>
-                        <p>動作幅度大、節奏偏快，是體力與默契的考驗，舞台氣勢很足。</p>
-                        <span class="song-meta">適合原因</span>
-                        <p>適合已有基礎的參與者，練起來很有戰鬥感，很適合放在串燒的壓軸。</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="song-card">
-                        <span class="song-meta">舞台印象</span>
-                        <h4>Pom Saeng Pom Sa</h4>
-                        <p>招牌律動與整齊隊形，是這首歌在歷年翻跳中被重現最多次的原因之一。</p>
-                        <span class="song-meta">適合原因</span>
-                        <p>辨識度高，放在串燒聯舞的中段很容易炒熱全場氣氛。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 05 30TH 應援企劃 -->
-        <section id="project-30th">
-            <div class="section-kicker">05 · 30TH 應援企劃</div>
-            <h2 class="section-title">30TH 應援募集</h2>
-            <p class="section-lead">2027/04/15 是 SECHSKIES 出道 30 周年的日子。水晶熱舞社預計在 30TH
+            <h3 class="sub-section-title">30TH 應援募集</h3>
+            <p>2027/04/15 是 SECHSKIES 出道 30 周年的日子。水晶熱舞社預計在 30TH
                 前重新整理舞蹈應援內容，募集想一起參與的台灣小黃，從經典舞曲、翻跳練習、影片剪輯到祝福文字，讓新的應援行動從這份表單開始累積。</p>
-            <p class="section-lead">你不需要一開始就很會跳舞，只要還記得水晶男孩的舞台、歌曲，或某個讓你入坑的瞬間，都可以在這裡留下你的參與方式。</p>
-            <div class="countdown-strip" id="countdown">💛 距離 30TH · 2027/04/15 倒數計算中...</div>
+            <p>你不需要一開始就很會跳舞，只要還記得水晶男孩的舞台、歌曲，或某個讓你入坑的瞬間，都可以在這裡留下你的參與方式。</p>
+            <span class="countdown-note" id="countdown">💛 距離 30TH · 2027/04/15 倒數計算中...</span>
         </section>
 
-        <!-- 06 30TH 應援募集表單 -->
-        <section id="form-30th" class="section-alt">
-            <div class="section-kicker">06 · 30TH 應援募集表單</div>
-
-            <div class="event-banner mb-4">
-                <span class="event-badge">💛 SECHSKIES 30TH · 2027.04.15</span>
-                <h2>30TH 應援募集表單</h2>
-                <p>這份表單是水晶熱舞社為 2027/04/15 30TH 預備的應援募集模組，用來整理參與者想練的歌曲、可支援的內容與想留下的祝福。</p>
-            </div>
+        <!-- ③ 30TH 應援募集表單 -->
+        <section id="form-30th">
+            <h2 class="section-title">30TH 應援募集表單</h2>
+            <p class="form-lead">這份表單是水晶熱舞社為 2027/04/15 30TH 預備的應援募集模組，用來整理參與者想練的歌曲、可支援的內容與想留下的祝福。</p>
 
             <div class="row g-4">
                 <div class="col-12 col-sm-7">
-                    <div class="form-panel">
-                        <h3 class="panel-title">📋 應援募集資訊</h3>
+                    <div class="card h-100">
+                        <h3 class="sub-section-title sub-section-title--flush">📋 應援募集資訊</h3>
                         <form action="#">
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
@@ -679,24 +475,20 @@
                 </div>
 
                 <div class="col-12 col-sm-5">
-                    <div class="info-card">
-                        <span class="info-tag">填寫須知</span>
-                        <h3>送出前再確認一下</h3>
+                    <div class="card h-100">
+                        <h3 class="sub-section-title sub-section-title--flush">填寫須知</h3>
                         <ul class="info-list">
                             <li>📎 檔案格式：影片或圖片皆可，建議單檔 100MB 以內</li>
                             <li>🔒 這份資料僅供水晶熱舞社內部整理 30TH 應援企劃使用</li>
                             <li>📅 送出後若確定參與，之後會另行公告練習與錄製時間</li>
                         </ul>
-                        <div class="info-footer">
-                            <span class="mini-badge">水晶男孩推廣部</span>
-                            <span class="mini-badge">30TH 應援企劃</span>
-                        </div>
+                        <p class="info-footer-text">水晶男孩推廣部・30TH 應援企劃</p>
                     </div>
                 </div>
             </div>
         </section>
 
-    </main>
+    </div>
 
     <footer>
         <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
