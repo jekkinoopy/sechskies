@@ -1,0 +1,101 @@
+/* 隊長的氣場 — 殷志源台北見面會存檔頁（2018-07-21） */
+
+body.captain-aura-page {
+    background-color: var(--color-bg);
+    background-image: url('../images/concert/captain-aura/bg-digital-placeholder.svg');
+    background-repeat: repeat;
+}
+
+body.captain-aura-page .captain-aura-hero {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+body.captain-aura-page .captain-aura-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+body.captain-aura-page .captain-aura-main {
+    max-width: 893px;
+    margin: 0 auto;
+    padding: 50px 20px 72px;
+    box-sizing: border-box;
+}
+
+body.captain-aura-page .captain-aura-act {
+    margin-bottom: 2.5rem;
+}
+
+body.captain-aura-page .captain-aura-act:last-child {
+    margin-bottom: 0;
+}
+
+body.captain-aura-page .captain-aura-act__title {
+    margin: 0 0 1rem;
+    text-align: center;
+    color: var(--color-brand);
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+body.captain-aura-page .captain-aura-act__title--plain {
+    color: var(--color-text-inverse);
+    text-shadow: none;
+    font-size: 1.35rem;
+    margin-bottom: 0.65rem;
+}
+
+body.captain-aura-page .captain-aura-act__title--plain + .captain-aura-act__title--plain {
+    margin-top: 0;
+}
+
+body.captain-aura-page .captain-aura-divider {
+    margin: 2.75rem 0;
+    text-align: center;
+    color: var(--color-brand);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+}
+
+body.captain-aura-page .captain-aura-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+body.captain-aura-page .captain-aura-video {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+body.captain-aura-page .captain-aura-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 640px) {
+    body.captain-aura-page .captain-aura-main {
+        padding-top: 32px;
+        padding-bottom: 48px;
+    }
+
+    body.captain-aura-page .captain-aura-act__title {
+        font-size: 1.35rem;
+    }
+}
