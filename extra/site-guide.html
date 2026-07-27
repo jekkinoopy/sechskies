@@ -23,57 +23,7 @@
             overflow: visible;
         }
 
-        /* 主選單樹巢狀：data-site-guide-depth + .site-guide-nav-name */
-        body.site-guide-page .site-guide-nav-table .site-guide-nav-menu-cell {
-            text-align: left;
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="1"] .site-guide-nav-menu-cell {
-            padding-left: 0.65rem;
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="2"] .site-guide-nav-menu-cell {
-            padding-left: 1.1rem;
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="3"] .site-guide-nav-menu-cell {
-            padding-left: 1.85rem;
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="4"] .site-guide-nav-menu-cell {
-            padding-left: 2.6rem;
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="2"] .site-guide-nav-name::before {
-            content: "——\00a0";
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="3"] .site-guide-nav-name::before {
-            content: "————\00a0";
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth="4"] .site-guide-nav-name::before {
-            content: "——————\00a0";
-        }
-
-        body.site-guide-page .site-guide-nav-table tr[data-site-guide-depth] .site-guide-nav-name::before {
-            display: inline;
-            font-family: inherit;
-            font-size: 0.92em;
-            color: rgba(0, 0, 0, 0.38);
-            letter-spacing: 0.02em;
-        }
-
-        /* 選單名稱（短字層）：單行不斷行；欄寬不足時由表格外層橫向捲動 */
-        body.site-guide-page .site-guide-nav-table td.site-guide-nav-menu-cell {
-            white-space: nowrap;
-            width: 1%;
-        }
-
-        body.site-guide-page .site-guide-nav-table .site-guide-nav-name,
-        body.site-guide-page .site-guide-nav-table .site-guide-nav-name a {
-            white-space: nowrap;
-        }
+        /* 主選單樹已改心智圖巢狀清單，樣式集中於 assets/css/style.css 的 .site-guide-mindmap 規則 */
     </style>
 </head>
 
@@ -100,194 +50,136 @@
         <section class="site-guide-group site-guide-group--nav-hero" aria-labelledby="sg-nav-tree">
             <h2 class="section-title" id="sg-nav-tree">主選單樹</h2>
             <p class="site-guide-legend">
-                <span><span class="site-guide-legend__on">●</span> 有連結</span>
-                <span><span class="site-guide-legend__off">●</span> 無連結</span>
+                <span><span class="site-guide-legend__on">●</span> 實線金框：頂欄真實連結</span>
+                <span><span class="site-guide-legend__off">●</span> 虛線框：頂欄有此項但無連結／籌備中</span>
+                <span><span class="site-guide-legend__extra">●</span> 灰色虛線：不在頂欄，頁面內錨點／草稿／備查</span>
             </p>
+            <p class="site-guide-nav-caption site-guide-nav-caption--standalone">路徑相對站根；主選單→次選單→子節點→延伸內容，全部收在同一張心智圖裡，不用再往下翻分散的表格。</p>
             <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-nav-table">
-                    <caption class="site-guide-nav-caption">路徑相對站根。</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">選單名稱</th>
-                            <th scope="col">頁面簡介</th>
-                            <th scope="col">連結</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-site-guide-depth="1">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../index.html">淪陷瞬間</a></span></td>
-                            <td class="site-guide-nav-desc">Hero、入坑敘事與站方初衷；LOGO 理念、宣言與跨時空軌跡時間軸。</td>
-                            <td class="site-guide-nav-link-cell"><a href="../index.html"><code>index.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><span
-                                        class="site-guide-nav-nolink">傳奇的轉折（六六歌2）</span></span></td>
-                            <td class="site-guide-nav-desc">四種入口（順序）：時間軸、電子書為獨立單頁；網頁版為 TOTOGA2 整合長頁（章節錨點）；影片為嵌入單頁。</td>
-                            <td class="site-guide-nav-link-cell"><span class="site-guide-nav-nolink">—</span></td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/timeline.html">時間軸</a></span></td>
-                            <td class="site-guide-nav-desc">時間軸與紀實八章長文單頁。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/timeline.html"><code>totoga2/timeline.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/ebook.html">電子書</a></span></td>
-                            <td class="site-guide-nav-desc">紀實電子書內容獨立成頁。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/ebook.html"><code>totoga2/ebook.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/readable.html">圖文好讀版</a></span></td>
-                            <td class="site-guide-nav-desc">單頁整合：影片／電子書／長文模式切換與八章錨點。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/readable.html"><code>totoga2/readable.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="4">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/readable%20copy.html">圖文好讀版 · 複本</a></span></td>
-                            <td class="site-guide-nav-desc">與正式版同結構之草稿複本。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/readable%20copy.html"><code>totoga2/readable copy.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="4">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/readable%20copy%202.html">圖文好讀版 · 複本 2</a></span></td>
-                            <td class="site-guide-nav-desc">與正式版同結構之草稿複本。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/readable%20copy%202.html"><code>totoga2/readable copy 2.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../totoga2/video.html">影片</a></span></td>
-                            <td class="site-guide-nav-desc">無限挑戰 · 六六歌2 嵌入影片單頁。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../totoga2/video.html"><code>totoga2/video.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../variety/bangxiao.html">世紀級寶藏</a></span></td>
-                            <td class="site-guide-nav-desc">—</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../variety/bangxiao.html"><code>variety/bangxiao.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../variety/bangxiao.html">爆笑養老院（計量器）</a></span></td>
-                            <td class="site-guide-nav-desc">甜蜜負擔計量器；勾本命算出要補幾個節目。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../variety/bangxiao.html"><code>variety/bangxiao.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../variety/variety-shows.html">節目存檔表</a></span></td>
-                            <td class="site-guide-nav-desc">綜藝節目存檔表；含隊長帶弟弟、各自暴走等區塊錨點。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../variety/variety-shows.html"><code>variety/variety-shows.html</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../variety/variety.html#variety">隊長帶弟弟</a></span></td>
-                            <td class="site-guide-nav-desc">綜藝頁「瘋狂出演中」主區；與頂欄「隊長帶弟弟」同頁錨點。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../variety/variety.html#variety"><code>variety/variety.html#variety</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="3">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><span
-                                        class="site-guide-nav-nolink">各自暴走</span></span></td>
-                            <td class="site-guide-nav-desc">—</td>
-                            <td class="site-guide-nav-link-cell"><span class="site-guide-nav-nolink">—</span></td>
-                        </tr>
-                        <tr data-site-guide-depth="4">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../variety/NJTW/NJTW5.html">新西遊記</a></span></td>
-                            <td class="site-guide-nav-desc">與鬼神同行企劃文案、六人介紹與 OB／YB 雙隊版面。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../variety/NJTW/NJTW5.html"><code>variety/NJTW/NJTW5.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="1">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../member/member.html">完整的六顆</a></span></td>
-                            <td class="site-guide-nav-desc">黑／白水晶六人海報板、團名典故與成員靜態介紹。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../member/member.html"><code>member/member.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="1">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../concert/concert.html">現場的震撼</a></span></td>
-                            <td class="site-guide-nav-desc">巡迴場次、場館與曲目展開；搜尋曲目或場次。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../concert/concert.html"><code>concert/concert.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../concert/concert.html">集結水晶</a></span></td>
-                            <td class="site-guide-nav-desc">巡迴場次、場館與曲目展開；搜尋曲目或場次。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../concert/concert.html"><code>concert/concert.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><span
-                                        class="site-guide-nav-nolink">隊長的氣場</span></span></td>
-                            <td class="site-guide-nav-desc">—</td>
-                            <td class="site-guide-nav-link-cell"><span class="site-guide-nav-nolink">—</span></td>
-                        </tr>
-                        <tr data-site-guide-depth="1">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../albums/albums.html">黃色留聲機</a></span></td>
-                            <td class="site-guide-nav-desc">導聽文案；新篇章與全盛期年表、深水連結與曲目表。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../albums/albums.html"><code>albums/albums.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../albums/albums.html#new">啟動新篇章</a></span></td>
-                            <td class="site-guide-nav-desc">回歸後數位單曲／專輯敘事與代表曲目表。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../albums/albums.html#new"><code>albums/albums.html#new</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../albums/albums.html#classic">輝煌全盛期</a></span></td>
-                            <td class="site-guide-nav-desc">1997–1999 全盛期年表、專輯列與主打記憶整理。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../albums/albums.html#classic"><code>albums/albums.html#classic</code></a>
-                            </td>
-                        </tr>
-                        <tr data-site-guide-depth="1">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../yellow-note/map.html">Yellow Note</a></span></td>
-                            <td class="site-guide-nav-desc">台灣行程表、成員行程篩選、搜尋與地圖主體。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../yellow-note/map.html"><code>yellow-note/map.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../yellow-note/minister.html">視覺進化論</a></span></td>
-                            <td class="site-guide-nav-desc">「從好奇到全端」自述與時間軸式章節段落。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../yellow-note/minister.html"><code>yellow-note/minister.html</code></a></td>
-                        </tr>
-                        <tr data-site-guide-depth="2">
-                            <td class="site-guide-nav-menu-cell"><span class="site-guide-nav-name"><a
-                                        href="../yellow-note/map.html">聖地巡禮</a></span></td>
-                            <td class="site-guide-nav-desc">台灣行程表、成員行程篩選、搜尋與地圖主體。</td>
-                            <td class="site-guide-nav-link-cell"><a
-                                    href="../yellow-note/map.html"><code>yellow-note/map.html</code></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul class="site-guide-mindmap">
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node"><a href="../index.html">淪陷瞬間</a></span>
+                        <ul>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node sg-node--nolink">傳奇的轉折（六六歌2）</span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node"><a href="../totoga2/timeline.html">時間軸</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node"><a href="../totoga2/ebook.html">電子書</a></span></li>
+                                    <li data-site-guide-depth="3">
+                                        <span class="sg-node"><a href="../totoga2/readable.html">圖文好讀版</a></span>
+                                        <ul>
+                                            <li data-site-guide-depth="4"><span class="sg-node sg-node--extra"><a href="../totoga2/readable%20copy.html">複本（草稿）</a></span></li>
+                                            <li data-site-guide-depth="4"><span class="sg-node sg-node--extra"><a href="../totoga2/readable%20copy%202.html">複本 2（草稿）</a></span></li>
+                                            <li data-site-guide-depth="4"><span class="sg-node sg-node--extra" title="#challenge 無限挑戰・#ssg2 六六歌2・#sechskies-profile 水晶男孩・#gather 召集・#negotiate 交涉・#variables 變數・#surprise 驚喜・#final-stage 登場">章節錨點（8，滑鼠移入看清單）</span></li>
+                                        </ul>
+                                    </li>
+                                    <li data-site-guide-depth="3"><span class="sg-node"><a href="../totoga2/video.html">影片</a></span></li>
+                                </ul>
+                            </li>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node sg-node--extra">首頁區塊錨點：<code>#start</code>·<code>#mission</code>·<code>#timeline</code>（<code>#story</code> 未開放）</span>
+                            </li>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node"><a href="../variety/bangxiao.html">世紀級寶藏</a></span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra">頁內「爆笑養老院」甜蜜負擔計量器區塊（同頁，非另一個檔案）</span></li>
+                                    <li data-site-guide-depth="3">
+                                        <span class="sg-node sg-node--extra">variety/ 其他相關頁（不在頂欄）</span>
+                                        <ul>
+                                            <li data-site-guide-depth="4"><span class="sg-node sg-node--extra"><a href="../variety/variety.html#variety">綜藝主頁・隊長帶弟弟</a></span></li>
+                                            <li data-site-guide-depth="4"><span class="sg-node sg-node--extra"><a href="../variety/variety-shows.html">節目存檔表</a></span></li>
+                                            <li data-site-guide-depth="4">
+                                                <span class="sg-node sg-node--extra sg-node--nolink">各自暴走</span>
+                                                <ul>
+                                                    <li data-site-guide-depth="4"><span class="sg-node sg-node--extra"><a href="../variety/NJTW/NJTW5.html">新西遊記</a></span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node"><a href="../member/member.html">完整的六顆</a></span>
+                        <ul>
+                            <li data-site-guide-depth="2"><span class="sg-node sg-node--extra">錨點：<a href="../member/member.html#crystal-board"><code>#crystal-board</code></a></span></li>
+                        </ul>
+                    </li>
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node"><a href="../concert/concert.html">現場的震撼</a></span>
+                        <ul>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node"><a href="../concert/concert.html">集結水晶</a></span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra">錨點：<code>#stage-now</code>·<code>#stage-past</code></span></li>
+                                </ul>
+                            </li>
+                            <li data-site-guide-depth="2"><span class="sg-node sg-node--nolink">隊長的氣場（固定籌備中）</span></li>
+                        </ul>
+                    </li>
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node"><a href="../albums/albums.html">黃色留聲機</a></span>
+                        <ul>
+                            <li data-site-guide-depth="2"><span class="sg-node"><a href="../albums/albums.html#new">啟動新篇章</a></span></li>
+                            <li data-site-guide-depth="2"><span class="sg-node"><a href="../albums/albums.html#classic">輝煌全盛期</a></span></li>
+                            <li data-site-guide-depth="2"><span class="sg-node sg-node--extra"><a href="lyrics.html">歌詞（未列頂欄）</a></span></li>
+                        </ul>
+                    </li>
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node"><a href="../yellow-note/map.html">Yellow Note</a></span>
+                        <ul>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node"><a href="../yellow-note/minister.html">視覺進化論</a></span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="minister_ge.html">minister 長版備份（未列頂欄）</a></span></li>
+                                </ul>
+                            </li>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node"><a href="../yellow-note/map.html">聖地巡禮</a></span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra">錨點：<code>#taipei</code>·<code>#global</code></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-site-guide-depth="1">
+                        <span class="sg-node sg-node--extra sg-node--nolink">站內其他頁面（草稿／作業／備查，不在頂欄）</span>
+                        <ul>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node sg-node--extra sg-node--nolink">extra/ 草稿與作業</span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="site-guide.html">site-guide.html（本頁）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="grok.html">grok.html（實驗頁）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="Untitled-1.html">Untitled-1.html（草稿）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="sunghoon.html">sunghoon.html</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="hw-bootstrap.html">hw-bootstrap.html（學校作業）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="bootstrap-navbar-carousel.html">bootstrap-navbar-carousel.html（學校作業）</a></span></li>
+                                </ul>
+                            </li>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node sg-node--extra sg-node--nolink">站根與其他資料夾雜項</span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../fansform.html">fansform.html（入坑申請轉址）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../index-bootstrap.html">index-bootstrap.html（首頁改版草稿）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../s20260612_04_jq_calculator.html">s20260612_04_jq_calculator.html（學校作業）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../sechskies_brand_color_spec.html">sechskies_brand_color_spec.html（品牌色規範）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../totoga2/readable_ebookcontent.html">totoga2/readable_ebookcontent.html（電子書內容草稿）</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../yellow-note/crystal-dance-survey.html">yellow-note/crystal-dance-survey.html（問卷頁）</a></span></li>
+                                </ul>
+                            </li>
+                            <li data-site-guide-depth="2"><span class="sg-node sg-node--extra"><a href="../sechskies-admin-hw/index.html">sechskies-admin-hw/（水晶練習室，另一份作業，非本站）</a></span></li>
+                            <li data-site-guide-depth="2">
+                                <span class="sg-node sg-node--extra sg-node--nolink" title="2026-05-16 15:56 備份，基準 commit fa8b04d，內容為當時尚未提交的修改與未追蹤新檔">待確認/（舊備份快照，滑鼠移入看說明）</span>
+                                <ul>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../待確認/index.html">待確認/index.html</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../待確認/extra/site-guide.html">待確認/extra/site-guide.html</a></span></li>
+                                    <li data-site-guide-depth="3"><span class="sg-node sg-node--extra"><a href="../待確認/.cursor/_tmp-index-2cd.html">待確認/.cursor/_tmp-index-2cd.html</a></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
 
             <h3 class="site-guide-subh" id="sg-rules-quick">一般頁籌備中（掃一眼）</h3>
@@ -311,238 +203,8 @@
                     </tbody>
                 </table>
             </div>
-            <p class="site-guide-fine-print site-guide-fine-print--center">綜藝主頁：<a
-                    href="../variety/variety.html">variety.html</a></p>
         </section>
 
-        <section class="site-guide-group" aria-labelledby="sg-nav-origin">
-            <h2 class="section-title" id="sg-nav-origin">淪陷瞬間 <span class="site-guide-nav-sub">站根</span></h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">頁／錨點</th>
-                            <th scope="col">用途</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="../index.html">index.html</a></td>
-                            <td>首頁 Hero</td>
-                        </tr>
-                        <tr>
-                            <td><a href="../index.html#start">#start</a> 等</td>
-                            <td>區塊錨點（<code>#story</code> 不在頂欄白名單）</td>
-                        </tr>
-                        <tr>
-                            <td><a href="../totoga2/timeline.html">時間軸</a></td>
-                            <td>平行單頁 · <code>totoga2/timeline.html</code></td>
-                        </tr>
-                        <tr>
-                            <td><a href="../totoga2/ebook.html">電子書</a></td>
-                            <td>平行單頁 · <code>totoga2/ebook.html</code></td>
-                        </tr>
-                        <tr>
-                            <td><a href="../totoga2/readable.html">圖文好讀版</a></td>
-                            <td>整合長頁 · <code>totoga2/readable.html</code></td>
-                        </tr>
-                        <tr>
-                            <td><a href="../totoga2/readable%20copy.html">圖文好讀版 · 複本</a> 等</td>
-                            <td>草稿複本 · <code>readable copy.html</code>／<code>readable copy 2.html</code></td>
-                        </tr>
-                        <tr>
-                            <td><a href="../totoga2/video.html">影片</a></td>
-                            <td>平行單頁 · <code>totoga2/video.html</code></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="site-guide-grid site-guide-grid--compact">
-                <article class="site-guide-card site-guide-card--totoga2">
-                    <h3><a href="../totoga2/readable.html">六六歌2 · 四入口</a></h3>
-                    <p class="site-guide-note">章節錨點僅在圖文好讀版（<code>totoga2/readable.html</code>）內。
-                    </p>
-                    <ul class="site-guide-inline-links">
-                        <li><a href="../totoga2/timeline.html">時間軸</a></li>
-                        <li><a href="../totoga2/ebook.html">電子書</a></li>
-                        <li><a href="../totoga2/readable.html">圖文好讀版</a></li>
-                        <li><a href="../totoga2/readable%20copy.html">複本</a></li>
-                        <li><a href="../totoga2/readable%20copy%202.html">複本 2</a></li>
-                        <li><a href="../totoga2/video.html">影片</a></li>
-                    </ul>
-                    <nav class="site-guide-chapter-nav" aria-label="totoga2 章節">
-                        <a href="../totoga2/readable.html#challenge">無限挑戰</a>
-                        <a href="../totoga2/readable.html#ssg2">六六歌2</a>
-                        <a href="../totoga2/readable.html#sechskies-profile">水晶男孩</a>
-                        <a href="../totoga2/readable.html#gather">召集</a>
-                        <a href="../totoga2/readable.html#negotiate">交涉</a>
-                        <a href="../totoga2/readable.html#variables">變數</a>
-                        <a href="../totoga2/readable.html#surprise">驚喜</a>
-                        <a href="../totoga2/readable.html#final-stage">登場</a>
-                    </nav>
-                </article>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-nav-member">
-            <h2 class="section-title" id="sg-nav-member">完整的六顆</h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">頁</th>
-                            <td><a href="../member/member.html">member/member.html</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">錨點</th>
-                            <td><a href="../member/member.html#crystal-board">#crystal-board</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-nav-concert">
-            <h2 class="section-title" id="sg-nav-concert">現場的震撼</h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">集結水晶</th>
-                            <td><a href="../concert/concert.html">concert.html</a> · <a
-                                    href="../concert/concert.html#stage-now">#stage-now</a> · <a
-                                    href="../concert/concert.html#stage-past">#stage-past</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">隊長的氣場</th>
-                            <td>—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-nav-albums">
-            <h2 class="section-title" id="sg-nav-albums">黃色留聲機</h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">典藏</th>
-                            <td><a href="../albums/albums.html">albums.html</a> · <a
-                                    href="../albums/albums.html#new">#new</a> · <a
-                                    href="../albums/albums.html#classic">#classic</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">歌詞</th>
-                            <td><a href="lyrics.html">extra/lyrics.html</a>（未列主欄）</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-nav-yellow-note">
-            <h2 class="section-title" id="sg-nav-yellow-note">Yellow Note</h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">視覺</th>
-                            <td><a href="../yellow-note/minister.html">yellow-note/minister.html</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">minister 長版</th>
-                            <td><a href="minister_ge.html">minister_ge.html</a>（備份；未列頂欄）</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">地圖</th>
-                            <td><a href="../yellow-note/map.html">map.html</a> · <a
-                                    href="../yellow-note/map.html#taipei">#taipei</a> · <a
-                                    href="../yellow-note/map.html#global">#global</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="site-guide-group" aria-labelledby="sg-nav-variety">
-            <h2 class="section-title" id="sg-nav-variety">variety/（無主欄）</h2>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">主頁</th>
-                            <td><a href="../variety/variety.html">variety.html</a> · <a
-                                    href="../variety/variety.html#variety">#variety</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">世紀級寶藏</th>
-                            <td><a href="../variety/bangxiao.html">bangxiao.html</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">節目存檔表</th>
-                            <td><a href="../variety/variety-shows.html">variety-shows.html</a> · <a
-                                    href="../variety/variety-shows.html#variety-shows">#variety-shows</a> · <a
-                                    href="../variety/variety-shows.html#captain-brothers">#captain-brothers</a> · <a
-                                    href="../variety/variety-shows.html#each-rampage">#each-rampage</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">NJTW5</th>
-                            <td><a href="../variety/NJTW/NJTW5.html">NJTW5.html</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="site-guide-group site-guide-group--extra" aria-labelledby="sg-nav-extra">
-            <h2 class="section-title" id="sg-nav-extra">extra/ 其餘</h2>
-            <p class="site-guide-folder-hint">未列頂欄主模板之草稿／實驗頁。主選單對應頁面已移至
-                <code>member/</code>、<code>yellow-note/</code>、<code>variety/</code> 等資料夾；六六歌2 圖文好讀版之草稿複本在
-                <code>totoga2/readable copy*.html</code>（主選單樹第四層與正式版並列）。
-            </p>
-            <div class="site-guide-nav-table-wrap">
-                <table class="site-guide-mini-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">檔案</th>
-                            <th scope="col">備註</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="site-guide.html">site-guide.html</a></td>
-                            <td>全站導覽（本頁）</td>
-                        </tr>
-                        <tr>
-                            <td><a href="grok.html">grok.html</a></td>
-                            <td>實驗單頁</td>
-                        </tr>
-                        <tr>
-                            <td><a href="Untitled-1.html">Untitled-1.html</a></td>
-                            <td>草稿</td>
-                        </tr>
-                        <tr>
-                            <td><a href="sunghoon.html">sunghoon.html</a></td>
-                            <td>—</td>
-                        </tr>
-                        <tr>
-                            <td><a href="minister_ge.html">minister_ge.html</a></td>
-                            <td>minister 長版備份（Yellow Note 小節亦列）</td>
-                        </tr>
-                        <tr>
-                            <td><a href="hw-bootstrap.html">hw-bootstrap.html</a></td>
-                            <td>精華牆：站內單頁 Bootstrap 5 導覽／格線／輪播練習（學校作業，非主線導覽項目）</td>
-                        </tr>
-                        <tr>
-                            <td><a href="bootstrap-navbar-carousel.html">bootstrap-navbar-carousel.html</a></td>
-                            <td>跨時空精選：另一份 Bootstrap 5 作業（Hero＋錨點導覽＋雙 Carousel＋Grid，非主線導覽項目）</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
     </main>
 
     <footer>

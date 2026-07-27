@@ -3480,6 +3480,11 @@ body.site-guide-page .site-guide-legend__off {
     font-weight: 700;
 }
 
+body.site-guide-page .site-guide-legend__extra {
+    color: #8a8a8a;
+    font-weight: 700;
+}
+
 body.site-guide-page .site-guide-nav-table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -3588,6 +3593,142 @@ body.site-guide-page .site-guide-mini-table a {
     color: #5c4010;
     font-weight: 700;
     text-decoration: none;
+}
+
+/* 主選單樹：心智圖巢狀清單（取代原表格），主選單→次選單→子節點以連接線呈現 */
+body.site-guide-page .site-guide-nav-caption--standalone {
+    text-align: center;
+    padding: 0 0.5rem 0.65rem;
+    font-size: 0.8rem;
+    color: #777;
+    line-height: 1.4;
+}
+
+body.site-guide-page .site-guide-mindmap,
+body.site-guide-page .site-guide-mindmap ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.site-guide-page .site-guide-mindmap {
+    padding: 0.5rem 0.75rem 0.5rem 0.25rem;
+    min-width: 20rem;
+}
+
+body.site-guide-page .site-guide-mindmap ul {
+    margin-left: 1.5rem;
+}
+
+body.site-guide-page .site-guide-mindmap li {
+    position: relative;
+    padding: 0.32rem 0 0.32rem 1.35rem;
+}
+
+body.site-guide-page .site-guide-mindmap li::before,
+body.site-guide-page .site-guide-mindmap li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+/* 節點到垂直線的橫向短連接線 */
+body.site-guide-page .site-guide-mindmap li::before {
+    top: 1.1rem;
+    width: 1.15rem;
+    height: 0;
+    border-top: 2px solid rgba(150, 115, 20, 0.4);
+}
+
+/* 同層兄弟節點間的垂直連接線 */
+body.site-guide-page .site-guide-mindmap li::after {
+    top: 0;
+    bottom: 0;
+    width: 0;
+    border-left: 2px solid rgba(150, 115, 20, 0.4);
+}
+
+/* 每層最後一個節點：垂直線只畫到分支點，不繼續往下延伸 */
+body.site-guide-page .site-guide-mindmap li:last-child::after {
+    height: 1.1rem;
+    bottom: auto;
+}
+
+body.site-guide-page .sg-node {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3em 0.85em;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    background: #fff;
+    border: 1px solid rgba(255, 204, 0, 0.45);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.site-guide-page .sg-node a {
+    color: #5c4010;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.site-guide-page .sg-node a:hover {
+    text-decoration: underline;
+}
+
+body.site-guide-page .sg-node--nolink {
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.03);
+    color: #959595;
+    font-weight: 600;
+}
+
+/* 不在頂欄的延伸內容（頁內錨點／草稿／備查）：灰色虛線，與頂欄真實連結區隔 */
+body.site-guide-page .sg-node--extra {
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.site-guide-page .sg-node--extra a {
+    color: #6e6e6e;
+}
+
+body.site-guide-page .sg-node--extra code {
+    font-size: 0.85em;
+    color: #7a6a30;
+}
+
+body.site-guide-page .sg-node--extra.sg-node--nolink {
+    color: #9a9a9a;
+    font-style: italic;
+}
+
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="1"] > .sg-node {
+    font-weight: 800;
+    font-size: 0.98rem;
+    background: rgba(255, 220, 150, 0.55);
+    border-color: rgba(255, 204, 0, 0.6);
+}
+
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="2"] > .sg-node {
+    background: rgba(255, 238, 200, 0.55);
+}
+
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="3"] > .sg-node {
+    background: #fffaf2;
+}
+
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="4"] > .sg-node {
+    background: #f5f8ff;
+    font-size: 0.82rem;
+}
+
+/* 延伸內容維持灰色虛線，不隨深度套用金黃底色（放在深度規則之後以蓋過同層底色） */
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth] > .sg-node--extra {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.22);
 }
 
 body.site-guide-page .site-guide-nav-nolink {
