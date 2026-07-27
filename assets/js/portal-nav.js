@@ -264,7 +264,7 @@
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span></a>
         <ul class="portal-submenu">
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">集結水晶</span></a></li>
-            <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="隊長的氣場，尚無開放"><span class="portal-nav__label">隊長的氣場</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/captain-aura.html"><span class="portal-nav__label">隊長的氣場</span></a></li>
         </ul>
     </li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html"><span class="portal-nav__label">黃色留聲機</span></a>

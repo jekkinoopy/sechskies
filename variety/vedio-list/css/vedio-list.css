@@ -1,0 +1,429 @@
+/* ── 追劇清單／後台專用樣式 ── */
+
+.vedio-list-page .vedio-intro {
+    text-align: left;
+}
+
+.vedio-list-page .vedio-intro p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 0.85rem;
+    text-align: left;
+}
+
+.vedio-list-page .vedio-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.vedio-list-page .list-lead {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin: 0 0 1.25rem;
+    text-align: left;
+}
+
+.vedio-list-page .type-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 1.75rem;
+}
+
+.vedio-list-page .type-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 204, 0, 0.22);
+    background: var(--color-surface-soft);
+    color: var(--color-text-dark);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.vedio-list-page .type-tab:hover {
+    border-color: var(--color-brand);
+}
+
+.vedio-list-page .type-tab.is-active {
+    border-color: var(--color-brand);
+    background: #fffce8;
+    color: var(--color-brand-dark);
+}
+
+.vedio-list-page .drama-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0 0 2rem;
+}
+
+.vedio-list-page .drama-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    padding: 1.15rem 1.2rem 1.25rem;
+    background: var(--color-surface-soft);
+    border: 2px solid rgba(255, 204, 0, 0.18);
+    border-radius: 12px;
+    box-sizing: border-box;
+    min-height: 100%;
+}
+
+.vedio-list-page .drama-card:hover {
+    border-color: var(--color-brand);
+    background: #fffce8;
+}
+
+.vedio-list-page .drama-card__poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    margin: 0 0 0.95rem;
+    border-radius: 8px;
+    background:
+        linear-gradient(145deg, rgba(255, 204, 0, 0.22), rgba(0, 0, 0, 0.08)),
+        var(--color-surface-soft);
+    color: var(--color-brand-dark);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 0.75rem;
+    box-sizing: border-box;
+}
+
+.vedio-list-page .drama-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 0.55rem;
+}
+
+.vedio-list-page .drama-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    background: rgba(255, 204, 0, 0.18);
+    color: var(--color-brand-dark);
+}
+
+.vedio-list-page .drama-tag--platform {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-muted);
+}
+
+.vedio-list-page .drama-card__title {
+    margin: 0 0 0.45rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    line-height: 1.35;
+    text-align: center;
+}
+
+.vedio-list-page .drama-card__progress,
+.vedio-list-page .drama-card__note {
+    margin: 0 0 0.35rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    text-align: left;
+}
+
+.vedio-list-page .drama-card__note {
+    font-size: 0.84rem;
+    margin-bottom: 0.85rem;
+}
+
+.vedio-list-page .drama-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 0.35rem;
+}
+
+.vedio-list-page .drama-card__actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 2px solid rgba(255, 204, 0, 0.35);
+    background: #fff;
+    color: var(--color-brand-dark);
+}
+
+.vedio-list-page .drama-card__actions a:hover {
+    border-color: var(--color-brand);
+    background: #fffce8;
+}
+
+.vedio-list-page .drama-card__actions a.is-primary {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: #1a1a1a;
+}
+
+.vedio-list-page .detail-block {
+    padding: 1.35rem 1.4rem 1.5rem;
+    border-radius: 12px;
+    background: var(--color-surface-soft);
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    margin-bottom: 1.5rem;
+}
+
+.vedio-list-page .detail-block__eyebrow {
+    display: block;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin: 0 0 0.45rem;
+}
+
+.vedio-list-page .detail-block__title {
+    margin: 0 0 0.75rem;
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-brand-dark);
+    line-height: 1.35;
+}
+
+.vedio-list-page .detail-block p {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.vedio-list-page .detail-block__progress-box {
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    background: #fffce8;
+    border: 1px solid rgba(255, 204, 0, 0.35);
+}
+
+.vedio-list-page .detail-block__progress-box p {
+    margin: 0 0 0.35rem;
+}
+
+.vedio-list-page .detail-block__progress-box p:last-child {
+    margin-bottom: 0;
+}
+
+.vedio-list-page .detail-block__actions,
+.vedio-list-page .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1.1rem;
+}
+
+.vedio-list-page .detail-block__actions a,
+.vedio-list-page .form-actions a,
+.vedio-list-page .form-actions button,
+.vedio-list-page .progress-form button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0.4rem 1.05rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid rgba(255, 204, 0, 0.35);
+    background: #fff;
+    color: var(--color-brand-dark);
+}
+
+.vedio-list-page .detail-block__actions a.is-primary,
+.vedio-list-page .form-actions button.is-primary,
+.vedio-list-page .progress-form button.is-primary {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: #1a1a1a;
+}
+
+.vedio-list-page .empty-hint {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: 1.5rem 1rem;
+    margin: 0 0 1.5rem;
+}
+
+.vedio-list-page .progress-form,
+.vedio-admin-page .admin-form {
+    max-width: 560px;
+    margin: 0 auto 2rem;
+    padding: 1.25rem 1.35rem;
+    background: var(--color-surface-soft);
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    border-radius: 12px;
+}
+
+.vedio-list-page .progress-form label,
+.vedio-admin-page .admin-form label {
+    display: block;
+    margin: 0.85rem 0 0.35rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    text-align: left;
+}
+
+.vedio-list-page .progress-form input,
+.vedio-list-page .progress-form select,
+.vedio-list-page .progress-form textarea,
+.vedio-admin-page .admin-form input,
+.vedio-admin-page .admin-form select,
+.vedio-admin-page .admin-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.vedio-list-page .vedio-admin-link,
+.vedio-admin-page .admin-nav {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.vedio-list-page .vedio-admin-link a {
+    color: var(--color-brand-dark);
+    font-weight: 700;
+}
+
+.vedio-admin-page .admin-wrap {
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.vedio-admin-page .admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.vedio-admin-page .admin-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 204, 0, 0.35);
+    background: #fffce8;
+    color: var(--color-brand-dark);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.vedio-admin-page .admin-lead {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem;
+}
+
+.vedio-admin-page .drama-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    margin: 0 0 10px;
+    background: #fff;
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    border-radius: 10px;
+    color: #222;
+}
+
+.vedio-admin-page .drama-row__info {
+    flex: 1 1 220px;
+    text-align: left;
+}
+
+.vedio-admin-page .drama-row__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.vedio-admin-page .drama-row__actions button,
+.vedio-admin-page .drama-row__actions a.btn-like {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background: #fffce8;
+    color: #222;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.vedio-admin-page .admin-toolbar {
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
+.vedio-admin-page .admin-toolbar a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    background: var(--color-brand);
+    color: #1a1a1a;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+@media (max-width: 640px) {
+    .vedio-list-page .drama-grid {
+        grid-template-columns: 1fr;
+    }
+}
