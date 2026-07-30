@@ -1,0 +1,611 @@
+/* ==========================================
+   水晶男孩 2026 萬年曆專用樣式 (calendar.css)
+   對齊全站暖紙面 section 視覺
+   ========================================== */
+
+:root {
+    --cal-grid-gap: 8px;
+    --cal-border-soft: rgba(255, 204, 0, 0.18);
+    --cal-border-strong: rgba(255, 204, 0, 0.28);
+    --cal-panel-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-page-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+/* 控制面板 */
+.calendar-controls {
+    background: var(--color-surface-soft);
+    border: 1px solid var(--cal-border-soft);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    box-shadow: var(--cal-panel-shadow);
+}
+
+.calendar-select-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.calendar-select {
+    background: #fffef9;
+    color: var(--color-text-dark);
+    border: 1px solid rgba(255, 204, 0, 0.38);
+    border-radius: 999px;
+    padding: 9px 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-select:hover,
+.calendar-select:focus {
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+.calendar-btn {
+    background: var(--color-brand);
+    color: #1a1a1a;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.calendar-btn:hover {
+    background: #ffe066;
+    transform: translateY(-1px);
+}
+
+/* 分類標籤按鈕列 */
+.calendar-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.filter-chip {
+    background: #fffdf6;
+    color: var(--color-text-dark);
+    border: 1px solid rgba(255, 204, 0, 0.38);
+    border-radius: 999px;
+    padding: 7px 15px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-chip.active,
+.filter-chip:hover {
+    background: var(--color-brand);
+    color: #1a1a1a;
+    border-color: var(--color-brand);
+}
+
+/* 萬年曆主要區塊：維持原雙欄版型 */
+.calendar-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 22px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .calendar-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 日曆卡片區 */
+.calendar-card {
+    background: var(--color-surface);
+    border: 1px solid var(--cal-border-soft);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--cal-panel-shadow);
+}
+
+.calendar-header-title {
+    text-align: center;
+    font-size: 1.52rem;
+    color: var(--color-text-dark);
+    margin-bottom: 18px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+}
+
+/* 星期標頭 */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+    padding-bottom: 11px;
+    border-bottom: 1px solid rgba(255, 204, 0, 0.22);
+    margin-bottom: 11px;
+}
+
+.calendar-weekday {
+    padding: 6px 0;
+}
+
+.calendar-weekday.weekend {
+    color: #9b5e47;
+}
+
+/* 日期網格 */
+.calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--cal-grid-gap);
+}
+
+.day-cell {
+    aspect-ratio: 1;
+    min-height: 68px;
+    background: #fffefb;
+    border: 1px solid rgba(255, 204, 0, 0.12);
+    border-radius: 10px;
+    padding: 7px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.18s ease;
+}
+
+.day-cell:hover {
+    background: var(--color-brand-light);
+    border-color: var(--cal-border-strong);
+    transform: translateY(-1px);
+}
+
+.day-cell.other-month {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.day-cell.other-month:hover {
+    transform: none;
+    border-color: rgba(255, 204, 0, 0.12);
+    background: #fffefb;
+}
+
+.day-cell.today {
+    border: 2px solid var(--color-brand);
+    box-shadow: inset 0 0 0 1px rgba(255, 204, 0, 0.16);
+}
+
+.day-cell.selected {
+    background: #fff4c7;
+    border-color: var(--color-brand);
+}
+
+.day-num {
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.day-cell.weekend .day-num {
+    color: #8a4e40;
+}
+
+/* 事件標記改為低調金色點 */
+.day-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: 4px;
+}
+
+.day-birthday-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin-top: 2px;
+    text-decoration: none;
+}
+
+.event-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    box-shadow: none;
+}
+
+.event-dot.birthday,
+.event-dot.debut,
+.event-dot.concert {
+    background: var(--color-brand);
+}
+
+/* 生日頭像縮圖小標籤 */
+.day-avatar-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--color-brand);
+    object-fit: cover;
+    margin: 0;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+.day-member-name {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1;
+    letter-spacing: 0.01em;
+}
+
+/* 演唱會微縮標籤 */
+.day-concert-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    border: 1px solid var(--color-brand);
+    object-fit: cover;
+    margin: 2px auto 0;
+}
+
+/* 當月紀念日清單 */
+.events-sidebar {
+    background: var(--color-surface);
+    border: 1px solid var(--cal-border-soft);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--cal-panel-shadow);
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    color: var(--color-text-dark);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-title i {
+    color: var(--color-brand);
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.events-empty {
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 28px 0;
+}
+
+/* 個別事件卡片 */
+.event-card {
+    background: var(--color-surface-soft);
+    border: 1px solid rgba(255, 204, 0, 0.16);
+    border-left: 4px solid var(--color-brand);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateX(2px);
+    border-color: rgba(255, 204, 0, 0.32);
+}
+
+.event-card.type-birthday,
+.event-card.type-debut,
+.event-card.type-concert {
+    border-left-color: var(--color-brand);
+}
+
+.event-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.event-date-badge {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+    background: rgba(255, 204, 0, 0.2);
+    padding: 3px 9px;
+    border-radius: 999px;
+}
+
+.event-title {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+}
+
+.event-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.48;
+}
+
+.event-media-img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 204, 0, 0.24);
+}
+
+/* 生日卡片呈現 */
+.birthday-featured-card {
+    background: var(--color-surface-soft);
+    border: 1px solid rgba(255, 204, 0, 0.22);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.birthday-photo-wrap {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 210 / 297;
+    border-radius: 12px;
+    border: 2px solid var(--color-brand);
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #111;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.birthday-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+}
+
+.birthday-info {
+    width: 100%;
+}
+
+.birthday-info h4 {
+    font-size: 1.3rem;
+    color: var(--color-text-dark);
+    margin: 0 0 2px;
+    line-height: 1.15;
+}
+
+.birthday-info h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.birthday-info .en-name {
+    font-size: 0.82rem;
+    color: var(--color-brand-dark);
+    letter-spacing: 0.05em;
+    margin-bottom: 7px;
+}
+
+.birthday-info .bday-date {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    font-weight: 700;
+}
+
+/* 演唱會卡片呈現 */
+.concert-featured-card {
+    background: var(--color-surface-soft);
+    border: 1px solid rgba(255, 204, 0, 0.22);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 8px;
+}
+
+.concert-featured-card img {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 210 / 297;
+    height: auto;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 204, 0, 0.24);
+}
+
+/* Modal 彈窗 */
+.calendar-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.calendar-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.calendar-modal-content {
+    background: var(--color-surface);
+    border: 1px solid var(--cal-border-strong);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    position: relative;
+    text-align: center;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #7d7464;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover {
+    color: var(--color-text-dark);
+}
+
+.modal-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--color-brand);
+    object-fit: cover;
+    margin: 0 auto 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-date-title {
+    color: var(--color-brand-dark);
+    margin-bottom: 14px;
+}
+
+.modal-member-name {
+    color: var(--color-text-dark);
+    font-size: 1.32rem;
+    margin-bottom: 4px;
+}
+
+.modal-member-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.modal-member-meta {
+    color: var(--color-brand-dark);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.modal-desc {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.modal-member-link {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.modal-event-box {
+    background: rgba(255, 204, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.modal-event-title {
+    color: var(--color-brand-dark);
+    margin-bottom: 4px;
+}
+
+.modal-concert-photo {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 210 / 297;
+    max-height: none;
+    object-fit: cover;
+    object-position: center 28%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 204, 0, 0.28);
+    margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+    .calendar-page-container {
+        padding: 24px 14px 50px;
+    }
+
+    .calendar-controls,
+    .calendar-card,
+    .events-sidebar {
+        padding: 16px;
+    }
+
+    .calendar-header-title {
+        font-size: 1.33rem;
+    }
+
+    .day-cell {
+        min-height: 56px;
+    }
+
+    .day-avatar-badge {
+        width: 30px;
+        height: 30px;
+    }
+
+    .day-member-name {
+        font-size: 0.62rem;
+    }
+
+    .birthday-photo-wrap {
+        max-width: 100%;
+    }
+}
