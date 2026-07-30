@@ -1,5 +1,3 @@
 {
-    // 本地預覽：雙擊專案根目錄 preview.bat
-    // 或在 Cursor：Ctrl+Shift+P →「執行工作」→「預覽網站」
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5503
 }

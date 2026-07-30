@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶萬年曆 2026 — SECHSKIES SPECIAL CALENDAR</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/tablet.css">
+</head>
+
+<body class="calendar-page">
+    <header class="inner-page-header">
+        <div class="header-inner site-header-inner">
+            <h1 class="main-title">水晶萬年曆</h1>
+            <div class="subtitle-wrap">
+                <span class="sub-title">2026 SECHSKIES SPECIAL CALENDAR</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+
+    <canvas id="particles"></canvas>
+
+    <main class="calendar-page-container">
+        <!-- 上方控制控制面板 -->
+        <section class="calendar-controls" aria-label="萬年曆控制選項">
+            <div class="calendar-select-group">
+                <button type="button" class="calendar-btn" id="prev-month-btn">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i> 上個月
+                </button>
+                <select id="year-select" class="calendar-select" aria-label="選擇年份">
+                    <option value="2025">2025 年</option>
+                    <option value="2026" selected>2026 年</option>
+                    <option value="2027">2027 年</option>
+                </select>
+                <select id="month-select" class="calendar-select" aria-label="選擇月份">
+                    <option value="1">1 月</option>
+                    <option value="2">2 月</option>
+                    <option value="3">3 月</option>
+                    <option value="4">4 月</option>
+                    <option value="5">5 月</option>
+                    <option value="6">6 月</option>
+                    <option value="7">7 月</option>
+                    <option value="8">8 月</option>
+                    <option value="9">9 月</option>
+                    <option value="10">10 月</option>
+                    <option value="11">11 月</option>
+                    <option value="12">12 月</option>
+                </select>
+                <button type="button" class="calendar-btn" id="next-month-btn">
+                    下個月 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- 分類篩選標籤 -->
+            <div class="calendar-filters" role="group" aria-label="紀念日分類篩選">
+                <button type="button" class="filter-chip active" data-category="all">全部紀念日</button>
+                <button type="button" class="filter-chip" data-category="birthday">成員生日</button>
+                <button type="button" class="filter-chip" data-category="debut">出道 / 重逢</button>
+                <button type="button" class="filter-chip" data-category="concert">演唱會 / 見面會</button>
+            </div>
+        </section>
+
+        <!-- 萬年曆主要版面 (雙欄結構) -->
+        <div class="calendar-layout">
+            <!-- 左欄：動態日曆網格卡片 -->
+            <section class="calendar-card">
+                <h2 class="calendar-header-title" id="calendar-month-year-display">2026 年 8 月</h2>
+
+                <div class="calendar-weekdays">
+                    <div class="calendar-weekday weekend">日</div>
+                    <div class="calendar-weekday">一</div>
+                    <div class="calendar-weekday">二</div>
+                    <div class="calendar-weekday">三</div>
+                    <div class="calendar-weekday">四</div>
+                    <div class="calendar-weekday">五</div>
+                    <div class="calendar-weekday weekend">六</div>
+                </div>
+
+                <div class="calendar-days-grid" id="calendar-days-grid">
+                    <!-- JS 動態生成日期網格 -->
+                </div>
+            </section>
+
+            <!-- 右欄：當月水晶紀念日明細清單 -->
+            <aside class="events-sidebar">
+                <h3 class="sidebar-title">
+                    <span id="sidebar-month-text">8 月專屬紀念日</span>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                </h3>
+
+                <div class="events-list" id="events-list">
+                    <!-- JS 動態生成事件列表與成員生日/演唱會照片卡片 -->
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 點擊日期的 Modal 彈窗 -->
+    <div class="calendar-modal-backdrop" id="event-modal">
+        <div class="calendar-modal-content">
+            <button type="button" class="modal-close-btn" id="modal-close" aria-label="關閉視窗">&times;</button>
+            <div id="modal-body-content">
+                <!-- 動態注入內容 -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2026 — 2026 水晶男孩專屬萬年曆</p>
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank" rel="noopener noreferrer">
+            Design by <span class="mark_b">Jekkinoopy Studio</span>
+        </a>
+    </footer>
+
+    <!-- 全站 JavaScript 資源 -->
+    <script src="assets/js/portal-nav.js"></script>
+    <script src="assets/js/particles.js"></script>
+
+    <!-- 萬年曆核心邏輯 -->
+    <script>
+        // 水晶男孩專屬紀念日數據集 (含成員介紹頁連結錨點)
+        const sechskiesEvents = [
+            // 1月
+            {
+                month: 1, day: 21, endDay: 22, type: 'concert', title: 'Yellow Note Final 首爾演唱會 🎤',
+                photo: 'assets/images/concert/2017.jpg', desc: '2017 年首爾終場演唱會紀念'
+            },
+            // 2月
+            {
+                month: 2, day: 22, type: 'birthday', title: '姜成勳 生日 🎂', memberName: '姜成勳', enName: 'KANG SUNG HOON', role: 'Main Vocal',
+                photo: 'assets/images/member/kpoplover082006___Bsc2U5lhXuK___.jpg', desc: '1980.02.22 主唱姜成勳生日', memberUrl: 'member/member.html#poster-ksh'
+            },
+            // 3月
+            {
+                month: 3, day: 6, endDay: 8, type: 'concert', title: 'ACCESS 演唱會紀念 🎤',
+                photo: 'assets/images/concert/2020.jpg', desc: '2020 SECHSKIES Concert [ACCESS]'
+            },
+            { month: 3, day: 23, type: 'debut', title: 'J-Walk 組合出道日 🌟', desc: '2002.03.23 金在德與張水院發行首張專輯《Suddenly》' },
+            // 4月
+            {
+                month: 4, day: 14, type: 'concert', title: '六六歌2 上岩黃海重逢日 🌟',
+                photo: 'assets/images/totoga2/toto1.png', desc: '2016.04.14 無限挑戰六六歌2 上岩游擊演唱會16年後重逢'
+            },
+            { month: 4, day: 15, type: 'debut', title: 'SECHSKIES 團體出道紀念日 🌟', desc: '1997.04.15 水晶男孩正式出道，傳奇盛世起點！' },
+            // 5月
+            { month: 5, day: 18, type: 'debut', title: '水晶男孩告別宣佈日', desc: '2000.05.18 告別紀念' },
+            { month: 5, day: 24, type: 'debut', title: '姜成勳 Solo 出道日 🌟', desc: '2001.05.24 首張專輯《In Connection》' },
+            // 6月
+            {
+                month: 6, day: 8, type: 'birthday', title: '殷志源 生日 🎂', memberName: '殷志源', enName: 'EUN JI WON', role: 'Leader · Rap · Dance',
+                photo: 'assets/images/Eun Ji Won.jpeg', desc: '1978.06.08 水晶男孩隊長殷志源生日', memberUrl: 'member/member.html#poster-ejw'
+            },
+            // 7月
+            {
+                month: 7, day: 1, type: 'birthday', title: '高志溶 生日 🎂', memberName: '高志溶', enName: 'KO JI YONG', role: 'Vocal',
+                photo: 'assets/images/member/92599-502183.jpg', desc: '1980.07.01 高志溶生日', memberUrl: 'member/member.html#poster-kjy'
+            },
+            {
+                month: 7, day: 13, type: 'birthday', title: '李宰鎮 生日 🎂', memberName: '李宰鎮', enName: 'LEE JAE JIN', role: 'Rap · Dance',
+                photo: 'assets/images/member/1595330620293.jpg', desc: '1979.07.13 李宰鎮生日', memberUrl: 'member/member.html#poster-ljj'
+            },
+            {
+                month: 7, day: 16, type: 'birthday', title: '張水院 生日 🎂', memberName: '張水院', enName: 'JANG SU WON', role: 'Vocal',
+                photo: 'assets/images/member/seven7lai_1___BuRBxcPAIsP___.jpg', desc: '1980.07.16 張水院生日', memberUrl: 'member/member.html#poster-jsw'
+            },
+            // 8月
+            {
+                month: 8, day: 7, type: 'birthday', title: '金在德 生日 🎂', memberName: '金在德', enName: 'KIM JAE DUC', role: 'Rap · Dance',
+                photo: 'assets/images/member/4c0e013b341e85622979475bc230719b.jpg', desc: '1979.08.07 天使笑顏與舞蹈機器金在德生日', memberUrl: 'member/member.html#poster-kjd'
+            },
+            // 9月
+            {
+                month: 9, day: 10, endDay: 11, type: 'concert', title: 'Yellow Note 演唱會 (二安日) 🎤',
+                photo: 'assets/images/concert/2016.jpg', desc: '2016 黃海 6 分鐘喊聲喚回大爺們重返舞台'
+            },
+            {
+                month: 9, day: 23, type: 'concert', title: '20 週年高尺巨蛋演唱會 🎤',
+                photo: 'assets/images/concert/2017.jpg', desc: '2017 20th Anniversary Concert 高尺天空巨蛋'
+            },
+            // 10月
+            {
+                month: 10, day: 1, type: 'concert', title: 'BOF 釜山演唱會 🎤',
+                photo: 'assets/images/mission-balloon-sea.png', desc: '2016 60台遊覽車 6000人黃海盛況「黑幫黃」傳奇'
+            },
+            { month: 10, day: 7, type: 'debut', title: '《三個詞 Three Words》發行日 🌟', desc: '2016.10.07 回歸單曲音源發行日' },
+            {
+                month: 10, day: 13, endDay: 14, type: 'concert', title: 'YELLOFANTASY 22週年演唱會 🎤',
+                photo: 'assets/images/concert/2018.jpg', desc: '2018 SECHSKIES 2018 CONCERT – YELLOFANTASY'
+            },
+            { month: 10, day: 27, type: 'debut', title: '殷志源 Solo 出道日 🌟', desc: '2000.10.27 單曲《A-Ha》/《G Pop》' },
+            // 11月
+            { month: 11, day: 19, type: 'debut', title: '李宰鎮 Solo 出道日 🌟', desc: '2001.11.19 首張專輯《S.Double.J》' }
+        ];
+
+        // 狀態變數
+        let currentYear = 2026;
+        let currentMonth = 8; // 預設 8月
+        let activeCategory = 'all';
+
+        // DOM 元素
+        const yearSelect = document.getElementById('year-select');
+        const monthSelect = document.getElementById('month-select');
+        const prevBtn = document.getElementById('prev-month-btn');
+        const nextBtn = document.getElementById('next-month-btn');
+        const daysGrid = document.getElementById('calendar-days-grid');
+        const monthYearDisplay = document.getElementById('calendar-month-year-display');
+        const eventsList = document.getElementById('events-list');
+        const sidebarMonthText = document.getElementById('sidebar-month-text');
+
+        const eventModal = document.getElementById('event-modal');
+        const modalClose = document.getElementById('modal-close');
+        const modalBody = document.getElementById('modal-body-content');
+
+        function cleanEventTitle(title) {
+            return String(title || '').replace(/[🎂🌟🎤]/g, '').trim();
+        }
+
+        // 初始化
+        function initCalendar() {
+            yearSelect.value = currentYear;
+            monthSelect.value = currentMonth;
+            renderCalendar(currentYear, currentMonth);
+
+            // 事件監聽
+            yearSelect.addEventListener('change', (e) => {
+                currentYear = parseInt(e.target.value);
+                renderCalendar(currentYear, currentMonth);
+            });
+
+            monthSelect.addEventListener('change', (e) => {
+                currentMonth = parseInt(e.target.value);
+                renderCalendar(currentYear, currentMonth);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 1) {
+                    currentMonth = 12;
+                    currentYear--;
+                }
+                yearSelect.value = currentYear;
+                monthSelect.value = currentMonth;
+                renderCalendar(currentYear, currentMonth);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 12) {
+                    currentMonth = 1;
+                    currentYear++;
+                }
+                yearSelect.value = currentYear;
+                monthSelect.value = currentMonth;
+                renderCalendar(currentYear, currentMonth);
+            });
+
+            // 分類標籤篩選
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    activeCategory = e.target.getAttribute('data-category');
+                    renderCalendar(currentYear, currentMonth);
+                });
+            });
+
+            // Modal 關閉
+            modalClose.addEventListener('click', () => {
+                eventModal.classList.remove('active');
+            });
+            eventModal.addEventListener('click', (e) => {
+                if (e.target === eventModal) eventModal.classList.remove('active');
+            });
+        }
+
+        // 渲染日曆
+        function renderCalendar(year, month) {
+            monthYearDisplay.textContent = `${year} 年 ${month} 月`;
+            sidebarMonthText.textContent = `${month} 月水晶紀念日`;
+            daysGrid.innerHTML = '';
+
+            // 1. 計算該月第一天是星期幾 & 總天數
+            const firstDayIndex = new Date(year, month - 1, 1).getDay(); // 0 = 星期日
+            const totalDays = new Date(year, month, 0).getDate();
+            const prevMonthTotalDays = new Date(year, month - 1, 0).getDate();
+
+            // 取得當月屬於水晶的事件
+            const monthEvents = sechskiesEvents.filter(ev => ev.month === month && (activeCategory === 'all' || ev.type === activeCategory));
+
+            // 2. 渲染上個月填補空格
+            for (let i = firstDayIndex - 1; i >= 0; i--) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell other-month';
+                dayCell.innerHTML = `<span class="day-num">${prevMonthTotalDays - i}</span>`;
+                daysGrid.appendChild(dayCell);
+            }
+
+            // 3. 渲染當月每一天
+            for (let day = 1; day <= totalDays; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell';
+                const dayOfWeek = new Date(year, month - 1, day).getDay();
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    dayCell.classList.add('weekend');
+                }
+
+                // 檢查是否有水晶事件
+                const matchedEvents = monthEvents.filter(ev => {
+                    if (ev.endDay) {
+                        return day >= ev.day && day <= ev.endDay;
+                    }
+                    return ev.day === day;
+                });
+
+                let dayContent = `<span class="day-num">${day}</span>`;
+
+                if (matchedEvents.length > 0) {
+                    // 有生日事件時顯示頭像
+                    const bdayEvent = matchedEvents.find(ev => ev.type === 'birthday');
+                    const concertEvent = matchedEvents.find(ev => ev.type === 'concert' && ev.photo);
+
+                    if (bdayEvent && bdayEvent.photo) {
+                        const linkUrl = bdayEvent.memberUrl || 'member/member.html';
+                        dayContent += `<a href="${linkUrl}" class="day-birthday-link" onclick="event.stopPropagation();" title="點擊查看 ${bdayEvent.memberName} 詳細介紹"><img src="${bdayEvent.photo}" alt="${bdayEvent.memberName}" class="day-avatar-badge"><span class="day-member-name">${bdayEvent.memberName}</span></a>`;
+                    } else if (concertEvent && concertEvent.photo) {
+                        dayContent += `<img src="${concertEvent.photo}" alt="${concertEvent.title}" class="day-concert-badge" title="${concertEvent.title}">`;
+                    } else {
+                        // 一般事件點點
+                        dayContent += '<div class="day-events">';
+                        matchedEvents.forEach(ev => {
+                            dayContent += `<span class="event-dot ${ev.type}" title="${ev.title}"></span>`;
+                        });
+                        dayContent += '</div>';
+                    }
+
+                    // 點擊格點觸發 Modal (若非點擊在直接連結上)
+                    dayCell.addEventListener('click', () => {
+                        showDayModal(year, month, day, matchedEvents);
+                    });
+                }
+
+                dayCell.innerHTML = dayContent;
+                daysGrid.appendChild(dayCell);
+            }
+
+            // 4. 渲染下個月填補空格
+            const totalRendered = firstDayIndex + totalDays;
+            const remainingGrid = (totalRendered % 7 === 0) ? 0 : 7 - (totalRendered % 7);
+            for (let i = 1; i <= remainingGrid; i++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell other-month';
+                dayCell.innerHTML = `<span class="day-num">${i}</span>`;
+                daysGrid.appendChild(dayCell);
+            }
+
+            // 5. 渲染右側事件列表
+            renderSidebarEvents(monthEvents);
+        }
+
+        // 渲染右欄當月事件明細
+        function renderSidebarEvents(events) {
+            eventsList.innerHTML = '';
+            if (events.length === 0) {
+                eventsList.innerHTML = '<p class="events-empty">本月無符合條件之水晶紀念日</p>';
+                return;
+            }
+
+            events.forEach(ev => {
+                if (ev.type === 'birthday' && ev.photo) {
+                    // 生日精美照片卡片 (點圖片連成員介紹頁面)
+                    const linkUrl = ev.memberUrl || 'member/member.html';
+                    const bdayCard = document.createElement('div');
+                    bdayCard.className = 'birthday-featured-card';
+                    bdayCard.innerHTML = `
+                        <a href="${linkUrl}" class="birthday-photo-wrap" title="點擊前往 ${ev.memberName} 個人介紹頁面">
+                            <img src="${ev.photo}" alt="${ev.memberName}">
+                        </a>
+                        <div class="birthday-info">
+                            <h4><a href="${linkUrl}" title="前往成員介紹">${ev.memberName}</a></h4>
+                            <div class="en-name">${ev.enName} • ${ev.role}</div>
+                            <div class="bday-date">${ev.month} 月 ${ev.day} 日</div>
+                        </div>
+                    `;
+                    eventsList.appendChild(bdayCard);
+                } else if (ev.type === 'concert' && ev.photo) {
+                    // 演唱會帶圖卡片
+                    const dateStr = ev.endDay ? `${ev.month}/${ev.day} ~ ${ev.month}/${ev.endDay}` : `${ev.month}/${ev.day}`;
+                    const concertCard = document.createElement('div');
+                    concertCard.className = 'concert-featured-card';
+                    concertCard.innerHTML = `
+                        <img src="${ev.photo}" alt="${ev.title}">
+                        <div class="event-card-header">
+                            <span class="event-date-badge">${dateStr}</span>
+                        </div>
+                        <div class="event-title">${cleanEventTitle(ev.title)}</div>
+                        <div class="event-desc">${ev.desc}</div>
+                    `;
+                    eventsList.appendChild(concertCard);
+                } else {
+                    // 一般事件卡片
+                    const dateStr = ev.endDay ? `${ev.month}/${ev.day} ~ ${ev.month}/${ev.endDay}` : `${ev.month}/${ev.day}`;
+                    const card = document.createElement('div');
+                    card.className = `event-card type-${ev.type}`;
+                    card.innerHTML = `
+                        <div class="event-card-header">
+                            <span class="event-date-badge">${dateStr}</span>
+                        </div>
+                        <div class="event-title">${cleanEventTitle(ev.title)}</div>
+                        <div class="event-desc">${ev.desc}</div>
+                    `;
+                    eventsList.appendChild(card);
+                }
+            });
+        }
+
+        // 顯示 Modal 詳情
+        function showDayModal(year, month, day, events) {
+            let html = `<h3 class="modal-date-title">${year} 年 ${month} 月 ${day} 日</h3>`;
+            events.forEach(ev => {
+                if (ev.type === 'birthday' && ev.photo) {
+                    const linkUrl = ev.memberUrl || 'member/member.html';
+                    html += `
+                        <a href="${linkUrl}" title="點擊前往 ${ev.memberName} 個人介紹頁面">
+                            <img src="${ev.photo}" alt="${ev.memberName}" class="modal-photo">
+                        </a>
+                        <h4 class="modal-member-name"><a href="${linkUrl}">${ev.memberName}</a></h4>
+                        <p class="modal-member-meta">${ev.enName} (${ev.role})</p>
+                        <p class="modal-desc">${ev.desc}</p>
+                        <a href="${linkUrl}" class="calendar-btn modal-member-link">前往 ${ev.memberName} 專屬頁面 <i class="fa-solid fa-arrow-right"></i></a>
+                    `;
+                } else if (ev.type === 'concert' && ev.photo) {
+                    html += `
+                        <img src="${ev.photo}" alt="${ev.title}" class="modal-concert-photo">
+                        <h4 class="modal-event-title">${cleanEventTitle(ev.title)}</h4>
+                        <p class="modal-desc">${ev.desc}</p>
+                    `;
+                } else {
+                    html += `
+                        <div class="modal-event-box">
+                            <h4 class="modal-event-title">${cleanEventTitle(ev.title)}</h4>
+                            <p class="modal-desc">${ev.desc}</p>
+                        </div>
+                    `;
+                }
+            });
+            modalBody.innerHTML = html;
+            eventModal.classList.add('active');
+        }
+
+        // 頁面載入完成後執行 init
+        document.addEventListener('DOMContentLoaded', initCalendar);
+    </script>
+</body>
+
+</html>

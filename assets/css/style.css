@@ -2256,6 +2256,45 @@ header.inner-page-header .sub-title {
     padding: 4px 20px;
 }
 
+/* 地區切換（台灣／海外）：比成員 tab 高一階，用深底色跟它區隔 */
+.region-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px auto 0;
+    max-width: 1100px;
+    padding: 4px 20px;
+}
+
+.region-tab-btn {
+    border: 1px solid var(--color-bg-raised);
+    background: var(--color-bg-raised);
+    color: #f4f4f4;
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.region-tab-btn:hover,
+.region-tab-btn.active {
+    background: var(--color-brand);
+    color: #2f2f2f;
+    border-color: var(--color-brand);
+}
+
+.region-empty-state {
+    text-align: center;
+    color: #8b7423;
+    font-size: 0.95rem;
+    padding: 40px 20px;
+}
+
 #itinerary-search {
     display: block;
     max-width: 1100px;
@@ -2326,6 +2365,16 @@ header.inner-page-header .sub-title {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+}
+
+.map-embed-empty {
+    text-align: center;
+    color: #8b7423;
+    font-size: 0.88rem;
+    padding: 24px 16px;
+    background: #fffef8;
+    border: 1px dashed #e4dbb8;
+    border-radius: 10px;
 }
 
 .map-embed-label {
@@ -2450,6 +2499,7 @@ header.inner-page-header .sub-title {
 .photo-frame {
     width: 118px;
     flex: 0 0 118px;
+    position: relative;
 }
 
 .photo-frame img {
@@ -2457,6 +2507,21 @@ header.inner-page-header .sub-title {
     height: 86px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+/* 圖片授權標示：僅供合規（CC BY / CC BY-SA 需姓名標示），刻意做得很小、低對比，不搶視覺 */
+.photo-credit {
+    position: absolute;
+    right: 4px;
+    bottom: 3px;
+    font-size: 0.5rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+    letter-spacing: 0.01em;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
 }
 
 .card-content .date {
@@ -2495,11 +2560,21 @@ header.inner-page-header .sub-title {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
+.detail-photo {
+    position: relative;
+}
+
 .detail-photo img {
     width: 100%;
     max-height: 300px;
     object-fit: cover;
     display: block;
+}
+
+.detail-photo .photo-credit {
+    font-size: 0.62rem;
+    right: 8px;
+    bottom: 6px;
 }
 
 .detail-content {
