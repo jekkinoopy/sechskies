@@ -165,6 +165,22 @@ function modules(): array
             ],
             'list' => ['display_name', 'media_type', 'category', 'file_path', 'status', 'updated_at'],
         ],
+        'dance_practices' => [
+            'label' => '練舞清單', 'item_label' => '練舞項目', 'list_title' => '練舞清單', 'icon' => 'list-check', 'table' => 'dance_practice_items', 'order' => 'sort_order, id', 'group' => 'dance',
+            'fields' => [
+                'title' => ['label' => '歌曲名稱', 'type' => 'text', 'required' => true],
+                'tags' => ['label' => '練習分類', 'type' => 'text'],
+                'practice_focus' => ['label' => '練習重點', 'type' => 'textarea', 'required' => true],
+                'video_url' => ['label' => '參考影片網址', 'type' => 'url'],
+                'difficulty' => ['label' => '難度', 'type' => 'select', 'default' => 'medium', 'required' => true, 'options' => ['easy' => '入門', 'medium' => '中等', 'hard' => '挑戰']],
+                'progress_status' => ['label' => '練習進度', 'type' => 'select', 'default' => 'not_started', 'required' => true, 'options' => ['not_started' => '未開始', 'practicing' => '練習中', 'review' => '待複習', 'completed' => '已完成']],
+                'note_text' => ['label' => '補充說明', 'type' => 'text'],
+                'is_featured' => ['label' => '優先練習', 'type' => 'checkbox'],
+                'sort_order' => ['label' => '排序', 'type' => 'number', 'default' => '0'],
+                'status' => ['label' => '公開狀態', 'type' => 'status', 'required' => true],
+            ],
+            'list' => ['title', 'difficulty', 'progress_status', 'is_featured', 'sort_order', 'status', 'updated_at'],
+        ],
     ];
 }
 
@@ -263,9 +279,14 @@ function render_header(string $title, string $active = ''): void
             <a class="<?= $active === 'dashboard' ? 'active' : '' ?>" href="index.php"><i class="bi bi-speedometer2"></i>控制台</a>
             <p>內容資料</p>
             <?php foreach ($mods as $key => $mod): ?>
+                <?php if (($mod['group'] ?? 'content') === 'dance') continue; ?>
                 <a class="<?= $active === $key ? 'active' : '' ?>" href="records.php?module=<?= h($key) ?>"><i class="bi bi-<?= h($mod['icon']) ?>"></i><?= h($mod['label']) ?></a>
             <?php endforeach; ?>
             <p>水晶熱舞社</p>
+            <?php foreach ($mods as $key => $mod): ?>
+                <?php if (($mod['group'] ?? 'content') !== 'dance') continue; ?>
+                <a class="<?= $active === $key ? 'active' : '' ?>" href="records.php?module=<?= h($key) ?>"><i class="bi bi-<?= h($mod['icon']) ?>"></i><?= h($mod['label']) ?></a>
+            <?php endforeach; ?>
             <a class="<?= $active === 'dance-applications' ? 'active' : '' ?>" href="dance-applications.php"><i class="bi bi-person-hearts"></i>30TH 應援報名</a>
             <p>系統</p>
             <a class="<?= $active === 'publishing' ? 'active' : '' ?>" href="publishing.php"><i class="bi bi-eye"></i>公開狀態</a>

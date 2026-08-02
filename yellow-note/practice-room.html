@@ -504,6 +504,37 @@
             color: var(--practice-text-muted);
         }
 
+        body.practice-room-page .practice-room__song-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            min-height: 42px;
+            margin-bottom: 0.75rem;
+            padding: 0.55rem 0.9rem;
+            border: 1px solid var(--practice-accent);
+            border-radius: 999px;
+            color: var(--practice-text-dark);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        body.practice-room-page .practice-room__song-link:hover {
+            background: var(--practice-accent-soft);
+        }
+
+        body.practice-room-page .practice-room__song-empty {
+            grid-column: 1 / -1;
+            margin: 0;
+            padding: 1.5rem;
+            border: 1px dashed var(--practice-border);
+            border-radius: 14px;
+            color: var(--practice-text-muted);
+            background: var(--practice-surface);
+            text-align: center;
+        }
+
         /* ── 段落練習 ── */
         body.practice-room-page .practice-room__section-panel {
             background: var(--practice-surface);
@@ -642,13 +673,6 @@
         @media (min-width: 768px) and (max-width: 991.98px) {
             body.practice-room-page .practice-room__song-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            body.practice-room-page .practice-room__song-card:last-child {
-                grid-column: 1 / -1;
-                max-width: 50%;
-                margin-inline: auto;
-                width: 100%;
             }
         }
     </style>
@@ -791,39 +815,12 @@
             </div>
         </section>
 
-        <!-- ④ 歌曲範例 -->
+        <!-- ④ 練舞清單 -->
         <section class="practice-room__block" aria-labelledby="songs-title">
-            <h2 class="practice-room__block-title" id="songs-title">歌曲練習範例</h2>
-            <span class="practice-room__block-sub">SAMPLE TRACKS</span>
-            <div class="practice-room__song-grid">
-                <article class="practice-room__song-card practice-room__song-card--featured">
-                    <h3 class="practice-room__song-title">Couple</h3>
-                    <div class="practice-room__song-meta">
-                        <span class="practice-room__song-tag">Dance</span>
-                        <span class="practice-room__song-tag">Vocal</span>
-                    </div>
-                    <p class="practice-room__song-focus"><strong>練習重點：</strong>副歌動作、隊形感、甜感表情</p>
-                    <span class="practice-room__song-status">可作為第一首示範歌</span>
-                </article>
-                <article class="practice-room__song-card">
-                    <h3 class="practice-room__song-title">Com' Back</h3>
-                    <div class="practice-room__song-meta">
-                        <span class="practice-room__song-tag">Dance</span>
-                        <span class="practice-room__song-tag">Rap</span>
-                    </div>
-                    <p class="practice-room__song-focus"><strong>練習重點：</strong>強拍、Rap 段落、舞台氣勢</p>
-                    <span class="practice-room__song-status practice-room__song-status--soon">未來擴充</span>
-                </article>
-                <article class="practice-room__song-card">
-                    <h3 class="practice-room__song-title">Road Fighter</h3>
-                    <div class="practice-room__song-meta">
-                        <span class="practice-room__song-tag">Dance</span>
-                        <span class="practice-room__song-tag">Rap</span>
-                        <span class="practice-room__song-tag">Performance</span>
-                    </div>
-                    <p class="practice-room__song-focus"><strong>練習重點：</strong>節奏、力量、舞台感</p>
-                    <span class="practice-room__song-status practice-room__song-status--soon">未來擴充</span>
-                </article>
+            <h2 class="practice-room__block-title" id="songs-title">練舞清單</h2>
+            <span class="practice-room__block-sub">DANCE PRACTICE LIST</span>
+            <div class="practice-room__song-grid" data-dance-practice-list aria-live="polite">
+                <p class="practice-room__song-empty">正在載入練舞清單…</p>
             </div>
         </section>
 
@@ -1133,6 +1130,75 @@
 
             updatePlaceholder();
             updateProgress();
+        })();
+
+        (function () {
+            var list = document.querySelector('[data-dance-practice-list]');
+            if (!list) return;
+
+            function element(tagName, className, text) {
+                var node = document.createElement(tagName);
+                if (className) node.className = className;
+                if (typeof text === 'string') node.textContent = text;
+                return node;
+            }
+
+            function renderEmpty(message) {
+                list.replaceChildren(element('p', 'practice-room__song-empty', message));
+            }
+
+            function renderItems(items) {
+                if (!items.length) {
+                    renderEmpty('練舞清單目前整理中。');
+                    return;
+                }
+
+                var fragment = document.createDocumentFragment();
+                items.forEach(function (item) {
+                    var cardClass = 'practice-room__song-card' + (item.featured ? ' practice-room__song-card--featured' : '');
+                    var card = element('article', cardClass);
+                    card.appendChild(element('h3', 'practice-room__song-title', item.title));
+
+                    var meta = element('div', 'practice-room__song-meta');
+                    (item.tags || []).forEach(function (tag) {
+                        meta.appendChild(element('span', 'practice-room__song-tag', tag));
+                    });
+                    meta.appendChild(element('span', 'practice-room__song-tag', '難度：' + item.difficulty));
+                    meta.appendChild(element('span', 'practice-room__song-tag', item.progress));
+                    card.appendChild(meta);
+
+                    var focus = element('p', 'practice-room__song-focus');
+                    focus.appendChild(element('strong', '', '練習重點：'));
+                    focus.appendChild(document.createTextNode(item.practiceFocus));
+                    card.appendChild(focus);
+
+                    if (item.videoUrl) {
+                        var link = element('a', 'practice-room__song-link', '打開參考影片');
+                        link.href = item.videoUrl;
+                        link.target = '_blank';
+                        link.rel = 'noopener noreferrer';
+                        card.appendChild(link);
+                    }
+
+                    var statusClass = 'practice-room__song-status' + (item.comingSoon ? ' practice-room__song-status--soon' : '');
+                    card.appendChild(element('span', statusClass, item.note || item.progress));
+                    fragment.appendChild(card);
+                });
+                list.replaceChildren(fragment);
+            }
+
+            fetch('dance-practices-data.php', { headers: { Accept: 'application/json' } })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('request failed');
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (!data.ok || !Array.isArray(data.items)) throw new Error('invalid data');
+                    renderItems(data.items);
+                })
+                .catch(function () {
+                    renderEmpty('練舞清單暫時無法載入，請稍後再試。');
+                });
         })();
     </script>
 </body>

@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $record = array_merge($record, $data);
 }
-render_header(($id ? '編輯' : '新增') . $module['label'], $key);
+render_header(($id ? '編輯' : '新增') . ($module['item_label'] ?? $module['label']), $key);
 ?>
 <?php if ($error): ?><div class="notice notice--error"><?= h($error) ?></div><?php endif; ?>
 <form class="panel editor" method="post" enctype="multipart/form-data"><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><input type="hidden" name="module" value="<?= h($key) ?>"><input type="hidden" name="id" value="<?= $id ?>"><div class="form-grid">
