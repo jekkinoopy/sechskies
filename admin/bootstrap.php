@@ -206,7 +206,10 @@ function render_header(string $title, string $active = ''): void
 </head>
 <body>
 <header class="admin-topbar">
-    <a class="admin-brand" href="index.php"><i class="bi bi-gem"></i><span>水晶男孩推廣部</span><small>Admin</small></a>
+    <a class="admin-brand" href="index.php" aria-label="水晶男孩推廣部後台首頁">
+        <img class="admin-brand__logo" src="../assets/images/logov.svg" alt="SECHSKIES 水晶男孩推廣部">
+        <small>Admin</small>
+    </a>
     <div class="admin-topbar__actions"><span><?= h($_SESSION['admin_name'] ?? '') ?></span><a href="../index.html" target="_blank" rel="noopener">查看前臺</a><a href="logout.php">登出</a></div>
 </header>
 <div class="admin-shell">

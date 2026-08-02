@@ -208,6 +208,28 @@
             </div>
         </section>
 
+        <section class="site-guide-group site-guide-group--nav-hero" aria-labelledby="sg-git-notes">
+            <h2 class="section-title" id="sg-git-notes">Git 同步備忘</h2>
+            <div class="site-guide-nav-table-wrap">
+                <table class="site-guide-mini-table" aria-describedby="sg-git-notes">
+                    <tbody>
+                        <tr>
+                            <th scope="row">2026-07-30 分岔</th>
+                            <td>本機原有 4 個未 push commit（<code>variety/vedio-list.html</code> 深夜清單、<code>concert/captain-aura.html</code>、<code>yellow-note/practice-room.html</code> 等），同時遠端 origin/main 多了 1 個新 commit（<code>calendar2026.html</code> 2026 行事曆頁＋<code>admin/</code> 後台系統，改動 <code>assets/js/map.js</code>、<code>member/member.html</code>）</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">衝突檔案</th>
+                            <td><code>AGENTS.md</code>（工作狀態記錄不同）、<code>.vscode/settings.json</code>（liveServer port 5501 vs 5503）；已採「AGENTS.md 用遠端較新版本」「port 改 5503」解決並完成合併 commit</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">目前狀態</th>
+                            <td>本機領先 origin/main 5 個 commit（遠端 1 個＋本機原本 4 個＋合併 1 個），<strong>尚未 push 回 GitHub</strong>；<code>variety/NJTW/NJTW5.html</code> 另有 8 行未 commit 的修改，維持原樣待處理</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
     </main>
 
     <footer>
