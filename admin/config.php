@@ -13,4 +13,6 @@ return [
     'upload_dir' => dirname(__DIR__) . '/assets/uploads',
     'upload_url' => '../assets/uploads',
     'max_upload_bytes' => 8 * 1024 * 1024,
+    'dance_upload_dir' => dirname(__DIR__) . '/storage/dance-applications',
+    'dance_max_upload_bytes' => 8 * 1024 * 1024,
 ];

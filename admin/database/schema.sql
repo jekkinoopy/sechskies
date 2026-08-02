@@ -114,6 +114,30 @@ CREATE TABLE IF NOT EXISTS locations (
     CONSTRAINT fk_location_media FOREIGN KEY (media_id) REFERENCES media_assets(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS dance_applications (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(80) NOT NULL,
+    email VARCHAR(190) NOT NULL,
+    dance_years TINYINT UNSIGNED NULL,
+    available_date DATE NULL,
+    attended_20th ENUM('attended','watched_video','first_time') NULL,
+    participate_content VARCHAR(255) NOT NULL,
+    song VARCHAR(80) NULL,
+    reference_file_name VARCHAR(100) NULL,
+    reference_original_name VARCHAR(255) NULL,
+    reference_mime_type VARCHAR(100) NULL,
+    reference_file_size INT UNSIGNED NULL,
+    message_30th TEXT NULL,
+    status ENUM('new','contacted','confirmed','declined','archived') NOT NULL DEFAULT 'new',
+    admin_notes TEXT NULL,
+    submitted_ip VARCHAR(45) NULL,
+    user_agent VARCHAR(255) NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_dance_applications_status_created (status, created_at),
+    INDEX idx_dance_applications_email (email)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS audit_logs (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     admin_user_id INT UNSIGNED NULL,

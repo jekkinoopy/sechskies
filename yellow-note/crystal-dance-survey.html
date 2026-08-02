@@ -330,6 +330,38 @@
             margin-top: 2rem;
         }
 
+        body.crystal-dance-page .summer-form__feedback {
+            max-width: 860px;
+            margin: 0 auto 20px;
+            padding: 14px 18px;
+            border: 1px solid rgba(78, 73, 43, 0.3);
+            border-radius: 10px;
+            color: var(--color-text-dark);
+            background: var(--color-surface-soft);
+            text-align: left;
+        }
+
+        body.crystal-dance-page .summer-form__feedback--success {
+            border-color: var(--color-brand);
+            background: var(--color-brand-light);
+        }
+
+        body.crystal-dance-page .summer-form__feedback--error {
+            border-color: var(--color-brand-dark);
+        }
+
+        body.crystal-dance-page .summer-form__trap {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         body.crystal-dance-page .summer-form .btn-dance {
             background: var(--color-brand);
             color: var(--color-brand-dark);
@@ -483,13 +515,16 @@
             <h2 class="section-title">30TH 應援募集表單</h2>
             <p class="form-lead">這份表單是水晶熱舞社為 2027/04/15 30TH 預備的應援募集模組，用來整理參與者想練的歌曲、可支援的內容與想留下的祝福。</p>
 
-            <form class="summer-form" action="#">
+            <div class="summer-form__feedback" data-form-feedback hidden tabindex="-1" aria-live="polite"></div>
+
+            <form class="summer-form" action="dance-application-submit.php" method="post" enctype="multipart/form-data" data-dance-application-form>
+                <label class="summer-form__trap" aria-hidden="true">網站<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
 
                 <div class="summer-form__stage">
                     <h3 class="summer-form__stage-title">填寫須知</h3>
                     <div class="summer-form__stage-body summer-form__stage-body--notice">
                         <ul class="info-list">
-                            <li>📎 檔案格式：影片或圖片皆可，建議單檔 100MB 以內</li>
+                            <li>📎 檔案格式：影片或圖片皆可，單檔上限 8 MB</li>
                             <li>🔒 這份資料僅供水晶熱舞社內部整理 30TH 應援企劃使用</li>
                             <li>📅 送出後若確定參與，之後會另行公告練習與錄製時間</li>
                         </ul>
@@ -504,12 +539,12 @@
                             <div class="col-12 col-sm-6">
                                 <label for="nickname" class="form-label">暱稱</label>
                                 <input type="text" class="form-control" id="nickname" name="nickname"
-                                    placeholder="例：熱舞小黃" required>
+                                    maxlength="80" placeholder="例：熱舞小黃" required>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="dance@example.com" required>
+                                    maxlength="190" placeholder="dance@example.com" required>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label for="dance_years" class="form-label">練舞經驗年數</label>
@@ -532,7 +567,7 @@
                                 <label class="form-label d-block">是否參加過 20TH</label>
                                 <div class="summer-form__option-row">
                                     <input type="radio" class="btn-check" name="attended_20th"
-                                        id="attended_20th_yes" value="attended" autocomplete="off">
+                                        id="attended_20th_yes" value="attended" autocomplete="off" required>
                                     <label class="btn btn-outline-dance" for="attended_20th_yes">參加過 20TH</label>
 
                                     <input type="radio" class="btn-check" name="attended_20th"
@@ -547,27 +582,27 @@
                             <div class="col-12">
                                 <label class="form-label d-block">想參與的 30TH 內容（可複選）</label>
                                 <div class="summer-form__option-row">
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_cover" value="cover" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_cover">翻跳</label>
 
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_medley" value="medley" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_medley">串燒聯舞</label>
 
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_blessing" value="blessing" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_blessing">祝福影片</label>
 
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_graphic" value="graphic" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_graphic">圖文應援</label>
 
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_editing" value="editing" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_editing">影片剪輯</label>
 
-                                    <input type="checkbox" class="btn-check" name="participate_content"
+                                    <input type="checkbox" class="btn-check" name="participate_content[]"
                                         id="content_archive" value="archive" autocomplete="off">
                                     <label class="btn btn-outline-dance" for="content_archive">資料整理</label>
                                 </div>
@@ -599,7 +634,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="message_30th" class="form-label">想對 30TH 說的話</label>
-                                <textarea class="form-control" id="message_30th" name="message_30th" rows="4"
+                                <textarea class="form-control" id="message_30th" name="message_30th" rows="4" maxlength="5000"
                                     placeholder="想對水晶熱舞社說的話、想貢獻的部分、想見到誰、想留下的祝福……"></textarea>
                             </div>
                         </div>
@@ -608,7 +643,7 @@
 
                 <div class="summer-form__actions">
                     <button type="reset" class="btn btn-reset-dance">重新填寫</button>
-                    <button type="submit" class="btn btn-dance">送出應援表單 💛</button>
+                    <button type="submit" class="btn btn-dance" data-submit-button>送出應援表單 💛</button>
                 </div>
             </form>
         </section>
@@ -635,6 +670,50 @@
                 el.textContent = diffDays > 0
                     ? '💛 距離 30TH · 2027/04/15 還有 ' + diffDays + ' 天'
                     : '💛 30TH · 2027/04/15 已經到來，一起再集合！';
+            }
+        })();
+
+        (function () {
+            var form = document.querySelector('[data-dance-application-form]');
+            var feedback = document.querySelector('[data-form-feedback]');
+            var submitButton = document.querySelector('[data-submit-button]');
+            var result = new URLSearchParams(window.location.search).get('form');
+            var messages = {
+                success: ['success', '已收到你的應援報名！水晶熱舞社整理後會依你留下的 Email 聯絡。'],
+                invalid: ['error', '有欄位尚未完成或格式不正確，請檢查後再送出。'],
+                file_too_large: ['error', '上傳檔案超過 8 MB，請縮小檔案後再送出。'],
+                file_type: ['error', '檔案格式不支援，請改用圖片、MP4、WebM 或 MOV。'],
+                too_many: ['error', '短時間內送出次數較多，請稍候兩分鐘再試。'],
+                unavailable: ['error', '目前暫時無法儲存報名，請稍後再試。']
+            };
+
+            function showFeedback(type, message) {
+                if (!feedback) return;
+                feedback.hidden = false;
+                feedback.className = 'summer-form__feedback summer-form__feedback--' + type;
+                feedback.textContent = message;
+                feedback.focus();
+            }
+
+            if (result && messages[result]) {
+                showFeedback(messages[result][0], messages[result][1]);
+            }
+
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    var selectedContent = form.querySelectorAll('input[name="participate_content[]"]:checked');
+                    if (!selectedContent.length) {
+                        event.preventDefault();
+                        showFeedback('error', '請至少選擇一項想參與的 30TH 內容。');
+                        var firstContent = form.querySelector('input[name="participate_content[]"]');
+                        if (firstContent) firstContent.focus();
+                        return;
+                    }
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = '送出中…';
+                    }
+                });
             }
         })();
     </script>
