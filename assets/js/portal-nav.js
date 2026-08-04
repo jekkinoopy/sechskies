@@ -257,9 +257,9 @@
                     <li><a target="_blank" rel="noopener noreferrer" href="${rp}totoga2/video.html"><span class="portal-nav__label">影片</span></a></li>
                 </ul>
             </li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/bangxiao.html"><span class="portal-nav__label">世紀級寶藏</span></a></li>
         </ul>
     </li>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}variety/bangxiao.html"><span class="portal-nav__label">世紀級寶藏</span></a></li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}member/member.html"><span class="portal-nav__label">完整的六顆</span></a></li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span></a>
         <ul class="portal-submenu">
