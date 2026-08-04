@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "預覽網站",
+            "detail": "本機 http://127.0.0.1:5501（等同雙擊 preview.bat）",
+            "type": "shell",
+            "command": "${workspaceFolder}\\preview.bat",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false
+            },
+            "runOptions": {
+                "instanceLimit": 1
+            }
+        }
+    ]
+}

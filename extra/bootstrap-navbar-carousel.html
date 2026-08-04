@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶男孩｜跨時空精選</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/tablet.css">
+    <style>
+        /* ── 跨時空精選頁專用樣式（bnc-page 範圍內，不影響全站） ── */
+        .bnc-page .bnc-hero-lead {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            max-width: 620px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .bnc-page .bnc-navbar {
+            background: var(--color-bg-raised) !important;
+        }
+
+        .bnc-page .bnc-navbar .navbar-brand,
+        .bnc-page .bnc-navbar .nav-link {
+            color: var(--color-text-inverse);
+        }
+
+        .bnc-page .bnc-navbar .nav-link:hover,
+        .bnc-page .bnc-navbar .nav-link.active {
+            color: var(--color-brand);
+        }
+
+        .bnc-page .bnc-section {
+            scroll-margin-top: 78px;
+        }
+
+        .bnc-page .bnc-lead {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 1rem;
+            max-width: 620px;
+            margin: 0 auto 1.75rem;
+        }
+
+        .bnc-page .bnc-card {
+            border: 1px solid rgba(255, 204, 0, 0.25);
+            border-radius: 12px;
+        }
+
+        .bnc-page .bnc-card h3 {
+            color: var(--color-brand-dark);
+        }
+
+        .bnc-page .bnc-card p {
+            color: var(--color-text-muted);
+        }
+
+        .bnc-page .carousel-item img {
+            height: 340px;
+            object-fit: cover;
+        }
+
+        .bnc-page .bnc-tech-note {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.78rem;
+            margin: 2rem auto 0;
+            max-width: 640px;
+        }
+    </style>
+</head>
+
+<body class="bnc-page">
+    <header class="inner-page-header" id="top">
+        <div class="header-inner site-header-inner">
+            <h1 class="main-title">跨時空精選</h1>
+            <div class="subtitle-wrap">
+                <span class="sub-title">ALBUMS · STAGES · SIX CRYSTALS</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+
+    <p class="bnc-hero-lead">從出道專輯到近期巡演，這頁抓幾段最想讓你先看的片段——點下面導覽跳段落，或直接往下滑逛完。</p>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bnc-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#top">跨時空精選</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bncNav"
+                aria-controls="bncNav" aria-expanded="false" aria-label="切換頁內導覽">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="bncNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#cover">封面精選</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#picks">精選作品</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stages">舞台片段</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <canvas id="particles"></canvas>
+
+    <main class="content-container">
+
+        <section id="cover" class="bnc-section">
+            <div class="container">
+                <h2 class="section-title">封面精選</h2>
+                <p class="bnc-lead">巡迴現場的幾個瞬間，先讓眼睛暖身。</p>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10">
+                        <div id="carouselCover" class="carousel slide shadow-sm rounded overflow-hidden"
+                            data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselCover" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="2016"></button>
+                                <button type="button" data-bs-target="#carouselCover" data-bs-slide-to="1"
+                                    aria-label="2017"></button>
+                                <button type="button" data-bs-target="#carouselCover" data-bs-slide-to="2"
+                                    aria-label="2018"></button>
+                                <button type="button" data-bs-target="#carouselCover" data-bs-slide-to="3"
+                                    aria-label="2020"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../assets/images/concert/2016.jpg" class="d-block w-100" alt="2016 演唱會">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>2016 巡演</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/concert/2017.jpg" class="d-block w-100" alt="2017 演唱會">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>2017 巡演</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/concert/2018.jpg" class="d-block w-100" alt="2018 演唱會">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>2018 巡演</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/concert/2020.jpg" class="d-block w-100" alt="2020 演唱會">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>2020 巡演</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCover"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">上一張</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselCover"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">下一張</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="picks" class="bnc-section">
+            <div class="container">
+                <h2 class="section-title">精選作品</h2>
+                <p class="bnc-lead">推廣部這幾個單元，是新朋友最快認識水晶男孩的入口。</p>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">淪陷瞬間</h3>
+                            <p class="small mb-0">入坑敘事與跨時空軌跡時間軸。</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">完整的六顆</h3>
+                            <p class="small mb-0">黑水晶、白水晶六人海報板與團名典故。</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">現場的震撼</h3>
+                            <p class="small mb-0">巡迴場次、場館與曲目一次展開。</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">黃色留聲機</h3>
+                            <p class="small mb-0">全盛期年表與代表曲目整理。</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">Yellow Note</h3>
+                            <p class="small mb-0">視覺演進手記與追星足跡地圖。</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card bnc-card h-100 p-3">
+                            <h3 class="h6">全員發瘋</h3>
+                            <p class="small mb-0">綜藝節目存檔表，六人各自暴走實錄。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stages" class="bnc-section">
+            <div class="container">
+                <h2 class="section-title">舞台片段</h2>
+                <p class="bnc-lead">從專輯封面回望，那些年一起站上的舞台。</p>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div id="carouselStages" class="carousel slide shadow-sm rounded overflow-hidden"
+                            data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselStages" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="1997"></button>
+                                <button type="button" data-bs-target="#carouselStages" data-bs-slide-to="1"
+                                    aria-label="1998"></button>
+                                <button type="button" data-bs-target="#carouselStages" data-bs-slide-to="2"
+                                    aria-label="1999"></button>
+                                <button type="button" data-bs-target="#carouselStages" data-bs-slide-to="3"
+                                    aria-label="2016"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../assets/images/albums/1997.jpg" class="d-block w-100" alt="1997 出道專輯">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>1997 · 出道</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/albums/1998.jpg" class="d-block w-100" alt="1998 專輯">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>1998</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/albums/1999.jpg" class="d-block w-100"
+                                        alt="1999 全盛期專輯">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>1999 · 全盛期</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../assets/images/albums/2016.jpg" class="d-block w-100" alt="2016 合體專輯">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>2016 · 合體</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselStages"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">上一張</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselStages"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">下一張</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <p class="bnc-tech-note">本頁使用 Bootstrap 5 完成響應式導覽、Grid 排版、錨點跳轉與 Carousel 展示。</p>
+
+    </main>
+
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank" rel="noopener noreferrer">
+            Design by <span class="mark_b">Jekkinoopy Studio</span>
+        </a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/particles.js"></script>
+    <script src="../assets/js/portal-nav.js"></script>
+</body>
+
+</html>

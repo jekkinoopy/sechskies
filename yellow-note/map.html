@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SECHSKIES 台灣行程地圖</title>
+    <title>SECHSKIES 節目景點地圖</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/tablet.css">
@@ -13,7 +13,7 @@
         body.map-page .map-embed-all[hidden],
         body.map-page .map-embed-single[hidden],
         body.map-page .map-links-dual[hidden],
-        body.map-page #open-map-link[hidden] {
+        body.map-page .map-link[hidden] {
             display: none !important;
         }
 
@@ -29,19 +29,18 @@
  否則會變成瀏覽器的「片段模式」，樣式常常吃不到或跑版。 -->
 <header class="inner-page-header">
     <div class="header-inner site-header-inner">
-        <h1 class="main-title">台灣行程列表</h1>
+        <h1 class="main-title">節目景點列表</h1>
         <div class="subtitle-wrap">
-            <span class="sub-title">SECHSKIES TAIWAN ARCHIVE</span>
+            <span class="sub-title">SECHSKIES LOCATION ARCHIVE</span>
         </div>
     </div>
 </header>
 
 <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
 
-<div class="member-tabs" aria-label="成員篩選">
-    <button class="tab-btn active" data-member="eun" aria-pressed="true">殷空少搭飛機去台灣高雄</button>
-    <button class="tab-btn" data-member="ko" aria-pressed="false">高高父子遊台灣</button>
-    <button class="tab-btn" data-member="all" aria-pressed="false">全部行程</button>
+<div class="region-tabs" aria-label="地區篩選" data-region-tabs>
+    <button class="region-tab-btn active" data-region="taipei" aria-pressed="true">台灣行程</button>
+    <button class="region-tab-btn" data-region="global" aria-pressed="false">海外行程</button>
 </div>
 
 <canvas id="particles"></canvas>
@@ -49,53 +48,50 @@
 <input id="itinerary-search" type="search" aria-label="行程搜尋"
     placeholder="搜尋地點、描述、標籤（例如：九份、夜市、Day 2）">
 
-<main id="taipei" class="content-container map-layout">
-    <!-- 備註：Google My Maps 嵌入。預設殷志源單圖；「全部行程」並排兩張（殷志源在上／左）。
-     右側列表為敘事與導覽；地圖與標籤在 map.js 的 memberMaps 設定。 -->
-    <section class="map-sticky">
-        <h2 class="map-title">水晶男孩台灣行程地圖</h2>
-        <div class="map-embed-single" id="map-embed-single">
-            <iframe id="member-map" class="map-my-maps-frame" title="SECHSKIES 踩點地圖（單一行程）" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/d/embed?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI&ehbc=2E312F">
-            </iframe>
+<main class="content-container">
+    <!-- 備註：每個 .region-panel 是獨立地區區塊，member-tabs 上的 data-map-embed／data-map-open
+     是該行程的 Google My Maps（可留空＝該行程沒有地圖，只顯示卡片）。新增行程只要加一顆 tab 按鈕，
+     不需要改 map.js。「全部行程」的地圖會依目前分頁裡「有設定地圖」的 tab 動態組出來。 -->
+
+    <section id="taipei" class="region-panel" data-region-panel="taipei">
+        <div class="member-tabs" aria-label="成員篩選" data-member-tabs>
+            <button class="tab-btn active" data-member="eun" aria-pressed="true"
+                data-trip-name="殷空少搭飛機去台灣高雄" data-member-label="殷志源" data-sort-order="0"
+                data-map-embed="https://www.google.com/maps/d/embed?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI&amp;ehbc=2E312F"
+                data-map-open="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">殷空少搭飛機去台灣高雄</button>
+            <button class="tab-btn" data-member="ko" aria-pressed="false"
+                data-trip-name="高高父子遊台灣" data-member-label="高志溶" data-sort-order="1"
+                data-map-embed="https://www.google.com/maps/d/embed?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw&amp;hl=zh-TW&amp;ehbc=2E312F"
+                data-map-open="https://www.google.com/maps/d/u/0/viewer?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw">高高父子遊台灣</button>
+            <button class="tab-btn" data-member="all" aria-pressed="false">全部行程</button>
         </div>
-        <div class="map-embed-all" id="map-embed-all" hidden>
-            <div class="map-embed-pair">
-                <p class="map-embed-label">殷空少搭飛機去台灣高雄</p>
-                <iframe id="member-map-eun" class="map-my-maps-frame" title="殷志源高雄行程 踩點地圖" loading="lazy"
+
+        <div class="map-layout">
+        <section class="map-sticky" data-map-sticky>
+            <h2 class="map-title">水晶男孩台灣行程地圖</h2>
+            <div class="map-embed-single" id="map-embed-single">
+                <iframe id="member-map" class="map-my-maps-frame" title="SECHSKIES 踩點地圖（單一行程）" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     src="https://www.google.com/maps/d/embed?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI&ehbc=2E312F">
                 </iframe>
             </div>
-            <div class="map-embed-pair">
-                <p class="map-embed-label">高高父子遊台灣</p>
-                <iframe id="member-map-ko" class="map-my-maps-frame" title="高高父子遊台灣 踩點地圖" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/d/embed?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw&hl=zh-TW&ehbc=2E312F">
-                </iframe>
+            <p class="map-embed-empty" data-map-embed-empty hidden>這個行程目前沒有設定地圖，只有下方的地點卡片。</p>
+            <div class="map-embed-all" id="map-embed-all" hidden></div>
+            <div class="map-links-wrap">
+                <a id="open-map-link" class="map-link" target="_blank"
+                    href="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">
+                    在 Google My Maps 開啟完整地圖
+                </a>
+                <div id="open-map-links-dual" class="map-links-dual" hidden></div>
             </div>
-        </div>
-        <div class="map-links-wrap">
-            <a id="open-map-link" class="map-link" target="_blank"
-                href="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">
-                在 Google My Maps 開啟完整地圖
-            </a>
-            <div id="open-map-links-dual" class="map-links-dual" hidden>
-                <a id="open-map-link-eun" class="map-link" target="_blank"
-                    href="https://www.google.com/maps/d/u/0/viewer?mid=1VGZ76SPPjm3NWCBQe-hkm08oe5WPRJI">開啟「殷空少搭飛機去台灣高雄」My Maps</a>
-                <a id="open-map-link-ko" class="map-link" target="_blank"
-                    href="https://www.google.com/maps/d/u/0/viewer?mid=1xpAsSoO8gNmMiW4x2sfkndISFTtjMQDw">開啟「高高父子遊台灣」My Maps</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
     <section class="itinerary-list">
         <!-- 備註：每張卡的 data-* 是「細節面板的資料來源」。
          你只要改 data-date/title/desc/quote/tag/link 和圖片，就會同步更新上方介紹。 -->
         <article class="detail-panel" id="detail-panel" aria-live="polite">
             <div class="detail-photo">
-                <img id="detail-image" src="https://picsum.photos/seed/day1-airport/900/520" alt="行程節目截圖">
+                <img id="detail-image" src="https://images.pexels.com/photos/31504986/pexels-photo-31504986.jpeg" alt="臺灣桃園國際機場停機坪與客機">
             </div>
             <div class="detail-content">
                 <span id="detail-date" class="date">Day 1</span>
@@ -112,7 +108,7 @@
             data-quote="高雄，我們來了。" data-tag="#殷志源 #Day1 #出發"
             data-link="https://maps.google.com/?q=仁川國際機場">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/eun-khh-day1-1/640/420" alt="殷志源高雄行程節目截圖-仁川國際機場">
+                <img src="https://images.pexels.com/photos/32211619/pexels-photo-32211619.jpeg" alt="仁川國際機場明亮現代化航廈">
             </div>
             <div class="card-content">
                 <span class="date">殷志源 Day 1</span>
@@ -125,7 +121,7 @@
             data-desc="抵達高雄，正式開始在地行程。"
             data-quote="落地就是旅行模式開啟。" data-tag="#殷志源 #Day1 #高雄"
             data-link="https://maps.google.com/?q=高雄國際機場">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day1-2/640/420" alt="殷志源高雄行程節目截圖-高雄國際機場"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Outside_of_KHH_Terminal.jpg" alt="高雄國際機場航廈外觀" title="圖片來源：Wikimedia Commons，© ABOVE THE SKY，CC BY-SA 4.0"><span class="photo-credit">© ABOVE THE SKY</span></div>
             <div class="card-content"><span class="date">殷志源 Day 1</span><h3>高雄國際機場</h3><p class="description">殷志源高雄行程第二站。</p><div class="tag">#殷志源 #Day1</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 1" data-title="星巴克小港國際站門市"
@@ -160,28 +156,28 @@
             data-desc="高雄經典景點，白天景色與步行路線都很適合取景。"
             data-quote="每一步都有風景可以拍。" data-tag="#殷志源 #Day2 #景點"
             data-link="https://maps.google.com/?q=蓮池潭">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-2/640/420" alt="殷志源高雄行程節目截圖-蓮池潭"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Lotus_Lake%2C_Kaohsiung%2C_panorama%2C_Dec_06.jpg" alt="蓮池潭與春秋閣全景" title="圖片來源：Wikimedia Commons，© Sengkang，CC BY-SA 3.0"><span class="photo-credit">© Sengkang</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>蓮池潭</h3><p class="description">殷志源高雄行程 Day 2 第二站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="龍虎塔"
             data-desc="蓮池潭代表地標，適合搭配導覽與拍照段落。"
             data-quote="高雄的經典場景之一。" data-tag="#殷志源 #Day2 #地標"
             data-link="https://maps.google.com/?q=龍虎塔">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-3/640/420" alt="殷志源高雄行程節目截圖-龍虎塔"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Dragon_and_Tiger_Pagodas.jpg" alt="蓮池潭龍虎塔與九曲橋" title="圖片來源：Wikimedia Commons，© Selvamsathish，CC BY-SA 4.0"><span class="photo-credit">© Selvamsathish</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>龍虎塔</h3><p class="description">殷志源高雄行程 Day 2 第三站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="輕軌高雄展覽館站(新光碼頭)"
             data-desc="港區路線轉乘點，串接後續海線行程。"
             data-quote="搭上輕軌，城市風景一路展開。" data-tag="#殷志源 #Day2 #輕軌"
             data-link="https://maps.google.com/?q=輕軌高雄展覽館站(新光碼頭)">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-4/640/420" alt="殷志源高雄行程節目截圖-輕軌高雄展覽館站"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Kaohsiung_LRT_C8_Station.jpg" alt="高雄輕軌車站與列車" title="圖片來源：Wikimedia Commons，© Tze Chiang Hao，CC BY-SA 4.0"><span class="photo-credit">© Tze Chiang Hao</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>輕軌高雄展覽館站(新光碼頭)</h3><p class="description">殷志源高雄行程 Day 2 第四站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="捷運哈瑪星站(輕軌哈瑪星站)"
             data-desc="山海交界的人氣轉運點，步行動線完整。"
             data-quote="到了哈瑪星，海港味就很濃。" data-tag="#殷志源 #Day2 #捷運"
             data-link="https://maps.google.com/?q=捷運哈瑪星站">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-5/640/420" alt="殷志源高雄行程節目截圖-捷運哈瑪星站"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Hamasen%2C_Kaohsiung_2011-04-24.jpg" alt="哈瑪星港區歷史街景" title="圖片來源：Wikimedia Commons，© Yi Chen，CC BY 2.0"><span class="photo-credit">© Yi Chen</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>捷運哈瑪星站(輕軌哈瑪星站)</h3><p class="description">殷志源高雄行程 Day 2 第五站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="仁武烤鴨"
@@ -202,14 +198,14 @@
             data-desc="前往旗津的重要交通節點。"
             data-quote="坐上渡輪，旅程感直接拉滿。" data-tag="#殷志源 #Day2 #輪渡"
             data-link="https://maps.google.com/?q=鼓山輪渡站">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-8/640/420" alt="殷志源高雄行程節目截圖-鼓山輪渡站"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Gushan_Ferry_Station-20250403.jpg" alt="鼓山輪渡站站體" title="圖片來源：Wikimedia Commons，© Allervous，CC BY-SA 4.0"><span class="photo-credit">© Allervous</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>鼓山輪渡站</h3><p class="description">殷志源高雄行程 Day 2 第八站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="旗津輪渡站"
             data-desc="抵達旗津，展開海岸線路段。"
             data-quote="到了旗津，風都不一樣。" data-tag="#殷志源 #Day2 #旗津"
             data-link="https://maps.google.com/?q=旗津輪渡站">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-9/640/420" alt="殷志源高雄行程節目截圖-旗津輪渡站"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/%E6%97%97%E6%B4%A5%E8%BC%AA%E6%B8%A1%E7%AB%99%E5%BB%BA%E7%AF%89%E5%A4%96%E8%A7%80.jpg" alt="旗津輪渡站建築外觀" title="圖片來源：Wikimedia Commons，© Yu-Cian Wu，CC BY-SA 4.0"><span class="photo-credit">© Yu-Cian Wu</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>旗津輪渡站</h3><p class="description">殷志源高雄行程 Day 2 第九站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="樂騎腳踏車、電動車、遊園車（旗津）"
@@ -223,14 +219,14 @@
             data-desc="旗津拍照地標之一。"
             data-quote="彩虹教堂是旗津必拍清單。" data-tag="#殷志源 #Day2 #旗津"
             data-link="https://maps.google.com/?q=旗津彩虹教堂">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-11/640/420" alt="殷志源高雄行程節目截圖-旗津彩虹教堂"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/%E3%80%90%E9%AB%98%E9%9B%84%E6%99%AF%E9%BB%9E%E3%80%91%E6%97%97%E6%B4%A5%E5%BD%A9%E8%99%B9%E6%95%99%E5%A0%82_%2831505226685%29.jpg" alt="旗津彩虹教堂繽紛拱門" title="圖片來源：Wikimedia Commons，© fullfen666，CC BY-SA 2.0"><span class="photo-credit">© fullfen666</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>旗津彩虹教堂</h3><p class="description">殷志源高雄行程 Day 2 第十一站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="旗津貝殼館"
             data-desc="旗津主題展點，補足海線內容。"
             data-quote="一站一站把海線故事拼起來。" data-tag="#殷志源 #Day2 #旗津"
             data-link="https://maps.google.com/?q=旗津貝殼館">
-            <div class="photo-frame"><img src="https://picsum.photos/seed/eun-khh-day2-12/640/420" alt="殷志源高雄行程節目截圖-旗津貝殼館"></div>
+            <div class="photo-frame"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Cijin_Shell_Museum.JPG" alt="旗津貝殼館外觀" title="圖片來源：Wikimedia Commons，© SSR2000，CC BY-SA 3.0"><span class="photo-credit">© SSR2000</span></div>
             <div class="card-content"><span class="date">殷志源 Day 2</span><h3>旗津貝殼館</h3><p class="description">殷志源高雄行程 Day 2 第十二站。</p><div class="tag">#殷志源 #Day2</div></div>
         </article>
         <article class="polaroid-card" data-member="eun" data-date="殷志源 Day 2" data-title="海忠寶活海產店"
@@ -246,7 +242,7 @@
             data-quote="旅程從落地那一刻就開始了。" data-tag="#高高父子遊台灣 #Day1 #機場"
             data-link="https://maps.google.com/?q=臺灣桃園國際機場">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day1-airport/640/420" alt="高高父子遊台灣節目截圖-臺灣桃園國際機場">
+                <img src="https://images.pexels.com/photos/31504986/pexels-photo-31504986.jpeg" alt="臺灣桃園國際機場停機坪與客機">
             </div>
             <div class="card-content">
                 <span class="date">高志溶 Day 1</span>
@@ -261,7 +257,7 @@
             data-quote="從這裡開始感受台北節奏。" data-tag="#高高父子遊台灣 #Day1 #西門"
             data-link="https://maps.google.com/?q=捷運西門站">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day1-ximen-mrt/640/420" alt="高高父子遊台灣節目截圖-捷運西門站">
+                <img src="https://images.pexels.com/photos/32222711/pexels-photo-32222711.jpeg" alt="西門町街景">
             </div>
             <div class="card-content">
                 <span class="date">Day 1</span>
@@ -306,7 +302,7 @@
             data-quote="台灣夜市是不能錯過的必修行程。" data-tag="#高高父子遊台灣 #Day1 #夜市"
             data-link="https://maps.google.com/?q=士林夜市">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day1-nightmarket/640/420" alt="高高父子遊台灣節目截圖-士林夜市">
+                <img src="https://images.pexels.com/photos/35558289/pexels-photo-35558289.jpeg" alt="士林夜市夜間街景">
             </div>
             <div class="card-content">
                 <span class="date">Day 1</span>
@@ -351,7 +347,8 @@
             data-quote="第二天從白天的城市日常開始。" data-tag="#高高父子遊台灣 #Day2 #校園"
             data-link="https://maps.google.com/?q=臺灣師範大學">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day2-ntnu/640/420" alt="高高父子遊台灣節目截圖-臺灣師範大學">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/202407_Main_gate_of_NTNU_Main_Campus.jpg" alt="臺灣師範大學校門" title="圖片來源：Wikimedia Commons，© Jonashtand，CC BY-SA 4.0">
+                <span class="photo-credit">© Jonashtand</span>
             </div>
             <div class="card-content">
                 <span class="date">Day 2</span>
@@ -381,7 +378,7 @@
             data-quote="九份是會讓人想慢慢走慢慢看的地方。" data-tag="#高高父子遊台灣 #Day2 #九份"
             data-link="https://maps.google.com/?q=九份老街">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day2-jiufen/640/420" alt="高高父子遊台灣節目截圖-九份老街">
+                <img src="https://images.pexels.com/photos/37975552/pexels-photo-37975552.jpeg" alt="九份老街紅燈籠夜景">
             </div>
             <div class="card-content">
                 <span class="date">Day 2</span>
@@ -426,7 +423,8 @@
             data-quote="第三天就用溫泉感把節奏放慢。" data-tag="#高高父子遊台灣 #Day3 #北投"
             data-link="https://maps.google.com/?q=北投公園露天溫泉">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day3-hotspring/640/420" alt="高高父子遊台灣節目截圖-北投公園露天溫泉">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Hot_river_%283823489104%29.jpg" alt="北投溫泉公園地熱溪流" title="圖片來源：Wikimedia Commons，© Caitriana Nicholson，CC BY-SA 2.0">
+                <span class="photo-credit">© Caitriana Nicholson</span>
             </div>
             <div class="card-content">
                 <span class="date">Day 3</span>
@@ -441,7 +439,8 @@
             data-quote="在橋上看風景，旅程也會變慢。" data-tag="#高高父子遊台灣 #Day3"
             data-link="https://maps.google.com/?q=靜安吊橋">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day3-bridge/640/420" alt="高高父子遊台灣節目截圖-靜安吊橋">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Jing%27an_Suspension_Bridge_New_Taipei_%E9%9D%9C%E5%AE%89%E6%A9%8B_%282025%29_-_img_08.jpg" alt="靜安吊橋" title="圖片來源：Wikimedia Commons，© Chainwit.，CC BY 4.0">
+                <span class="photo-credit">© Chainwit.</span>
             </div>
             <div class="card-content">
                 <span class="date">Day 3</span>
@@ -456,7 +455,7 @@
             data-quote="十分的氛圍，跟平溪線一樣有故事感。" data-tag="#高高父子遊台灣 #Day3 #十分"
             data-link="https://maps.google.com/?q=十分老街">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day3-shifen/640/420" alt="高高父子遊台灣節目截圖-十分老街">
+                <img src="https://images.pexels.com/photos/30131488/pexels-photo-30131488.jpeg" alt="十分老街火車穿越街道">
             </div>
             <div class="card-content">
                 <span class="date">Day 3</span>
@@ -501,7 +500,8 @@
             data-quote="把願望寫上天燈，這趟旅程就有了句點。" data-tag="#高高父子遊台灣 #Day3 #天燈"
             data-link="https://maps.google.com/?q=胡家天燈">
             <div class="photo-frame">
-                <img src="https://picsum.photos/seed/day3-sky-lantern/640/420" alt="高高父子遊台灣節目截圖-胡家天燈">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/20250707_lantern2.jpg" alt="十分天燈夜間施放" title="圖片來源：Wikimedia Commons，© Wombatjpw，CC0">
+                <span class="photo-credit">© Wombatjpw</span>
             </div>
             <div class="card-content">
                 <span class="date">Day 3</span>
@@ -510,10 +510,39 @@
                 <div class="tag">#高高父子遊台灣 #Day3</div>
             </div>
         </article>
+        </section>
+        </div>
+    </section>
+
+    <section id="global" class="region-panel" data-region-panel="global" hidden>
+        <div class="member-tabs" aria-label="成員篩選" data-member-tabs>
+            <button class="tab-btn active" data-member="all" aria-pressed="true">全部行程</button>
+        </div>
+
+        <div class="map-layout">
+        <section class="map-sticky" data-map-sticky hidden>
+            <h2 class="map-title">海外行程地圖</h2>
+            <div class="map-embed-single" id="map-embed-single-global">
+                <iframe id="member-map-global" class="map-my-maps-frame" title="SECHSKIES 踩點地圖（單一行程）" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
+            </div>
+            <p class="map-embed-empty" data-map-embed-empty hidden>這個行程目前沒有設定地圖，只有下方的地點卡片。</p>
+            <div class="map-embed-all" id="map-embed-all-global" hidden></div>
+            <div class="map-links-wrap">
+                <a class="map-link" target="_blank" href="#" hidden>在 Google My Maps 開啟完整地圖</a>
+                <div class="map-links-dual" hidden></div>
+            </div>
+        </section>
+
+        <section class="itinerary-list">
+            <p class="region-empty-state" data-region-empty>
+                海外行程整理中，之後會陸續補上節目裡出現過的國家與地點。
+            </p>
+        </section>
+        </div>
     </section>
 </main>
 <footer>
-    <div id="global"></div>
     <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
     <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank">
         Design by <span class="mark_b">Jekkinoopy Studio</span>
