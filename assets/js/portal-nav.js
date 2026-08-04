@@ -234,7 +234,7 @@
     }
 
     /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面
-     * 六主項：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、世紀級寶藏、Yellow Note。 */
+     * 七主項：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、世紀級寶藏、Yellow Note、水晶練習室（外站 sechskies_fans，籌備中）。 */
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
@@ -279,6 +279,7 @@
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
         </ul>
     </li>
+    <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="水晶練習室，尚無開放"><span class="portal-nav__label">水晶練習室</span></a></li>
 </ul>
 `.trim();
     }

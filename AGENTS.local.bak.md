@@ -72,15 +72,13 @@
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-08-04
+**最後更新：** 2026-06-17
 
 **進行中：**
 - 無
 
 **待確認：**
 - developer-rules 健檢尚未執行
-- `sechskies_fans`（新獨立專案）本機尚未建 MySQL 資料庫、尚未跑過 `admin/setup.php`；Render 部署中，資料庫主機未定
-- `portal-nav.js` 新增的「水晶練習室」項目目前是 `data-coming-soon` 佔位（href=`#`），等 sechskies_fans 網址確定後要補上真實外部連結並移除 coming-soon 標記
 
 **已完成：**
 - 建立 AGENTS.md 跨裝置上下文檔案
@@ -88,9 +86,6 @@
 - `variety/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
 - portal-nav 新增世紀級寶藏，正確放入淪陷瞬間子選單
 - `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
-- 新增 `admin/` 推廣部後臺第一階段：登入、控制台、管理者帳號、通用 CRUD、媒體上傳及公開狀態總覽
-- 水晶熱舞社／水晶練習室／偶像練習生已於 2026-08-04 拆成獨立專案 `sechskies_fans`（另一個 repo，路徑 `d:\Developer\projects\sechskies_fans`，不在本站範圍）：30TH 應援報名表單、練舞清單、後台 CRUD 與管理者登入都已搬走並改用自己的資料庫；`extra/site-guide.html` 與本站 `admin/bootstrap.php`／`admin/database/schema.sql` 已同步移除相關項目
-- `portal-nav.js` 頂欄新增第 7 項「水晶練習室」（Yellow Note 之後），連到獨立專案 sechskies_fans；`extra/site-guide.html` 同步新增對應項目；目前是 coming-soon 佔位，尚未接上真實網址
 
 ---
 
@@ -100,3 +95,9 @@
 > 「請先讀 AGENTS.md，再讀 developer-rules/rules/ 裡的所有規範，然後繼續 [任務]。」
 
 ## Imported Claude Cowork project instructions
+
+在這個專案資料夾中，有一個名為 developer-rules 的資料夾。
+
+這是我們第一次合作，我不確定裡面目前記錄的規範是否完全正確、有沒有被之前亂寫的扣給弄髒。
+
+請你在初始化專案後，立刻去徹底閱讀 developer-rules 裡的所有內容，並且不要盲目死背。請幫我仔細檢查、挑出裡面是否有前後矛盾、不夠乾淨、或是不符合現代高標準前端美感與 PHP 結構的規範。讀完後，請在我們的第一次對話中，條理分明地向我回報你的健檢結果，並給出優化建議，等我確認後我們再正式鎖定。
