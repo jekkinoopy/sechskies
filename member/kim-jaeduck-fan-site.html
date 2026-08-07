@@ -1,280 +1,807 @@
 <!doctype html>
 <html lang="zh-Hant">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JAEDUCK — Fan Archive</title>
-<style>
-  :root{
-    --ink:#161310;
-    --paper:#f7f2e8;
-    --muted:#7d7367;
-    --line:#e2d8c5;
-    --accent:#c99a3d;
-    --card:#fffcf5;
-    --dark:#161310;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  }
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{width:min(1140px,calc(100% - 40px));margin:auto}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JAEDUCK — Fan Archive</title>
+  <style>
+    :root {
+      --ink: #161310;
+      --paper: #f7f2e8;
+      --muted: #7d7367;
+      --line: #e2d8c5;
+      --accent: #c99a3d;
+      --card: #fffcf5;
+      --dark: #161310;
+    }
 
-  /* header */
-  header{
-    position:sticky;top:0;z-index:30;
-    backdrop-filter:blur(14px);
-    background:rgba(247,242,232,.88);
-    border-bottom:1px solid rgba(22,19,16,.08);
-  }
-  .nav{height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .brand{display:flex;flex-direction:column;line-height:1.1}
-  .brand strong{font-weight:900;letter-spacing:.1em;font-size:14px}
-  .brand span{font-size:10px;letter-spacing:.14em;color:var(--muted)}
-  .menu{display:flex;gap:18px;font-size:12px;letter-spacing:.04em;color:#4d4944;flex-wrap:wrap}
-  .menu a{padding:4px 0;border-bottom:1px solid transparent}
-  .menu a:hover{border-color:var(--accent)}
-  .back{font-size:11px;color:var(--muted);letter-spacing:.05em;white-space:nowrap}
-  .back:hover{color:var(--ink)}
+    * {
+      box-sizing: border-box
+    }
 
-  /* hero */
-  .hero{
-    padding:56px 0 0;border-bottom:1px solid var(--line);
-    overflow:hidden;
-  }
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:end}
-  .hero-copy{padding-bottom:56px}
-  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-  h1.hero-title{
-    font-size:clamp(56px,10vw,132px);line-height:.86;margin:0 0 22px;
-    letter-spacing:-.05em;font-weight:950;
-  }
-  .hero-copy p{font-size:17px;line-height:1.8;margin:0 0 22px;max-width:440px;color:#3a352f}
-  .tag{display:inline-block;border:1px solid var(--ink);padding:7px 13px;border-radius:999px;font-size:11px;letter-spacing:.04em;margin:0 7px 7px 0}
-  .hero-photo{
-    position:relative;align-self:stretch;
-    min-height:420px;border-radius:20px 20px 0 0;overflow:hidden;
-    background:#d8cbae;
-  }
-  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
-  .hero-photo .cap{
-    position:absolute;left:18px;bottom:18px;color:#fff;font-size:11px;
-    letter-spacing:.1em;text-shadow:0 1px 6px rgba(0,0,0,.5);
-  }
+    html {
+      scroll-behavior: smooth
+    }
 
-  /* sections */
-  section{padding:78px 0;border-bottom:1px solid var(--line)}
-  .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:36px;flex-wrap:wrap}
-  .section-head h2{margin:0;font-size:clamp(32px,5vw,58px);letter-spacing:-.04em}
-  .section-num{font-size:11px;letter-spacing:.2em;color:var(--muted);margin-bottom:8px}
-  .sub{color:var(--muted);font-size:13px;max-width:440px;line-height:1.75;text-align:left}
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
 
-  /* profile */
-  .profile-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:start}
-  .profile-photo{border-radius:16px;overflow:hidden;background:#d8cbae;aspect-ratio:4/5}
-  .profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
-  .spec-list{display:grid;gap:0;border-top:1px solid var(--line)}
-  .spec-row{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
-  .spec-row .k{font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:2px}
-  .spec-row .v{font-size:15px;line-height:1.7;text-align:left}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-  /* timeline */
-  .timeline{display:grid;gap:0}
-  .row{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--line)}
-  .row:first-child{border-top:0}
-  .year{font-weight:800;font-size:18px}
-  .row p{margin:0;color:#4a453e;line-height:1.8;text-align:left}
+    img {
+      max-width: 100%;
+      display: block
+    }
 
-  /* grid cards generic */
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;min-height:150px;display:flex;flex-direction:column}
-  .card .tagline{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:auto;padding-bottom:30px;text-transform:uppercase}
-  .card h3{margin:0 0 8px;font-size:19px}
-  .card p{margin:0;color:#5d5751;line-height:1.7;font-size:13.5px;text-align:left}
+    .wrap {
+      width: min(1140px, calc(100% - 40px));
+      margin: auto
+    }
 
-  /* gallery */
-  .gallery{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:14px}
-  .ph{
-    min-height:270px;border-radius:16px;border:1px solid var(--line);
-    background:
-      radial-gradient(circle at 25% 25%,rgba(201,154,61,.35),transparent 24%),
-      linear-gradient(135deg,#ebe1c9,#faf5e9 60%,#ddd0b0);
-    display:flex;align-items:end;padding:16px;font-size:11px;letter-spacing:.08em;color:#7a705f;
-  }
-  .ph.tall{min-height:558px}
+    /* header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 242, 232, .88);
+      border-bottom: 1px solid rgba(22, 19, 16, .08);
+    }
 
-  /* videos */
-  .video-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .video-thumb{
-    aspect-ratio:16/9;background:linear-gradient(135deg,#2b2620,#171410);
-    display:flex;align-items:center;justify-content:center;position:relative;
-  }
-  .video-thumb .play{
-    width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .video-thumb .play::after{content:"";border-left:14px solid #161310;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
-  .video-body{padding:16px 18px}
-  .video-body .cat{font-size:10px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
-  .video-body h3{margin:0;font-size:16px}
-  .video-body p{margin:6px 0 0;font-size:12.5px;color:var(--muted);text-align:left}
+    .nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px
+    }
 
-  /* updates */
-  .updates{border-top:1px solid var(--line)}
-  .update-row{display:grid;grid-template-columns:100px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
-  .update-row .date{font-size:11px;letter-spacing:.06em;color:var(--muted);padding-top:2px}
-  .update-row .body{text-align:left}
-  .update-row .body .kicker{font-size:10px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:4px}
-  .update-row .body p{margin:0;font-size:14px;line-height:1.7;color:#3a352f}
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1
+    }
 
-  /* taiwan */
-  .tw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-  .tw-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
-  .tw-card h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:10px}
-  .tw-card .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
-  .tw-card p{margin:0;color:#5d5751;line-height:1.75;font-size:13.5px;text-align:left}
+    .brand strong {
+      font-weight: 900;
+      letter-spacing: .1em;
+      font-size: 14px
+    }
 
-  /* stickers */
-  .sticker-note{
-    display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);
-    margin-bottom:30px;padding:12px 16px;border:1px dashed var(--line);border-radius:12px;
-    max-width:560px;text-align:left;line-height:1.7;
-  }
-  .sticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .sticker-card{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
-    display:flex;flex-direction:column;
-  }
-  .sticker-tag{
-    padding:10px 14px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted);border-bottom:1px solid var(--line);
-  }
-  .sticker-art{
-    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(150deg,#efe4c8,#dccb9d);
-    transition:transform .35s ease;
-  }
-  .sticker-art svg{width:56%;height:56%}
-  .sticker-art--photo{background:#efe4c8;padding:14%}
-  .sticker-art--photo img{width:100%;height:100%;object-fit:contain}
-  .sticker-art--soon{background:repeating-linear-gradient(135deg,#e7dcc0,#e7dcc0 10px,#ded1af 10px,#ded1af 20px)}
-  .sticker-art--soon span{font-size:11px;letter-spacing:.1em;color:#6b6152;background:rgba(255,252,245,.85);padding:6px 12px;border-radius:999px}
-  .sticker-card a.sticker-link{display:block}
-  .sticker-card a.sticker-link:hover .sticker-art{transform:scale(1.04)}
-  .sticker-info{padding:14px 16px 18px;display:flex;flex-direction:column;gap:4px}
-  .sticker-info .name{font-size:14px;font-weight:800}
-  .sticker-info .source{font-size:11px;color:var(--muted)}
+    .brand span {
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--muted)
+    }
 
-  footer{padding:44px 0 60px;color:#8a8071;font-size:11px;line-height:1.8;text-align:left}
+    .menu {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: #4d4944;
+      flex-wrap: wrap
+    }
 
-  @media(max-width:960px){
-    .grid4{grid-template-columns:repeat(2,1fr)}
-    .sticker-grid{grid-template-columns:repeat(2,1fr)}
-    .profile-grid{grid-template-columns:1fr}
-  }
-  @media(max-width:800px){
-    .menu{display:none}
-    .hero-grid{grid-template-columns:1fr}
-    .hero-photo{min-height:340px;border-radius:16px}
-    .hero-copy{padding-top:26px;padding-bottom:34px}
-    .grid3,.gallery{grid-template-columns:1fr}
-    .gallery .ph,.ph.tall{min-height:280px}
-    .row{grid-template-columns:76px 1fr}
-    .update-row{grid-template-columns:76px 1fr}
-    .tw-grid{grid-template-columns:1fr}
-  }
-</style>
+    .menu a {
+      padding: 4px 0;
+      border-bottom: 1px solid transparent
+    }
+
+    .menu a:hover {
+      border-color: var(--accent)
+    }
+
+    .back {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .05em;
+      white-space: nowrap
+    }
+
+    .back:hover {
+      color: var(--ink)
+    }
+
+    /* hero */
+    .hero {
+      padding: 56px 0 0;
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 0;
+      align-items: end
+    }
+
+    .hero-copy {
+      padding-bottom: 56px
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px
+    }
+
+    h1.hero-title {
+      font-size: clamp(56px, 10vw, 132px);
+      line-height: .86;
+      margin: 0 0 22px;
+      letter-spacing: -.05em;
+      font-weight: 950;
+    }
+
+    .hero-copy p {
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0 0 22px;
+      max-width: 440px;
+      color: #3a352f
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--ink);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: .04em;
+      margin: 0 7px 7px 0
+    }
+
+    .hero-photo {
+      position: relative;
+      align-self: stretch;
+      min-height: 420px;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      background: #d8cbae;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%
+    }
+
+    .hero-photo .cap {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+    }
+
+    /* sections */
+    section {
+      padding: 78px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 36px;
+      flex-wrap: wrap
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 58px);
+      letter-spacing: -.04em
+    }
+
+    .section-num {
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--muted);
+      margin-bottom: 8px
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 440px;
+      line-height: 1.75;
+      text-align: left
+    }
+
+    /* profile */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 34px;
+      align-items: start
+    }
+
+    .profile-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #d8cbae;
+      aspect-ratio: 4/5
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%
+    }
+
+    .spec-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .spec-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .spec-row .k {
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding-top: 2px
+    }
+
+    .spec-row .v {
+      font-size: 15px;
+      line-height: 1.7;
+      text-align: left
+    }
+
+    /* timeline */
+    .timeline {
+      display: grid;
+      gap: 0
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .row:first-child {
+      border-top: 0
+    }
+
+    .year {
+      font-weight: 800;
+      font-size: 18px
+    }
+
+    .row p {
+      margin: 0;
+      color: #4a453e;
+      line-height: 1.8;
+      text-align: left
+    }
+
+    /* grid cards generic */
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px
+    }
+
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .card .tagline {
+      font-size: 11px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: auto;
+      padding-bottom: 30px;
+      text-transform: uppercase
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 19px
+    }
+
+    .card p {
+      margin: 0;
+      color: #5d5751;
+      line-height: 1.7;
+      font-size: 13.5px;
+      text-align: left
+    }
+
+    /* gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr .7fr;
+      gap: 14px
+    }
+
+    .ph {
+      min-height: 270px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 25% 25%, rgba(201, 154, 61, .35), transparent 24%),
+        linear-gradient(135deg, #ebe1c9, #faf5e9 60%, #ddd0b0);
+      display: flex;
+      align-items: end;
+      padding: 16px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: #7a705f;
+    }
+
+    .ph.tall {
+      min-height: 558px
+    }
+
+    /* videos */
+    .video-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    .video-thumb {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #2b2620, #171410);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-thumb .play {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb .play::after {
+      content: "";
+      border-left: 14px solid #161310;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      margin-left: 4px
+    }
+
+    .video-body {
+      padding: 16px 18px
+    }
+
+    .video-body .cat {
+      font-size: 10px;
+      letter-spacing: .14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px
+    }
+
+    .video-body h3 {
+      margin: 0;
+      font-size: 16px
+    }
+
+    .video-body p {
+      margin: 6px 0 0;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: left
+    }
+
+    /* updates */
+    .updates {
+      border-top: 1px solid var(--line)
+    }
+
+    .update-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .update-row .date {
+      font-size: 11px;
+      letter-spacing: .06em;
+      color: var(--muted);
+      padding-top: 2px
+    }
+
+    .update-row .body {
+      text-align: left
+    }
+
+    .update-row .body .kicker {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .update-row .body p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #3a352f
+    }
+
+    /* taiwan */
+    .tw-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px
+    }
+
+    .tw-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px
+    }
+
+    .tw-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .tw-card .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: none
+    }
+
+    .tw-card p {
+      margin: 0;
+      color: #5d5751;
+      line-height: 1.75;
+      font-size: 13.5px;
+      text-align: left
+    }
+
+    /* stickers */
+    .sticker-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 30px;
+      padding: 12px 16px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      max-width: 560px;
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    /* 目前貼圖 02～04 註解中，僅剩 1 張卡片；用 auto-fill 讓格線跟著實際卡片數走，之後補回卡片會自動變回 4 欄 */
+    .sticker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 240px));
+      gap: 16px
+    }
+
+    .sticker-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sticker-tag {
+      padding: 10px 14px;
+      font-size: 10.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sticker-art {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, #efe4c8, #dccb9d);
+      transition: transform .35s ease;
+    }
+
+    .sticker-art svg {
+      width: 56%;
+      height: 56%
+    }
+
+    .sticker-art--photo {
+      background: #efe4c8;
+      padding: 14%
+    }
+
+    .sticker-art--photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain
+    }
+
+    .sticker-art--soon {
+      background: repeating-linear-gradient(135deg, #e7dcc0, #e7dcc0 10px, #ded1af 10px, #ded1af 20px)
+    }
+
+    .sticker-art--soon span {
+      font-size: 11px;
+      letter-spacing: .1em;
+      color: #6b6152;
+      background: rgba(255, 252, 245, .85);
+      padding: 6px 12px;
+      border-radius: 999px
+    }
+
+    .sticker-card a.sticker-link {
+      display: block
+    }
+
+    .sticker-card a.sticker-link:hover .sticker-art {
+      transform: scale(1.04)
+    }
+
+    .sticker-info {
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .sticker-info .name {
+      font-size: 14px;
+      font-weight: 800
+    }
+
+    .sticker-info .source {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    footer {
+      padding: 44px 0 60px;
+      color: #8a8071;
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: left
+    }
+
+    @media(max-width:960px) {
+      .grid4 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:800px) {
+      .menu {
+        display: none
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-photo {
+        min-height: 340px;
+        border-radius: 16px
+      }
+
+      .hero-copy {
+        padding-top: 26px;
+        padding-bottom: 34px
+      }
+
+      .grid3,
+      .gallery {
+        grid-template-columns: 1fr
+      }
+
+      .gallery .ph,
+      .ph.tall {
+        min-height: 280px
+      }
+
+      .row {
+        grid-template-columns: 76px 1fr
+      }
+
+      .update-row {
+        grid-template-columns: 76px 1fr
+      }
+
+      .tw-grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top">
-      <strong>JAEDUCK ARCHIVE</strong>
-      <span>SECHSKIES · FAN PROJECT</span>
-    </a>
-    <nav class="menu">
-      <a href="#profile">PROFILE</a>
-      <a href="#timeline">TIMELINE</a>
-      <a href="#gallery">GALLERY</a>
-      <a href="#videos">VIDEOS</a>
-      <a href="#updates">UPDATES</a>
-      <a href="#taiwan">台灣粉絲</a>
-      <a href="#stickers">貼圖</a>
-    </nav>
-    <a class="back" href="member.html">← 六顆水晶</a>
-  </div>
-</header>
-
-<main id="top">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">Sechs Kies · Black Kies · Fan Archive</div>
-        <h1 class="hero-title">JAEDUCK</h1>
-        <p>一個以金在德為核心整理的粉絲企劃頁——舞台上的節奏擔當，鏡頭外的沉穩存在。這裡收著他的資料、時間軸與台灣粉絲的一點心意，慢慢補、慢慢留。</p>
-        <span class="tag">김재덕</span>
-        <span class="tag">젝스키스</span>
-        <span class="tag">KIM JAEDUCK</span>
-        <span class="tag">TAIWAN FAN PAGE</span>
-      </div>
-      <div class="hero-photo">
-        <img src="../assets/images/member/4c0e013b341e85622979475bc230719b.jpg" alt="金在德肖像">
-        <span class="cap">BLACK KIES · RAP / DANCE</span>
-      </div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <strong>JAEDUCK ARCHIVE</strong>
+        <span>SECHSKIES · FAN PROJECT</span>
+      </a>
+      <nav class="menu">
+        <a href="#profile">PROFILE</a>
+        <a href="#timeline">TIMELINE</a>
+        <!-- GALLERY / VIDEOS / UPDATES / 台灣粉絲：對應區塊尚無實際素材，先與內容一起註解，等內容補齊再一併打開 -->
+        <a href="#stickers">貼圖</a>
+      </nav>
+      <!-- <a class="back" href="member.html">← 六顆水晶</a> -->
     </div>
-  </section>
+  </header>
 
-  <section id="profile">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-num">01 · ABOUT</div>
-          <h2>Profile</h2>
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Sechs Kies · Black Kies · Fan Archive</div>
+          <h1 class="hero-title">JAEDUCK</h1>
+          <p>一個以金在德為核心整理的粉絲企劃頁——舞台上的節奏擔當，鏡頭外的沉穩存在。這裡收著他的資料、時間軸與台灣粉絲的一點心意，慢慢補、慢慢留。</p>
+          <span class="tag">김재덕</span>
+          <span class="tag">젝스키스</span>
+          <span class="tag">KIM JAEDUCK</span>
+          <span class="tag">TAIWAN FAN PAGE</span>
         </div>
-        <div class="sub">舞台上負責節奏與張力的一角，水晶男孩黑水晶陣線核心之一。</div>
-      </div>
-      <div class="profile-grid">
-        <div class="profile-photo">
+        <div class="hero-photo">
           <img src="../assets/images/member/4c0e013b341e85622979475bc230719b.jpg" alt="金在德肖像">
-        </div>
-        <div class="spec-list">
-          <div class="spec-row"><div class="k">Name</div><div class="v">金在德 · 김재덕 · Kim Jaeduck</div></div>
-          <div class="spec-row"><div class="k">Group</div><div class="v">SECHSKIES（水晶男孩）</div></div>
-          <div class="spec-row"><div class="k">Unit</div><div class="v">Black Kies — 舞蹈與節奏路線</div></div>
-          <div class="spec-row"><div class="k">Birthday</div><div class="v">8月7日</div></div>
-          <div class="spec-row"><div class="k">Debut</div><div class="v">1997 年出道</div></div>
-          <div class="spec-row"><div class="k">Note</div><div class="v">舞台上的重心與節拍感，是黑水晶編排裡最常被記住的動作線條之一。</div></div>
+          <span class="cap">BLACK KIES · RAP / DANCE</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="timeline">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-num">02 · JOURNEY</div>
-          <h2>Timeline</h2>
+    <section id="profile">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-num">01 · ABOUT</div>
+            <h2>Profile</h2>
+          </div>
+          <div class="sub">舞台上負責節奏與張力的一角，水晶男孩黑水晶陣線核心之一。</div>
         </div>
-        <div class="sub">從出道到合體，一段留給水晶男孩、也留給金在德的時間軸。</div>
+        <div class="profile-grid">
+          <div class="profile-photo">
+            <img src="../assets/images/member/4c0e013b341e85622979475bc230719b.jpg" alt="金在德肖像">
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <div class="k">Name</div>
+              <div class="v">金在德 · 김재덕 · Kim Jaeduck</div>
+            </div>
+            <div class="spec-row">
+              <div class="k">Group</div>
+              <div class="v">SECHSKIES（水晶男孩）</div>
+            </div>
+            <div class="spec-row">
+              <div class="k">Unit</div>
+              <div class="v">Black Kies — 舞蹈與節奏路線</div>
+            </div>
+            <div class="spec-row">
+              <div class="k">Birthday</div>
+              <div class="v">8月7日</div>
+            </div>
+            <!-- <div class="spec-row">
+              <div class="k">Debut</div>
+              <div class="v">1997 年出道</div>
+            </div> -->
+            <div class="spec-row">
+              <div class="k">Note</div>
+              <div class="v"><span style="font-size: large; font-style: italic; font-weight: 600;">Back
+                  Down!!!<br></span>舞台上的重心與節拍感，是韓國末世紀裡最常被提及的舞蹈高手之一。
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="timeline">
-        <div class="row"><div class="year">1997</div><p>水晶男孩出道，六人以黑白水晶的分工站上舞台，金在德在其中負責舞蹈與節奏線條。</p></div>
-        <div class="row"><div class="year">2000</div><p>團體活動告一段落，各自往不同的路走去，那份默契先被收進記憶裡。</p></div>
-        <div class="row"><div class="year">2016</div><p>六人重新站回同一個舞台，粉絲們才明白，原來只是換個方式一起變老。</p></div>
-        <div class="row"><div class="year">2019 至今</div><p>陸續透過舞台、綜藝與活動延續水晶男孩的故事，金在德仍是那個穩住節奏的存在。</p></div>
-        <div class="row"><div class="year">2026</div><p>這個 Fan Archive 持續整理中，歡迎之後陸續補上更多片段。</p></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
+    <section id="timeline">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-num">02 · JOURNEY</div>
+            <h2>Timeline</h2>
+          </div>
+          <div class="sub">從出道到合體，一段留給水晶男孩、也留給金在德的時間軸。</div>
+        </div>
+        <div class="timeline">
+          <div class="row">
+            <div class="year">1997</div>
+            <p>水晶男孩出道，六人以黑白水晶的分工站上舞台，金在德在其中負責舞蹈與節奏線條。</p>
+          </div>
+          <div class="row">
+            <div class="year">2000</div>
+            <p>團體活動告一段落，各自往不同的路走去，那份默契先被收進記憶裡。</p>
+          </div>
+          <div class="row">
+            <div class="year">2016</div>
+            <!-- <p>六人重新站回同一個舞台，粉絲們才明白，原來只是換個方式一起變老。</p> -->
+            <p>六人重新站回同一個舞台，想念小黃想念成員想念舞台，在德幸福地眼眶含淚。</p>
+          </div>
+          <div class="row">
+            <div class="year">2019 至今</div>
+            <p>陸續透過舞台、綜藝與活動延續水晶男孩的故事，金在德仍是那個穩住節奏的存在。</p>
+          </div>
+          <div class="row">
+            <div class="year">2026</div>
+            <p>這個 Fan Archive 持續整理中，歡迎之後陸續補上更多片段。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+    Gallery / Videos / Updates / 台灣粉絲角落：先註解隱藏。
+    這四區目前只有版位示意，沒有真實照片、影片連結、動態消息或台灣粉絲活動資料，
+    直接上線會讓訪客看到假內容。等實際素材/資料到位後，拿掉外層註解即可直接使用。
+  -->
+    <!--
   <section id="gallery">
     <div class="wrap">
       <div class="section-head">
@@ -361,32 +888,40 @@
       </div>
     </div>
   </section>
+  -->
 
-  <section id="stickers">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-num">07 · GOODS</div>
-          <h2>繁體貼圖整理</h2>
-        </div>
-        <div class="sub">水晶男孩相關的繁中貼圖收藏區，點圖即可前往各自的 LINE 頁面。</div>
-      </div>
-      <div class="sticker-note">收錄幾組粉絲繪製的水晶男孩相關繁體貼圖，各自連到對應的 LINE 貼圖頁面，來源標示於圖片下方。</div>
-      <div class="sticker-grid">
-
-        <div class="sticker-card">
-          <div class="sticker-tag">繁體貼圖</div>
-          <a class="sticker-link" href="https://store.line.me/stickershop/product/35689099/zh-Hant" target="_blank" rel="noopener noreferrer" aria-label="前往 LINE 貼圖頁面">
-            <div class="sticker-art sticker-art--photo">
-              <img src="https://stickershop.line-scdn.net/stickershop/v1/product/35689099/LINEStorePC/main.png?v=1" alt="松鼠德德貼圖">
-            </div>
-          </a>
-          <div class="sticker-info">
-            <div class="name">松鼠德德</div>
-            <div class="source">來源：LINE 貼圖商店</div>
+    <section id="stickers">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-num">03 · fans</div>
+            <h2>Fan Site</h2>
           </div>
+          <div class="sub">收錄粉絲各種應援水晶男孩的方式。<br>陸續更新中，會一一詢問創作者是否願意公開在此站。</div>
         </div>
+        <div class="sticker-grid">
 
+          <div class="sticker-card">
+            <!-- <div class="sticker-tag">貼圖</div> -->
+            <a class="sticker-link" href="https://store.line.me/stickershop/product/35689099/zh-Hant" target="_blank"
+              rel="noopener noreferrer" aria-label="前往 LINE 貼圖頁面">
+              <div class="sticker-art sticker-art--photo">
+                <img src="https://stickershop.line-scdn.net/stickershop/v1/product/35689099/LINEStorePC/main.png?v=1"
+                  alt="松鼠德德貼圖">
+              </div>
+            </a>
+            <div class="sticker-info">
+              <div class="name">松鼠德德</div>
+              <div class="source">來源：LINE 貼圖</div>
+            </div>
+          </div>
+
+          <!--
+          繁體貼圖 02～04：先註解隱藏。
+          目前還沒拿到其他粉絲創作者的名稱／圖片／LINE 連結，先不放假資料上線；
+          拿到資料後，比照上面「松鼠德德」那張卡片的寫法補上，再拿掉這段註解。
+        -->
+          <!--
         <div class="sticker-card">
           <div class="sticker-tag">繁體貼圖</div>
           <div class="sticker-art sticker-art--soon">
@@ -419,16 +954,18 @@
             <div class="source">收錄邀請中</div>
           </div>
         </div>
+        -->
 
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+  </main>
 
-<footer>
-  <div class="wrap">Unofficial fan archive. 非官方粉絲整理頁面，內容持續更新，所有藝人相關權益屬各自所有者。</div>
-</footer>
+  <footer>
+    <div class="wrap">Unofficial fan archive. 非官方粉絲整理頁面，內容持續更新，所有藝人相關權益屬各自所有者。</div>
+  </footer>
 
 </body>
+
 </html>
