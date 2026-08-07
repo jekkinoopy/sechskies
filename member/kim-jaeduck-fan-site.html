@@ -172,11 +172,17 @@
       background: #d8cbae;
     }
 
-    .hero-photo img {
+    .hero-photo iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 15%
+      min-width: 177.78vh;
+      min-height: 56.25vw;
+      transform: translate(-50%, -50%);
+      border: 0;
+      pointer-events: none;
     }
 
     .hero-photo .cap {
@@ -692,7 +698,7 @@
         <!-- GALLERY / VIDEOS / UPDATES / 台灣粉絲：對應區塊尚無實際素材，先與內容一起註解，等內容補齊再一併打開 -->
         <a href="#stickers">貼圖</a>
       </nav>
-      <!-- <a class="back" href="member.html">← 六顆水晶</a> -->
+      <a class="back" href="member.html">← 六顆水晶</a>
     </div>
   </header>
 
@@ -703,14 +709,15 @@
         <div class="hero-copy">
           <div class="eyebrow">Sechs Kies · Black Kies · Fan Archive</div>
           <h1 class="hero-title">JAEDUCK</h1>
-          <p>一個以金在德為核心整理的粉絲企劃頁——舞台上的節奏擔當，鏡頭外的沉穩存在。這裡收著他的資料、時間軸與台灣粉絲的一點心意，慢慢補、慢慢留。</p>
+          <p>一個以金在德為核心整理的粉絲企劃頁——舞台上的節奏擔當，鏡頭外的沉穩存在。這裡收著他的資料與時間軸，慢慢補、慢慢留。</p>
           <span class="tag">김재덕</span>
           <span class="tag">젝스키스</span>
           <span class="tag">KIM JAEDUCK</span>
-          <span class="tag">TAIWAN FAN PAGE</span>
         </div>
         <div class="hero-photo">
-          <img src="../assets/images/member/4c0e013b341e85622979475bc230719b.jpg" alt="金在德肖像">
+          <iframe
+            src="https://www.youtube.com/embed/m7Zt_p9S-yg?start=179&autoplay=1&mute=1&loop=1&playlist=m7Zt_p9S-yg&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1&iv_load_policy=3"
+            title="金在德舞台片段" allow="autoplay; encrypted-media" loading="lazy"></iframe>
           <span class="cap">BLACK KIES · RAP / DANCE</span>
         </div>
       </div>

@@ -3376,6 +3376,14 @@ body.member-crystal-page .member-poster--white {
     background: linear-gradient(180deg, #b9a08a 0%, #7d6854 100%);
 }
 
+body.member-crystal-page .member-poster__link {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: inherit;
+    text-decoration: none;
+}
+
 body.member-crystal-page .member-poster__wanted {
     text-align: center;
     font-weight: 900;
