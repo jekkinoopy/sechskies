@@ -92,12 +92,39 @@
     }
 
     .menu a {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 4px 0;
       border-bottom: 1px solid transparent
     }
 
     .menu a:hover {
       border-color: var(--accent)
+    }
+
+    .nav-item__label {
+      text-transform: uppercase
+    }
+
+    .nav-item__num {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 3px;
+      font-size: 9px;
+      letter-spacing: .14em;
+      color: var(--muted);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: opacity .15s ease
+    }
+
+    .menu a:hover .nav-item__num {
+      opacity: 1
     }
 
     .back {
@@ -720,13 +747,8 @@
         <strong>JAEDUCK ARCHIVE</strong>
         <span>SECHSKIES · FAN PROJECT</span>
       </a>
-      <nav class="menu">
-        <a href="#profile">PROFILE</a>
-        <a href="#timeline">TIMELINE</a>
-        <!-- GALLERY / VIDEOS / UPDATES / 台灣粉絲：對應區塊尚無實際素材，先與內容一起註解，等內容補齊再一併打開 -->
-        <a href="#stickers">貼圖</a>
-      </nav>
-      <a class="back" href="member.html">← 六顆水晶</a>
+      <nav class="menu" id="siteMenu"></nav>
+      <!-- <a class="back" href="member.html">← 六顆水晶</a> -->
     </div>
   </header>
 
@@ -1004,6 +1026,28 @@
     <div class="wrap">Unofficial fan archive. 非官方粉絲整理頁面，內容持續更新，所有藝人相關權益屬各自所有者。</div>
   </footer>
 
+  <script>
+    (function () {
+      var nav = document.getElementById('siteMenu');
+      var sections = document.querySelectorAll('main > section[id]');
+      sections.forEach(function (section) {
+        var numEl = section.querySelector('.section-num');
+        var titleEl = section.querySelector('h2');
+        if (!numEl || !titleEl) return;
+        var a = document.createElement('a');
+        a.href = '#' + section.id;
+        var label = document.createElement('span');
+        label.className = 'nav-item__label';
+        label.textContent = titleEl.textContent;
+        var num = document.createElement('span');
+        num.className = 'nav-item__num';
+        num.textContent = numEl.textContent;
+        a.appendChild(label);
+        a.appendChild(num);
+        nav.appendChild(a);
+      });
+    })();
+  </script>
 </body>
 
 </html>
