@@ -291,6 +291,35 @@ img {
     position: relative;
 }
 
+/* 場次影片連結（點場次看影片）＋來源版權注意 */
+/* 注意：class 名避開 "con-" 前綴，否則會被 197 行 [class*="con-"][class*="-"] 選到 */
+.session-video-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 12px;
+    padding: 3px 14px;
+    border-radius: 20px;
+    background: var(--color-brand);
+    color: var(--color-text-dark);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.session-video-link:hover {
+    background: var(--color-brand-light);
+}
+
+.session-video-note {
+    display: block;
+    margin: 4px 0 0 38px;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+}
+
 /* 地點圖示 */
 .location::before {
     /* 1. 使用 Unicode 編碼代替貼圖 */
