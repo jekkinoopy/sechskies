@@ -6,8 +6,8 @@
 |----------------|------------------|
 | 淪陷瞬間 · 初心與軌跡 | `index.html` |
 | 傳奇的轉折 | `fallen/totoga2.html` |
-| 全員發瘋 · 隊長帶弟弟 | `variety/variety.html`（錨點 `#variety`） |
-| 全員發瘋 · 各自暴走 · 新西遊記 | `variety/NJTW/NJTW5.html` |
+| 全員發瘋 · 隊長帶弟弟 | `vedio/variety.html`（錨點 `#variety`） |
+| 全員發瘋 · 各自暴走 · 新西遊記 | `vedio/NJTW/NJTW5.html` |
 | 完整的六顆 | `member/member.html` |
 | 現場的震撼 | `concert/concert.html` |
 | 黃色留聲機 | `albums/albums.html` |
@@ -21,7 +21,7 @@
 - `member/` — 成員介紹（六顆水晶）
 - `concert/`、`albums/` — 與選單同名主題
 - `yellow-note/` — Yellow Note（minister + map）
-- `variety/` — 綜藝與 NJTW 子頁
+- `vedio/` — 綜藝與 NJTW 子頁
 - `extra/` — 未掛主欄之草稿、複本、全站索引 `site-guide.html` 等
 - `assets/` — 共用靜態資源
 - `docs/sql/` — SQL 練習、計畫（`sql_plan.md`）與 `.sql` 腳本／匯出

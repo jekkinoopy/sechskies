@@ -20,7 +20,7 @@ alwaysApply: true
 
 1. **未經站主逐句同意**：不得從 `COMING_SOON_PAGES` **刪**檔名、不得擴充 `INDEX_NAV_OPEN_HASHES`、不得在 `buildPortalNavInnerHTML` **新增**可點項、不得把籌備中改成真 `href`、不得刪站主已同意列入頂欄的項。
 2. **「檔案在 repo」≠「可開放導覽」**；不得自行推論。
-3. **`totoga2/readable.html`（圖文好讀版，檔名 `readable.html`）**、**`variety/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
+3. **`totoga2/readable.html`（圖文好讀版，檔名 `readable.html`）**、**`vedio/variety.html`**：站主**沒有明講對外開放**時，檔名**必須**留在 `COMING_SOON_PAGES`（訪客頂欄不可點進）。要開放時**只**能等站主說了再從 Set 移除。
 4. **「刪除／拿掉／不要了」**：若未寫明是**單一檔案**、**頂欄某一列**、**整段子選單**還是**整個資料夾**，**一律先問站主**，禁止自行擴大刪除範圍。
 5. **不確定**是否開放、連哪、是否例外：**先問站主再改**，不要猜。
 6. 站主說刪 **`某頁#錨點`**：見下方 **§8 頁面錨點刪除**（先改 DOM，再修死鏈；禁止只動導覽）。
@@ -32,7 +32,7 @@ alwaysApply: true
 在 **`buildPortalNavInnerHTML`**（`assets/js/portal-nav.js`）裡維護連結：
 
 - 依資訊架構放在對應的 **`<li>`** 底下；需要子選單時用 **`portal-submenu`**。
-- `href` 使用**站根相對路徑**（腳本會依當前頁深度加上前綴 `rp`）：例如 `` `${rp}variety/variety.html` ``、`` `${rp}index.html#section` ``。
+- `href` 使用**站根相對路徑**（腳本會依當前頁深度加上前綴 `rp`）：例如 `` `${rp}vedio/variety.html` ``、`` `${rp}index.html#section` ``。
 - Logo 列：`` `${rp}index.html` `` 與 `` `${rp}assets/images/logov.svg` ``。
 
 新增或調整完後，所有帶 **`data-portal-nav`** 的 `<nav class="portal-nav">` 都會在載入腳本時被注入同一份 HTML。
@@ -93,7 +93,7 @@ alwaysApply: true
   <script src="assets/js/portal-nav.js"></script>
   ```
 
-  內頁（例如 `extra/`、`fallen/`、`member/`、`yellow-note/`、`variety/` 下）請用相對站根深度，例如：
+  內頁（例如 `extra/`、`fallen/`、`member/`、`yellow-note/`、`vedio/` 下）請用相對站根深度，例如：
 
   ```html
   <script src="../assets/js/portal-nav.js"></script>

@@ -39,13 +39,14 @@
 - **站主索引**（自用）：`extra/site-guide.html`（`data-portal-nav-all-open`，不對外）
 - **內頁 header class**：`inner-page-header`（禁改回舊名）
 
-### variety/ 頁面
+### vedio/ 頁面（原 variety/，已改名）
 
 | 檔案 | 頁面標題 | 說明 |
 |------|----------|------|
-| `variety/bangxiao.html` | 世紀級寶藏 / 爆笑養老院 | 甜蜜負擔計量器；六人卡片選取 + jQuery 計算；CTA → `totoga2/ebook.html` |
-| `variety/variety-shows.html` | 全員發瘋 | 綜藝節目存檔表；tabs + 搜尋；已對齊 albums.html 扁平結構 |
-| `variety/NJTW/NJTW5.html` | 新西遊記5 | 各自暴走專頁 |
+| `vedio/bangxiao.html` | 世紀級寶藏 / 爆笑養老院 | 甜蜜負擔計量器；六人卡片選取 + jQuery 計算；CTA → `totoga2/ebook.html` |
+| `vedio/variety-shows.html` | 全員發瘋 | 綜藝節目存檔表；tabs + 搜尋；已對齊 albums.html 扁平結構 |
+| `vedio/NJTW/NJTW5.html` | 新西遊記5 | 各自暴走專頁 |
+| `vedio/vedio-list.html` | 影視清單 | 追劇進度預覽頁（乙級第三題骨架，PHP 後台在 `vedio/vedio-list/`） |
 
 ---
 
@@ -57,7 +58,7 @@
    site-guide 的 depth 數字 = nav 的層級：depth-1 是第一層 `<li>`，depth-2 是子選單項目，depth-3 是 subgroup 裡的巢狀項目。
 
 2. **`COMING_SOON_PAGES` 只放檔名**（不含路徑）。  
-   `normalizePageKey` 只取 href 最後一段，所以 `variety/bangxiao.html` → 比對 `bangxiao.html`。
+   `normalizePageKey` 只取 href 最後一段，所以 `vedio/bangxiao.html` → 比對 `bangxiao.html`。
 
 3. **直接連結不需要 subgroup**。  
    子選單內只要 `<li><a>` 就夠；`portal-nav__subgroup` 只在該項目還有巢狀子項目時才用（例如「傳奇的轉折」有時間軸、電子書等四項）。
@@ -72,7 +73,7 @@
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-08-04
+**最後更新：** 2026-08-13
 
 **進行中：**
 - 無
@@ -89,13 +90,14 @@
 
 **已完成：**
 - 建立 AGENTS.md 跨裝置上下文檔案
-- 新增 `variety/bangxiao.html`（世紀級寶藏 / 爆笑養老院，甜蜜負擔計量器）
-- `variety/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
+- 新增 `vedio/bangxiao.html`（世紀級寶藏 / 爆笑養老院，甜蜜負擔計量器）
+- `vedio/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
 - portal-nav 新增世紀級寶藏，正確放入淪陷瞬間子選單
 - `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
 - 新增 `admin/` 推廣部後臺第一階段：登入、控制台、管理者帳號、通用 CRUD、媒體上傳及公開狀態總覽
 - 水晶熱舞社／水晶練習室／偶像練習生已於 2026-08-04 拆成獨立專案 `sechskies_fans`（另一個 repo，路徑 `d:\Developer\projects\sechskies_fans`，不在本站範圍）：30TH 應援報名表單、練舞清單、後台 CRUD 與管理者登入都已搬走並改用自己的資料庫；`extra/site-guide.html` 與本站 `admin/bootstrap.php`／`admin/database/schema.sql` 已同步移除相關項目
 - `portal-nav.js` 頂欄新增第 7 項「水晶練習室」（Yellow Note 之後），連到獨立專案 sechskies_fans；`extra/site-guide.html` 同步新增對應項目；目前是 coming-soon 佔位，尚未接上真實網址
+- `variety/` 資料夾整個改名為 `vedio/`，同步修正 portal-nav.js、site-guide.html、style.css 註解、docs/site-structure.md、portal-nav-rules.md 等連結
 
 ---
 

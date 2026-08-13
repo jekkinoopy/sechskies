@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶男孩｜全員發瘋</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/tablet.css">
+    <style>
+        body.variety-shows-page .variety-shows-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px 16px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        body.variety-shows-page .variety-shows-toolbar .variety-shows-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 10px;
+            margin: 0;
+            flex: 0 1 auto;
+        }
+
+        body.variety-shows-page .variety-shows-toolbar .search-input {
+            width: auto;
+            flex: 1 1 220px;
+            max-width: 400px;
+            min-width: 160px;
+            margin: 0 0 0 auto;
+        }
+
+        body.variety-shows-page .variety-table[data-show-tabs][hidden] {
+            display: none;
+        }
+
+        body.variety-shows-page .variety-table[data-show-tabs]+.variety-table[data-show-tabs] {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        body.variety-shows-page .variety-table {
+            width: 100%;
+            min-width: 640px;
+            margin: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            background: transparent;
+        }
+
+        body.variety-shows-page .variety-table__col-air {
+            width: 22%;
+        }
+
+        body.variety-shows-page .variety-table__col-channel {
+            width: 10%;
+        }
+
+        body.variety-shows-page .variety-table__col-program {
+            width: 28%;
+        }
+
+        body.variety-shows-page .variety-table__col-member {
+            width: 22%;
+        }
+
+        body.variety-shows-page .variety-table__col-eps {
+            width: 18%;
+        }
+
+        body.variety-shows-page .variety-table thead th {
+            padding: 12px 10px;
+            border: none;
+            border-bottom: 2px solid #e6e6e6;
+            background: #fafafa;
+            color: #333;
+            font-weight: 800;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        body.variety-shows-page .variety-table__show-row--labels td {
+            padding: 12px 10px;
+            border: none;
+            border-bottom: 2px solid #e6e6e6;
+            background: #fafafa;
+            color: #333;
+            font-weight: 800;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        body.variety-shows-page .variety-table tbody td {
+            padding: 11px 10px;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+            vertical-align: middle;
+            color: #444;
+        }
+
+        body.variety-shows-page .variety-table__year-row>td {
+            padding: 0;
+            background: #fafafa;
+            border-bottom: 2px solid #e8e8e8;
+            transition: background-color 0.15s ease;
+        }
+
+        body.variety-shows-page .variety-table__year-bar {
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        body.variety-shows-page .variety-table__year-bar-inner {
+            display: grid;
+            grid-template-columns: 22% 10% 28% 22% 18%;
+            align-items: center;
+            width: 100%;
+            min-height: 48px;
+            box-sizing: border-box;
+        }
+
+        body.variety-shows-page .variety-table__year-toggle {
+            grid-column: 3;
+            justify-self: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 12px 10px;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            cursor: pointer;
+            font: inherit;
+            color: #333;
+            text-align: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        body.variety-shows-page .variety-table__year-tail {
+            grid-column: 5;
+            justify-self: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            padding: 12px 10px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        body.variety-shows-page .variety-table__year-row:not(.is-open):hover>td,
+        body.variety-shows-page .variety-table__year-row.is-open:hover>td {
+            background: #f5f5f5;
+        }
+
+        body.variety-shows-page .variety-table__year-toggle:focus-visible {
+            outline: none;
+        }
+
+        body.variety-shows-page .variety-table__year-label {
+            font-weight: 800;
+            font-size: clamp(1rem, 2vw, 1.12rem);
+            color: #333;
+            white-space: nowrap;
+        }
+
+        body.variety-shows-page .variety-table__year-meta {
+            margin-right: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #777;
+        }
+
+        body.variety-shows-page .variety-table__year-chevron {
+            color: #999;
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+        }
+
+        body.variety-shows-page .variety-table__year-row.is-open .variety-table__year-tail .variety-table__year-chevron {
+            transform: rotate(180deg);
+        }
+
+        body.variety-shows-page .variety-table__show-row {
+            display: table-row;
+        }
+
+        body.variety-shows-page .variety-table__show-row[hidden] {
+            display: none;
+        }
+
+        body.variety-shows-page .variety-table__year-list .variety-table__show-row:not(.variety-table__show-row--labels):nth-of-type(even) td {
+            background: #fcfcfc;
+        }
+
+        body.variety-shows-page .variety-table .variety-table__program {
+            font-weight: 700;
+            color: #333;
+        }
+
+        body.variety-shows-page .variety-table a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        body.variety-shows-page .variety-table a:hover,
+        body.variety-shows-page .variety-table a:focus-visible {
+            text-decoration: underline;
+        }
+
+        body.variety-shows-page .variety-table a.variety-table__link--site {
+            color: #5a4a12;
+            font-weight: 700;
+        }
+
+        body.variety-shows-page .variety-table .variety-table__date {
+            color: #444;
+        }
+
+        body.variety-shows-page .variety-table__air-date {
+            white-space: nowrap;
+        }
+
+        body.variety-shows-page .variety-table .variety-table__range-arrow {
+            margin: 0 0.18em;
+            color: #666;
+            font-size: 0.82em;
+            vertical-align: 0.08em;
+        }
+
+        body.variety-shows-page .variety-shows-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 1.75rem;
+            font-weight: 700;
+            color: #5a4a12;
+        }
+
+        @media (max-width: 720px) {
+            body.variety-shows-page .variety-table {
+                font-size: 0.8rem;
+            }
+
+            body.variety-shows-page .variety-table thead th,
+            body.variety-shows-page .variety-table tbody td {
+                padding: 9px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body class="variety-shows-page">
+    <header class="inner-page-header">
+        <div class="header-inner site-header-inner">
+            <h1 class="main-title">全員發瘋</h1>
+            <div class="subtitle-wrap">
+                <span class="sub-title">VARIETY · ALL OUT</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="portal-nav" aria-label="水晶男孩推廣部導覽" data-portal-nav></nav>
+
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <div class="variety-shows-toolbar">
+            <div class="variety-shows-tabs" role="tablist" aria-label="綜藝分類">
+                <button type="button" class="tab-btn active" role="tab" id="variety-tab-all" data-tab="all"
+                    aria-selected="true" aria-controls="variety-shows">全部</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-captain" data-tab="captain"
+                    aria-selected="false" aria-controls="variety-shows">隊長帶弟弟</button>
+                <button type="button" class="tab-btn" role="tab" id="variety-tab-solo" data-tab="solo"
+                    aria-selected="false" aria-controls="variety-shows">各自暴走</button>
+            </div>
+            <input type="search" id="variety-shows-search" class="search-input" placeholder="搜尋成員或節目…"
+                autocomplete="off" aria-label="搜尋成員或節目">
+        </div>
+
+        <section id="variety-shows" aria-label="全員發瘋" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+                <table class="variety-table" id="captain-brothers" data-show-tabs="all captain">
+                <colgroup>
+                    <col class="variety-table__col-air">
+                    <col class="variety-table__col-channel">
+                    <col class="variety-table__col-program">
+                    <col class="variety-table__col-member">
+                    <col class="variety-table__col-eps">
+                </colgroup>
+<tbody class="variety-table__year-list">
+<tr class="variety-table__year-row" data-year="2016">
+                                    <td colspan="5" class="variety-table__year-bar">
+                                        <div class="variety-table__year-bar-inner">
+                                        <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2016-btn">
+                                            <span class="variety-table__year-label">2016</span>
+                                        </button>
+                                        <div class="variety-table__year-tail">
+                                            <span class="variety-table__year-meta">7 檔</span>
+                                            <i class="fa-solid fa-chevron-down variety-table__year-chevron" aria-hidden="true"></i>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+<tr class="variety-table__show-row variety-table__show-row--labels" data-year="2016" hidden>
+                                    <td>播出日期</td>
+                                    <td>頻道</td>
+                                    <td>節目名稱</td>
+                                    <td>出演成員</td>
+                                    <td>集數</td>
+                                </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-04-22"
+                                                            data-air-end="2016-06-17"><span
+                                                                class="variety-table__date">04/22</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">06/17</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記2</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;09</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-04-27"
+                                                            data-air-end="2016-06-22"><span
+                                                                class="variety-table__date">04/27</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">06/22</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">Let's GO 時間探險隊3</td>
+                                                        <td>張水院</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;09</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-05-04"
+                                                            data-air-end="2016-07-20"><span
+                                                                class="variety-table__date">05/04</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">07/20</span></td>
+                                                        <td>K-Star</td>
+                                                        <td class="variety-table__program">真實的帥氣的</td>
+                                                        <td>—</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;12</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-06-05"
+                                                            data-air-end="2016-08-21"><span
+                                                                class="variety-table__date">06/05</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">08/21</span></td>
+                                                        <td>JTBC</td>
+                                                        <td class="variety-table__program">天下壯士</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;12</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-09-05"
+                                                            data-air-end="2016-11-21"><span
+                                                                class="variety-table__date">09/05</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">11/21</span></td>
+                                                        <td>SBS</td>
+                                                        <td class="variety-table__program">花樣旅行</td>
+                                                        <td>殷志源、李宰鎮</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;12</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016">
+                                                        <td class="variety-table__air-date" data-air-start="2016-10-12"
+                                                            data-air-end="2016-10-21"><span
+                                                                class="variety-table__date">10/12</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">10/21</span></td>
+                                                        <td>JTBC</td>
+                                                        <td class="variety-table__program">本月的活動王</td>
+                                                        <td>張水院</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;02</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2016" data-pending-official="true">
+                                                        <td class="variety-table__air-date"><span
+                                                                class="variety-table__date">待確認</span></td>
+                                                        <td>MBC every1</td>
+                                                        <td class="variety-table__program"><a
+                                                                class="variety-table__link--site" target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                href="https://www.youtube.com/watch?v=IwpmBoNIhp4"
+                                                                data-pending-official="true">一週偶像 隨機播放舞蹈</a></td>
+                                                        <td>全體</td>
+                                                        <td>EP.280</td>
+                                                    </tr>
+<tr class="variety-table__year-row" data-year="2017">
+                                    <td colspan="5" class="variety-table__year-bar">
+                                        <div class="variety-table__year-bar-inner">
+                                        <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2017-btn">
+                                            <span class="variety-table__year-label">2017</span>
+                                        </button>
+                                        <div class="variety-table__year-tail">
+                                            <span class="variety-table__year-meta">4 檔</span>
+                                            <i class="fa-solid fa-chevron-down variety-table__year-chevron" aria-hidden="true"></i>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+<tr class="variety-table__show-row variety-table__show-row--labels" data-year="2017" hidden>
+                                    <td>播出日期</td>
+                                    <td>頻道</td>
+                                    <td>節目名稱</td>
+                                    <td>出演成員</td>
+                                    <td>集數</td>
+                                </tr>
+<tr class="variety-table__show-row" hidden data-year="2017">
+                                                        <td class="variety-table__air-date" data-air-start="2017-01-01"
+                                                            data-air-end="2019-06-02"><span
+                                                                class="variety-table__date">01/01</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">06/02</span></td>
+                                                        <td>KBS2</td>
+                                                        <td class="variety-table__program">超人回來了</td>
+                                                        <td>高志鎔</td>
+                                                        <td>163&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;280</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2017">
+                                                        <td class="variety-table__air-date" data-air-start="2017-01-08"
+                                                            data-air-end="2017-03-12"><span
+                                                                class="variety-table__date">01/08</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">03/12</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記3</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;09＋導演版</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2017">
+                                                        <td class="variety-table__air-date" data-air-start="2017-06-13"
+                                                            data-air-end="2017-08-22"><span
+                                                                class="variety-table__date">06/13</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">08/22</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記4</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;10＋導演版</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2017">
+                                                        <td class="variety-table__air-date" data-air-start="2017-12-05"
+                                                            data-air-end="2018-01-09"><span
+                                                                class="variety-table__date">12/05</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">01/09</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">姜食堂</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;05＋導演版</td>
+                                                    </tr>
+<tr class="variety-table__year-row" data-year="2018">
+                                    <td colspan="5" class="variety-table__year-bar">
+                                        <div class="variety-table__year-bar-inner">
+                                        <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2018-btn">
+                                            <span class="variety-table__year-label">2018</span>
+                                        </button>
+                                        <div class="variety-table__year-tail">
+                                            <span class="variety-table__year-meta">3 檔</span>
+                                            <i class="fa-solid fa-chevron-down variety-table__year-chevron" aria-hidden="true"></i>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+<tr class="variety-table__show-row variety-table__show-row--labels" data-year="2018" hidden>
+                                    <td>播出日期</td>
+                                    <td>頻道</td>
+                                    <td>節目名稱</td>
+                                    <td>出演成員</td>
+                                    <td>集數</td>
+                                </tr>
+<tr class="variety-table__show-row" hidden data-year="2018">
+                                                        <td class="variety-table__air-date" data-air-start="2018-05-05"
+                                                            data-air-end="2018-10-27"><span
+                                                                class="variety-table__date">05/05</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">10/27</span></td>
+                                                        <td>MBC</td>
+                                                        <td class="variety-table__program">意外的Q</td>
+                                                        <td>—</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;25</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2018">
+                                                        <td class="variety-table__air-date" data-air-start="2018-09-30"
+                                                            data-air-end="2018-10-28"><span
+                                                                class="variety-table__date">09/30</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">10/28</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program"><a
+                                                                class="variety-table__link--site"
+                                                                href="NJTW/NJTW5.html">新西遊記5</a></td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;05</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2018">
+                                                        <td class="variety-table__air-date" data-air-start="2018-10-28"
+                                                            data-air-end="2018-12-02"><span
+                                                                class="variety-table__date">10/28</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">12/02</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記6</td>
+                                                        <td>殷志源</td>
+                                                        <td>00&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;05＋導演版</td>
+                                                    </tr>
+<tr class="variety-table__year-row" data-year="2019">
+                                    <td colspan="5" class="variety-table__year-bar">
+                                        <div class="variety-table__year-bar-inner">
+                                        <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2019-btn">
+                                            <span class="variety-table__year-label">2019</span>
+                                        </button>
+                                        <div class="variety-table__year-tail">
+                                            <span class="variety-table__year-meta">5 檔</span>
+                                            <i class="fa-solid fa-chevron-down variety-table__year-chevron" aria-hidden="true"></i>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+<tr class="variety-table__show-row variety-table__show-row--labels" data-year="2019" hidden>
+                                    <td>播出日期</td>
+                                    <td>頻道</td>
+                                    <td>節目名稱</td>
+                                    <td>出演成員</td>
+                                    <td>集數</td>
+                                </tr>
+<tr class="variety-table__show-row" hidden data-year="2019">
+                                                        <td class="variety-table__air-date" data-air-start="2019-05-31"
+                                                            data-air-end="2019-07-05"><span
+                                                                class="variety-table__date">05/31</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">07/05</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">姜食堂2</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;06</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2019">
+                                                        <td class="variety-table__air-date" data-air-start="2019-06-08"
+                                                            data-air-end="2019-08-17"><span
+                                                                class="variety-table__date">06/08</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">08/17</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">高校供餐王</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;11</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2019">
+                                                        <td class="variety-table__air-date" data-air-start="2019-07-05"
+                                                            data-air-end="2019-08-02"><span
+                                                                class="variety-table__date">07/05</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">08/02</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">姜食堂3</td>
+                                                        <td>殷志源</td>
+                                                        <td>00&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;04</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2019">
+                                                        <td class="variety-table__air-date" data-air-start="2019-09-20"
+                                                            data-air-end="2019-11-22"><span
+                                                                class="variety-table__date">09/20</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">11/22</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">去冰島的三餐</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;10</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2019">
+                                                        <td class="variety-table__air-date" data-air-start="2019-10-25"
+                                                            data-air-end="2020-01-03"><span
+                                                                class="variety-table__date">10/25</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">01/03</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記7</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;11</td>
+                                                    </tr>
+<tr class="variety-table__year-row" data-year="2020">
+                                    <td colspan="5" class="variety-table__year-bar">
+                                        <div class="variety-table__year-bar-inner">
+                                        <button type="button" class="variety-table__year-toggle" aria-expanded="false" id="captain-year-2020-btn">
+                                            <span class="variety-table__year-label">2020</span>
+                                        </button>
+                                        <div class="variety-table__year-tail">
+                                            <span class="variety-table__year-meta">2 檔</span>
+                                            <i class="fa-solid fa-chevron-down variety-table__year-chevron" aria-hidden="true"></i>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+<tr class="variety-table__show-row variety-table__show-row--labels" data-year="2020" hidden>
+                                    <td>播出日期</td>
+                                    <td>頻道</td>
+                                    <td>節目名稱</td>
+                                    <td>出演成員</td>
+                                    <td>集數</td>
+                                </tr>
+<tr class="variety-table__show-row" hidden data-year="2020">
+                                                        <td class="variety-table__air-date" data-air-start="2020-01-10"
+                                                            data-air-end="2020-03-27"><span
+                                                                class="variety-table__date">01/10</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">03/27</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">星期五星期五晚上</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;10＋導演版</td>
+                                                    </tr>
+<tr class="variety-table__show-row" hidden data-year="2020">
+                                                        <td class="variety-table__air-date" data-air-start="2020-10-09"
+                                                            data-air-end="2020-12-18"><span
+                                                                class="variety-table__date">10/09</span>&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;<span
+                                                                class="variety-table__date">12/18</span></td>
+                                                        <td>tvN</td>
+                                                        <td class="variety-table__program">新西遊記8</td>
+                                                        <td>殷志源</td>
+                                                        <td>01&nbsp;<i
+                                                                class="fa-solid fa-circle-right variety-table__range-arrow"
+                                                                aria-hidden="true"></i>&nbsp;10＋導演版</td>
+                                                    </tr>
+</tbody>
+</table>
+
+                <table class="variety-table" id="each-rampage" data-show-tabs="all solo">
+                            <thead>
+                                <tr>
+                                    <th scope="col">播出日期</th>
+                                    <th scope="col">頻道</th>
+                                    <th scope="col">節目名稱</th>
+                                    <th scope="col">出演成員</th>
+                                    <th scope="col">集數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5">陸續補上；站內專頁例：<a class="variety-table__link--site"
+                                            href="NJTW/NJTW5.html">新西遊記5</a></td>
+                                </tr>
+                            </tbody>
+                </table>
+
+            <a class="variety-shows-back" href="variety.html#variety"><i class="fa-solid fa-arrow-left"
+                    aria-hidden="true"></i> 返回瘋子與天才</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>SECHSKIES Fanpage &copy; 2026 - 黃色氣球永遠飄揚</p>
+        <a href="https://jekkinoopy.github.io/Portfolio/" class="studio-link" target="_blank" rel="noopener noreferrer">
+            Design by <span class="mark_b">Jekkinoopy Studio</span>
+        </a>
+    </footer>
+
+    <script src="../assets/js/portal-nav.js"></script>
+    <script src="../assets/js/particles.js"></script>
+    <script>
+        (function () {
+            const tabBtns = document.querySelectorAll(".variety-shows-tabs .tab-btn");
+            const slots = document.querySelectorAll(
+                ".variety-shows-archive-card .variety-table[data-show-tabs]"
+            );
+            const input = document.getElementById("variety-shows-search");
+            const hashToTab = {
+                "captain-brothers": "captain",
+                "each-rampage": "solo",
+            };
+
+            function tabFromHash() {
+                const id = (location.hash || "").replace(/^#/, "");
+                return hashToTab[id] || "all";
+            }
+
+            function rowMatchesSearch(row, q) {
+                if (!q || row.classList.contains("variety-table__show-row--labels")) {
+                    return true;
+                }
+                const air = row.querySelector(".variety-table__air-date");
+                const airData = air
+                    ? `${air.dataset.airStart || ""} ${air.dataset.airEnd || ""}`
+                    : "";
+                const text = (row.textContent + " " + airData)
+                    .replace(/\s+/g, " ")
+                    .trim()
+                    .toLowerCase();
+                return text.includes(q);
+            }
+
+            function getYearLabelsRow(slot, year) {
+                return slot.querySelector(
+                    `.variety-table__show-row--labels[data-year="${year}"]`
+                );
+            }
+
+            function getYearShowRows(slot, year) {
+                return slot.querySelectorAll(
+                    `.variety-table__show-row[data-year="${year}"]:not(.variety-table__show-row--labels)`
+                );
+            }
+
+            function applyYearDetailVisibility(yearRow, open, q) {
+                const year = yearRow.dataset.year;
+                const slot = yearRow.closest("table[data-show-tabs]");
+                if (!slot) return;
+                const labels = getYearLabelsRow(slot, year);
+                const showRows = getYearShowRows(slot, year);
+                let anyMatch = false;
+
+                showRows.forEach((row) => {
+                    const match = rowMatchesSearch(row, q);
+                    if (match) anyMatch = true;
+                    if (!open) {
+                        row.hidden = true;
+                    } else {
+                        row.hidden = Boolean(q) && !match;
+                    }
+                });
+
+                if (labels) {
+                    labels.hidden = !open || (Boolean(q) && !anyMatch);
+                }
+
+                return anyMatch;
+            }
+
+            function syncYearRows(slot) {
+                const q = (input && input.value.trim().toLowerCase()) || "";
+                slot.querySelectorAll(".variety-table__year-row").forEach((yearRow) => {
+                    const year = yearRow.dataset.year;
+                    const btn = yearRow.querySelector(".variety-table__year-toggle");
+                    let yearOpen = yearRow.classList.contains("is-open");
+                    let anyMatch = applyYearDetailVisibility(yearRow, yearOpen, q);
+
+                    if (yearOpen && q && !anyMatch) {
+                        yearOpen = false;
+                        yearRow.classList.remove("is-open");
+                        if (btn) btn.setAttribute("aria-expanded", "false");
+                        applyYearDetailVisibility(yearRow, false, q);
+                    }
+
+                    if (q && anyMatch && !yearOpen) {
+                        yearOpen = true;
+                        yearRow.classList.add("is-open");
+                        if (btn) btn.setAttribute("aria-expanded", "true");
+                        applyYearDetailVisibility(yearRow, true, q);
+                        anyMatch = true;
+                    }
+
+                    yearRow.hidden = Boolean(q) && !anyMatch;
+                });
+            }
+
+            function setYearOpen(yearRow, open) {
+                const btn = yearRow.querySelector(".variety-table__year-toggle");
+                if (!btn) return;
+                btn.setAttribute("aria-expanded", open ? "true" : "false");
+                yearRow.classList.toggle("is-open", open);
+                const q = (input && input.value.trim().toLowerCase()) || "";
+                applyYearDetailVisibility(yearRow, open, q);
+            }
+
+            function filterVisibleRows() {
+                slots.forEach((slot) => {
+                    if (slot.hidden) return;
+                    syncYearRows(slot);
+                });
+            }
+
+            document.querySelectorAll(".variety-table__year-toggle").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const yearRow = btn.closest(".variety-table__year-row");
+                    const open = btn.getAttribute("aria-expanded") !== "true";
+                    setYearOpen(yearRow, open);
+                });
+            });
+
+            document.querySelectorAll(".variety-table__year-tail").forEach((tail) => {
+                tail.addEventListener("click", () => {
+                    tail.closest(".variety-table__year-row")
+                        ?.querySelector(".variety-table__year-toggle")
+                        ?.click();
+                });
+            });
+
+            function showTab(tab) {
+                tabBtns.forEach((btn) => {
+                    const on = btn.dataset.tab === tab;
+                    btn.classList.toggle("active", on);
+                    btn.setAttribute("aria-selected", on ? "true" : "false");
+                });
+                slots.forEach((slot) => {
+                    const keys = (slot.dataset.showTabs || "").split(/\s+/);
+                    slot.hidden = !keys.includes(tab);
+                });
+                filterVisibleRows();
+            }
+
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const tab = btn.dataset.tab;
+                    showTab(tab);
+                    const hash =
+                        tab === "captain"
+                            ? "#captain-brothers"
+                            : tab === "solo"
+                                ? "#each-rampage"
+                                : "";
+                    history.replaceState(
+                        null,
+                        "",
+                        hash || location.pathname + location.search
+                    );
+                });
+            });
+
+            if (input) {
+                input.addEventListener("input", filterVisibleRows);
+            }
+
+            window.addEventListener("hashchange", () => showTab(tabFromHash()));
+            showTab(tabFromHash());
+        })();
+    </script>
+</body>
+
+</html>
