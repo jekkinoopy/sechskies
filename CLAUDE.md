@@ -43,7 +43,7 @@
 
 | 檔案 | 頁面標題 | 說明 |
 |------|----------|------|
-| `vedio/bangxiao.html` | 世紀級寶藏 / 爆笑養老院 | 甜蜜負擔計量器；六人卡片選取 + jQuery 計算；CTA → `totoga2/ebook.html` |
+| `vedio/bangxiao.html` | 世紀級寶藏 / 爆笑養老院 | 甜蜜負擔計量器；六人卡片選取 + jQuery 計算；CTA → `vedio/variety-shows.html` |
 | `vedio/variety-shows.html` | 全員發瘋 | 綜藝節目存檔表；tabs + 搜尋；已對齊 albums.html 扁平結構 |
 | `vedio/NJTW/NJTW5.html` | 新西遊記5 | 各自暴走專頁 |
 | `vedio/vedio-list.html` | 影視清單 | 追劇進度預覽頁（乙級第三題骨架，PHP 後台在 `vedio/vedio-list/`） |
@@ -67,27 +67,35 @@
 
 5. **commit 前網站不會更新**。本地端強制重整用 `Ctrl+Shift+R`；GitHub Pages 需 `git push` 後等約 1 分鐘。
 
+6. **頂層 `<li>` 固定 5 個，沒有例外**（淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note）。「水晶練習室」籌備中佔位也收進「Yellow Note」子選單，不再獨立於頂層。新頁面／佔位一律收進其中一項的子選單，不要自己開新的頂層項目。詳見 `developer-rules/rules/portal-nav-rules.md` §8。
+
 ---
 
 ## 目前工作狀態
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-08-13
+**最後更新：** 2026-08-18
 
 **進行中：**
-- 無
+- `calendar2026.html` 的 `<h1>` 標題「水晶萬年曆」還在想更好的名字（要求：不用「水晶」前綴、不重複站上已用意象詞、要有典故／查證過的出處），已否決多輪提案，暫緩
 
 **待確認：**
 - developer-rules 健檢尚未執行
 
 **已完成：**
+- `yellow-note/minister.html`（視覺進化論）Journey 時間軸重構：3 個大 `<article data-era="2016/2017/NOW">` 拆成每個月獨立一個 `story-node`（`data-era="2016.07"` 格式），套用 `.merged-storyline` 既有奇偶交錯排版，不再手寫「07 月｜」字樣。真實照片只有 `2018.07`「415 天健身挑戰」（`fitness-calendar.png`，7/13 李宰鎮生日發起的每日健身計畫，年份待查證）；其餘節點 `data-photo-pending="true"`、不渲染 `<figure>`，等後台控制方式定案後再補真照片
+- `yellow-note/minister.html` 與 `calendar2026.html` 內文提到「水晶廢人字幕組」處都連到頻道（`youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w`），minister.html 用 `.story-external-inline` 外部連結樣式
+- `yellow-note/practice-room.html`（水晶練習室）練舞清單接上第一支影片（SECHSKIES 回歸編舞練習），新增 `yellow-note/dance-practices-data.php` 靜態資料端點頂著（完整 MySQL 後台版在獨立專案 `sechskies_fans`，未部署）
+- portal-nav 全開檢查用的 `TEMP_OPEN_ALL_FOR_REVIEW` 已還原為 `false`；`minister.html` 正式從 `COMING_SOON_PAGES` 移除（今天做完，永久開放），「水晶練習室」改為永久真連結（今天做完），「隊長的氣場」維持籌備中（今天沒動它，回到原狀）
 - 建立 CLAUDE.md 跨裝置上下文檔案
 - 新增 `vedio/bangxiao.html`（世紀級寶藏 / 爆笑養老院，甜蜜負擔計量器）
 - `vedio/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
 - portal-nav 新增世紀級寶藏，正確放入淪陷瞬間子選單
 - `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
 - `variety/` 資料夾整個改名為 `vedio/`，同步修正 portal-nav.js、site-guide.html、style.css 註解、docs/site-structure.md、portal-nav-rules.md 等連結
+- `calendar2026.html` 新增「粉絲應援 / 字幕作品」(`fanwork`) 分類，收錄「水晶廢人字幕組」頻道全部 8 支影片＋ MTV 我愛偶像報導影片（4/4，重啟活動20週年），依上架日期分布；`assets/css/calendar.css` 新增對應淺金配色（比生日金淺、hover 提亮）
+- 修正 portal-nav.js 兩次頂層項目迴歸：「世紀級寶藏」移回「淪陷瞬間」子選單、「水晶練習室」移入「Yellow Note」子選單；`portal-nav-rules.md` 新增 §8 頂層 5 主項上限規則（無例外），`extra/site-guide.html` 心智圖同步
 
 ---
 

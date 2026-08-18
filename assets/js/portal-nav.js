@@ -59,11 +59,17 @@
         link.setAttribute("title", p);
     }
 
+    /**
+     * 站主曾暫時要求「全部開放檢查」，現已檢查完畢還原為 false。
+     * true 時會繞過所有籌備中判斷（COMING_SOON_PAGES／INDEX_NAV_OPEN_HASHES／
+     * 頂欄「隊長的氣場」stub）；不要刪掉下面原本的名單。
+     */
+    const TEMP_OPEN_ALL_FOR_REVIEW = false;
+
     const COMING_SOON_PAGES = new Set([
         "albums.html",
         "map.html",
         "member.html",
-        "minister.html",
         "minister_ge.html",
         "readable.html",
         "timeline.html",
@@ -120,6 +126,7 @@
     }
 
     function linkShouldBeComingSoon(href, pageKey, pageKeysSoon) {
+        if (TEMP_OPEN_ALL_FOR_REVIEW) return false;
         if (pageKeysSoon.has(pageKey)) {
             return true;
         }
@@ -234,7 +241,8 @@
     }
 
     /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面
-     * 七主項：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、世紀級寶藏、Yellow Note、水晶練習室（外站 sechskies_fans，籌備中）。 */
+     * 五主項固定：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note，不得再開第 6 個頂層項目。
+     * 世紀級寶藏收在「淪陷瞬間」子選單內；水晶練習室收在「Yellow Note」子選單內（見 site-guide.html 心智圖）。 */
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
@@ -257,9 +265,9 @@
                     <li><a target="_blank" rel="noopener noreferrer" href="${rp}totoga2/video.html"><span class="portal-nav__label">影片</span></a></li>
                 </ul>
             </li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}vedio/bangxiao.html"><span class="portal-nav__label">世紀級寶藏</span></a></li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}vedio/bangxiao.html"><span class="portal-nav__label">世紀級寶藏</span></a></li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}member/member.html"><span class="portal-nav__label">完整的六顆</span></a></li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}concert/concert.html"><span class="portal-nav__label">現場的震撼</span></a>
         <ul class="portal-submenu">
@@ -273,13 +281,13 @@
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}albums/albums.html#classic"><span class="portal-nav__label">輝煌全盛期</span></a></li>
         </ul>
     </li>
-    <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">Yellow Note</span></a>
+    <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">Yellow Note</span></a>
         <ul class="portal-submenu">
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">視覺進化論</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/practice-room.html"><span class="portal-nav__label">水晶練習室</span></a></li>
         </ul>
     </li>
-    <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="水晶練習室，尚無開放"><span class="portal-nav__label">水晶練習室</span></a></li>
 </ul>
 `.trim();
     }

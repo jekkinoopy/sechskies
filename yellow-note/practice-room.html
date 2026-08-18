@@ -1187,18 +1187,23 @@
                 list.replaceChildren(fragment);
             }
 
-            fetch('dance-practices-data.php', { headers: { Accept: 'application/json' } })
-                .then(function (response) {
-                    if (!response.ok) throw new Error('request failed');
-                    return response.json();
-                })
-                .then(function (data) {
-                    if (!data.ok || !Array.isArray(data.items)) throw new Error('invalid data');
-                    renderItems(data.items);
-                })
-                .catch(function () {
-                    renderEmpty('練舞清單暫時無法載入，請稍後再試。');
-                });
+            /* 靜態資料，不依賴 PHP：本站部署在 GitHub Pages（不支援 PHP 執行），
+               本機 Live Server 同樣不會執行 .php，所以清單資料直接寫在這裡。
+               完整版（含後台管理、MySQL）在獨立專案 sechskies_fans。 */
+            var danceItems = [
+                {
+                    title: 'SECHSKIES 回歸編舞練習影片',
+                    tags: ['回歸曲', '編舞練習'],
+                    practiceFocus: '跟著示範影片抓基本站位與轉場，作為之後細部拆解動作的參考版本。',
+                    videoUrl: 'https://youtu.be/Idvu0XwUrgk?si=v7bD50zRkx90gA42',
+                    difficulty: '中等',
+                    progress: '整理中',
+                    featured: true,
+                    comingSoon: false
+                }
+            ];
+
+            renderItems(danceItems);
         })();
     </script>
 </body>

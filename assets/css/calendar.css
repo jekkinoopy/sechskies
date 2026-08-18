@@ -8,6 +8,9 @@
     --cal-border-soft: rgba(255, 204, 0, 0.18);
     --cal-border-strong: rgba(255, 204, 0, 0.28);
     --cal-panel-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+    /* 粉絲應援／字幕作品：比生日金淺一階，hover 時提亮 */
+    --cal-fanwork-color: #ffe066;
+    --cal-fanwork-color-hover: #fff4b8;
 }
 
 .calendar-page-container {
@@ -245,6 +248,15 @@
     background: var(--color-brand);
 }
 
+.event-dot.fanwork {
+    background: var(--cal-fanwork-color);
+    transition: background-color 0.18s ease;
+}
+
+.day-cell:hover .event-dot.fanwork {
+    background: var(--cal-fanwork-color-hover);
+}
+
 /* 生日頭像縮圖小標籤 */
 .day-avatar-badge {
     width: 38px;
@@ -329,6 +341,43 @@
 .event-card.type-debut,
 .event-card.type-concert {
     border-left-color: var(--color-brand);
+}
+
+.event-card.type-fanwork {
+    border-left-color: var(--cal-fanwork-color);
+}
+
+.event-card.type-fanwork:hover {
+    border-left-color: var(--cal-fanwork-color-hover);
+    box-shadow: 0 0 14px rgba(255, 224, 102, 0.4);
+}
+
+.event-desc a,
+.modal-desc a {
+    color: var(--color-brand-dark);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 204, 0, 0.5);
+}
+
+.event-desc a:hover,
+.modal-desc a:hover {
+    color: #cc0000;
+}
+
+.event-video-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+
+.event-video-link:hover {
+    color: #cc0000;
 }
 
 .event-card-header {

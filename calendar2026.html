@@ -16,7 +16,7 @@
         <div class="header-inner site-header-inner">
             <h1 class="main-title">水晶萬年曆</h1>
             <div class="subtitle-wrap">
-                <span class="sub-title">2026 SECHSKIES SPECIAL CALENDAR</span>
+                <span class="sub-title">SECHSKIES SPECIAL CALENDAR</span>
             </div>
         </div>
     </header>
@@ -62,6 +62,7 @@
                 <button type="button" class="filter-chip" data-category="birthday">成員生日</button>
                 <button type="button" class="filter-chip" data-category="debut">出道 / 重逢</button>
                 <button type="button" class="filter-chip" data-category="concert">演唱會 / 見面會</button>
+                <button type="button" class="filter-chip" data-category="fanwork">粉絲應援 / 字幕作品</button>
             </div>
         </section>
 
@@ -73,12 +74,12 @@
 
                 <div class="calendar-weekdays">
                     <div class="calendar-weekday weekend">日</div>
-                    <div class="calendar-weekday">一</div>
-                    <div class="calendar-weekday">二</div>
-                    <div class="calendar-weekday">三</div>
-                    <div class="calendar-weekday">四</div>
-                    <div class="calendar-weekday">五</div>
-                    <div class="calendar-weekday weekend">六</div>
+                    <div class="calendar-weekday">月</div>
+                    <div class="calendar-weekday">火</div>
+                    <div class="calendar-weekday">水</div>
+                    <div class="calendar-weekday">木</div>
+                    <div class="calendar-weekday">金</div>
+                    <div class="calendar-weekday weekend">土</div>
                 </div>
 
                 <div class="calendar-days-grid" id="calendar-days-grid">
@@ -127,6 +128,10 @@
         const sechskiesEvents = [
             // 1月
             {
+                month: 1, day: 8, type: 'fanwork', title: '世界真美味：西澳洲篇 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>翻譯之旅遊節目 E01，金在德與H.O.T. Tony共同主持', videoUrl: 'https://www.youtube.com/watch?v=HJ9MYlt8qPQ'
+            },
+            {
                 month: 1, day: 21, endDay: 22, type: 'concert', title: 'Yellow Note Final 首爾演唱會 🎤',
                 photo: 'assets/images/concert/2017.jpg', desc: '2017 年首爾終場演唱會紀念'
             },
@@ -143,6 +148,10 @@
             { month: 3, day: 23, type: 'debut', title: 'J-Walk 組合出道日 🌟', desc: '2002.03.23 金在德與張水院發行首張專輯《Suddenly》' },
             // 4月
             {
+                month: 4, day: 4, type: 'fanwork', title: 'MTV 報導：水晶男孩重啟活動 🎬',
+                desc: 'MTV 我愛偶像 Idols of Asia 報導，水晶男孩出道20年重啟團體活動、創下多項紀錄', videoUrl: 'https://www.youtube.com/watch?v=Qict851iwmw'
+            },
+            {
                 month: 4, day: 14, type: 'concert', title: '六六歌2 上岩黃海重逢日 🌟',
                 photo: 'assets/images/totoga2/toto1.png', desc: '2016.04.14 無限挑戰六六歌2 上岩游擊演唱會16年後重逢'
             },
@@ -150,6 +159,10 @@
             // 5月
             { month: 5, day: 18, type: 'debut', title: '水晶男孩告別宣佈日', desc: '2000.05.18 告別紀念' },
             { month: 5, day: 24, type: 'debut', title: '姜成勳 Solo 出道日 🌟', desc: '2001.05.24 首張專輯《In Connection》' },
+            {
+                month: 5, day: 27, type: 'fanwork', title: '日本見面會宣傳片 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>製作，水晶男孩日本見面會活動宣傳影片', videoUrl: 'https://www.youtube.com/watch?v=2YAAbTG9Pi8'
+            },
             // 6月
             {
                 month: 6, day: 8, type: 'birthday', title: '殷志源 生日 🎂', memberName: '殷志源', enName: 'EUN JI WON', role: 'Leader · Rap · Dance',
@@ -168,10 +181,34 @@
                 month: 7, day: 16, type: 'birthday', title: '張水院 生日 🎂', memberName: '張水院', enName: 'JANG SU WON', role: 'Vocal',
                 photo: 'assets/images/member/seven7lai_1___BuRBxcPAIsP___.jpg', desc: '1980.07.16 張水院生日', memberUrl: 'member/member.html#poster-jsw'
             },
+            {
+                month: 7, day: 20, type: 'fanwork', title: 'BE WELL 日文版中字 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>製作，慶賀水晶男孩日本正式出道，繁中字幕版', videoUrl: 'https://www.youtube.com/watch?v=dTlTQ_qt3S8'
+            },
+            {
+                month: 7, day: 20, type: 'fanwork', title: 'THREE WORD 日文版中字 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>製作，慶賀水晶男孩日本正式出道，繁中字幕版', videoUrl: 'https://www.youtube.com/watch?v=vDl0xee2Xrw'
+            },
+            {
+                month: 7, day: 24, type: 'fanwork', title: 'SAD SONG 日文版中字 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>製作，慶賀水晶男孩日本正式出道，繁中字幕版', videoUrl: 'https://www.youtube.com/watch?v=-J8AUewz1OI'
+            },
             // 8月
+            {
+                month: 8, day: 6, type: 'fanwork', title: '在德生日祝福影片 🎬',
+                desc: 'PTT水晶男孩板召集台灣香港粉絲共同製作，賀 8/7 金在德生日，已登上 J-walk 官咖首頁', videoUrl: 'https://www.youtube.com/watch?v=pBeJC4ol-ts'
+            },
             {
                 month: 8, day: 7, type: 'birthday', title: '金在德 生日 🎂', memberName: '金在德', enName: 'KIM JAE DUC', role: 'Rap · Dance',
                 photo: 'assets/images/member/4c0e013b341e85622979475bc230719b.jpg', desc: '1979.08.07 天使笑顏與舞蹈機器金在德生日', memberUrl: 'member/member.html#poster-kjd'
+            },
+            {
+                month: 8, day: 26, type: 'fanwork', title: '世界真美味：新喀里多尼亞篇 🎬',
+                desc: '<a href="https://www.youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w" target="_blank" rel="noopener noreferrer">水晶廢人字幕組</a>翻譯之旅遊節目 E05，金在德與H.O.T. Tony共同主持', videoUrl: 'https://www.youtube.com/watch?v=Mhxxh42zZu4'
+            },
+            {
+                month: 8, day: 30, type: 'fanwork', title: '台灣小黃演唱會應援影片 🎬',
+                desc: 'PTT水晶男孩板召集台灣小黃共同製作，為 16 年後重返舞台演唱會應援打氣', videoUrl: 'https://www.youtube.com/watch?v=pvsa7PjsfwA'
             },
             // 9月
             {
@@ -217,7 +254,7 @@
         const modalBody = document.getElementById('modal-body-content');
 
         function cleanEventTitle(title) {
-            return String(title || '').replace(/[🎂🌟🎤]/g, '').trim();
+            return String(title || '').replace(/[🎂🌟🎤🎬]/g, '').trim();
         }
 
         // 初始化
@@ -402,7 +439,7 @@
                     `;
                     eventsList.appendChild(concertCard);
                 } else {
-                    // 一般事件卡片
+                    // 一般事件卡片（含粉絲應援／字幕作品）
                     const dateStr = ev.endDay ? `${ev.month}/${ev.day} ~ ${ev.month}/${ev.endDay}` : `${ev.month}/${ev.day}`;
                     const card = document.createElement('div');
                     card.className = `event-card type-${ev.type}`;
@@ -412,6 +449,7 @@
                         </div>
                         <div class="event-title">${cleanEventTitle(ev.title)}</div>
                         <div class="event-desc">${ev.desc}</div>
+                        ${ev.videoUrl ? `<a href="${ev.videoUrl}" class="event-video-link" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i> 觀看影片</a>` : ''}
                     `;
                     eventsList.appendChild(card);
                 }
@@ -444,6 +482,7 @@
                         <div class="modal-event-box">
                             <h4 class="modal-event-title">${cleanEventTitle(ev.title)}</h4>
                             <p class="modal-desc">${ev.desc}</p>
+                            ${ev.videoUrl ? `<a href="${ev.videoUrl}" class="event-video-link" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i> 觀看影片</a>` : ''}
                         </div>
                     `;
                 }
