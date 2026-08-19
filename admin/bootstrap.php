@@ -99,6 +99,21 @@ function modules(): array
             ],
             'list' => ['title', 'album_id', 'track_no', 'is_title_track', 'status', 'updated_at'],
         ],
+        'stages' => [
+            'label' => '打歌舞台管理', 'icon' => 'mic', 'table' => 'stage_performances', 'order' => 'stage_date DESC, sort_order, id',
+            'fields' => [
+                'song_id' => ['label' => '所屬歌曲', 'type' => 'relation', 'table' => 'songs', 'required' => true],
+                'stage_date' => ['label' => '播出日期', 'type' => 'date', 'required' => true],
+                'station' => ['label' => '電視台', 'type' => 'text', 'required' => true],
+                'program' => ['label' => '節目名稱', 'type' => 'text', 'required' => true],
+                'title' => ['label' => '舞台標題', 'type' => 'text', 'required' => true],
+                'youtube_url' => ['label' => 'YouTube 連結', 'type' => 'url'],
+                'note' => ['label' => '備註', 'type' => 'textarea'],
+                'sort_order' => ['label' => '排序', 'type' => 'number', 'default' => '0'],
+                'status' => ['label' => '公開狀態', 'type' => 'status', 'required' => true],
+            ],
+            'list' => ['title', 'song_id', 'stage_date', 'station', 'program', 'status', 'updated_at'],
+        ],
         'concerts' => [
             'label' => '演唱會管理', 'icon' => 'ticket-perforated', 'table' => 'concert_events', 'order' => 'event_date DESC, id DESC',
             'fields' => [

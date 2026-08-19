@@ -81,7 +81,7 @@
 **待確認：**
 - developer-rules 健檢尚未執行
 - `sechskies_fans`（新獨立專案）本機尚未建 MySQL 資料庫、尚未跑過 `admin/setup.php`；Render 部署中，資料庫主機未定
-- `portal-nav.js` 新增的「水晶練習室」項目目前是 `data-coming-soon` 佔位（href=`#`），等 sechskies_fans 網址確定後要補上真實外部連結並移除 coming-soon 標記
+- `portal-nav.js` 新增的「小黃練習室」項目目前是 `data-coming-soon` 佔位（href=`#`），等 sechskies_fans 網址確定後要補上真實外部連結並移除 coming-soon 標記
 
 **歷史定位（文案不可再寫錯）：**
 - 水晶熱舞社是水晶男孩粉絲自主成立的舞蹈社團，並非水晶男孩推廣部旗下組織
@@ -96,7 +96,7 @@
 - `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
 - 新增 `admin/` 推廣部後臺第一階段：登入、控制台、管理者帳號、通用 CRUD、媒體上傳及公開狀態總覽
 - 水晶熱舞社／水晶練習室／偶像練習生已於 2026-08-04 拆成獨立專案 `sechskies_fans`（另一個 repo，路徑 `d:\Developer\projects\sechskies_fans`，不在本站範圍）：30TH 應援報名表單、練舞清單、後台 CRUD 與管理者登入都已搬走並改用自己的資料庫；`extra/site-guide.html` 與本站 `admin/bootstrap.php`／`admin/database/schema.sql` 已同步移除相關項目
-- `portal-nav.js` 頂欄新增第 7 項「水晶練習室」（Yellow Note 之後），連到獨立專案 sechskies_fans；`extra/site-guide.html` 同步新增對應項目；目前是 coming-soon 佔位，尚未接上真實網址
+- `portal-nav.js` 頂欄新增第 7 項「小黃練習室」（Yellow Note 之後），連到獨立專案 sechskies_fans；`extra/site-guide.html` 同步新增對應項目；目前是 coming-soon 佔位，尚未接上真實網址
 - `variety/` 資料夾整個改名為 `vedio/`，同步修正 portal-nav.js、site-guide.html、style.css 註解、docs/site-structure.md、portal-nav-rules.md 等連結
 
 ---

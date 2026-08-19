@@ -133,7 +133,7 @@ alwaysApply: true
 
 - **除非站主明講要新增第 6 個正式主項**，否則任何新頁面／新功能一律收進上述 5 項之一的子選單（`portal-submenu` / `portal-nav__subgroup`），**禁止**在頂層再開新的 `<li>`。
 - 對照表見 `extra/site-guide.html` 的 `data-site-guide-depth="1"` 節點；動 `buildPortalNavInnerHTML` 前務必先數一次頂層 `<li>` 數量，超過就是做錯。
-- 血淚教訓：「世紀級寶藏」（`vedio/bangxiao.html`）本該收在「淪陷瞬間」子選單裡，曾被誤植成獨立頂層項目，導致主項變 7 個；「水晶練習室」（外站 `sechskies_fans`，`data-coming-soon`）也曾一度單獨佔用頂層，後改收進「Yellow Note」子選單。往後新增類似頁面請比照辦理，先找歸屬的主項子選單，不要預設「獨立一項」。
+- 血淚教訓：「世紀級寶藏」（`vedio/bangxiao.html`）本該收在「淪陷瞬間」子選單裡，曾被誤植成獨立頂層項目，導致主項變 7 個；「小黃練習室」（外站 `sechskies_fans`，`data-coming-soon`）也曾一度單獨佔用頂層，後改收進「Yellow Note」子選單。往後新增類似頁面請比照辦理，先找歸屬的主項子選單，不要預設「獨立一項」。
 
 ## 名詞
 

@@ -60,6 +60,22 @@ CREATE TABLE IF NOT EXISTS songs (
     CONSTRAINT fk_songs_album FOREIGN KEY (album_id) REFERENCES albums(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS stage_performances (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    song_id INT UNSIGNED NOT NULL,
+    stage_date DATE NOT NULL,
+    station VARCHAR(80) NOT NULL,
+    program VARCHAR(120) NOT NULL,
+    title VARCHAR(160) NOT NULL,
+    youtube_url VARCHAR(500) NULL,
+    note TEXT NULL,
+    sort_order INT NOT NULL DEFAULT 0,
+    status ENUM('draft','coming_soon','published','archived') NOT NULL DEFAULT 'draft',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_stage_song FOREIGN KEY (song_id) REFERENCES songs(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS concert_events (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     tour_name VARCHAR(180) NOT NULL,

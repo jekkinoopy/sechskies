@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $error === '') {
         $error = '帳號須為 4–50 個英數字或 ._-。';
     } elseif (mb_strlen($displayName) < 2) {
         $error = '請填寫管理者顯示名稱。';
-    } elseif (strlen($password) < 10) {
-        $error = '密碼至少需要 10 個字元。';
+    } elseif (strlen($password) < 6) {
+        $error = '密碼至少需要 6 個字元。';
     } else {
         $stmt = db()->prepare('INSERT INTO admin_users (username, password_hash, display_name, email) VALUES (?, ?, ?, ?)');
         $stmt->execute([$username, password_hash($password, PASSWORD_DEFAULT), $displayName, $email ?: null]);
@@ -33,4 +33,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $error === '') {
 ?>
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>初始化後臺</title><link rel="stylesheet" href="assets/admin.css"></head>
 <body class="auth-page"><main class="auth-card"><a class="auth-brand" href="../index.html" aria-label="返回水晶男孩推廣部前台"><img src="../assets/images/logov.svg" alt="SECHSKIES 水晶男孩推廣部"><span>CONTENT MANAGEMENT SYSTEM</span></a><p class="eyebrow">FIRST-TIME SETUP</p><h1>建立第一位管理者</h1><p>水晶男孩推廣部內容管理系統</p><?php if ($error): ?><div class="notice notice--error"><?= h($error) ?></div><?php endif; ?>
-<form method="post"><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><label>登入帳號<input name="username" required autocomplete="username"></label><label>顯示名稱<input name="display_name" required></label><label>電子信箱<input name="email" type="email"></label><label>登入密碼<input name="password" type="password" required minlength="10" autocomplete="new-password"></label><button class="button button--primary" type="submit">建立管理者</button></form></main></body></html>
+<form method="post"><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><label>登入帳號<input name="username" required autocomplete="username"></label><label>顯示名稱<input name="display_name" required></label><label>電子信箱<input name="email" type="email"></label><label>登入密碼<input name="password" type="password" required minlength="6" autocomplete="new-password"></label><button class="button button--primary" type="submit">建立管理者</button></form></main></body></html>

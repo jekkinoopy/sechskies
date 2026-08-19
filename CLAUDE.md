@@ -67,7 +67,7 @@
 
 5. **commit 前網站不會更新**。本地端強制重整用 `Ctrl+Shift+R`；GitHub Pages 需 `git push` 後等約 1 分鐘。
 
-6. **頂層 `<li>` 固定 5 個，沒有例外**（淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note）。「水晶練習室」籌備中佔位也收進「Yellow Note」子選單，不再獨立於頂層。新頁面／佔位一律收進其中一項的子選單，不要自己開新的頂層項目。詳見 `developer-rules/rules/portal-nav-rules.md` §8。
+6. **頂層 `<li>` 固定 5 個，沒有例外**（淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note）。「小黃練習室」籌備中佔位也收進「Yellow Note」子選單，不再獨立於頂層。新頁面／佔位一律收進其中一項的子選單，不要自己開新的頂層項目。詳見 `developer-rules/rules/portal-nav-rules.md` §8。
 
 ---
 
@@ -75,7 +75,7 @@
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-08-18
+**最後更新：** 2026-08-19
 
 **進行中：**
 - `calendar2026.html` 的 `<h1>` 標題「水晶萬年曆」還在想更好的名字（要求：不用「水晶」前綴、不重複站上已用意象詞、要有典故／查證過的出處），已否決多輪提案，暫緩
@@ -84,10 +84,12 @@
 - developer-rules 健檢尚未執行
 
 **已完成：**
+- 新增「打歌舞台管理」後台模組（key `stages`，歌曲管理正下方）：`admin/database/schema.sql` 新增 `stage_performances` 表（`song_id` 外鍵關聯 `songs`，欄位含播出日期／電視台／節目名稱／舞台標題／YouTube 連結／備註／排序／公開狀態四態）；`admin/bootstrap.php` 的 `modules()` 加對應設定，沿用既有通用 CRUD（`records.php`／`record-form.php`／`publishing.php`），沒新增獨立頁面。概念取自 `待確認/三個詞專案/php-admin-practice/`（THREE WORDS·10TH 打歌舞台練習專案）的資料結構，但該資料夾本身維持原樣不動、資料庫也不共用，純粹借用欄位設計。**尚待做：**既有 `sechskies_cms` 資料庫要重新匯入一次 `schema.sql`（`CREATE TABLE IF NOT EXISTS` 不會動到既有表，只會補上新表）
+- 「水晶練習室」全站更名為「小黃練習室」（英文副標 CRYSTAL PRACTICE ROOM → YEKKI PRACTICE ROOM，「小黃」英文簡稱定為 Yekki，「水晶男孩」簡稱 Jekki，站上不再使用 crystal 字樣指稱練習室）：`yellow-note/practice-room.html`（title／h1／h2／hero 文案／CSS 註解）、`assets/js/portal-nav.js`（Yellow Note 子選單標籤與註解）、`extra/site-guide.html` 心智圖同步；CLAUDE.md／AGENTS.md／portal-nav-rules.md 內提到此頁名稱的歷史記錄一併同步（已拆到獨立專案 sechskies_fans 的舊「水晶熱舞社／水晶練習室／偶像練習生」歷史敘述維持原樣，不屬於本站現名範圍）
 - `yellow-note/minister.html`（視覺進化論）Journey 時間軸重構：3 個大 `<article data-era="2016/2017/NOW">` 拆成每個月獨立一個 `story-node`（`data-era="2016.07"` 格式），套用 `.merged-storyline` 既有奇偶交錯排版，不再手寫「07 月｜」字樣。真實照片只有 `2018.07`「415 天健身挑戰」（`fitness-calendar.png`，7/13 李宰鎮生日發起的每日健身計畫，年份待查證）；其餘節點 `data-photo-pending="true"`、不渲染 `<figure>`，等後台控制方式定案後再補真照片
 - `yellow-note/minister.html` 與 `calendar2026.html` 內文提到「水晶廢人字幕組」處都連到頻道（`youtube.com/channel/UCJnhlm_t9C7BmcILcjHDk_w`），minister.html 用 `.story-external-inline` 外部連結樣式
-- `yellow-note/practice-room.html`（水晶練習室）練舞清單接上第一支影片（SECHSKIES 回歸編舞練習），新增 `yellow-note/dance-practices-data.php` 靜態資料端點頂著（完整 MySQL 後台版在獨立專案 `sechskies_fans`，未部署）
-- portal-nav 全開檢查用的 `TEMP_OPEN_ALL_FOR_REVIEW` 已還原為 `false`；`minister.html` 正式從 `COMING_SOON_PAGES` 移除（今天做完，永久開放），「水晶練習室」改為永久真連結（今天做完），「隊長的氣場」維持籌備中（今天沒動它，回到原狀）
+- `yellow-note/practice-room.html`（小黃練習室）練舞清單接上第一支影片（SECHSKIES 回歸編舞練習），新增 `yellow-note/dance-practices-data.php` 靜態資料端點頂著（完整 MySQL 後台版在獨立專案 `sechskies_fans`，未部署）
+- portal-nav 全開檢查用的 `TEMP_OPEN_ALL_FOR_REVIEW` 已還原為 `false`；`minister.html` 正式從 `COMING_SOON_PAGES` 移除（今天做完，永久開放），「小黃練習室」改為永久真連結（今天做完），「隊長的氣場」維持籌備中（今天沒動它，回到原狀）
 - 建立 CLAUDE.md 跨裝置上下文檔案
 - 新增 `vedio/bangxiao.html`（世紀級寶藏 / 爆笑養老院，甜蜜負擔計量器）
 - `vedio/variety-shows.html` 重構：移除多層包裝，對齊 albums.html 扁平結構
@@ -95,7 +97,7 @@
 - `extra/site-guide.html` 同步更新：全員發瘋 → 世紀級寶藏
 - `variety/` 資料夾整個改名為 `vedio/`，同步修正 portal-nav.js、site-guide.html、style.css 註解、docs/site-structure.md、portal-nav-rules.md 等連結
 - `calendar2026.html` 新增「粉絲應援 / 字幕作品」(`fanwork`) 分類，收錄「水晶廢人字幕組」頻道全部 8 支影片＋ MTV 我愛偶像報導影片（4/4，重啟活動20週年），依上架日期分布；`assets/css/calendar.css` 新增對應淺金配色（比生日金淺、hover 提亮）
-- 修正 portal-nav.js 兩次頂層項目迴歸：「世紀級寶藏」移回「淪陷瞬間」子選單、「水晶練習室」移入「Yellow Note」子選單；`portal-nav-rules.md` 新增 §8 頂層 5 主項上限規則（無例外），`extra/site-guide.html` 心智圖同步
+- 修正 portal-nav.js 兩次頂層項目迴歸：「世紀級寶藏」移回「淪陷瞬間」子選單、「小黃練習室」移入「Yellow Note」子選單；`portal-nav-rules.md` 新增 §8 頂層 5 主項上限規則（無例外），`extra/site-guide.html` 心智圖同步
 
 ---
 
