@@ -1,4 +1,4 @@
--- 深夜清單 / 追劇資料庫
+-- 影片清單 / 追劇資料庫
 -- 本機 XAMPP：phpMyAdmin 匯入此檔即可
 
 CREATE DATABASE IF NOT EXISTS `vedio_list` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

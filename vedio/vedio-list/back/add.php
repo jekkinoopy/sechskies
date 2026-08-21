@@ -1,40 +1,51 @@
 <?php
+$error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $maxRank = $Drama->q("SELECT MAX(`rank`) AS m FROM `dramas`");
-    $nextRank = ((int)($maxRank[0]['m'] ?? 0)) + 1;
+    $type = $_POST['type'] ?? '';
 
-    $data = [
-        'title' => trim($_POST['title'] ?? ''),
-        'type' => $_POST['type'] ?? 'drama',
-        'platform' => $_POST['platform'] ?? '其他',
-        'watch_url' => trim($_POST['watch_url'] ?? ''),
-        'current_season' => max(1, (int)($_POST['current_season'] ?? 1)),
-        'current_episode' => max(0, (int)($_POST['current_episode'] ?? 0)),
-        'current_position' => trim($_POST['current_position'] ?? ''),
-        'progress_note' => trim($_POST['progress_note'] ?? ''),
-        'status' => $_POST['status'] ?? 'want',
-        'rating' => $_POST['rating'] !== '' ? $_POST['rating'] : null,
-        'intro' => trim($_POST['intro'] ?? ''),
-        'note' => trim($_POST['note'] ?? ''),
-        'sh' => 1,
-        'rank' => $nextRank,
-    ];
+    if (!in_array($type, ['variety', 'drama'], true)) {
+        $error = '請選擇正確的類型（綜藝或戲劇）。';
+    } else {
+        $maxRank = $Drama->q("SELECT MAX(`rank`) AS m FROM `dramas`");
+        $nextRank = ((int)($maxRank[0]['m'] ?? 0)) + 1;
 
-    // DB::save 用字串拼接；null 改空字串避免 SQL 破掉
-    if ($data['rating'] === null) {
-        $data['rating'] = '';
+        $data = [
+            'title' => trim($_POST['title'] ?? ''),
+            'type' => $type,
+            'platform' => $_POST['platform'] ?? '其他',
+            'watch_url' => trim($_POST['watch_url'] ?? ''),
+            'current_season' => max(1, (int)($_POST['current_season'] ?? 1)),
+            'current_episode' => max(0, (int)($_POST['current_episode'] ?? 0)),
+            'current_position' => trim($_POST['current_position'] ?? ''),
+            'progress_note' => trim($_POST['progress_note'] ?? ''),
+            'status' => $_POST['status'] ?? 'want',
+            'rating' => $_POST['rating'] !== '' ? $_POST['rating'] : null,
+            'intro' => trim($_POST['intro'] ?? ''),
+            'note' => trim($_POST['note'] ?? ''),
+            'sh' => 1,
+            'rank' => $nextRank,
+        ];
+
+        // DB::save 用字串拼接；null 改空字串避免 SQL 破掉
+        if ($data['rating'] === null) {
+            $data['rating'] = '';
+        }
+
+        $Drama->save($data);
+        to("?do=drama");
+        exit;
     }
-
-    $Drama->save($data);
-    to("?do=drama");
-    exit;
 }
 ?>
 
 <section>
     <h2 class="section-title">新增作品</h2>
 
-    <form class="admin-form" method="post" action="?do=add">
+    <?php if ($error): ?>
+        <p class="empty-hint"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p>
+    <?php endif; ?>
+
+    <form class="admin-form" method="post" action="?do=add" enctype="multipart/form-data">
         <label for="title">劇名／節目名</label>
         <input type="text" id="title" name="title" required>
 
@@ -54,7 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="YouTube">YouTube</option>
             <option value="其他">其他</option>
         </select>
-
+        <label for="poster">海報圖片</label>
+        <input type="file" id="poster" name="poster">
         <label for="watch_url">直接觀看網址</label>
         <input type="url" id="watch_url" name="watch_url" placeholder="https://...">
 

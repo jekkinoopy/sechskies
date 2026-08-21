@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深夜清單｜管理後台</title>
+    <title>影片清單｜管理後台</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="css/vedio-list.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -14,7 +14,7 @@
 <body class="vedio-admin-page">
     <header class="inner-page-header">
         <div class="header-inner site-header-inner">
-            <h1 class="main-title">深夜清單後台</h1>
+            <h1 class="main-title">影片清單後台</h1>
             <div class="subtitle-wrap">
                 <span class="sub-title">ADMIN · CRUD</span>
             </div>
