@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THREE WORDS · 10th Anniversary</title>
+    <meta name="description" content="SECHSKIES〈세 단어 (THREE WORDS)〉發行十週年紀念頁：2016.10.07—2026.10.07。">
+    <meta property="og:title" content="THREE WORDS · 10th Anniversary">
+    <meta property="og:description" content="現在、這裡、我們。十年後，再次相遇。">
+    <meta property="og:image" content="public/og.png">
+    <style>
+        :root{--ink:#07101d;--cream:#f2ede2;--gold:#efb53f;--blue:#16334d;--line:rgba(255,255,255,.22)}
+        *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,"Noto Sans TC","Microsoft JhengHei",sans-serif}button,a{font:inherit}
+        .hero{position:relative;min-height:100svh;overflow:hidden;background:radial-gradient(circle at 76% 18%,#80583c 0,#243f57 18%,#0a1726 49%,#050b13 100%);transition:1s}.hero.isLit{background:radial-gradient(circle at 73% 23%,#ffc676 0,#355e7c 25%,#0b1d31 54%,#050b13 100%)}
+        nav{position:absolute;z-index:6;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:26px 4vw;border-bottom:1px solid var(--line);font:700 10px Arial;letter-spacing:.28em}.logo{font-size:24px;letter-spacing:-.08em}.logo span{margin-left:7px;color:var(--gold);font-size:12px;vertical-align:top}
+        .light{position:absolute;width:46vw;height:46vw;right:-4vw;top:-12vw;border-radius:50%;background:rgba(255,194,111,.16);filter:blur(30px);transition:1s}.isLit .light{background:rgba(255,202,115,.38);transform:scale(1.15)}
+        .frames{position:absolute;inset:12vh 5vw 8vh 42vw;perspective:900px}.frames i{position:absolute;display:block;width:36%;height:72%;border:1px solid rgba(255,255,255,.42);background:linear-gradient(135deg,rgba(255,255,255,.06),transparent);backdrop-filter:blur(2px);transform:rotateY(-14deg) rotateZ(4deg);box-shadow:0 30px 80px rgba(0,0,0,.24)}.frames i:nth-child(1){left:0;top:12%}.frames i:nth-child(2){left:29%;top:2%}.frames i:nth-child(3){left:58%;top:15%}
+        .noise{position:absolute;inset:0;opacity:.14;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+        .heroText{position:relative;z-index:4;padding:16vh 0 11vh 7vw;width:min(760px,90vw)}.kicker,.sectionTag{font:700 10px/1.5 Arial;letter-spacing:.34em;color:var(--gold)}h1{margin:28px 0 12px;font:900 clamp(76px,12vw,178px)/.72 Arial;letter-spacing:-.09em}h1 span{display:block}.outline{color:transparent;-webkit-text-stroke:1.5px rgba(242,237,226,.75)}
+        .anniversary{display:flex;align-items:center;gap:16px;margin:24px 0}.anniversary strong{font:900 clamp(72px,9vw,132px)/.7 Arial;color:var(--gold);letter-spacing:-.08em}.anniversary p{font:700 16px/1.15 Arial;letter-spacing:.12em}.dates{font:700 12px Arial;letter-spacing:.2em}.dates b{color:var(--gold);margin:0 10px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}.actions button{padding:15px 20px;border:1px solid transparent;cursor:pointer;transition:.25s}.primary{background:var(--gold);color:var(--ink);font-weight:800}.secondary{background:transparent;color:var(--cream);border-color:rgba(255,255,255,.5)!important}.actions button:hover{transform:translateY(-3px)}.threeDots{position:absolute;z-index:4;right:4vw;bottom:36px;display:flex;gap:10px}.threeDots b{width:8px;height:8px;border:1px solid var(--cream);border-radius:50%}.threeDots b:first-child{background:var(--gold);border-color:var(--gold)}
+        .statement,.words,.memory{padding:100px 8vw}.statement{display:grid;grid-template-columns:1fr 3fr;gap:6vw;background:var(--gold);color:var(--ink)}.statement .sectionTag{color:var(--ink)}.hangul{font:700 13px Arial;letter-spacing:.24em}.statement h2{font:900 clamp(48px,8vw,112px)/1 serif;margin:20px 0 42px;letter-spacing:-.06em}.bigCopy{font:700 clamp(25px,3.4vw,48px)/1.55 serif;margin:0}
+        .words{background:var(--cream);color:var(--ink)}.words .sectionTag{color:#7c682f}.wordGrid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:65px;border-top:1px solid #999}.wordGrid article{padding:28px 32px 45px 0;margin-right:32px;border-right:1px solid #aaa}.wordGrid span{font-size:11px;color:#786d51}.wordGrid h3{font:900 clamp(44px,7vw,100px)/1 Arial;letter-spacing:-.07em;margin:28px 0 16px}.wordGrid p{color:#59606a;line-height:1.7}
+        .lyricsPreview{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 2fr;gap:7vw;padding:100px 8vw;background:radial-gradient(circle at 8% 15%,#28455f 0,#102337 32%,#07101d 74%);border-top:1px solid rgba(255,255,255,.12)}.lyricsPreview:after{content:"3";position:absolute;right:-.04em;bottom:-.32em;font:900 min(48vw,680px)/1 Arial;color:rgba(255,255,255,.025);pointer-events:none}.lyricsMeta{position:relative;z-index:1}.lyricsMeta>span{display:block;margin-top:38px;font:900 clamp(38px,5vw,72px)/.95 Arial;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px rgba(242,237,226,.5)}.lyricsLines{position:relative;z-index:1;border-left:1px solid rgba(239,181,63,.6);padding-left:clamp(25px,4vw,64px)}.lyricsLines p{margin:0 0 18px;font:700 clamp(22px,3vw,44px)/1.25 serif;letter-spacing:-.02em}.lyricsLines p:nth-child(2n){color:#aebdca}.lyricsLines a{display:inline-flex;align-items:center;gap:22px;margin-top:28px;padding:15px 20px;background:var(--gold);color:var(--ink);font-weight:800;text-decoration:none;transition:.25s}.lyricsLines a:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,.28)}.lyricsLines a span{font-size:18px}
+        .memory{background:#0c1a2a}.memory>.sectionTag{display:block;margin-bottom:55px}.memory article{display:grid;grid-template-columns:1fr 2fr;gap:6vw;border-top:1px solid var(--line);padding:40px 0}.memory strong{font:900 clamp(42px,7vw,96px)/1 Arial;color:var(--gold);letter-spacing:-.06em}.memory h3{font:700 clamp(25px,3vw,42px)/1.2 serif;margin:0 0 16px}.memory p{max-width:650px;color:#b9c0c8;line-height:1.8;margin:0}
+        .video{padding:90px 8vw;background:#d9d0bf;color:var(--ink);display:grid;grid-template-columns:minmax(250px,.75fr) minmax(0,1.5fr);align-items:center;gap:7vw}.video .sectionTag{color:#796727}.video h2{font:800 clamp(42px,5vw,76px)/1.12 serif;margin:25px 0 32px}.videoHeading>a{display:inline-block;color:var(--ink);font-weight:800;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:5px}.videoHeading>a:hover{color:#796727}.videoFrame{position:relative;width:100%;aspect-ratio:16/9;background:#050b13;box-shadow:0 35px 80px rgba(7,16,29,.25);overflow:hidden}.videoFrame:before{content:"";position:absolute;inset:-1px;border:1px solid rgba(255,255,255,.22);pointer-events:none;z-index:1}.videoFrame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+        .stageArchive{padding:100px 8vw;background:var(--cream);color:var(--ink)}.stageIntro{display:grid;grid-template-columns:1fr 1.5fr;gap:20px 6vw;align-items:end;margin-bottom:55px}.stageIntro .sectionTag{color:#796727;grid-column:1/-1}.stageIntro h2{margin:0;font:900 clamp(54px,8vw,108px)/.9 serif;letter-spacing:-.06em}.stageIntro>p:last-child{max-width:470px;margin:0;color:#59606a;line-height:1.8}.stageTable{border-top:2px solid var(--ink)}.stageHead,.stageRow{display:grid;grid-template-columns:.55fr 2fr .8fr;gap:28px;align-items:center}.stageHead{padding:15px 0;border-bottom:1px solid #9e998e;font:700 9px Arial;letter-spacing:.2em;color:#76682f}.stageRow{padding:24px 0;border-bottom:1px solid #aaa59b}.stageRow time{font:900 clamp(22px,2.5vw,38px)/1 Arial;letter-spacing:-.04em}.stageVideo{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:24px;align-items:center;color:var(--ink);text-decoration:none}.stageThumb{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;background:#0a1726}.stageThumb img{width:100%;height:100%;object-fit:cover;transition:.35s}.stageThumb b{position:absolute;inset:50% auto auto 50%;translate:-50% -50%;width:46px;height:46px;border-radius:50%;display:grid;place-content:center;padding-left:3px;background:var(--gold);box-shadow:0 8px 25px rgba(0,0,0,.3)}.stageVideo:hover img{transform:scale(1.05)}.stageVideo>span:last-child{display:grid;gap:12px}.stageVideo strong{font:800 clamp(18px,2vw,28px)/1.25 serif}.stageVideo small{font:700 9px Arial;letter-spacing:.15em;color:#796727}.station{display:grid;gap:8px}.station strong{font:900 clamp(30px,4vw,58px)/1 Arial;color:#c48f17}.station span{font-size:12px;color:#59606a}
+        footer{display:flex;justify-content:space-between;gap:20px;padding:26px 4vw;background:#040910;color:#8d97a4;font:10px Arial;letter-spacing:.16em}
+        @media(max-width:720px){.hero{min-height:820px}.frames{inset:12vh -18vw 29vh 36vw;opacity:.8}.heroText{padding:17vh 7vw 8vh}.heroText h1{font-size:72px}.statement{grid-template-columns:1fr;padding:70px 7vw}.words,.memory{padding:75px 7vw}.wordGrid{grid-template-columns:1fr}.wordGrid article{border-right:0;border-bottom:1px solid #aaa;margin:0}.lyricsPreview{grid-template-columns:1fr;padding:75px 7vw}.lyricsMeta>span{margin:22px 0 36px}.lyricsLines{padding-left:24px}.lyricsLines p{font-size:24px}.memory article{grid-template-columns:1fr}.video{grid-template-columns:1fr;padding:65px 7vw;gap:42px}.video h2{font-size:48px}.stageArchive{padding:75px 7vw}.stageIntro{grid-template-columns:1fr}.stageIntro .sectionTag{grid-column:auto}.stageHead{display:none}.stageRow{grid-template-columns:1fr;gap:18px;padding:28px 0}.stageVideo{grid-template-columns:1fr}.stageRow time{font-size:30px}.station{grid-template-columns:auto 1fr;align-items:baseline}.station strong{font-size:38px}footer{flex-direction:column}}
+        @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="hero" id="hero">
+            <nav>
+                <span class="logo">3W<span>10</span></span>
+                <span>2016 — 2026</span>
+            </nav>
+
+            <div class="light" aria-hidden="true"></div>
+            <div class="frames" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="noise" aria-hidden="true"></div>
+
+            <div class="heroText">
+                <p class="kicker">SECHSKIES · 세 단어</p>
+                <h1><span>THREE</span><span class="outline">WORDS</span></h1>
+                <div class="anniversary"><strong>10</strong><p>TH<br>ANNIVERSARY</p></div>
+                <p class="dates">2016.10.07 <b>—</b> 2026.10.07</p>
+                <div class="actions">
+                    <button class="primary" id="litToggle">點亮第十年的光 <span>✦</span></button>
+                    <button class="secondary" id="downloadPoster">下載 IG 紀念圖 ↓</button>
+                </div>
+            </div>
+            <div class="threeDots"><b></b><b></b><b></b></div>
+        </section>
+
+        <section class="statement">
+            <p class="sectionTag">01 / TEN YEARS LATER</p>
+            <div>
+                <p class="hangul">지금 · 여기 · 우리</p>
+                <h2>現在。這裡。我們。</h2>
+                <p class="bigCopy">有些歌不只是被聽見，<br>而是替一段等待留下名字。</p>
+            </div>
+        </section>
+
+        <section class="words">
+            <p class="sectionTag">02 / THREE WORDS</p>
+            <div class="wordGrid">
+                <article><span>01</span><h3>NOW</h3><p>十年後的此刻，重新按下播放。</p></article>
+                <article><span>02</span><h3>HERE</h3><p>回到那個讓我們再次相遇的地方。</p></article>
+                <article><span>03</span><h3>US</h3><p>歌曲仍在，我們也仍然在這裡。</p></article>
+            </div>
+        </section>
+
+        <section class="lyricsPreview">
+            <div class="lyricsMeta">
+                <p class="sectionTag">03 / LYRICS PREVIEW</p>
+                <span>세 단어<br>THREE WORDS</span>
+            </div>
+            <div class="lyricsLines">
+                <p>I just wanna be with you</p>
+                <p>내가 사는 이유</p>
+                <p>다시는 멀리 가지 않을게요</p>
+                <p>I'll always be here for you</p>
+                <p>세월이 지난 후</p>
+                <a href="https://jekkinoopy.github.io/sechskies/extra/lyrics.html" target="_blank" rel="noreferrer">完整歌詞與歌曲資料 <span>↗</span></a>
+            </div>
+        </section>
+
+        <section class="memory">
+            <p class="sectionTag">04 / FROM THEN TO NOW</p>
+            <article><strong>2016.10.07</strong><div><h3>重新相遇</h3><p>睽違十六年後，SECHSKIES 以〈세 단어 (THREE WORDS)〉帶回重逢的聲音。</p></div></article>
+            <article><strong>2026.10.07</strong><div><h3>十年以後</h3><p>旋律走過十年，當時的感動仍停在現在、這裡、我們之間。</p></div></article>
+        </section>
+
+        <section class="video">
+            <div class="videoHeading">
+                <p class="sectionTag">OFFICIAL MUSIC VIDEO</p>
+                <h2>再聽一次，<br>十年前的三個詞。</h2>
+                <a href="https://www.youtube.com/watch?v=m7Zt_p9S-yg" target="_blank" rel="noreferrer">在 YouTube 開啟 ↗</a>
+            </div>
+            <div class="videoFrame">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/m7Zt_p9S-yg?rel=0"
+                    title="SECHSKIES - 세 단어 (THREE WORDS) Official Music Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="stageArchive">
+            <div class="stageIntro">
+                <p class="sectionTag">05 / MUSIC SHOW ARCHIVE</p>
+                <h2>打歌舞台</h2>
+                <p>把當年的舞台依日期收好，從十年前重新播放。</p>
+            </div>
+            <div class="stageTable" role="table" aria-label="THREE WORDS 打歌舞台列表">
+                <div class="stageHead" role="row">
+                    <span role="columnheader">DATE</span>
+                    <span role="columnheader">VIDEO</span>
+                    <span role="columnheader">STATION</span>
+                </div>
+                <div class="stageRow" role="row">
+                    <time role="cell" datetime="2016.12.04">2016.12.04</time>
+                    <a class="stageVideo" role="cell" href="https://www.youtube.com/watch?v=8HTqr3Wp-R0" target="_blank" rel="noreferrer">
+                        <span class="stageThumb">
+                            <img src="https://i.ytimg.com/vi/8HTqr3Wp-R0/hqdefault.jpg" alt="인기가요 · Inkigayo THREE WORDS · Goodbye Stage 影片縮圖">
+                            <b>▶</b>
+                        </span>
+                        <span><strong>THREE WORDS · Goodbye Stage</strong><small>WATCH ON YOUTUBE ↗</small></span>
+                    </a>
+                    <div class="station" role="cell"><strong>SBS</strong><span>인기가요 · Inkigayo</span></div>
+                </div>
+            </div>
+        </section>
+
+        <footer><span>FAN-MADE 10TH ANNIVERSARY TRIBUTE</span><span>SECHSKIES · THREE WORDS · 2016—2026</span></footer>
+    </main>
+
+    <script>
+        var hero = document.getElementById("hero");
+        var litToggle = document.getElementById("litToggle");
+        var lit = false;
+        litToggle.addEventListener("click", function () {
+            lit = !lit;
+            hero.classList.toggle("isLit", lit);
+            litToggle.firstChild.textContent = lit ? "讓記憶停在這裡 " : "點亮第十年的光 ";
+        });
+
+        document.getElementById("downloadPoster").addEventListener("click", function () {
+            var canvas = document.createElement("canvas");
+            canvas.width = 1080;
+            canvas.height = 1350;
+            var ctx = canvas.getContext("2d");
+            if (!ctx) return;
+            var glow = ctx.createRadialGradient(780, 300, 10, 780, 300, 900);
+            glow.addColorStop(0, "#e0a16b");
+            glow.addColorStop(.34, "#264765");
+            glow.addColorStop(1, "#07101d");
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, 1080, 1350);
+            ctx.strokeStyle = "rgba(255,255,255,.45)";
+            ctx.lineWidth = 2;
+            [150, 390, 630].forEach(function (x, index) {
+                ctx.strokeRect(x, 180 + index * 70, 420, 660);
+            });
+            ctx.fillStyle = "#f5efe2";
+            ctx.font = "700 106px Arial";
+            ctx.fillText("THREE", 72, 980);
+            ctx.fillText("WORDS", 72, 1085);
+            ctx.fillStyle = "#efb53f";
+            ctx.font = "700 36px Arial";
+            ctx.fillText("10TH ANNIVERSARY", 76, 1155);
+            ctx.fillStyle = "#f5efe2";
+            ctx.font = "30px Arial";
+            ctx.fillText("2016.10.07 — 2026.10.07", 76, 1225);
+            ctx.font = "26px Arial";
+            ctx.fillText("NOW · HERE · US", 76, 1285);
+            var link = document.createElement("a");
+            link.download = "three-words-10th-anniversary.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    </script>
+</body>
+
+</html>
