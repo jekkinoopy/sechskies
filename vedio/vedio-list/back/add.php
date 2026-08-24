@@ -9,9 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $maxRank = $Drama->q("SELECT MAX(`rank`) AS m FROM `dramas`");
         $nextRank = ((int)($maxRank[0]['m'] ?? 0)) + 1;
 
+        $posterName = '';
+        if (!empty($_FILES['poster']['name']) && $_FILES['poster']['error'] === UPLOAD_ERR_OK) {
+            $ext = strtolower(pathinfo($_FILES['poster']['name'], PATHINFO_EXTENSION));
+            $posterName = uniqid('poster_') . '.' . $ext;
+            move_uploaded_file($_FILES['poster']['tmp_name'], __DIR__ . '/../uploads/' . $posterName);
+        }
+
         $data = [
             'title' => trim($_POST['title'] ?? ''),
             'type' => $type,
+            'poster' => $posterName,
             'platform' => $_POST['platform'] ?? '其他',
             'watch_url' => trim($_POST['watch_url'] ?? ''),
             'current_season' => max(1, (int)($_POST['current_season'] ?? 1)),

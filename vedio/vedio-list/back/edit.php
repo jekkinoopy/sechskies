@@ -11,6 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $row['title'] = trim($_POST['title'] ?? $row['title']);
     $row['type'] = $_POST['type'] ?? $row['type'];
     $row['platform'] = $_POST['platform'] ?? $row['platform'];
+
+    if (!empty($_FILES['poster']['name']) && $_FILES['poster']['error'] === UPLOAD_ERR_OK) {
+        $ext = strtolower(pathinfo($_FILES['poster']['name'], PATHINFO_EXTENSION));
+        $row['poster'] = uniqid('poster_') . '.' . $ext;
+        move_uploaded_file($_FILES['poster']['tmp_name'], __DIR__ . '/../uploads/' . $row['poster']);
+    }
     $row['watch_url'] = trim($_POST['watch_url'] ?? '');
     $row['current_season'] = max(1, (int)($_POST['current_season'] ?? 1));
     $row['current_episode'] = max(0, (int)($_POST['current_episode'] ?? 0));
@@ -29,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section>
     <h2 class="section-title">編輯作品</h2>
 
-    <form class="admin-form" method="post" action="?do=edit&amp;id=<?= (int)$row['id'] ?>">
+    <form class="admin-form" method="post" action="?do=edit&amp;id=<?= (int)$row['id'] ?>" enctype="multipart/form-data">
         <label for="title">劇名／節目名</label>
         <input type="text" id="title" name="title" required
                value="<?= htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') ?>">
@@ -51,6 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </option>
             <?php endforeach; ?>
         </select>
+
+        <label for="poster">海報圖片</label>
+        <?php if (!empty($row['poster'])): ?>
+            <img src="../uploads/<?= htmlspecialchars($row['poster'], ENT_QUOTES, 'UTF-8') ?>" alt="" style="max-width:120px;display:block;margin-bottom:0.5rem;">
+        <?php endif; ?>
+        <input type="file" id="poster" name="poster" accept="image/*">
 
         <label for="watch_url">直接觀看網址</label>
         <input type="url" id="watch_url" name="watch_url"

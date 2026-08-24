@@ -52,7 +52,13 @@ $rows = $Drama->all($where, " ORDER BY `rank` ASC, `id` ASC");
                 $posterLabel = htmlspecialchars(strtoupper($row['platform']) . ' · ' . $typeText, ENT_QUOTES, 'UTF-8');
                 ?>
                 <article class="drama-card" data-type="<?= htmlspecialchars($row['type'], ENT_QUOTES, 'UTF-8') ?>">
-                    <div class="drama-card__poster" aria-hidden="true"><?= $posterLabel ?></div>
+                    <div class="drama-card__poster<?= !empty($row['poster']) ? ' drama-card__poster--image' : '' ?>" aria-hidden="true">
+                        <?php if (!empty($row['poster'])): ?>
+                            <img src="uploads/<?= htmlspecialchars($row['poster'], ENT_QUOTES, 'UTF-8') ?>" alt="">
+                        <?php else: ?>
+                            <?= $posterLabel ?>
+                        <?php endif; ?>
+                    </div>
                     <div class="drama-card__meta">
                         <span class="drama-tag"><?= htmlspecialchars($typeText, ENT_QUOTES, 'UTF-8') ?></span>
                         <span class="drama-tag drama-tag--platform"><?= htmlspecialchars($row['platform'], ENT_QUOTES, 'UTF-8') ?></span>
