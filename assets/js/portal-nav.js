@@ -286,6 +286,7 @@
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">視覺進化論</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/practice-room.html"><span class="portal-nav__label">小黃練習室</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/fan-articles.html"><span class="portal-nav__label">小黃文章典藏</span></a></li>
         </ul>
     </li>
 </ul>

@@ -1,0 +1,51 @@
+/* yellow-note/fan-articles.html：小黃文章典藏頁面專屬版型 */
+
+.fan-articles-intro {
+    margin-bottom: 2.5rem;
+}
+
+.fan-articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.fan-article-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: #9a9a9a;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+}
+
+.fan-article-card__board {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-brand-dark);
+}
+
+.fan-article-card__title {
+    margin: 0 0 0.3rem;
+    font-size: 1.2rem;
+    color: #2e2e2e;
+}
+
+.fan-article-card__author {
+    margin: 0 0 0.8rem;
+    font-size: 0.9rem;
+    color: #7e7e7e;
+}
+
+.fan-article-card p:not(.fan-article-card__author) {
+    color: #4a4a4a;
+    line-height: 1.75;
+    margin: 0 0 1rem;
+}
+
+.fan-article-card p:last-of-type {
+    margin-bottom: 1.2rem;
+}
