@@ -1,0 +1,109 @@
+/* yellow-note/pitch-map.html：頁面專屬版型（頁內索引、精選標籤卡、影音嵌入） */
+
+/* 本頁 .card 皆作為 <a> 使用，蓋掉瀏覽器預設連結底線／藍字（本檔僅此頁引用，不影響全站 .card） */
+a.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pitch-map-index {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 0 0 2rem;
+}
+
+.pitch-map-index a {
+    color: var(--color-brand-dark);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+}
+
+.pitch-map-index a:hover {
+    border-bottom-color: var(--color-brand);
+}
+
+.pitch-map-section {
+    margin-bottom: 3.5rem;
+}
+
+.pitch-map-highlights,
+.pitch-map-links {
+    margin-bottom: 2.5rem;
+}
+
+.pitch-map-highlight {
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.pitch-map-highlight i {
+    font-size: 1.5rem;
+    color: var(--color-brand);
+}
+
+.pitch-map-highlight h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #2e2e2e;
+}
+
+.pitch-map-highlight p {
+    margin: 0;
+    color: #585858;
+    font-size: 0.92rem;
+}
+
+.pitch-map-media {
+    max-width: 42rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.pitch-map-video-note {
+    margin-bottom: 1rem;
+}
+
+.pitch-map-embed {
+    margin: 2rem auto;
+    max-width: 42rem;
+}
+
+.pitch-map-embed iframe {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+}
+
+.pitch-map-embed--video {
+    aspect-ratio: 16 / 9;
+}
+
+.pitch-map-embed--video iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.pitch-map-yellowkies-intro {
+    max-width: 42rem;
+    margin: 0 auto 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.pitch-map-yellowkies-intro i {
+    font-size: 1.5rem;
+    color: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+}
