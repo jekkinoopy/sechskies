@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>水晶男孩 ‧ 六人六色</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@500;700;900&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#0B1220;
+    --bg-panel:#111A2C;
+    --bg-panel-2:#0E1626;
+    --line:rgba(237,237,227,0.12);
+    --ink:#EDEDE3;
+    --muted:#8C97AC;
+    --c-brand:#FFCC00;   /* 非成員專屬的通用強調色，對齊全站品牌色 */
+
+    --c-jiwon:#C4CDD6;   /* 殷志源 - 隊長 - 銀色 */
+    --c-suwon:#6FC6E8;   /* 張水院 - 水藍色 */
+    --c-jaejin:#F0D879;  /* 李宰鎮 - 鵝黃色 */
+    --c-jiyong:#3F7A5E;  /* 高志溶 - 墨綠色 */
+    --c-sunghun:#E88FB5; /* 姜成勳 - 粉紅色 */
+    --c-jaeduk:#B08968;  /* 金在德 - 松鼠色 */
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-deep);
+    color:var(--ink);
+    font-family:'Noto Serif TC', serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--c-brand); color:#0B1220;}
+
+  h1,h2,h3,.disp{font-family:'Noto Sans TC', sans-serif;}
+  .num{font-family:'Bebas Neue', sans-serif; letter-spacing:0.02em;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- 六人六色 分隔條（簽名元素） ---------- */
+  .spectrum{
+    height:6px;
+    width:100%;
+    background:linear-gradient(90deg,
+      var(--c-jiwon) 0 16.66%,
+      var(--c-suwon) 16.66% 33.33%,
+      var(--c-jaejin) 33.33% 50%,
+      var(--c-jiyong) 50% 66.66%,
+      var(--c-sunghun) 66.66% 83.33%,
+      var(--c-jaeduk) 83.33% 100%);
+  }
+
+  /* ---------- 側邊六色導覽點 ---------- */
+  .dots{
+    position:fixed; right:22px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:14px; z-index:50;
+  }
+  .dots a{
+    width:10px; height:10px; border-radius:50%;
+    display:block; border:1px solid rgba(237,237,227,0.35);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .dots a:hover{transform:scale(1.5);}
+  .dots a:nth-child(1){background:var(--c-jiwon);}
+  .dots a:nth-child(2){background:var(--c-suwon);}
+  .dots a:nth-child(3){background:var(--c-jaejin);}
+  .dots a:nth-child(4){background:var(--c-jiyong);}
+  .dots a:nth-child(5){background:var(--c-sunghun);}
+  .dots a:nth-child(6){background:var(--c-jaeduk);}
+  @media (max-width:760px){.dots{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:120px 0 80px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 15%, rgba(142,207,239,0.16), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 80%, rgba(196,68,46,0.14), transparent 60%),
+      var(--bg-deep);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(237,237,227,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237,237,227,0.035) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 70% 70% at 50% 40%, black, transparent);
+  }
+  .hero-eyebrow{
+    position:relative; z-index:2;
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:13px; letter-spacing:0.35em; color:var(--muted);
+    margin-bottom:22px; font-weight:700;
+  }
+  .hero h1{
+    position:relative; z-index:2;
+    font-size:clamp(56px, 12vw, 132px);
+    font-weight:900; letter-spacing:0.02em;
+    line-height:0.98;
+    background:linear-gradient(120deg, var(--ink) 40%, var(--c-brand) 65%, var(--ink) 90%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{
+    position:relative; z-index:2;
+    margin-top:26px; max-width:640px;
+    font-size:clamp(17px,2.4vw,20px); color:var(--ink); opacity:0.92;
+  }
+  .hero-meta{
+    position:relative; z-index:2;
+    margin-top:56px;
+    display:flex; gap:44px; flex-wrap:wrap;
+  }
+  .hero-meta .item .num{font-size:44px; color:var(--c-brand);}
+  .hero-meta .item .lab{font-size:13px; color:var(--muted); letter-spacing:0.08em; margin-top:2px;}
+  .scrolldown{
+    position:absolute; z-index:2; bottom:34px; left:28px;
+    font-family:'Noto Sans TC',sans-serif; font-size:12px; color:var(--muted);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scrolldown::before{
+    content:""; width:1px; height:38px; background:linear-gradient(var(--c-brand), transparent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+  section{padding:110px 0;}
+  .eyebrow{
+    font-family:'Noto Sans TC',sans-serif; font-size:12px; letter-spacing:0.3em;
+    color:var(--muted); font-weight:700; margin-bottom:14px;
+  }
+  .sec-title{font-size:clamp(28px,4vw,42px); font-weight:900; margin-bottom:20px;}
+  .sec-lead{max-width:640px; color:var(--muted); font-size:16px;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{background:var(--bg-panel);}
+  .tl-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--line); border:1px solid var(--line); margin-top:56px;
+    border-radius:4px; overflow:hidden;
+  }
+  .tl-col{background:var(--bg-panel); padding:40px 34px;}
+  .tl-col:first-child{background:var(--bg-panel-2);}
+  .tl-year{font-size:15px; letter-spacing:0.15em; color:var(--muted); font-family:'Noto Sans TC',sans-serif; font-weight:700; margin-bottom:8px;}
+  .tl-big{font-family:'Bebas Neue','Noto Sans TC',sans-serif; font-weight:900; font-size:clamp(46px,6vw,72px); color:var(--c-brand); line-height:1;}
+  .tl-col:last-child .tl-big{color:var(--c-brand);}
+  .tl-rows{margin-top:28px; display:flex; flex-direction:column; gap:16px;}
+  .tl-row{display:flex; gap:16px; font-size:14.5px;}
+  .tl-row .k{flex:0 0 64px; color:var(--muted); font-family:'Noto Sans TC',sans-serif; font-weight:700; font-size:13px; letter-spacing:.05em; padding-top:2px;}
+  .tl-row .v{flex:1; color:var(--ink); opacity:0.92;}
+  @media (max-width:720px){.tl-grid{grid-template-columns:1fr;}}
+
+  /* ---------- 六人六色 CHIP INTRO ---------- */
+  .chips-row{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:40px;
+  }
+  .chip{
+    font-family:'Noto Sans TC',sans-serif; font-size:13px; font-weight:700;
+    padding:9px 18px; border-radius:999px; color:#0B1220;
+    display:flex; align-items:center; gap:8px;
+    box-shadow:0 8px 22px -10px rgba(0,0,0,.5);
+  }
+
+  /* ---------- MEMBERS ---------- */
+  .members{background:var(--bg-deep);}
+  .m-grid{
+    margin-top:56px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  @media (max-width:760px){.m-grid{grid-template-columns:1fr;}}
+  .m-card{
+    background:var(--bg-panel); padding:38px 34px 34px;
+    position:relative; transition:background .3s ease;
+  }
+  .m-card::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+    background:var(--accent);
+  }
+  .m-card:hover{background:var(--bg-panel-2);}
+  .m-role{
+    font-family:'Noto Sans TC',sans-serif; font-size:11.5px; letter-spacing:0.18em;
+    color:var(--accent); font-weight:700; margin-bottom:10px;
+  }
+  .m-name{font-size:25px; font-weight:900; font-family:'Noto Sans TC',sans-serif;}
+  .m-name en{font-family:'Bebas Neue',sans-serif; font-size:15px; color:var(--muted); font-weight:400; letter-spacing:.06em; margin-left:10px;}
+  .m-desc{margin-top:14px; font-size:14.5px; color:var(--ink); opacity:0.86;}
+  .m-quote{
+    margin-top:16px; font-size:13.5px; color:var(--accent); font-family:'Noto Sans TC',sans-serif;
+    font-weight:700; opacity:0.95;
+  }
+
+  /* ---------- DSP 風暴 ---------- */
+  .storm{
+    background:linear-gradient(180deg, var(--bg-panel-2), #0A0F1C);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .storm .sec-title{color:var(--c-brand);}
+  .storm-body{max-width:720px; margin-top:30px; font-size:16px; color:var(--ink); opacity:0.9;}
+  .storm-body p + p{margin-top:18px;}
+  .storm-stat{
+    margin-top:44px; display:flex; gap:48px; flex-wrap:wrap;
+    border-top:1px solid var(--line); padding-top:32px;
+  }
+  .storm-stat .num{font-size:52px; color:var(--c-brand);}
+  .storm-stat .lab{font-size:13px; color:var(--muted); margin-top:4px; max-width:220px;}
+
+  /* ---------- 迴響 TICKER ---------- */
+  .echo{background:var(--bg-deep); overflow:hidden;}
+  .ticker-track{
+    margin-top:50px; display:flex; gap:40px; white-space:nowrap;
+    animation:scroll-left 42s linear infinite;
+    width:max-content;
+  }
+  .echo:hover .ticker-track{animation-play-state:paused;}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker-item{
+    font-family:'Noto Sans TC',sans-serif; font-size:16px;
+    padding:14px 26px; border:1px solid var(--line); border-radius:999px;
+    color:var(--ink); opacity:0.88; display:inline-flex; align-items:center; gap:10px;
+  }
+  .ticker-item .dot{width:7px; height:7px; border-radius:50%; flex:0 0 auto;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:90px 0 60px; text-align:center; background:var(--bg-panel-2);
+  }
+  footer .line{
+    font-family:'Noto Sans TC',sans-serif; font-size:22px; font-weight:900;
+    margin-bottom:18px;
+  }
+  footer p{color:var(--muted); font-size:13.5px;}
+  footer a.src{
+    display:inline-block; margin-top:18px; font-size:12.5px; color:var(--c-brand);
+    border-bottom:1px solid rgba(142,207,239,0.4);
+  }
+
+  /* fade-in on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:none;}
+</style>
+</head>
+<body>
+
+<div class="dots">
+  <a href="#m-jiwon" aria-label="殷志源"></a>
+  <a href="#m-suwon" aria-label="張水院"></a>
+  <a href="#m-jaejin" aria-label="李宰鎮"></a>
+  <a href="#m-jiyong" aria-label="高志溶"></a>
+  <a href="#m-sunghun" aria-label="姜成勳"></a>
+  <a href="#m-jaeduk" aria-label="金在德"></a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">KOREASTAR ‧ 廢人症候群紀錄</div>
+    <h1>水晶男孩</h1>
+    <p class="hero-sub">成軍僅僅三年，卻讓歌迷足足等了十六年。六個人，六種個性，各自走過不同的命運，卻在同一個舞台上重新合體——這是一篇獻給「六人六色」的告白。</p>
+    <div class="hero-meta">
+      <div class="item"><div class="num">3</div><div class="lab">年 ‧ 成軍時間</div></div>
+      <div class="item"><div class="num">16</div><div class="lab">年 ‧ 空白等待</div></div>
+      <div class="item"><div class="num">4</div><div class="lab">張 ‧ 正規專輯</div></div>
+      <div class="item"><div class="num">6</div><div class="lab">人 ‧ 六色齊聚</div></div>
+    </div>
+  </div>
+  <div class="scrolldown">向下滾動，認識六種顏色</div>
+</section>
+<div class="spectrum"></div>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="wrap">
+    <div class="eyebrow reveal">TIMELINE</div>
+    <h2 class="sec-title reveal">1997 與 2016，中間隔了一整個時代</h2>
+    <p class="sec-lead reveal">解散的理由，是唱片公司口中「只」賣了五十萬張——後來才知道，那個年代的五十萬張，其實從不是失敗的數字。</p>
+    <div class="tl-grid">
+      <div class="tl-col reveal">
+        <div class="tl-year">1997 — 2000</div>
+        <div class="tl-big num">六人六色</div>
+        <div class="tl-rows">
+          <div class="tl-row"><div class="k">色彩</div><div class="v">個人特色鮮明，六人各自成一種風格，合體才完整</div></div>
+          <div class="tl-row"><div class="k">分組</div><div class="v">團內再分「黑白水晶」，同一組人也能玩出反差</div></div>
+          <div class="tl-row"><div class="k">代表曲</div><div class="v">〈COUPLE〉——十七年後依然能重新登上排行榜的作品</div></div>
+          <div class="tl-row"><div class="k">出道</div><div class="v">出道曲即帶著對社會的犀利提問，並不只是偶像情歌</div></div>
+        </div>
+      </div>
+      <div class="tl-col reveal">
+        <div class="tl-year">2016 — 無限挑戰</div>
+        <div class="tl-big num">六六大順</div>
+        <div class="tl-rows">
+          <div class="tl-row"><div class="k">身材</div><div class="v">白色戰袍再度上身，體態幾乎沒有走鐘，主唱依然驚人</div></div>
+          <div class="tl-row"><div class="k">容貌</div><div class="v">歲月幾乎沒有留下痕跡，一眼仍能認出十六年前的臉</div></div>
+          <div class="tl-row"><div class="k">時代</div><div class="v">跟上九零年代復古風潮，重新成為一個被討論的名字</div></div>
+          <div class="tl-row"><div class="k">舞台</div><div class="v">歌迷等待多年的約定終於兌現，應援與舞台再次對稱</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips-row reveal">
+      <span class="chip" style="background:var(--c-jiwon)">殷志源 ‧ 隊長</span>
+      <span class="chip" style="background:var(--c-suwon)">張水院 ‧ 機器人</span>
+      <span class="chip" style="background:var(--c-jaejin)">李宰鎮 ‧ 四次元</span>
+      <span class="chip" style="background:var(--c-jiyong)">高志溶 ‧ 隱藏版</span>
+      <span class="chip" style="background:var(--c-sunghun)">姜成勳 ‧ 主唱</span>
+      <span class="chip" style="background:var(--c-jaeduk)">金在德 ‧ 頭上星星</span>
+    </div>
+  </div>
+</section>
+<div class="spectrum"></div>
+
+<!-- MEMBERS -->
+<section class="members">
+  <div class="wrap">
+    <div class="eyebrow reveal">SIX COLORS</div>
+    <h2 class="sec-title reveal">六人六色，缺一不可</h2>
+    <p class="sec-lead reveal">分開看其實各自很不搭，合在一起卻異常協調——這正是水晶男孩最迷人的地方。</p>
+
+    <div class="m-grid">
+      <div class="m-card reveal" id="m-jiwon" style="--accent:var(--c-jiwon)">
+        <div class="m-role">隊長 ‧ CAPTAIN</div>
+        <div class="m-name">殷志源 <en>EUN JI-WON</en></div>
+        <div class="m-desc">節目上看起來憨厚孩子氣，實際唱功遠比想像中扎實。面對成員詞窮時總能天才般解圍，一句「你要畫就自己畫」看似任性，其實邏輯清楚到讓人無法反駁——這正是隊長的霸氣。</div>
+        <div class="m-quote">"因為是他畫的，所以是他的畫。"</div>
+      </div>
+
+      <div class="m-card reveal" id="m-suwon" style="--accent:var(--c-suwon)">
+        <div class="m-role">機器人演技 ‧ THE STEADY ONE</div>
+        <div class="m-name">張水院 <en>JANG SU-WON</en></div>
+        <div class="m-desc">解散那天沒有哭，理由只是「沒得選擇」。當初帶著「我什麼都不會」的心情加入，卻靠著獨樹一格、不受外貌影響的演技意外走出自己的路，八支以上代言全是靠這份「跟對時代」的坦然。</div>
+        <div class="m-quote">"沒得選擇，所以沒有哭。"</div>
+      </div>
+
+      <div class="m-card reveal" id="m-jaejin" style="--accent:var(--c-jaejin)">
+        <div class="m-role">四次元 ‧ THE WILD CARD</div>
+        <div class="m-name">李宰鎮 <en>LEE JAE-JIN</en></div>
+        <div class="m-desc">思考邏輯常常天馬行空，但神奇的是隊友從不覺得奇怪，甚至能替他翻譯給全世界聽。私底下低調節儉,幾年沉潛之後,終於準備好重新回到螢光幕前。</div>
+        <div class="m-quote">"四次元，但沒人覺得奇怪。"</div>
+      </div>
+
+      <div class="m-card reveal" id="m-jiyong" style="--accent:var(--c-jiyong)">
+        <div class="m-role">隱藏版水晶 ‧ THE HIDDEN ONE</div>
+        <div class="m-name">高志溶 <en>KO JI-YONG</en></div>
+        <div class="m-desc">離開演藝圈多年，過著極度重視隱私的生活，願意重新站上舞台的理由只有一句：「希望這能讓其他成員有更好的發展。」六個人一起跳〈COUPLE〉的那一刻，是整段重聚裡最催淚的畫面。</div>
+        <div class="m-quote">"以為忘了，其實一直都記得。"</div>
+      </div>
+
+      <div class="m-card reveal" id="m-sunghun" style="--accent:var(--c-sunghun)">
+        <div class="m-role">主唱 ‧ THE VOICE</div>
+        <div class="m-name">姜成勳 <en>KANG SUNG-HUN</en></div>
+        <div class="m-desc">容貌與歌聲二十年如一日，〈oh~ love〉甚至唱得比當年更好。經歷過低潮、幾乎快被人遺忘，直到重新站上舞台，那份好嗓音才被再次記起——躺在地上唱情話，這種事大概也只有他做得不尷尬。</div>
+        <div class="m-quote">"甜到爆的 oh~ love。"</div>
+      </div>
+
+      <div class="m-card reveal" id="m-jaeduk" style="--accent:var(--c-jaeduk)">
+        <div class="m-role">頭上的星星 ‧ THE LOYAL ONE</div>
+        <div class="m-name">金在德 <en>KIM JAE-DUK</en></div>
+        <div class="m-desc">團內人氣雖不是最高，卻是解散時哭得最慘的那一個，跳舞永遠最認真。如今在幕後協助隊長經營公司、栽培新人，用另一種方式繼續留在這個舞台旁邊。</div>
+        <div class="m-quote">"用情最深的那一個。"</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="spectrum"></div>
+
+<!-- DSP 風暴 -->
+<section class="storm">
+  <div class="wrap">
+    <div class="eyebrow reveal">THE OTHER SIDE</div>
+    <h2 class="sec-title reveal">解散的理由，經不起細看</h2>
+    <div class="storm-body reveal">
+      <p>公司高層那句「你們完蛋了」，成了六個人拆夥的關鍵一句話。理由是專輯「只」賣出五十萬張——但在那個年代，五十萬張從來不是滑落的訊號，而是九成同期歌手連摸都摸不到的成績。</p>
+      <p>多年後才傳出，銷售數字其實遠不只五十萬，是公司刻意壓低、方便報稅的說法。成員曾在節目上坦言，當初只是想換一家公司重新出發，從沒想過「解散」會是唯一的選項。</p>
+      <p>諷刺的是，這家公司旗下曾經捧紅過不只一組傳奇——最終卻一次又一次把好牌打到只剩回憶。而六個人選擇的方式，不是抱怨，是把最好的舞台狀態留給等待了十六年的歌迷。</p>
+    </div>
+    <div class="storm-stat">
+      <div><div class="num">50<span style="font-size:22px;">萬張</span></div><div class="lab">當年被說成「賣不動」的專輯銷量</div></div>
+      <div><div class="num">17</div><div class="lab">年後，〈COUPLE〉依然能重登排行榜</div></div>
+      <div><div class="num">6/6</div><div class="lab">全員到齊，缺一不可的合體舞台</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 迴響 -->
+<section class="echo">
+  <div class="wrap">
+    <div class="eyebrow reveal">FAN ECHO</div>
+    <h2 class="sec-title reveal">「廢人症」持續中</h2>
+    <p class="sec-lead reveal">這篇文章底下，滿滿都是同一種症狀——重新愛上水晶男孩，然後再也戒不掉。</p>
+  </div>
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jiwon)"></span>廢人症持續到現在還沒好轉</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-suwon)"></span>每天在等他的 IG 更新</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jaejin)"></span>完全水晶廢人啊，大入主唱大人坑了</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jiyong)"></span>從高志溶出來那刻眼淚就沒停過</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-sunghun)"></span>水晶中毒＋1，到現在還在無限循環</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jaeduk)"></span>六人感情真的很好，看了會哭</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jiwon)"></span>廢人症持續到現在還沒好轉</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-suwon)"></span>每天在等他的 IG 更新</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jaejin)"></span>完全水晶廢人啊，大入主唱大人坑了</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jiyong)"></span>從高志溶出來那刻眼淚就沒停過</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-sunghun)"></span>水晶中毒＋1，到現在還在無限循環</span>
+    <span class="ticker-item"><span class="dot" style="background:var(--c-jaeduk)"></span>六人感情真的很好，看了會哭</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="line">六六大順，水晶男孩</div>
+    <p>一直以為是忘了那樣活，其實從沒忘記那樣活。</p>
+    <a class="src" href="https://www.ptt.cc/bbs/KoreaStar/M.1462808417.A.424.html" target="_blank" rel="noopener">內容改編自 PTT KoreaStar 板原文 →</a>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
