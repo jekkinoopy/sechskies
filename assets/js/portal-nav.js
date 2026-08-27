@@ -242,7 +242,7 @@
 
     /** 全站導覽 HTML — `rp` 為站根相對前綴；僅修改此模板即可同步所有頁面
      * 五主項固定：淪陷瞬間、完整的六顆、現場的震撼、黃色留聲機、Yellow Note，不得再開第 6 個頂層項目。
-     * 世紀級寶藏收在「淪陷瞬間」子選單內；小黃練習室收在「Yellow Note」子選單內（見 site-guide.html 心智圖）。 */
+     * 世紀級寶藏收在「淪陷瞬間」子選單內；YELLOW WAVE（外連 sechskies_fans，原小黃練習室）收在「Yellow Note」子選單內（見 site-guide.html 心智圖）。 */
     function buildPortalNavInnerHTML(rp) {
         return `
 <a class="logo" target="_blank" rel="noopener noreferrer" href="${rp}index.html"><img src="${rp}assets/images/logov.svg" alt="SECHSKIES Logo"></a>
@@ -285,7 +285,7 @@
         <ul class="portal-submenu">
             <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="應援活動，尚無開放"><span class="portal-nav__label">應援活動</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://jekkinoopy.github.io/sechskies_fans/"><span class="portal-nav__label">小黃練習室</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://jekkinoopy.github.io/sechskies_fans/"><span class="portal-nav__label">YELLOW WAVE</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/fan-articles.html"><span class="portal-nav__label">篇章拾遺</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">水晶傳教士</span></a></li>
         </ul>
