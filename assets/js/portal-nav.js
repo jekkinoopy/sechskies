@@ -283,10 +283,11 @@
     </li>
     <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">Yellow Note</span></a>
         <ul class="portal-submenu">
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">視覺進化論</span></a></li>
+            <li><a href="#" data-coming-soon="true" aria-disabled="true" aria-label="應援活動，尚無開放"><span class="portal-nav__label">應援活動</span></a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/map.html"><span class="portal-nav__label">聖地巡禮</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/practice-room.html"><span class="portal-nav__label">小黃練習室</span></a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/fan-articles.html"><span class="portal-nav__label">小黃文章典藏</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://jekkinoopy.github.io/sechskies_fans/"><span class="portal-nav__label">小黃練習室</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/fan-articles.html"><span class="portal-nav__label">篇章拾遺</span></a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="${rp}yellow-note/minister.html"><span class="portal-nav__label">水晶傳教士</span></a></li>
         </ul>
     </li>
 </ul>
