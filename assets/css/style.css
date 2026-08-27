@@ -269,7 +269,7 @@ nav a {
 }
 
 /* 子選單第一項（如淪陷瞬間／傳奇的轉折）上方不畫分隔線 */
-.portal-nav .portal-submenu > li.portal-nav__subgroup:first-child {
+.portal-nav .portal-submenu>li.portal-nav__subgroup:first-child {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
@@ -1027,6 +1027,51 @@ footer {
     margin: 15px auto 0;
 }
 
+/* 全站共用：跟首頁 #start 對齊的正文間距（h2.section-title 後接的敘述段落／列表）。
+   可套在包住多個 <p> 的容器上，也可直接加在單一 <p> 上。 */
+.section-copy {
+    max-width: 42rem;
+    margin-inline: auto;
+}
+
+.section-copy p,
+p.section-copy {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #4a4a4a;
+    /* margin: 0 0 1.125rem; */
+}
+
+.section-copy p:last-child,
+p.section-copy:last-child {
+    margin-bottom: 0;
+}
+
+.section-copy ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+    color: #4a4a4a;
+    line-height: 1.75;
+    font-size: 1.0625rem;
+}
+
+.section-copy ul li {
+    margin-bottom: 0.75rem;
+}
+
+.section-copy ul li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+
+    .section-copy p,
+    p.section-copy,
+    .section-copy ul {
+        font-size: 1rem;
+    }
+}
+
 .subtitle-wrap {
     margin: 4px auto 28px;
     display: flex;
@@ -1741,19 +1786,19 @@ a {
         top: 0;
     }
 
-  /* 上邊：左上 → 右上 */
+    /* 上邊：左上 → 右上 */
     36% {
         left: calc(100% - 1.15em);
         top: 0;
     }
 
-  /* 右邊：右上 → 右下 */
+    /* 右邊：右上 → 右下 */
     46% {
         left: calc(100% - 1.15em);
         top: calc(100% - 1.15em);
     }
 
-  /* 下邊：右下 → 左下 */
+    /* 下邊：右下 → 左下 */
     86% {
         left: 0;
         top: calc(100% - 1.15em);
@@ -2821,7 +2866,7 @@ body.ebook-ssg2-page .ebook-intro.section p.ebook-intro-note {
     line-height: 1.5;
 }
 
-body.ebook-ssg2-page .ebook-intro.section p.ebook-intro-lead + p.ebook-intro-note {
+body.ebook-ssg2-page .ebook-intro.section p.ebook-intro-lead+p.ebook-intro-note {
     margin-top: -0.5rem;
 }
 
@@ -3788,28 +3833,28 @@ body.site-guide-page .sg-node--extra.sg-node--nolink {
     font-style: italic;
 }
 
-body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="1"] > .sg-node {
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="1"]>.sg-node {
     font-weight: 800;
     font-size: 0.98rem;
     background: rgba(255, 220, 150, 0.55);
     border-color: rgba(255, 204, 0, 0.6);
 }
 
-body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="2"] > .sg-node {
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="2"]>.sg-node {
     background: rgba(255, 238, 200, 0.55);
 }
 
-body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="3"] > .sg-node {
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="3"]>.sg-node {
     background: #fffaf2;
 }
 
-body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="4"] > .sg-node {
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth="4"]>.sg-node {
     background: #f5f8ff;
     font-size: 0.82rem;
 }
 
 /* 延伸內容維持灰色虛線，不隨深度套用金黃底色（放在深度規則之後以蓋過同層底色） */
-body.site-guide-page .site-guide-mindmap li[data-site-guide-depth] > .sg-node--extra {
+body.site-guide-page .site-guide-mindmap li[data-site-guide-depth]>.sg-node--extra {
     background: rgba(0, 0, 0, 0.02);
     border-color: rgba(0, 0, 0, 0.22);
 }
@@ -4082,25 +4127,12 @@ body.minister-page .minister-hero-lead .mark_b {
     color: var(--color-brand-light);
 }
 
-body.minister-page .variety-block .intro-text {
-    color: #333;
-    line-height: 1.9;
-    margin: 0 0 10px;
-}
-
 body.minister-page .variety-block .slogan-quote--awakening+.intro-text {
     margin-top: 1rem;
 }
 
 body.minister-page .minister-skill-list {
-    margin: 0.75rem 0 0;
-    padding-left: 1.2rem;
-    color: #333;
-    line-height: 1.75;
-}
-
-body.minister-page .minister-skill-list li {
-    margin-bottom: 0.85rem;
+    list-style: none;
 }
 
 /* hashtag 膠囊：minister.html 與 home-page（minister_ge .hashtag-chip）共用 */

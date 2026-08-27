@@ -92,9 +92,10 @@
 
 /* albums/albums.html：.archive-block 已改為 <section>，沿用 style.css 的 section 卡片版型 */
 section.archive-block p {
+    font-size: 1.0625rem;
     color: #4a4a4a;
-    line-height: 1.7;
-    margin: 0 0 0.75rem;
+    line-height: 1.75;
+    margin: 0 0 1.125rem;
 }
 
 section.archive-block p:last-child {
