@@ -75,7 +75,7 @@
 
 <!-- 每次對話結束後更新這個區塊 -->
 
-**最後更新：** 2026-08-19
+**最後更新：** 2026-09-16
 
 **進行中：**
 - `calendar2026.html` 的 `<h1>` 標題「水晶萬年曆」還在想更好的名字（要求：不用「水晶」前綴、不重複站上已用意象詞、要有典故／查證過的出處），已否決多輪提案，暫緩
@@ -84,6 +84,7 @@
 - developer-rules 健檢尚未執行
 
 **已完成：**
+- 新增 `threeWords.html`（THREE WORDS 十週年紀念頁）與 `s20260916_hw_sechskies_dict.html`（用젝키的歌衝 TOPIK 6級單字頁，資料源 `data/sechskies_words.json`），皆放 repo 根目錄；`threeWords.html` 內「延伸閱讀」區塊連到單字頁。比照 `albums/lyrics.html` 先例，兩頁**不進** `portal-nav.js` 頂欄選單，只在 `extra/site-guide.html`「黃色留聲機」子項下加 `sg-node--extra`（未列頂欄）記錄
 - 新增「打歌舞台管理」後台模組（key `stages`，歌曲管理正下方）：`admin/database/schema.sql` 新增 `stage_performances` 表（`song_id` 外鍵關聯 `songs`，欄位含播出日期／電視台／節目名稱／舞台標題／YouTube 連結／備註／排序／公開狀態四態）；`admin/bootstrap.php` 的 `modules()` 加對應設定，沿用既有通用 CRUD（`records.php`／`record-form.php`／`publishing.php`），沒新增獨立頁面。概念取自 `待確認/三個詞專案/php-admin-practice/`（THREE WORDS·10TH 打歌舞台練習專案）的資料結構，但該資料夾本身維持原樣不動、資料庫也不共用，純粹借用欄位設計。**尚待做：**既有 `sechskies_cms` 資料庫要重新匯入一次 `schema.sql`（`CREATE TABLE IF NOT EXISTS` 不會動到既有表，只會補上新表）
 - 「水晶練習室」全站更名為「小黃練習室」（英文副標 CRYSTAL PRACTICE ROOM → YEKKI PRACTICE ROOM，「小黃」英文簡稱定為 Yekki，「水晶男孩」簡稱 Jekki，站上不再使用 crystal 字樣指稱練習室）：`yellow-note/practice-room.html`（title／h1／h2／hero 文案／CSS 註解）、`assets/js/portal-nav.js`（Yellow Note 子選單標籤與註解）、`extra/site-guide.html` 心智圖同步；CLAUDE.md／AGENTS.md／portal-nav-rules.md 內提到此頁名稱的歷史記錄一併同步（已拆到獨立專案 sechskies_fans 的舊「水晶熱舞社／水晶練習室／偶像練習生」歷史敘述維持原樣，不屬於本站現名範圍）
 - `yellow-note/minister.html`（視覺進化論）Journey 時間軸重構：3 個大 `<article data-era="2016/2017/NOW">` 拆成每個月獨立一個 `story-node`（`data-era="2016.07"` 格式），套用 `.merged-storyline` 既有奇偶交錯排版，不再手寫「07 月｜」字樣。真實照片只有 `2018.07`「415 天健身挑戰」（`fitness-calendar.png`，7/13 李宰鎮生日發起的每日健身計畫，年份待查證）；其餘節點 `data-photo-pending="true"`、不渲染 `<figure>`，等後台控制方式定案後再補真照片
