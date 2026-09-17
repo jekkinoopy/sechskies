@@ -180,6 +180,50 @@ function modules(): array
             ],
             'list' => ['display_name', 'media_type', 'category', 'file_path', 'status', 'updated_at'],
         ],
+        'articles' => [
+            'label' => '小黃文章典藏', 'icon' => 'file-text', 'table' => 'fan_articles', 'order' => 'sort_order, pub_date DESC, id',
+            'fields' => [
+                'board' => ['label' => '出處看板', 'type' => 'text', 'required' => true],
+                'pub_date' => ['label' => '發文日期', 'type' => 'date'],
+                'title' => ['label' => '標題', 'type' => 'text', 'required' => true],
+                'author' => ['label' => '作者／ID', 'type' => 'text'],
+                'summary' => ['label' => '摘要', 'type' => 'textarea'],
+                'link_url' => ['label' => '原文連結', 'type' => 'url'],
+                'sort_order' => ['label' => '排序', 'type' => 'number', 'default' => '0'],
+                'status' => ['label' => '公開狀態', 'type' => 'status', 'required' => true],
+            ],
+            'list' => ['title', 'board', 'pub_date', 'author', 'status', 'updated_at'],
+        ],
+        'variety_highlights' => [
+            'label' => '甜蜜負擔計量器', 'icon' => 'calculator', 'table' => 'variety_member_highlights', 'order' => 'sort_order, id',
+            'fields' => [
+                'member_key' => ['label' => '成員代號', 'type' => 'select', 'required' => true, 'options' => ['group' => '團體（六人合計）', 'jiwon' => '殷志源', 'jaejin' => '李宰鎮', 'jaeduck' => '金在德', 'sunghoon' => '姜成勳', 'suwon' => '張水院', 'jiyong' => '高志溶']],
+                'member_name' => ['label' => '卡片顯示名稱', 'type' => 'text', 'required' => true],
+                'member_role' => ['label' => '定位（Leader・Rapper 等）', 'type' => 'text'],
+                'score' => ['label' => '節目數量', 'type' => 'number', 'required' => true],
+                'is_estimate' => ['label' => '是否為估計值（顯示 +）', 'type' => 'checkbox'],
+                'works' => ['label' => '代表作（一行一部）', 'type' => 'textarea'],
+                'sort_order' => ['label' => '排序', 'type' => 'number', 'default' => '0'],
+                'status' => ['label' => '公開狀態', 'type' => 'status', 'required' => true],
+            ],
+            'list' => ['member_name', 'member_key', 'score', 'is_estimate', 'status', 'updated_at'],
+        ],
+        'njtw5' => [
+            'label' => '新西遊記5 鬼神卡', 'icon' => 'stars', 'table' => 'njtw5_blocks', 'order' => 'sort_order, id',
+            'fields' => [
+                'block_type' => ['label' => '類型', 'type' => 'select', 'required' => true, 'options' => ['member' => '成員卡', 'team' => '隊伍卡']],
+                'slot_class' => ['label' => '版位代號（m1~m6／ob-panel／yb-panel）', 'type' => 'text', 'required' => true],
+                'title' => ['label' => '標題（暱稱／隊名）', 'type' => 'text', 'required' => true],
+                'subtitle' => ['label' => '副標（目前未使用，保留）', 'type' => 'text'],
+                'body' => ['label' => '內文（成員卡：一句話；隊伍卡：一行一段，含口頭禪）', 'type' => 'textarea'],
+                'stats' => ['label' => '能力值（一行一組，格式「標籤:顆數」）', 'type' => 'textarea', 'required' => true],
+                'tags' => ['label' => '標籤（成員卡用，空白分隔）', 'type' => 'text'],
+                'face_images' => ['label' => '隊伍大頭照（隊伍卡用，逗號分隔檔名）', 'type' => 'text'],
+                'sort_order' => ['label' => '排序', 'type' => 'number', 'default' => '0'],
+                'status' => ['label' => '公開狀態', 'type' => 'status', 'required' => true],
+            ],
+            'list' => ['title', 'block_type', 'slot_class', 'status', 'updated_at'],
+        ],
     ];
 }
 
